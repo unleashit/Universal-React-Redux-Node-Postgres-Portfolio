@@ -1,0 +1,15 @@
+<%- include('header') -%>
+
+<form method="POST" action="/signup" class="form-signin">
+    <h2 class="form-signin-heading">Create an account</h2>
+    <div class="alert alert-danger"><%= typeof error !== 'undefined' ? error : '' %></div>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input id="inputUsername" type="text" name="email" placeholder="Email" autofocus="" class="form-control"/>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control"/>
+    <label for="inputPassword" class="sr-only">Repeat Password</label>
+    <input id="inputPassword2" type="password" name="password2" placeholder="Repeat Password" class="form-control"/>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+</form>
+
+<%- include('footer') -%>

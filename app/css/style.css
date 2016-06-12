@@ -1,0 +1,20 @@
+body {
+    margin-top: 30px;
+}
+
+.search-form {
+    width: 100%;
+    margin: auto;
+    background: #D7E2EF;
+    padding: 0 20px 20px 20px;
+    border: 1px #ccc solid;
+    border-radius: 10px;
+}
+
+.well {
+    background: #D7E2EF;
+}
+
+.movie img {
+    width: 100%;
+}

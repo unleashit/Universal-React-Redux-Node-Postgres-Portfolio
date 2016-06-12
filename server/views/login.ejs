@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/login">Welcome</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="main-content row">
+        <div class="col-md-4 col-md-offset-4">
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Log In" class="btn btn-primary">
+                </div>
+            </form>
+            <div class="login-error"><%= message %></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

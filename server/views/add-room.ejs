@@ -1,0 +1,17 @@
+<%- include('header') -%>
+
+<h1>Add a new chat room</h1>
+<form method="post">
+    <fieldset class="form-group">
+        <label for="name">Name:</label>
+        <input name="name" type="text" placeholder="Enter a name" class="form-control"/><small class="text-muted">Give your chat room a meaningful name for people to refer to it.</small>
+        <select name="number" class="form-control">
+            <option>one</option>
+            <option>two</option>
+            <option>three</option>
+        </select>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Save</button><a href="/admin/rooms" class="btn btn-default">Cancel</a>
+</form>
+
+<%- include('footer') -%>
