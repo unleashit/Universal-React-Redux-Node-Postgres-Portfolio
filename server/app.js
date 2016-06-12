@@ -61,10 +61,10 @@ app.get('/', (req, res) => {
     res.render("home", { title: 'Home', activeClass: 'home' });
 });
 
-var apiRouter = require('./api');
+var apiRouter = require('./routes/api');
 app.use("/api", apiRouter);
 
-var adminRouter = require('./admin');
+var adminRouter = require('./routes/admin');
 app.use("/admin", adminRouter);
 
 app.use(function(req, res, next){
