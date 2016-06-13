@@ -1,0 +1,82 @@
+<%- include('header') -%>
+
+<h1>Add a new portfolio item</h1>
+<form enctype="multipart/form-data" method="post" class="portfolio-edit">
+    <fieldset>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input name="title" type="text" class="form-control" value=<%= item.title %>>
+        </div>
+        <div class="form-group">
+            <label for="link">Link</label>
+            <input name="link" type="text" class="form-control" value=<%= item.link %>>
+        </div>
+        <div class="form-group">
+            <label for="description_short">Short Description</label>
+            <textarea name="description_short" class="form-control"><%= item.description_short %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="description">Long Description</label>
+            <textarea name="description" class="form-control"><%= item.description %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tags">Tags</label>
+            <select multiple name="tags" class="form-control" style="min-height: 325px;">
+                <% if (item.tags === null) item.tags = ''; %>
+                <%- tags.map(function(tag) {
+                        var selected = item.tags.indexOf(tag) > -1 ? 'selected' : '';
+                        return `<option value=${tag} ${selected}>${tag}</option>`;
+                    }).join('');
+                %>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><strong>Main image</strong></div>
+            <div class="col-md-10">
+                <div><%- item.main_image ? '<img src="/images/portfolio/' + item.main_image + '" class="thumbnail"/>' : 'none' %></div>
+                <div class="main-image-picker form-group">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name="main_image" style="display: none;">
+                    </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"><strong>Gallery images</strong></div>
+
+            <div class="gallery col-md-10 clearfix">
+                <% var gallery = (item.gallery !== null) ? item.gallery.split('|') : []; console.log(gallery); %>
+                <%- gallery.map(function(img) {
+                    return `<div class="col-md-2">
+                                <img src="/images/portfolio/${img}" class="thumbnail" />
+                            </div>`
+                }).join(''); %>
+
+                <div class="form-group" style="clear:both;">
+                    <div><strong>Gallery</strong></div>
+                    <div class="gallery-images-picker form-group">
+                        <div class="input-group">
+                            <label class="input-group-btn">
+                            <span class="btn btn-primary">
+                                Browse&hellip; <input type="file" name="gallery_images" style="display: none;" multiple>
+                            </span>
+                            </label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/portfolio" class="btn btn-default">Cancel</a>
+</form>
+
+<%- include('footer') -%>

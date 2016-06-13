@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var models = require("./models");
-//var rooms = require('./data/rooms.json');
+
 var createuser = require('./controllers/createUser');
 
 app.set("views", "./server/views");
@@ -18,9 +18,9 @@ app.use(express.static('public'));
 app.use(express.static('node_modules/bootstrap/dist'));
 //app.use(express.static('node_modules/jquery/dist'));
 
-//logging
-// app.use(require('./logging'));
-// require('express-debug')(app, {});
+// logging
+// app.use(require('./logging')); //morgan
+require('express-debug')(app, {}); //
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,12 +34,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-//routes
+// routes
 app.use((req, res, next) => {
     console.log('client connected');
     next();
 });
-app.use(require('./auth'));
+app.use(require(__dirname + '/routes/auth'));
 
 app.get('/signup', (req, res) => {
     res.render("signup", { title: 'Signup', error: req.flash('error') });
@@ -61,12 +61,13 @@ app.get('/', (req, res) => {
     res.render("home", { title: 'Home', activeClass: 'home' });
 });
 
-var apiRouter = require('./routes/api');
+var apiRouter = require(__dirname + '/routes/api');
 app.use("/api", apiRouter);
 
-var adminRouter = require('./routes/admin');
+var adminRouter = require(__dirname + '/routes/admin');
 app.use("/admin", adminRouter);
 
+// 404 handling
 app.use(function(req, res, next){
     res.status(404);
 
@@ -86,11 +87,34 @@ app.use(function(req, res, next){
     res.type('txt').send('Not found');
 });
 
-//var debug = require('debug')('Chat_App');
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('500', {
+            message: err.message,
+            error: err,
+            stack: err.stack
+        });
+    });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('500', {
+        message: err.message,
+        error: {}
+    });
+});
+
+var debug = require('debug')('jg');
 app.set('port', process.env.PORT || 3000);
 
 models.sequelize.sync({
-    force: true,
+    force: false,
     logging: function(str) {console.log(str);}
     })
     .then(function () {

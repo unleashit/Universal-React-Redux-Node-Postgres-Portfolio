@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 //var rooms = require("./data/rooms.json");
 //var messages = require("./data/messages.json");
 //var users = require("./data/users.json");
-var chat = require('./controllers/chatRoomAPI.js');
+var chat = require('../controllers/chatRoomAPI.js');
 
 var router = express.Router();
 module.exports = router;

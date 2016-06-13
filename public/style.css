@@ -2,6 +2,26 @@ body {
     padding-top: 50px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.clearfix:after {
+    content:" ";
+    display:table;
+    clear:both;
+}
+
 .main-content {
     padding: 40px 15px;
+}
+
+table.portfolio-list.table td {
+    vertical-align: middle;
+}
+
+.portfolio-edit .gallery img {
+    width: 100px;
+    height: 100px;
 }

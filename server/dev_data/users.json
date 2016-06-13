@@ -1,0 +1,13 @@
+[
+  {
+    "email": "jason@jasongallagher.org",
+    "id": "1",
+    "useraccess": 3,
+    "password": "lemmein"
+  },
+  {
+    "email": "maggie@thecat.com",
+    "id": "2",
+    "password": "lemmein"
+  }
+]

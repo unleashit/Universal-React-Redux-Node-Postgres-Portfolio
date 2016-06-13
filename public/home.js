@@ -1,68 +1,21 @@
-(function ($) {
+(function() {
 
-    var roomId;
+    function filePicker(elem) {
+        var inputs = document.querySelectorAll(elem + ' input');
+        if (!inputs.length) return;
+        var fField = inputs[0];
+        var readonly = inputs[1];
 
-    $.ajax({
-        type: "GET",
-        url: "/api/rooms"
-    }).success(function (rooms) {
-        roomId = rooms[0].id;
-        getMessages();
-        $.each(rooms, function (key, room) {
-            var a = '<a href="#" data-room-id="' + room.id + '" class="room list-group-item">' + room.name + '</a>';
-            $("#rooms").append(a);
-        });
+        fField.addEventListener('change', function(e) {
+            numFiles = this.files[0] ? this.files.length : 1;
+            label = this.value.replace(/\\/g, '/').replace(/.*\//, '');
 
-    });
-
-    $("#post").click(function () {
-        var message = {text: $("#message").val()};
-
-        $.ajax({
-            type: "POST",
-            url: "/api/rooms/" + roomId + "/messages",
-            data: JSON.stringify(message),
-            contentType : "application/json"
-        }).success(function () {
-            $("#message").val("");
-            getMessages();
-        });
-    });
-
-    $("#message").keyup(function(event){
-        if(event.keyCode == 13){
-            $("#post").click();
-        }
-    });
-
-    $('body').on('click', 'a.room', function (event) {
-        roomId = $(event.target).attr("data-room-id");
-        getMessages();
-    });
-
-    function getMessages() {
-        $.ajax({
-            type: "GET",
-            url: "/api/rooms/" + roomId + "/messages",
-        }).success(function (data) {
-            $("#roomName").text("Messages for " + data.room.name);
-            var messages = "";
-            $.each(data.messages, function (key, message) {
-                messages += message.username + ':  ';
-                messages += message.text + "\r";
-            });
-            $("#messages").val(messages);
+            msg = numFiles > 1 ? numFiles + ' files selected' : label;
+            readonly.value = msg;
         });
     }
 
-    $("#delete").click(function(){
-        $.ajax({
-            type: "DELETE",
-            url: "/api/rooms/" + roomId + "/messages",
-        }).success(function () {
-            $("#messages").val("");
-        });
-    });
+    filePicker('.main-image-picker');
+    filePicker('.gallery-images-picker');
 
-    // setInterval(getMessages, 2000);
-})(jQuery);
+})();

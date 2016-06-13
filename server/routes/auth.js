@@ -1,7 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var _ = require('lodash');
-var users = require('./data/users.json');
+var users = require('../dev_data/users.json');
 
 var router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/login', function (req, res, next) {
     // auto login as admin
     if (req.app.get('env') === 'development') {
         if (req.query.user) {
-            user = _.find(users, u=> u.name === req.query.user);
+            user = _.find(users, u=> u.email === req.query.user);
 
             req.logIn(user, (err) => {
                 if (err) { return next(err); }

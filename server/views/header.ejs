@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Jason Gallagher - Front End Engineer in the San Francisco Bay Area</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
     <% if (typeof activeClass === 'undefined') var activeClass  = ''; %>
@@ -15,11 +15,11 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="<%= (activeClass === 'home') ? 'active' : '' %>"><a href="/">Home</a></li>
-                <li class="<%= (activeClass === 'rooms') ? 'active' : '' %>"><a href="/admin/rooms">Chat Rooms</a></li>
+                <li class="<%= (activeClass === 'manage-portfolio') ? 'active' : '' %>"><a href="/admin/portfolio">Manage Portfolio</a></li>
                 <li class="<%= (activeClass === 'users') ? 'active' : '' %>"><a href="/admin/users">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout"></a></li>
+                <li><a href="/logout">LOG OUT</a></li>
             </ul>
         </div>
     </div>

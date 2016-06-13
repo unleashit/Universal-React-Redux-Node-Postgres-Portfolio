@@ -1,0 +1,40 @@
+<%- include('header') -%>
+
+<h1>Portfolio Items:</h1>
+<div><a href="portfolio/add">
+        <button class="btn btn-primary">Add new item</button></a></div><br/><br/>
+
+<% if (items.length) { %>
+
+<table class="portfolio-list table table-striped table-responsive">
+    <tbody>
+    <tr>
+        <th>&nbsp;</th>
+        <th>item</th>
+        <th>image</th>
+        <th>id</th>
+        <th>&nbsp;</th>
+    <% items.forEach(function(item) { %>
+    <tr>
+        <td style="">
+            <a href="/admin/portfolio/<%= item.id %>"><span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
+        <td style="width: 65%"><%= item.title %></td>
+        <td><img src="/images/portfolio/<%= item.main_image %>" style="width: 100px; height: 100px;" /></td>
+        <td><%= item.id %></td>
+        <td style="">
+            <a href="/admin/portfolio/delete/<%= item.id %>"><span class="glyphicon glyphicon-remove"></span></a>
+        </td>
+    </tr>
+    <% }); %>
+    </tr>
+    </tbody>
+</table>
+
+<% } else { %>
+
+<p>No items found.</p>
+
+<% } %>
+
+<%- include('footer') -%>
