@@ -14,7 +14,7 @@ app.set("views", "./server/views");
 app.set("view engine", "ejs");
 
 // serve static assets
-app.use(express.static('public'));
+app.use(express.static('app'));
 app.use(express.static('node_modules/bootstrap/dist'));
 //app.use(express.static('node_modules/jquery/dist'));
 

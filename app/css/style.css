@@ -1,20 +1,27 @@
 body {
-    margin-top: 30px;
+    padding-top: 50px;
 }
 
-.search-form {
-    width: 100%;
-    margin: auto;
-    background: #D7E2EF;
-    padding: 0 20px 20px 20px;
-    border: 1px #ccc solid;
-    border-radius: 10px;
+img {
+    max-width: 100%;
+    height: auto;
 }
 
-.well {
-    background: #D7E2EF;
+.clearfix:after {
+    content:" ";
+    display:table;
+    clear:both;
 }
 
-.movie img {
-    width: 100%;
+.main-content {
+    padding: 40px 15px;
+}
+
+table.portfolio-list.table td {
+    vertical-align: middle;
+}
+
+.portfolio-edit .gallery img {
+    width: 100px;
+    height: 100px;
 }
