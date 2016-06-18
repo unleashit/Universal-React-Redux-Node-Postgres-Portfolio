@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jason Gallagher - Front End Engineer in the San Francisco Bay Area</title>
+    <% if (title === '') { %>
+        <title>Jason Gallagher - Front End Engineer in the San Francisco Bay Area</title>
+    <% } else { %>
+        <title><%= title %> - Jason Gallagher</title>
+    <% } %>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <% if (typeof activeClass === 'undefined') var activeClass  = ''; %>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -19,7 +22,11 @@
                 <li class="<%= (activeClass === 'users') ? 'active' : '' %>"><a href="/admin/users">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">LOG OUT</a></li>
+                <% if (!auth) { %>
+                    <li><a href="/login">Log In</a></li>
+                <% } else { %>
+                    <li><a href="/logout">Log Out</a></li>
+                <% } %>
             </ul>
         </div>
     </div>

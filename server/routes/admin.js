@@ -1,18 +1,17 @@
 'use strict';
 
 var express = require('express');
-var uuid = require('node-uuid');
 var _ = require('lodash');
 var path = require('path');
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
+var multer  = require('multer');
 
 var managePortfolio = require('../controllers/managePortfolio.js');
-var bodyParser = require('body-parser');
 
 var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-var multer  = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, __dirname + '/../../app/images/portfolio')
@@ -24,8 +23,11 @@ var storage = multer.diskStorage({
         })
     }
 });
-var upload = multer({ storage: storage });
-var cpUpload = upload.fields([{ name: 'main_image', maxCount: 1 }, { name: 'gallery_images', maxCount: 10 }]);
+var cpUpload = multer({ storage: storage })
+    .fields([
+        { name: 'main_image', maxCount: 1 },
+        { name: 'gallery_images', maxCount: 10 }
+    ]);
 
 // check logged in user has sufficient privileges
 router.use((req, res, next) => {
@@ -33,8 +35,9 @@ router.use((req, res, next) => {
         next();
         return;
     }
-    res.status(403);
-    res.render('404', { url: req.url });
+    // TODO: test status not sending to error view
+    res.status(404);
+    res.render('error', { url: req.url, status: 404});
 });
 
 //routes

@@ -20,7 +20,7 @@ router.get('/login', function (req, res, next) {
         }
     }
 
-    res.render('login', {message: req.flash('error')});
+    res.render('login', {title: 'login', message: req.flash('error')});
 });
 
 router.post("/login", function(req, res, next) {

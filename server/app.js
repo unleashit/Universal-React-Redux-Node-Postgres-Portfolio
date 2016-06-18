@@ -10,17 +10,23 @@ var models = require("./models");
 
 var createuser = require('./controllers/createUser');
 
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { match, RouterContext } from 'react-router';
+import { routes } from '../app/js/routes';
+
+// configure express
 app.set("views", "./server/views");
 app.set("view engine", "ejs");
 
 // serve static assets
-app.use(express.static('app'));
+app.use(express.static('dist'));
 app.use(express.static('node_modules/bootstrap/dist'));
 //app.use(express.static('node_modules/jquery/dist'));
 
 // logging
 // app.use(require('./logging')); //morgan
-require('express-debug')(app, {}); //
+require('express-debug')(app, {});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -37,18 +43,52 @@ app.use(passport.session());
 // routes
 app.use((req, res, next) => {
     console.log('client connected');
+    res.locals.title ='';
+    res.locals.metaDesc = '';
+    res.locals.auth = req.isAuthenticated();
+    res.locals.activeClass = '';
     next();
 });
+
 app.use(require(__dirname + '/routes/auth'));
 
-app.get('/signup', (req, res) => {
-    res.render("signup", { title: 'Signup', error: req.flash('error') });
+app.get('*', (req, res, next) => {
+    // routes is our object of React routes defined above
+    match({ routes, location: req.url }, (err, redirectLocation, props) => {
+        if (err) {
+            // something went badly wrong, so 500 with a message
+            res.status(500).send(err.message);
+        } else if (redirectLocation) {
+            // we matched a ReactRouter redirect, so redirect from the server
+            res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+        } else if (props) {
+            // if we got props, that means we found a valid component to render
+            // for the given route
+            //const markup = renderToString(<RouterContext {...props} />);
+            const markup = renderToString(<RouterContext {...props} />);
+
+            // render `index.ejs`, but pass in the markup we want it to display
+            res.render('index', { reactHtml: markup })
+
+        } else {
+            // no react route match, so continue on to server routing
+            next();
+        }
+    });
 });
 
-app.post('/signup', createuser.signup);
+app.route('/signup')
+    .get((req, res) => {
+        res.render("signup", { title: 'Signup', error: req.flash('error') });
+    })
+    .post(createuser.signup);
+
+var apiRouter = require(__dirname + '/routes/api');
+app.use("/api", apiRouter);
 
 //authenticated routes below here
-app.use((req, res, next) => {
+
+app.use('/admin*', (req, res, next) => {
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
         next();
@@ -56,13 +96,6 @@ app.use((req, res, next) => {
     }
     res.redirect('/login');
 });
-
-app.get('/', (req, res) => {
-    res.render("home", { title: 'Home', activeClass: 'home' });
-});
-
-var apiRouter = require(__dirname + '/routes/api');
-app.use("/api", apiRouter);
 
 var adminRouter = require(__dirname + '/routes/admin');
 app.use("/admin", adminRouter);
@@ -73,7 +106,7 @@ app.use(function(req, res, next){
 
     // respond with html page
     if (req.accepts('html')) {
-        res.render('404', { url: req.url });
+        res.render('error', { status: 404, url: req.url });
         return;
     }
 
@@ -92,9 +125,9 @@ app.use(function(req, res, next){
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('500', {
+        res.render('error', {
             message: err.message,
-            error: err,
+            status: 500,
             stack: err.stack
         });
     });
@@ -104,7 +137,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('500', {
+    res.render('error', {
         message: err.message,
         error: {}
     });

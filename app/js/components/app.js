@@ -1,41 +1,21 @@
-var React = require('React');
-var AppActions = require('../actions/appActions');
-var AppStore = require('../stores/appStore');
-var SearchForm = require('./searchForm');
-var MovieResults = require('./movieResults')
+import React from 'react';
+import { Link } from 'react-router';
 
-function getAppState() {
-    return {
-        movies: AppStore.getMovieResults()
-    }
-}
+// require('../../scss/style.scss');
 
-var App = React.createClass({
-    getInitialState: function() {
-      return getAppState();  
-    },
-    componentDidMount: function() {
-        AppStore.addChangeListener(this._onChange);
-    },
-
-    componentWillUnmount: function() {
-        AppStore.removeChangeListener(this._onChange);
-    },
-    
-    render: function() {
-        var movieResults = (!this.state.movies.length) ? '' : <MovieResults movies={this.state.movies} />;
-
+export default class AppComponent extends React.Component {
+    render() {
         return (
             <div>
-                <SearchForm />
-                {movieResults}
+                <h2>Welcome to my App</h2>
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/about'>About</Link></li>
+                    <li><Link to='/test'>Test</Link></li>
+                    <li><Link to='/test'>futher</Link></li>
+                </ul>
+                { this.props.children }
             </div>
-        )
-    },
-    
-    _onChange: function() {
-        this.setState(getAppState());
+        );
     }
-});
-
-module.exports = App;
+}
