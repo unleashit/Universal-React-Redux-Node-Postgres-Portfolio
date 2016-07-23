@@ -30,6 +30,7 @@ class Dino extends Component {
                 <h5>Dinosaur Page</h5>
                 <p>Hello dino. You have growled {growls} times!</p>
                 <div><button onClick={this.handleClick.bind(this)}>Growl Again!</button></div>
+                <p>Now you can go <Link to="/">home!</Link></p>
             </div>
         );
     }

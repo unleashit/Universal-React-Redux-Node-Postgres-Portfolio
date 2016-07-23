@@ -10,9 +10,9 @@ function fetchPortfolio() {
   return (dispatch) => {
     dispatch({ type: WORK_FETCHING });
 
-    return axios('http://localhost:3000/api/portfolio')
+    return fetch('http://localhost:3000/api/portfolio')
         .then((response) => {
-          return response.data;
+          return response.json();
         })
         .then(
             (result) => dispatch({ type: WORK_FETCHED, result }),

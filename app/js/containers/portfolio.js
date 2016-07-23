@@ -1,19 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as portfolioActions  from '../actions/portfolio';
 import PortfolioItem from '../components/portfolioItem';
 
 export default class Portfolio extends React.Component {
-
-    static readyOnActions(dispatch) {
-        return Promise.all([
-            dispatch(portfolioActions.fetchPortfolioIfNeeded())
-        ]);
-    }
-
-    componentDidMount() {
-        Portfolio.readyOnActions(this.props.dispatch);
-    }
 
     renderPortfolio() {
         if (this.props.portfolio.readyState === 'WORK_FETCHING') {
