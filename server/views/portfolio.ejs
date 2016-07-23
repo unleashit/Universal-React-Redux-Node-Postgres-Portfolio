@@ -12,18 +12,18 @@
         <th>&nbsp;</th>
         <th>item</th>
         <th>image</th>
-        <th>id</th>
+        <th>sort</th>
         <th>&nbsp;</th>
     <% items.forEach(function(item) { %>
     <tr>
         <td style="">
-            <a href="/admin/portfolio/<%= item.id %>"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="/admin/portfolio/<%= item.id %>"><span class="fa fa-pencil"></span></a>
         </td>
         <td style="width: 65%"><%= item.title %></td>
-        <td><img src="/images/portfolio/<%= item.main_image %>" style="width: 100px; height: 100px;" /></td>
-        <td><%= item.id %></td>
+        <td><img src="/images/portfolio/<%= item.main_image %>" style="max-width: 200px; height: auto;" /></td>
+        <td><%= item.sort %></td>
         <td style="">
-            <a href="/admin/portfolio/delete/<%= item.id %>"><span class="glyphicon glyphicon-remove"></span></a>
+            <a href="/admin/portfolio/delete/<%= item.id %>" class="confirm-delete"><span class="fa fa-remove"></span></a>
         </td>
     </tr>
     <% }); %>

@@ -1,0 +1,117 @@
+.who-what-where, .about {
+  margin-top: $section-padding;
+}
+
+img.who-i-am, img.what-i-do, img.where-i-am {
+  display: block;
+  margin: 38px auto 0 auto;
+}
+
+.about {
+  border-top: 1px solid #ccc;
+  padding-top: $section-padding;
+}
+
+.jg-image {
+  max-width: 160px;
+}
+
+.skill {
+  padding: 6px 12px;
+  margin-bottom: 11px;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: #f0ecec;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1) inset;
+  clear: both;
+}
+
+.about-buttons {
+  margin-top: 30px;
+  .button{
+    margin-right: 21px;
+    i {
+      margin-right: 15px;
+      font-size: 1.6em;
+      color: #000;
+    }
+    &.resume i {
+      font-size: 1.35em;
+    }
+  }
+}
+
+// who, what, where media queries
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
+  .who-what-where .col-md-4 {
+    margin-bottom: 40px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// about and skills media queries
+
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
+  .jg-image {
+    max-width: 110px;
+    padding-bottom: 25px;
+  }
+  .about-buttons {
+    .button {
+      display: block;
+      margin-bottom: 10px;
+      font-size: .8rem;
+    }
+  }
+}
+@media screen and (min-width: map-get($grid-breakpoints, sm)) and (max-width: map-get($grid-breakpoints, lg)) {
+  .skill {
+    font-size: 1.2rem;
+    &.full {
+      clear: both;
+      float: none;
+      width: 100%;
+    }
+    &.half {
+      float: left;
+      width: 48%;
+      clear: none;
+    }
+    &.half:nth-of-type(odd) {
+      float: right;
+      width: 48%;
+      clear: none;
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .skill {
+    font-size: 1.2rem;
+    &.full {
+      clear: both;
+      float: none;
+      width: 100%;
+    }
+    &.half {
+      float: left;
+      width: 48%;
+      clear: none;
+    }
+    &.half:nth-of-type(odd) {
+      float: right;
+      width: 48%;
+      clear: none;
+    }
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, lg)) {
+  .skills {
+    clear: both;
+    padding-top: $section-padding;
+  }
+}
+
+

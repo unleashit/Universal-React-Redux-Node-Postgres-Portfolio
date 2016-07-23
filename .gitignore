@@ -1,6 +1,7 @@
 .idea
 node_modules
-bower_components
 tmp
 server/config/*
 dist
+app/scss/bootstrap4-alpha2/**/**
+app/scss/font-awesome

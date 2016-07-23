@@ -1,4 +1,5 @@
 var models = require('../models/index.js');
+var sequelize = require('sequelize');
 
 var portfolioTags = ['Joomla', 'Drupal', 'Wordpress', 'Angular', 'React', 'jQuery', 'Javascript', 'Html', 'CSS', 'Design/UX', 'Frontend', 'Backend', 'PHP', 'MySql', 'Ecommerce', 'AWS', 'Devops', 'Other'];
 
@@ -9,7 +10,10 @@ var _ = require('lodash');
 
 exports.getPortfolio = function(req, res) {
     models.Portfolio
-        .findAll({limit: 100})
+        .findAll({
+            limit: 100,
+            order: '`sort` ASC'
+        })
         .then((items) =>{
             res.render("portfolio", {
                 title: 'Manage Portfolio',
@@ -49,15 +53,19 @@ exports.handlePortfolioSubmit = function(req, res) {
     }
 
     models.Portfolio
-        .create({
-            title: req.body.title || null,
-            description: req.body.description || null,
-            description_short: req.body.description_short || null,
-            tags: tags,
-            main_image: main_image,
-            gallery: gallery_images,
-            link: req.body.link || null,
-            UserId: req.body.user
+        .max('sort')
+        .then((maxSort) => {
+            models.Portfolio.create({
+                title: req.body.title || null,
+                description: req.body.description || null,
+                description_short: req.body.description_short || null,
+                tags: tags,
+                main_image: main_image,
+                gallery: gallery_images,
+                link: req.body.link || null,
+                UserId: req.body.user,
+                sort: maxSort +1 || 0
+            })
         })
         .then(() => {
             res.redirect(req.baseUrl + '/portfolio');
@@ -86,7 +94,8 @@ exports.handlePortfolioItemSubmit = function(req, res) {
         title: req.body.title,
         description: req.body.description,
         description_short: req.body.description_short,
-        link: req.body.link
+        link: req.body.link,
+        sort: req.body.sort
     };
 
     if (typeof req.files.main_image !== 'undefined') {

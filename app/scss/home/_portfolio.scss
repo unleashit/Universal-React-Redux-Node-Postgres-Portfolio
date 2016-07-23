@@ -1,0 +1,89 @@
+.portfolio {
+  margin-top: $section-padding;
+  padding-bottom: $section-padding;
+  background-color: #000;
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 260px;
+    line-height: 260px;
+    float: left;
+    background-color: $portfolio-1;
+    text-align: center;
+    cursor: pointer;
+    &:nth-of-type(even) {
+      background-color: $portfolio-2;
+    }
+    &:hover .portfolio-caption{
+      bottom: 0;
+    }
+  }
+  img {
+    max-width: 80%;
+  }
+  .portfolio-caption {
+    position: absolute;
+    width: 100%;
+    bottom: -50px;
+    left:0;
+    background-color: #333;
+    color: #fff;
+    transition: all 180ms ease-out;
+    p {
+      margin: 0;
+      height: 50px;
+      line-height: 50px;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, xxl)) {
+  .portfolio .portfolio-item {
+    width: 25%;
+
+    // worlds ugliest code!
+    &:nth-of-type(2n+5)  {
+      background-color: $portfolio-2;
+    }
+    &:nth-of-type(2n+6)  {
+      background-color: $portfolio-1;
+    }
+    &:nth-of-type(2n+9)  {
+      background-color: $portfolio-1;
+    }
+    &:nth-of-type(2n+10)  {
+      background-color: $portfolio-2;
+    }
+    &:nth-of-type(2n+13)  {
+      background-color: $portfolio-2;
+    }
+    &:nth-of-type(2n+14)  {
+      background-color: $portfolio-1;
+    }
+    &:nth-of-type(2n+17)  {
+      background-color: $portfolio-1;
+    }
+    &:nth-of-type(2n+18)  {
+      background-color: $portfolio-2;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, lg)) and (max-width: map-get($grid-breakpoints, xxl)) {
+  .portfolio .portfolio-item {
+    width: 33.33%;
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, lg)) {
+  .portfolio .portfolio-item {
+    width: 50%;
+    &:nth-of-type(even) {
+      background-color: $portfolio-1;
+    }
+    &:nth-of-type(3n+0), &:nth-of-type(2) {
+      background-color: $portfolio-2;
+    }
+  }
+}

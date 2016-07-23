@@ -6,6 +6,12 @@
     "password": "lemmein"
   },
   {
+    "email": "abc",
+    "id": "3",
+    "useraccess": 3,
+    "password": "abc"
+  },
+  {
     "email": "maggie@thecat.com",
     "id": "2",
     "password": "lemmein"

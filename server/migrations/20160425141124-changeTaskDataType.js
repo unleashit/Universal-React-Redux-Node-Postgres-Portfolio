@@ -2,13 +2,13 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.changeColumn('tasks', 'title', {
-      type: Sequelize.BLOB
+    return queryInterface.changeColumn('portfolio', 'description', {
+      type: Sequelize.TEXT('medium')
     })
   },
   down: function (queryInterface, Sequelize) {
-      return queryInterface.changeColumn('tasks', 'title', {
-          type: Sequelize.TEXT
+      return queryInterface.changeColumn('portfolio', 'description', {
+          type: Sequelize.BLOB
       })
   }
 };

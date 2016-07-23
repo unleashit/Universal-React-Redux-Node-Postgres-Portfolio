@@ -1,0 +1,61 @@
+.main-header {
+  height: 825px;
+  background: url('../../images/header-image.jpg') #3F7E37 no-repeat center top;
+  background-size: auto 825px;
+  nav {
+    overflow: hidden;
+  }
+}
+
+.main-nav {
+  margin: 70px 0 0;
+  text-align: center;
+  list-style: none;
+  li {
+    display: inline-block;
+    line-height: 59px;
+  }
+  a {
+    padding: 0 20px;
+    font-size: 1.7em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+  }
+  .jg-logo {
+    display: inline-block;
+    margin: -14px 25px 0 25px;
+    max-width: 55px;
+  }
+}
+
+.title-tagline-wrapper {
+  color: #fff;
+  margin: 0px auto;
+  max-width: 800px;
+  text-align: center;
+  margin-top: 150px;
+  h1 {
+    font-size: 3.55em;
+    margin-bottom: 30px;
+  }
+  h2 {
+    margin: 0;
+    font-family: 'Sanchez', serif;
+    font-size: 1.55em;
+    line-height: 1.3em;
+  }
+}
+
+.button-wrapper {
+  margin-top: 138px;
+  text-align: center;
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
+
+  .main-nav {
+    display: none;
+  }
+
+}

@@ -1,25 +1,14 @@
-import AppComponent from './components/app';
-import IndexComponent from './components/index';
-import AboutComponent from './components/about';
-import TestComponent from './components/test';
+import React from 'react';
+import { Route } from 'react-router';
+import App from './containers/App';
+import Home from './containers/Home';
+import Dino from './containers/Dino';
+import NoMatch from './containers/NoMatch';
 
-const routes = {
-    path: '',
-    component: AppComponent,
-    childRoutes: [
-        {
-            path: '/',
-            component: IndexComponent
-        },
-        {
-            path: '/about',
-            component: AboutComponent
-        },
-        {
-            path: '/test',
-            component: TestComponent
-        }
-    ]
-};
-
-export { routes };
+export default (
+    <Route component={App}>
+        <Route path='/' component={Home} />
+        <Route path='/dinosaur' component={Dino} />
+        <Route path="*" component={NoMatch} />
+    </Route>
+);

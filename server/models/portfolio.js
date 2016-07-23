@@ -2,13 +2,17 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Portfolio = sequelize.define("Portfolio", {
-        title: DataTypes.TEXT,
+        title: DataTypes.STRING,
         description: DataTypes.BLOB,
         description_short: DataTypes.TEXT,
         tags: DataTypes.TEXT,
         main_image: DataTypes.STRING,
-        gallery: DataTypes.BLOB,
-        link: DataTypes.STRING
+        gallery: DataTypes.TEXT('medium'),
+        link: DataTypes.STRING,
+        sort: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        }
     }, {
         classMethods: {
             associate: function(models) {

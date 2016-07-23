@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var App = require('./components/app');
 
-require('../css/style.scss');
+//require('../scss/style.scss');
 
 ReactDOM.render (
     <App />,

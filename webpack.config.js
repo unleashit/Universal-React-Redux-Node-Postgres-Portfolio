@@ -1,40 +1,54 @@
-const webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-//var CopyWebpackPlugin = require('copy-webpack-plugin');
+'use strict';
 
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-//     template: __dirname + '/app/index.html',
-//     filename: 'index.html',
-//     inject: 'body'
-// });
-
-var NODE_ENV = process.env.NODE_ENV || 'development';
-
-var devtoolConfig = (NODE_ENV === 'production') ? false : 'source-map';
-console.log('node_env: ' + NODE_ENV);
-console.log('devtool config: ' + devtoolConfig);
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-    entry: [
-        './app/js/client-render.js'
-    ],
+    devtool: '#source-map',
+    entry: {
+        global: ['webpack-hot-middleware/client', './app/js/index.js'],
+        admin: './app/js/admin.js'
+    },
     output: {
         path: __dirname + '/dist/',
-        filename: "bundle.min.js"
+        filename: "[name].js",
+        publicPath: 'http://localhost:3000/'
     },
-    devtool: devtoolConfig,
+    plugins: [
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+    ],
     module: {
-        loaders: [
-          //  { test: /\.css$/, loader: ExtractTextPlugin.extract( 'style', 'css?sourceMap') },
-         //   { test: /\.scss$/, loader: ExtractTextPlugin.extract( 'style', 'css?sourceMap!sass?sourceMap') },
+        loaders: [{
+            test: /\.js?$/,
+            loader: 'babel',
+            include: path.join(__dirname, 'app'),
+            query: {
+                plugins: [
+                    ['react-transform', {
+                        'transforms': [{
+                            transform: 'react-transform-hmr',
+                            // If you use React Native, pass 'react-native' instead:
+                            imports: ['react'],
+                            // This is important for Webpack HMR:
+                            locals: ['module']
+                        }]
+                    }],
+                    ['transform-object-assign']
+                ]
+            }
+        },
+            {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
+            {test: /\.css$/, loaders: ["style", "css?sourceMap"]},
+            {test: /\.scss$/, loaders: ["style", "css?sourceMap", "sass?sourceMap"]},
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-                query: {presets: ['react']}
-            },
-            {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
+            }
         ]
     },
     eslint: {
@@ -42,26 +56,6 @@ module.exports = {
         failOnError: true
     },
     sassLoader: {
-        includePaths: [ './app/scss' ]
-    },
-    plugins: [
-       // HtmlWebpackPluginConfig,
-        //new ExtractTextPlugin('./css/style.css'),
-        //new CopyWebpackPlugin([
-        //    { context: './app/images', from: '*/**', to: 'images' }
-        //    ]),
-        //new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            comments: false,
-            //sourceMap: false
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(NODE_ENV)
-            }
-        })
-    ]
+        includePaths: ['./app/scss']
+    }
 };

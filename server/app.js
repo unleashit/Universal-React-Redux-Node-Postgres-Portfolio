@@ -1,4 +1,8 @@
-'use strict';
+require('babel-register')({
+    presets: ['es2015', 'react']
+});
+
+//require('babel-core/register');
 
 var express = require('express');
 var app = express();
@@ -7,13 +11,30 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 
 var models = require("./models");
-
 var createuser = require('./controllers/createUser');
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
-import { routes } from '../app/js/routes';
+global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+
+//var routes = require('../app/js/routes').routes;
+
+var webpack = require('webpack');
+var dev = require('webpack-dev-middleware');
+var hot = require('webpack-hot-middleware');
+var config = require('../webpack.config.js');
+const compiler = webpack(config);
+
+app.use(dev(compiler, {
+    publicPath: config.output.publicPath,
+    stats: {
+        colors: true,
+        hash: false,
+        timings: true,
+        chunks: false,
+        chunkModules: false,
+        modules: false
+    }
+}));
+app.use(hot(compiler));
 
 // configure express
 app.set("views", "./server/views");
@@ -31,7 +52,7 @@ require('express-debug')(app, {});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// passport
+// auth
 require('./passport-init');
 app.use(require('express-session')({
     secret: 'keyboard cat', resave: false, saveUninitialized: false
@@ -40,9 +61,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// routes
+// server routes
 app.use((req, res, next) => {
     console.log('client connected');
+    res.locals.renderer = 'ejs';
     res.locals.title ='';
     res.locals.metaDesc = '';
     res.locals.auth = req.isAuthenticated();
@@ -51,31 +73,6 @@ app.use((req, res, next) => {
 });
 
 app.use(require(__dirname + '/routes/auth'));
-
-app.get('*', (req, res, next) => {
-    // routes is our object of React routes defined above
-    match({ routes, location: req.url }, (err, redirectLocation, props) => {
-        if (err) {
-            // something went badly wrong, so 500 with a message
-            res.status(500).send(err.message);
-        } else if (redirectLocation) {
-            // we matched a ReactRouter redirect, so redirect from the server
-            res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-        } else if (props) {
-            // if we got props, that means we found a valid component to render
-            // for the given route
-            //const markup = renderToString(<RouterContext {...props} />);
-            const markup = renderToString(<RouterContext {...props} />);
-
-            // render `index.ejs`, but pass in the markup we want it to display
-            res.render('index', { reactHtml: markup })
-
-        } else {
-            // no react route match, so continue on to server routing
-            next();
-        }
-    });
-});
 
 app.route('/signup')
     .get((req, res) => {
@@ -87,7 +84,6 @@ var apiRouter = require(__dirname + '/routes/api');
 app.use("/api", apiRouter);
 
 //authenticated routes below here
-
 app.use('/admin*', (req, res, next) => {
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
@@ -97,8 +93,23 @@ app.use('/admin*', (req, res, next) => {
     res.redirect('/login');
 });
 
-var adminRouter = require(__dirname + '/routes/admin');
-app.use("/admin", adminRouter);
+// admin router
+app.use("/admin", require(__dirname + '/routes/admin'));
+
+// tentative code!
+// Otherwise errors thrown in Promise routines will be silently swallowed.
+// (e.g. any error during rendering the app server-side!)
+process.on('unhandledRejection', (reason, p) => {
+    if (reason.stack) {
+        console.error(reason.stack);
+    } else {
+        console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+    }
+});
+
+// react
+var reactApp = require('../app/js/index').serverMiddleware;
+app.get('*', reactApp);
 
 // 404 handling
 app.use(function(req, res, next){
