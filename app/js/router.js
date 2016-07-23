@@ -11,11 +11,27 @@ import configureStore from './configureStore';
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
+    require('smoothscroll-polyfill').polyfill();
+
     const store = configureStore(window.__INITIAL_STATE__);
+
+    function hashLinkScroll() {
+        const { hash } = window.location;
+        if (hash !== '') {
+            // Push onto callback queue so it runs after the DOM is updated,
+            // this is required when navigating from a different page so that
+            // the element is rendered on the page before trying to getElementById.
+            setTimeout(() => {
+                const id = hash.replace('#', '');
+                const element = document.getElementById(id);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 0);
+        }
+    }
 
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={browserHistory}>{routes}</Router>
+            <Router history={browserHistory} onUpdate={hashLinkScroll}>{routes}</Router>
         </Provider>,
         document.getElementById('root')
     );

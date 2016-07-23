@@ -45,7 +45,8 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.23.3",
-    "sequelize-cli": "^2.4.0"
+    "sequelize-cli": "^2.4.0",
+    "smoothscroll-polyfill": "^0.3.3"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
