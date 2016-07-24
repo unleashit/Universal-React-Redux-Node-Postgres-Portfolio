@@ -1,10 +1,10 @@
 import config from '../../../server/config/appConfig';
-import axios from 'axios';
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
 export const WORK_FETCHED = 'WORK_FETCHED';
 export const WORK_FETCH_FAILED = 'WORK_FETCH_FAILED';
+export const SET_HEADER = 'SET_HEADER';
 
 function fetchPortfolio() {
   return (dispatch) => {
@@ -34,6 +34,12 @@ function shouldFetchPortfolio(state) {
   }
 
   return false;
+}
+
+export function setHeader(bool) {
+    return (dispatch) => {
+        dispatch({type: SET_HEADER, bool});
+    }
 }
 
 export function fetchPortfolioIfNeeded() {

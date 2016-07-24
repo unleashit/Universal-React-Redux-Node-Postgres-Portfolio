@@ -1,0 +1,21 @@
+.sticky-header {
+  visibility: visible;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  background: #000;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  transition: all .4s;
+  h3, p, a {
+    transition: all .4s;
+  }
+  &.off {
+    visibility: hidden;
+    height: 0;
+    h3, p, a {
+      font-size: 0;
+    }
+  }
+}

@@ -3,9 +3,11 @@ import React from 'react';
 export default class StickyHeader extends React.Component {
     render() {
 
+        const classes = this.props.visible ? 'sticky-header on' : 'sticky-header off';
+
         return (
-            <div className="sticky-header">
-                <h1>DINOSAUR</h1>
+            <div className={classes}>
+                <h3>DINOSAUR</h3>
             </div>
         );
     }
