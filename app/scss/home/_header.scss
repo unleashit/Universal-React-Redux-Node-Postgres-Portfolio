@@ -8,7 +8,8 @@
 }
 
 .main-nav {
-  margin: 70px 0 0;
+  margin: 60px 0 0;
+  padding: 0;
   text-align: center;
   list-style: none;
   li {
@@ -24,7 +25,7 @@
   }
   .jg-logo {
     display: inline-block;
-    margin: -14px 25px 0 25px;
+    margin-top: -10px;
     max-width: 55px;
   }
 }
@@ -34,10 +35,11 @@
   margin: 0px auto;
   max-width: 800px;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 165px;
   h1 {
     font-size: 3.55em;
     margin-bottom: 30px;
+    line-height: 3.8rem;
   }
   h2 {
     margin: 0;
@@ -47,8 +49,18 @@
   }
 }
 
+.hamburger {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
 .button-wrapper {
-  margin-top: 138px;
+  margin-top: 150px;
   text-align: center;
 }
 
@@ -58,4 +70,14 @@
     display: none;
   }
 
+  .title-tagline-wrapper {
+    margin-top: 120px;
+    h1 {
+      font-size: 3.3rem;
+      letter-spacing: 1px;
+    }
+  }
+  .button-wrapper {
+    margin-top: 60px;
+  }
 }

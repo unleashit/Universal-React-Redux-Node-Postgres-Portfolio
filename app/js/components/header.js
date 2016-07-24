@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Navigation from './navigation';
 
 export default class Header extends React.Component {
+
     render() {
         return (
             <header className="main-header">
+                <div className="hamburger hidden-md-up"><div onClick={this.props.toggleBurger.bind(this)}><i className="fa fa-bars"></i> MENU</div></div>
                 <div className="container-fluid">
-                    <nav className="">
-                        <ul className="main-nav">
-                            <Link to="/#about">About</Link>
-                            <Link to="/#skills">Skills</Link>
-                            <img src="images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
-                            <Link to="/#work">Work</Link>
-                            <li><a href='/#contact'>Contact</a></li>
-                        </ul>
-                    </nav>
+                    <Navigation logo={true} ulClass="main-nav" logo="2" />
                     <div className="title-tagline-wrapper">
                         <h1>FRONT END ENGINEER</h1>
                         <h2>17 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>

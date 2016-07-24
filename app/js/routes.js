@@ -10,7 +10,7 @@ export default (
         <Route path='/' component={Home}>
             <Route path="/index:hashRoute" component={Home} />
         </Route>
-        <Route path="dino" component={Dino} />
+        <Route path="/dino" component={Dino} />
         <Route path="*" component={NoMatch} />
     </Route>
 );

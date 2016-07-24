@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 // import Helmet from 'react-helmet';
 import StickyHeader from '../components/stickyHeader';
+import ResponsiveMenu from '../components/responsiveMenu';
 import Header from '../components/header';
 import WhoWhatWhere from '../components/whoWhatWhere';
 import About from '../components/about';
 import Portfolio from '../containers/Portfolio';
 import Footer from '../components/footer';
 import * as portfolioActions  from '../actions/portfolio';
+import * as globalActions  from '../actions/global';
 
 if (typeof document !== 'undefined') require('../../scss/home/home.scss');
 
@@ -31,19 +33,24 @@ export default class Home extends Component {
     }
 
     handleStickyHeader(dispatch) {
-        if (window.pageYOffset >= 400 && this.props.portfolio.headerState === false) {
-           dispatch(portfolioActions.setHeader(true));
-        } else if (window.pageYOffset < 400 && this.props.portfolio.headerState === true) {
-           dispatch(portfolioActions.setHeader(false));
+        if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
+           dispatch(globalActions.setHeader(true));
+        } else if (window.pageYOffset < 250 && this.props.global.headerState === true) {
+           dispatch(globalActions.setHeader(false));
         }
+    }
+    
+    toggleBurger() {
+        this.props.dispatch(globalActions.openHamburger());
     }
 
     render() {
         return (
-            <div>
+            <div id="home">
                 {/*<Helmet title='Front End Engineer'/>*/}
-                <StickyHeader visible={this.props.portfolio.headerState}/>
-                <Header />
+                <StickyHeader visible={this.props.global.headerState} />
+                <ResponsiveMenu menuVisible={this.props.global.hamburgerState} />
+                <Header toggleBurger={this.toggleBurger.bind(this)} />
                 <WhoWhatWhere />
                 <About />
                 <Portfolio />
@@ -55,7 +62,8 @@ export default class Home extends Component {
 
 function mapStateToProps(state) {
     return {
-        portfolio: state.portfolio
+        portfolio: state.portfolio,
+        global: state.global
     };
 }
 function mapDispatchToProps(dispatch) {
@@ -64,14 +72,5 @@ function mapDispatchToProps(dispatch) {
     }
 
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     console.log(dispatch);
-//     return {
-//         header: (boo) => {
-//             dispatch(portfolioActions.setHeader(boo))
-//         }
-//     }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

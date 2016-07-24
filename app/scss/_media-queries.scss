@@ -29,9 +29,9 @@ only screen and (min-resolution: 120dpi)
   }
 }
 
-@media screen and (max-width: map-get($grid-breakpoints, sm)) {
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
   html {
-    //font-size: 15px;
+   // font-size: 15px;
   }
   p {
    // font-size: 1.2rem;
