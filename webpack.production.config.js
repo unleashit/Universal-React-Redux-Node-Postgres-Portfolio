@@ -72,8 +72,8 @@ module.exports = {
                     ]
                 }
             },
-            {test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap')},
-            {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')},
+            {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap!sass?sourceMap' })},
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
