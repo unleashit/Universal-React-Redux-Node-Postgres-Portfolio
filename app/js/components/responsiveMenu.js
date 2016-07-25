@@ -15,7 +15,7 @@ export default class ResponsiveMenu extends React.Component {
                     <i className="fa fa-close"></i> CLOSE
                 </div>
                 <h3 className="name">Jason Gallagher</h3>
-                <h3 className="h1">Front End Engineer</h3>
+                <h3 className="title">Front End Engineer</h3>
 
                 <nav>
                     <ul className="responsive-nav">
@@ -27,7 +27,7 @@ export default class ResponsiveMenu extends React.Component {
                     </ul>
                 </nav>
 
-                <img src="images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
+                <img src="images/jg-logo.svg" className="jg-logo-menu" alt="Jason Gallagher" width="100" height="100" />
 
             </div>
         );

@@ -6,9 +6,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 90px;
+  padding-top: 70px;
   background: #333;
-  font-family: Oswald, sans-serif;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
@@ -17,9 +16,12 @@
   h3, p, a {
   }
   .name {
-    margin-bottom: 14px;
-    font-size: 1.95rem;
+    margin-bottom: 4px;
+    font-size: 1.4rem;
     font-family: 'Sanchez', serif;
+  }
+  .title {
+    font-size: 1.9rem;
   }
   &.off {
     visibility: hidden;
@@ -31,22 +33,21 @@
     .close {
       right: -1000px;
     }
-    .jg-logo {
+    .jg-logo-menu {
 
     }
   }
-  .jg-logo {
+  .jg-logo-menu {
     display:inline-block;
-    margin-bottom: 22px;
-    width: 170px;
-    margin-top: 28px;
+    width: 125px;
+    margin-top: 20px;
     opacity: .7;
   }
   .close-menu {
     position: absolute;
     right: 30px;
     top: 15px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #fff;
     cursor: pointer;
     transition: right .3s;
@@ -57,15 +58,15 @@
 }
 
 .responsive-nav {
-  margin: 45px 0 0;
+  margin: 34px 0 0;
   padding: 0;
   list-style: none;
   a {
     display: block;
     margin-bottom: 5px;
-    padding: 1rem;
+    padding: .6rem;
     background-color: #111;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: background 350ms ease-in;
     &:link, &:hover, &:active, &:visited {
       color: #eee;
