@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Portfolio = sequelize.define("Portfolio", {
         title: DataTypes.STRING,
-        description: DataTypes.BLOB,
+        description: DataTypes.TEXT('medium'),
         description_short: DataTypes.TEXT,
         tags: DataTypes.TEXT,
         main_image: DataTypes.STRING,

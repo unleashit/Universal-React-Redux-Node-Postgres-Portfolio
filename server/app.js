@@ -6,6 +6,7 @@ require('babel-register')({
 
 var express = require('express');
 var app = express();
+var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -14,8 +15,6 @@ var models = require("./models");
 var createuser = require('./controllers/createUser');
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
-
-//var routes = require('../app/js/routes').routes;
 
 var webpack = require('webpack');
 var dev = require('webpack-dev-middleware');
@@ -37,17 +36,17 @@ app.use(dev(compiler, {
 app.use(hot(compiler));
 
 // configure express
-app.set("views", "./server/views");
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 // serve static assets
 app.use(express.static('dist'));
-app.use(express.static('node_modules/bootstrap/dist'));
+//app.use(express.static('node_modules/bootstrap/dist'));
 //app.use(express.static('node_modules/jquery/dist'));
 
 // logging
 // app.use(require('./logging')); //morgan
-require('express-debug')(app, {});
+//require('express-debug')(app, {});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -164,5 +163,6 @@ models.sequelize.sync({
     .then(function () {
         var server = app.listen(app.get('port'), function() {
         console.log('Express server listening on port ' + server.address().port);
+        console.log("Node Environment: " + process.env.NODE_ENV);
     });
 });
