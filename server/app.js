@@ -10,39 +10,53 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var compression = require('compression');
 
 var models = require("./models");
 var createuser = require('./controllers/createUser');
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
 
+// Otherwise errors thrown in Promise routines will be silently swallowed.
+// (e.g. any error during rendering the app server-side!)
+process.on('unhandledRejection', (reason, p) => {
+    if (reason.stack) {
+        console.error(reason.stack);
+    } else {
+        console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+    }
+});
+
 var webpack = require('webpack');
 var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
 var config = require('../webpack.config.js');
-const compiler = webpack(config);
 
-app.use(dev(compiler, {
-    publicPath: config.output.publicPath,
-    stats: {
-        colors: true,
-        hash: false,
-        timings: true,
-        chunks: false,
-        chunkModules: false,
-        modules: false
-    }
-}));
-app.use(hot(compiler));
+
+if (!process.env.NODE_ENV) {
+    const compiler = webpack(config);
+
+    app.use(dev(compiler, {
+        publicPath: config.output.publicPath,
+        stats: {
+            colors: true,
+            hash: false,
+            timings: true,
+            chunks: false,
+            chunkModules: false,
+            modules: false
+        }
+    }));
+    app.use(hot(compiler));
+}
 
 // configure express
+app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 // serve static assets
 app.use(express.static('dist'));
-//app.use(express.static('node_modules/bootstrap/dist'));
-//app.use(express.static('node_modules/jquery/dist'));
 
 // logging
 // app.use(require('./logging')); //morgan
@@ -94,17 +108,6 @@ app.use('/admin*', (req, res, next) => {
 
 // admin router
 app.use("/admin", require(__dirname + '/routes/admin'));
-
-// tentative code!
-// Otherwise errors thrown in Promise routines will be silently swallowed.
-// (e.g. any error during rendering the app server-side!)
-process.on('unhandledRejection', (reason, p) => {
-    if (reason.stack) {
-        console.error(reason.stack);
-    } else {
-        console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
-    }
-});
 
 // react
 var reactApp = require('../app/js/index').serverMiddleware;
