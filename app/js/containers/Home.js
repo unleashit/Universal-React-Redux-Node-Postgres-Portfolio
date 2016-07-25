@@ -32,6 +32,14 @@ export default class Home extends Component {
         window.removeEventListener('scroll', this.handleStickyHeader);
     }
 
+    componentDidUpdate() {
+        if (this.props.global.hamburgerState) {
+            document.body.className = 'menu-open';
+        } else {
+            document.body.className = '';
+        }
+    }
+
     handleStickyHeader(dispatch) {
         if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
            dispatch(globalActions.setHeader(true));
