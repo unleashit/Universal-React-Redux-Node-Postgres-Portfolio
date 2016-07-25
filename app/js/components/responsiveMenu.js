@@ -1,15 +1,34 @@
 import React from 'react';
-import Navigation from './navigation';
+import { Link } from 'react-router';
 
 export default class ResponsiveMenu extends React.Component {
     render() {
 
-        let classes = 'responsive-menu hidden-md-up';
+        let classes = 'resp-menu hidden-md-up';
         classes += this.props.menuVisible ? ' on' : ' off';
+
+        const close = this.props.closeBurger;
 
         return (
             <div className={classes}>
-                <h1>Responsive menu</h1>
+                <div className="close-menu" onClick={close.bind(this)}>
+                    <i className="fa fa-close"></i> CLOSE
+                </div>
+                <h3 className="name">Jason Gallagher</h3>
+                <h3 className="h1">Front End Engineer</h3>
+
+                <nav>
+                    <ul className="responsive-nav">
+                        <li><Link to="/#home" onClick={close.bind(this)}>Home</Link></li>
+                        <li><Link to="/#about" onClick={close.bind(this)}>About</Link></li>
+                        <li><Link to="/#skills" onClick={close.bind(this)}>Skills</Link></li>
+                        <li><Link to="/#work" onClick={close.bind(this)}>Work</Link></li>
+                        <li><a href='/#contact' onClick={close.bind(this)}>Contact</a></li>
+                    </ul>
+                </nav>
+
+                <img src="images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
+
             </div>
         );
     }

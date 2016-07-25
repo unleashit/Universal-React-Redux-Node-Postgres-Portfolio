@@ -15,25 +15,35 @@
     &:nth-of-type(even) {
       background-color: $portfolio-2;
     }
-    &:hover .portfolio-caption{
-      bottom: 0;
+    &:hover {
+      .portfolio-caption{
+        bottom: 0;
+      }
+      img {
+        transform: scale(0.9);
+        opacity: .8;
+      }
     }
   }
   img {
     max-width: 80%;
+    transform: scale(1);
+    opacity: 1;
+    transition: all 350ms ease-out;
   }
   .portfolio-caption {
     position: absolute;
     width: 100%;
-    bottom: -50px;
+    bottom: -46px;
     left:0;
     background-color: #333;
-    color: #fff;
-    transition: all 180ms ease-out;
+    color: #eee;
+    transition: all 350ms ease-out;
     p {
       margin: 0;
-      height: 50px;
-      line-height: 50px;
+      height: 46px;
+      line-height: 46px;
+      font-size: .8rem;
     }
   }
 }

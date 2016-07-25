@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class Navigation extends React.Component {
+    
     render() {
 
         const logo = (
@@ -17,7 +18,7 @@ export default class Navigation extends React.Component {
             <li><Link to="/#home">Home</Link></li> : '';
 
         return (
-            <nav className="">
+            <nav>
                 <ul className={this.props.ulClass}>
                     {position1}
                     {homeLink}

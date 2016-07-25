@@ -2,14 +2,12 @@ import {
   WORK_INVALID,
   WORK_FETCHING,
   WORK_FETCHED,
-  WORK_FETCH_FAILED,
-  SET_HEADER
+  WORK_FETCH_FAILED
 } from '../actions/portfolio';
 
 export default function portfolio(state = {
   readyState: WORK_INVALID,
-  items: null,
-  headerState: false
+  items: null
 }, action) {
   switch (action.type) {
     case WORK_FETCHING:
@@ -25,10 +23,6 @@ export default function portfolio(state = {
       return Object.assign({}, state, {
         readyState: WORK_FETCHED,
         items: action.result
-      });
-    case SET_HEADER:
-      return Object.assign({}, state, {
-        headerState: action.bool
       });
     default:
       return state;

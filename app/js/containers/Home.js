@@ -41,7 +41,11 @@ export default class Home extends Component {
     }
     
     toggleBurger() {
-        this.props.dispatch(globalActions.openHamburger());
+        this.props.dispatch(globalActions.toggleHamburger());
+    }
+    
+    closeBurger() {
+        this.props.dispatch(globalActions.closeHamburger());
     }
 
     render() {
@@ -49,7 +53,9 @@ export default class Home extends Component {
             <div id="home">
                 {/*<Helmet title='Front End Engineer'/>*/}
                 <StickyHeader visible={this.props.global.headerState} />
-                <ResponsiveMenu menuVisible={this.props.global.hamburgerState} />
+                <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
+                                menuVisible={this.props.global.hamburgerState}
+                />
                 <Header toggleBurger={this.toggleBurger.bind(this)} />
                 <WhoWhatWhere />
                 <About />

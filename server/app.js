@@ -155,7 +155,7 @@ app.use(function(err, req, res, next) {
 });
 
 var debug = require('debug')('jg');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3100);
 
 models.sequelize.sync({
     force: false,

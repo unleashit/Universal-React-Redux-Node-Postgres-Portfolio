@@ -33,7 +33,7 @@
   }
   .jg-logo {
     display:inline-block;
-    margin-right: 18px;
+    margin-right: 8px;
     margin-top: -2px;
     transition: all .4s;
   }
@@ -77,6 +77,11 @@
   }
 }
 
-#svg-logo, #svg-path2{
-  fill: red;
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
+  .sticky-header .jg-logo {
+    margin-right: 8px;
+  }
+  .sticky-nav a {
+    padding: 0 14px;
+  }
 }

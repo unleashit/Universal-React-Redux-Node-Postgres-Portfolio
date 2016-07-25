@@ -12,7 +12,7 @@ export default class Portfolio extends React.Component {
                 {
                     this.props.portfolio.items.map((item, index)=> {
                         let color = (index % 2) ? '#000' : '#353535';
-                        return  <PortfolioItem key={index} color={color} item={item} />
+                        return  <PortfolioItem key={index} index={index} color={color} item={item} />
                     })
                 }
             </div>

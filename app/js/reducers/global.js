@@ -1,7 +1,8 @@
 import {
-OPEN_HAMBURGER,
-CLOSE_HAMBURGER,
-  SET_HEADER
+    TOGGLE_HAMBURGER,
+    OPEN_HAMBURGER,
+    CLOSE_HAMBURGER,
+    SET_HEADER
 } from '../actions/global';
 
 export default function global(state = {
@@ -9,9 +10,17 @@ export default function global(state = {
   hamburgerState: false
 }, action) {
   switch (action.type) {
-    case OPEN_HAMBURGER:
+    case TOGGLE_HAMBURGER:
       return Object.assign({}, state, {
         hamburgerState: !state.hamburgerState
+      });
+    case OPEN_HAMBURGER:
+      return Object.assign({}, state, {
+        hamburgerState: true
+      });
+    case CLOSE_HAMBURGER:
+      return Object.assign({}, state, {
+        hamburgerState: false
       });
     case SET_HEADER:
       return Object.assign({}, state, {
