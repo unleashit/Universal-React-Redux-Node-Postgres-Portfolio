@@ -20,7 +20,7 @@ class CleanPlugin {
 module.exports = {
     //entry: './app/js/index',
     entry: {
-        global: './app/js/index.js',
+        global: ['babel-polyfill', './app/js/index.js'],
         admin: './app/js/admin.js'
     },
     output: {
@@ -68,7 +68,7 @@ module.exports = {
                 include: path.join(__dirname, 'app'),
                 query: {
                     plugins: [
-                        ['transform-object-assign']
+                        ["transform-runtime", 'transform-object-assign']
                     ]
                 }
             },
