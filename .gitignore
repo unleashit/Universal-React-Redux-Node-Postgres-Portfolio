@@ -3,5 +3,3 @@ node_modules
 tmp
 server/config/*
 dist
-app/scss/bootstrap4-alpha2/**/**
-app/scss/font-awesome
