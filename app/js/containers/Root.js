@@ -17,9 +17,10 @@ class Root extends Component {
   render() {
     const head = this.props.head;
     const productionCSS = process.env.NODE_ENV ? <link rel="stylesheet" href="/css/style.min.css" /> : '';
-    
+    const attrs = head.htmlAttributes.toComponent();
+
     return (
-      <html>
+      <html {...attrs}>
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}

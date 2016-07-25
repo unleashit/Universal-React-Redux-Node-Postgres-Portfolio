@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-// import Helmet from 'react-helmet';
+import Helmet from 'react-helmet';
 import StickyHeader from '../components/stickyHeader';
 import ResponsiveMenu from '../components/responsiveMenu';
 import Header from '../components/header';
@@ -32,14 +32,6 @@ export default class Home extends Component {
         window.removeEventListener('scroll', this.handleStickyHeader);
     }
 
-    componentDidUpdate() {
-        if (this.props.global.hamburgerState) {
-            document.body.className = 'menu-open';
-        } else {
-            document.body.className = '';
-        }
-    }
-
     handleStickyHeader(dispatch) {
         if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
            dispatch(globalActions.setHeader(true));
@@ -48,8 +40,8 @@ export default class Home extends Component {
         }
     }
     
-    toggleBurger() {
-        this.props.dispatch(globalActions.toggleHamburger());
+    openBurger() {
+        this.props.dispatch(globalActions.openHamburger());
     }
     
     closeBurger() {
@@ -57,14 +49,20 @@ export default class Home extends Component {
     }
 
     render() {
+        
+        const {headerState, hamburgerState, htmlClass} = this.props.global;
+        const htmlClassCheck = htmlClass ? {"class": htmlClass} : '';
+        
         return (
             <div id="home">
-                {/*<Helmet title='Front End Engineer'/>*/}
-                <StickyHeader visible={this.props.global.headerState} />
+                <Helmet title='Front End Engineer'
+                        htmlAttributes={htmlClassCheck}
+                        />
+                <StickyHeader visible={headerState} />
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
-                                menuVisible={this.props.global.hamburgerState}
-                />
-                <Header toggleBurger={this.toggleBurger.bind(this)} />
+                        menuVisible={hamburgerState}
+                        />
+                <Header openBurger={this.openBurger.bind(this)} />
                 <WhoWhatWhere />
                 <About />
                 <Portfolio />

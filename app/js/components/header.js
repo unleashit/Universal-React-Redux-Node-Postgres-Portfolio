@@ -7,7 +7,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <header className="main-header">
-                <div className="hamburger hidden-md-up"><div onClick={this.props.toggleBurger.bind(this)}><i className="fa fa-bars"></i> MENU</div></div>
+                <div className="hamburger hidden-md-up"><div onClick={this.props.openBurger.bind(this)}><i className="fa fa-bars"></i> MENU</div></div>
                 <div className="container-fluid">
                     <Navigation logo={true} ulClass="main-nav" logo="2" />
                     <div className="title-tagline-wrapper">

@@ -16,11 +16,13 @@ export default function global(state = {
       });
     case OPEN_HAMBURGER:
       return Object.assign({}, state, {
-        hamburgerState: true
+        hamburgerState: true,
+        htmlClass: 'menu-open'
       });
     case CLOSE_HAMBURGER:
       return Object.assign({}, state, {
-        hamburgerState: false
+        hamburgerState: false,
+        htmlClass: null
       });
     case SET_HEADER:
       return Object.assign({}, state, {
