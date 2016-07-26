@@ -16,6 +16,10 @@ h3 {
   margin-bottom: 1.4rem;
 }
 
+button[disabled], html input[disabled] {
+  cursor: not-allowed;
+}
+
 .clearfix:after {
   content: " ";
   display: table;
@@ -49,6 +53,7 @@ h3 {
   font-family: Oswald, sans-serif;
   font-size: 1.1rem;
   text-transform: uppercase;
+  outline: none !important;
   &.button-green {
     background-color: $light-green;
   }

@@ -1,8 +1,55 @@
 .footer {
   background-color: #3e6f22;
   min-height: 650px;
+  padding-bottom: $section-padding;
 }
 .border {
   background: url('../../images/home/footer_tile.jpg') top left repeat-x;
   height: 234px;
 }
+
+.contact {
+  margin-top: $section-padding;
+  color: #111;
+  a:link, a:visited, a:hover, a:active {
+    color: $footer-links;
+    text-decoration: none;
+    transition: color 300ms;
+  }
+  a:hover {
+    color: darken($footer-links, 15%);
+  }
+}
+
+.contact-method {
+  margin-bottom: 3px;
+  &.skype a {
+    color: #55acf1;
+  }
+}
+
+.about-this-site {
+  margin-top: 30px;
+}
+.contact-form {
+  .message {
+    height: 160px;
+  };
+  .error {
+    color: $footer-links;
+    padding-left: 13px;
+  }
+  .send-message{
+    margin-bottom: 15px;
+  }
+  button {
+    width: 140px;
+  }
+}
+
+.thanks {
+  text-align: center;
+  font-family: 'Sanchez', serif;
+  font-size: 2em;
+}
+

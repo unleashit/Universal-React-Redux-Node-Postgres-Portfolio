@@ -13,6 +13,7 @@ export function toggleHamburger() {
         dispatch({type: TOGGLE_HAMBURGER});
     }
 }
+
 export function openHamburger() {
     return (dispatch) => {
         dispatch({type: OPEN_HAMBURGER});

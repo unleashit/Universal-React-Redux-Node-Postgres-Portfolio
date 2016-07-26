@@ -51,7 +51,7 @@ export default class Home extends Component {
     render() {
         
         const {headerState, hamburgerState, htmlClass} = this.props.global;
-        const htmlClassCheck = htmlClass ? {"class": htmlClass} : '';
+        const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
         
         return (
             <div id="home">
@@ -66,7 +66,7 @@ export default class Home extends Component {
                 <WhoWhatWhere />
                 <About />
                 <Portfolio />
-                <Footer />
+                <Footer {...this.props} />
             </div>
         );
     }
@@ -75,7 +75,8 @@ export default class Home extends Component {
 function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
-        global: state.global
+        global: state.global,
+        contactForm: state.contactForm
     };
 }
 function mapDispatchToProps(dispatch) {

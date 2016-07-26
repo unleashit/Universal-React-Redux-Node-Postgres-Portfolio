@@ -26,7 +26,7 @@ export default class Navigation extends React.Component {
                     <li><Link to="/#skills">Skills</Link></li>
                     {position2}
                     <li><Link to="/#work">Work</Link></li>
-                    <li><a href='/#contact'>Contact</a></li>
+                    <li><Link to='/#contact'>Contact</Link></li>
                 </ul>
             </nav>
         );
