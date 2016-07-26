@@ -62,7 +62,7 @@ const ContactForm = (props) => {
 
     return (
         <div className="contact-form col-lg-8">
-            <h4 className="send-message">SEND ME A MESSAGE</h4>
+            <h4 className="send-message">SEND A MESSAGE</h4>
             <form onSubmit={handleSubmit(submit)}>
                 <Field name="name" type="text" component={renderInput} placeholder="Enter your name"/>
                 <Field name="email" type="text" component={renderInput} placeholder="Enter your email"/>

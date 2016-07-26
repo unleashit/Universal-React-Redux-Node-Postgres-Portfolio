@@ -34,7 +34,7 @@
 .contact-form {
   .message {
     height: 160px;
-  };
+  }
   .error {
     color: $footer-links;
     padding-left: 13px;
@@ -51,5 +51,18 @@
   text-align: center;
   font-family: 'Sanchez', serif;
   font-size: 2em;
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, sm)) {
+
+  .contact-form {
+    button {
+      width: 100%;
+    }
+  }
+
+  .contact-me, .about-this-site, .contact-form {
+    margin-top: 40px;
+  }
 }
 

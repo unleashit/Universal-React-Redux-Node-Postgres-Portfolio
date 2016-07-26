@@ -26,7 +26,6 @@
   .jg-logo {
     display: inline-block;
     margin-top: -10px;
-    max-width: 55px;
   }
 }
 
@@ -86,7 +85,7 @@
 
 @media screen and (max-width: map-get($grid-breakpoints, sm)) {
   .title-tagline-wrapper {
-    margin-top: 104px;
+    margin-top: 84px;
     h1 {
       font-size: 2.7rem;
       line-height: 3rem;
@@ -97,9 +96,10 @@
     }
   }
   .hamburger {
+    top: 18px;
     font-size: 1.7rem;
   }
   .button-wrapper {
-    margin-top: 60px;
+    margin-top: 37px;
   }
 }

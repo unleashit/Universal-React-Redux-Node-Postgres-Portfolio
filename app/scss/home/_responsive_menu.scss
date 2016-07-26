@@ -85,3 +85,23 @@ html.menu-open body {
     }
   }
 }
+
+@media screen and (max-width: map-get($grid-breakpoints, sm)) {
+  .resp-menu {
+    padding-top: 55px;
+    .close-menu {
+      top: 13px;
+      right: 16px;
+    }
+    .jg-logo-menu {
+      margin-top: 15px;
+    }
+  }
+  .responsive-nav {
+    margin-top: 26px;
+    a {
+      padding: .5rem;
+      margin-bottom: 4px;
+    }
+  }
+}

@@ -15,10 +15,10 @@ export default class Footer extends React.Component {
                 <div className="container-fluid">
                     <div className="row" className="contact" id="contact">
                         <div className="col-lg-4">
-                            <h4>CONTACT ME</h4>
+                            <h4>CONTACT</h4>
                             <p className="contact-method"><i className="fa fa-phone"></i> (415) 287-3221</p>
-                            <p className="contact-method"><i className="fa fa-envelope"></i> <a href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services" target="_top">customerservice@jasongallagher.org</a></p>
-                            <p className="contact-method skype"><i className="fa fa-skype"></i><a href="skype:jason-gallagher?chat"> skype me</a></p>
+                            <p className="contact-method"><i className="fa fa-envelope"></i> <a href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services" target="_top">Email me</a></p>
+                            <p className="contact-method skype"><i className="fa fa-skype"></i> <a href="skype:jason-gallagher?chat">Skype me</a></p>
                             <h4 className="about-this-site">ABOUT THE SITE</h4>
                             <p>This site is HANDCRAFTED with React, Redux, Node, Mysql, and OF COURSE, html and css. It is UNIVERSAL, or rather a single page app that is first rendered on the server.</p>
                         </div>
