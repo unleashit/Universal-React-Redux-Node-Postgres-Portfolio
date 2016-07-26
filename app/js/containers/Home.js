@@ -8,7 +8,7 @@ import WhoWhatWhere from '../components/whoWhatWhere';
 import About from '../components/about';
 import Portfolio from '../containers/Portfolio';
 import Footer from '../components/footer';
-import * as portfolioActions  from '../actions/portfolio';
+import * as portfolioActions  from '../actions/Portfolio';
 import * as globalActions  from '../actions/global';
 
 if (typeof document !== 'undefined') require('../../scss/home/home.scss');
