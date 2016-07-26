@@ -1,5 +1,4 @@
-import {config} from '../../../server/config/appConfig';
-console.log('config:', config.__API_URL__);
+import {__API_URL__} from '../config';
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
@@ -10,7 +9,7 @@ function fetchPortfolio() {
   return (dispatch) => {
     dispatch({ type: WORK_FETCHING });
 
-    return fetch( config.__API_URL__ + '/portfolio')
+    return fetch( __API_URL__ + '/portfolio')
         .then((response) => {
           return response.json();
         })
