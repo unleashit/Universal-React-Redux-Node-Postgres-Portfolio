@@ -28,6 +28,7 @@
     "crypto": "0.0.3",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "express-redirect": "^1.2.2",
     "express-session": "^1.13.0",
     "font-awesome": "^4.6.3",
     "history": "^3.0.0",

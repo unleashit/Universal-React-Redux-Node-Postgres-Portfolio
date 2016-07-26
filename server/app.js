@@ -11,6 +11,8 @@ var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var compression = require('compression');
+var redirect = require("express-redirect");
+var redirects = require('./config/redirects');
 
 var models = require("./models");
 var createuser = require('./controllers/createUser');
@@ -32,6 +34,28 @@ var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
 var config = require('../webpack.config.js');
 
+// redirects (need to move to sep file)
+redirect(app);
+app.redirect("/work", "/", 301);
+app.redirect("/contact.html", "/", 301);
+app.redirect("/about.html", "/", 301);
+app.redirect("/graphic-design.html", "/", 301);
+app.redirect("/web-design.html", "/", 301);
+app.redirect("/blog.html", "/", 301);
+app.redirect("/blog.html/:any", "/", 301);
+app.redirect("/blog.html/:any/:any", "/", 301);
+app.redirect("/services/lessons-and-training.html", "http://lessons.jasongallagher.org/services/lessons-and-training.html", 301);
+app.redirect("/services/lessons-and-training.html/drupal-training.html", "http://lessons.jasongallagher.org/services/lessons-and-training/drupal-training.html", 301);
+app.redirect("/services/lessons-and-training.html/web-design-and-development.html", "http://lessons.jasongallagher.org/services/lessons-and-training/web-design-and-development.html", 301);
+function wwwRedirect(req, res, next) {
+    if (req.headers.host.slice(0, 4) === 'www.') {
+        var newHost = req.headers.host.slice(4);
+        return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+    }
+    next();
+};
+app.set('trust proxy', true);
+app.use(wwwRedirect);
 
 if (!process.env.NODE_ENV) {
     const compiler = webpack(config);
@@ -148,13 +172,13 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+// app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.render('error', {
+//         message: err.message,
+//         error: {}
+//     });
+// });
 
 var debug = require('debug')('jg');
 app.set('port', process.env.PORT || 3100);

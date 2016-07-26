@@ -1,8 +1,8 @@
 <%- include('header', {title: title, auth: auth}) -%>
 
-<h1><%= status %></h1>
-
 <% if (status === 404) { %>
+
+<h1><%= status %></h1>
 
 <p>Sorry, you've done a booboo.</p>
 <p><%= url %> cannot be found. Try the <a href="/">home page</a>.</p>
