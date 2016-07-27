@@ -51,11 +51,11 @@ app.redirect("/services/lessons-and-training.html/drupal-training.html", "http:/
 app.redirect("/services/lessons-and-training.html/web-design-and-development.html", "http://training.jasongallagher.org/services/lessons-and-training/web-design-and-development.html", 301);
 
 app.get('/*', function(req, res, next) {
-    if (req.headers.host.match(/^www/) !== null ) {
-        res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
-    } else {
-        next();
-    }
+  if (req.headers.host.match(/^www/) !== null ) {
+    res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
+  } else {
+    next();
+  }
 });
 
 if (!process.env.NODE_ENV) {
