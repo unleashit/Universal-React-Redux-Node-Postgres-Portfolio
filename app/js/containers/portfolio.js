@@ -24,6 +24,7 @@ export default class Portfolio extends React.Component {
     render() {
         return (
             <section className="portfolio clearfix" id="work">
+                <h1>asfsfsf</h1>
                 {this.renderPortfolio()}
             </section>
         );

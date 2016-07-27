@@ -4,13 +4,13 @@
   padding-bottom: $section-padding;
 }
 .border {
-  background: url('../../images/home/footer_tile.jpg') top left repeat-x;
+  background: url('../../images/home/footer_tile.png') top left repeat-x;
   height: 234px;
 }
 
 .contact {
   margin-top: $section-padding;
-  color: #111;
+  color: #292929;
   a:link, a:visited, a:hover, a:active {
     color: $footer-links;
     text-decoration: none;
@@ -27,6 +27,11 @@
 
 .about-this-site {
   margin-top: 30px;
+}
+.about-this-site-text {
+  span {
+    color: $footer-links;
+  }
 }
 .contact-form {
   .message {

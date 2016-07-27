@@ -41,21 +41,22 @@ app.redirect("/contact.html", "/", 301);
 app.redirect("/about.html", "/", 301);
 app.redirect("/graphic-design.html", "/", 301);
 app.redirect("/web-design.html", "/", 301);
+app.redirect("/portfolio/web-design.html", "/", 301);
+app.redirect("/portfolio/graphic-design.html", "/", 301);
 app.redirect("/blog.html", "/", 301);
-app.redirect("/blog.html/:any", "/", 301);
-app.redirect("/blog.html/:any/:any", "/", 301);
-app.redirect("/services/lessons-and-training.html", "http://lessons.jasongallagher.org/services/lessons-and-training.html", 301);
-app.redirect("/services/lessons-and-training.html/drupal-training.html", "http://lessons.jasongallagher.org/services/lessons-and-training/drupal-training.html", 301);
-app.redirect("/services/lessons-and-training.html/web-design-and-development.html", "http://lessons.jasongallagher.org/services/lessons-and-training/web-design-and-development.html", 301);
-function wwwRedirect(req, res, next) {
-    if (req.headers.host.slice(0, 4) === 'www.') {
-        var newHost = req.headers.host.slice(4);
-        return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+app.redirect("/blog/:any", "/", 301);
+app.redirect("/blog/:any/:any", "/", 301);
+app.redirect("/services/lessons-and-training.html", "http://training.jasongallagher.org/services/lessons-and-training.html", 301);
+app.redirect("/services/lessons-and-training.html/drupal-training.html", "http://training.jasongallagher.org/services/lessons-and-training/drupal-training.html", 301);
+app.redirect("/services/lessons-and-training.html/web-design-and-development.html", "http://training.jasongallagher.org/services/lessons-and-training/web-design-and-development.html", 301);
+
+app.get('/*', function(req, res, next) {
+    if (req.headers.host.match(/^www/) !== null ) {
+        res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
+    } else {
+        next();
     }
-    next();
-};
-app.set('trust proxy', true);
-app.use(wwwRedirect);
+});
 
 if (!process.env.NODE_ENV) {
     const compiler = webpack(config);
