@@ -38,8 +38,8 @@ if (isClient) {
     }
 
     function handleRouteUpdates() {
-        logPageView();
         hashLinkScroll();
+        logPageView();
     }
 
     ReactDOM.render(

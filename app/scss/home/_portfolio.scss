@@ -48,6 +48,15 @@
   }
 }
 
+.portfolio-loading {
+  padding-top: 30px;
+  text-align: center;
+  color: #fff;
+  .caption {
+    padding-top: 10px;
+  }
+}
+
 @media screen and (min-width: map-get($grid-breakpoints, xxl)) {
   .portfolio .portfolio-item {
     width: 25%;

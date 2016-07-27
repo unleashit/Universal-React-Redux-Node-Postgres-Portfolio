@@ -56,16 +56,16 @@
   color: $footer-links;
 }
 
-@media screen and (max-width: map-get($grid-breakpoints, sm)) {
+@media screen and (max-width: map-get($grid-breakpoints, lg)) {
+  .contact-me, .about-this-site, .contact-form {
+    margin-top: 45px;
+  }
+}
 
+@media screen and (max-width: map-get($grid-breakpoints, md)) {
   .contact-form {
     button {
       width: 100%;
     }
   }
-
-  .contact-me, .about-this-site, .contact-form {
-    margin-top: 40px;
-  }
 }
-

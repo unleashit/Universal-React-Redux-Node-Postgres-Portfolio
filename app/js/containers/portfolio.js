@@ -5,17 +5,31 @@ import PortfolioItem from '../components/portfolioItem';
 export default class Portfolio extends React.Component {
 
     renderPortfolio() {
-        if (this.props.portfolio.readyState === 'WORK_FETCHING') {
-            return 'fetching items...';
-        } else if (this.props.portfolio.readyState === 'WORK_FETCHED') {
-            return <div>
-                {
-                    this.props.portfolio.items.map((item, index)=> {
-                        let color = (index % 2) ? '#000' : '#353535';
-                        return  <PortfolioItem key={index} index={index} color={color} item={item} />
-                    })
-                }
-            </div>
+        const {readyState, items} = this.props.portfolio;
+
+        if (readyState === 'WORK_FETCHING') {
+            return <div className="portfolio-loading">
+                <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i>
+                <div className="caption">Work loading...</div>
+            </div>;
+
+        } else if (readyState === 'WORK_FETCHED') {
+
+            return (
+                <div>
+                    {
+                        items.map((item, index)=> {
+                            let color = (index % 2) ? '#000' : '#353535';
+                            return  <PortfolioItem key={index}
+                                                   index={index}
+                                                   color={color}
+                                                   item={item}
+                                    />
+                        })
+                    }
+                </div>
+            );
+
         } else {
             return 'nothing found.'
         }
@@ -24,7 +38,6 @@ export default class Portfolio extends React.Component {
     render() {
         return (
             <section className="portfolio clearfix" id="work">
-                <h1>asfsfsf</h1>
                 {this.renderPortfolio()}
             </section>
         );
