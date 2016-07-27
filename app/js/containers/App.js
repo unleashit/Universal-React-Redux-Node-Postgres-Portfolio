@@ -13,7 +13,7 @@ class App extends Component {
                     titleTemplate='Jason Gallagher - %s'
                     meta={[
             {'char-set': 'utf-8'},
-            {'name': 'description', 'content': 'Jason Gallagher is an Full Stack Developer living in Berkeley, CA'}
+            {'name': 'description', 'content': 'Jason Gallagher is an Full Stack Developer in the San Francisco Bay Area, specifically Berkeley, CA'}
           ]}
                 />
                 {this.props.children}
