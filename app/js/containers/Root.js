@@ -35,6 +35,7 @@ class Root extends Component {
           {this.renderInitialState()}
           {head.script.toComponent()}
           <script src={!process.env.NODE_ENV ? '/global.js' : '/js/global.min.js'}></script>
+
         </body>
       </html>
     );

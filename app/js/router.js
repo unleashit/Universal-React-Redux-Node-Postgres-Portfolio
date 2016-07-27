@@ -7,11 +7,14 @@ import routes from './routes';
 import { Provider } from 'react-redux';
 import Root from './containers/Root';
 import configureStore from './configureStore';
+import {__GOOGLE_ANALYTICS__} from './config'
 
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
     require('smoothscroll-polyfill').polyfill();
+    var ReactGA = require('react-ga');
+    ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
     const store = configureStore(window.__INITIAL_STATE__);
 
@@ -29,9 +32,19 @@ if (isClient) {
         }
     }
 
+    function logPageView() {
+        ReactGA.set({page: window.location.pathname});
+        ReactGA.pageview(window.location.pathname);
+    }
+
+    function handleRouteUpdates() {
+        logPageView();
+        hashLinkScroll();
+    }
+
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={browserHistory} onUpdate={hashLinkScroll}>{routes}</Router>
+            <Router history={browserHistory} onUpdate={handleRouteUpdates}>{routes}</Router>
         </Provider>,
         document.getElementById('root')
     );
