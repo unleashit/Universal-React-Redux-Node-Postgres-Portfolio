@@ -18,7 +18,9 @@ class CleanPlugin {
 }
 
 module.exports = {
-    //entry: './app/js/index',
+
+    context: __dirname,
+
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
         admin: './app/js/admin.js'
@@ -52,7 +54,8 @@ module.exports = {
             canPrint: true
         }),
         new CopyWebpackPlugin([
-            {context: './app/images', from: '**/**', to: 'images'}
+            {context: './app/images', from: '**/**', to: 'images'},
+            {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
         ]),
         new webpack.DefinePlugin({
             'process.env': {

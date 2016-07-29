@@ -66,3 +66,27 @@ button[disabled], html input[disabled] {
     text-decoration: none;
   }
 }
+
+html.not-found-page body {
+  background-color: #EAEAEA;
+}
+.not-found-404 {
+  width: 447px;
+  text-align: center;
+  h2 {
+    margin-bottom: 30px;
+  }
+  button {
+    margin-top: 30px;
+  }
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:0;left:0;right:0;bottom:0;
+}
+
+

@@ -32,7 +32,7 @@ export default class About extends React.Component {
                     </div>
                     <div className="col-sm-9 col-lg-6">
                         <p>I have more than 17 years of desktop and mobile development experience involving a wide variety of applications and industries.</p>
-                        <p>While my roots are in design and the user experience, I have made a major transition over the years to move my focus towards development. For a while this translated to simply being a good at html, css and enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a much deeper dive into engineering. </p>
+                        <p>While my roots are in design and the user experience, I have made a major transition over the years to focus on development. For a while this translated to simply being good at html, css and knowing enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a much deeper dive into engineering. </p>
                     <p>In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the start-up level. I would love to speak with you about your needs and see how we can work together.</p>
                         <div className="about-buttons">
                             <a href="http://www.jasongallagher.org/JasonGallagherResPub.doc" className="button button-smaller resume"><i className="fa fa-file-text"></i>Download Resume</a>

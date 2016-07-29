@@ -24,6 +24,7 @@ var bsync = new BrowserSyncPlugin(
 );
 
 module.exports = {
+    context: __dirname,
     devtool: '#source-map',
     entry: {
         global: ['webpack-hot-middleware/client', './app/js/index.js'],
@@ -32,7 +33,7 @@ module.exports = {
     output: {
         path: __dirname + '/dist/',
         filename: "[name].js",
-        publicPath: 'http://localhost:3000/'
+        publicPath: 'http://localhost:3100/'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
@@ -59,7 +60,7 @@ module.exports = {
                     ['transform-object-assign']
                 ]
             }
-        },
+            },
             {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
             {test: /\.css$/, loaders: ["style", "css?sourceMap"]},
             {test: /\.scss$/, loaders: ["style", "css?sourceMap", "sass?sourceMap"]},
@@ -72,7 +73,15 @@ module.exports = {
             }
         ]
     },
+    preLoaders: [
+        {
+            test: /\.js$/,
+            loader: "eslint-loader?{rules:{semi:0}}",
+            exclude: /node_modules/
+        }
+    ],
     eslint: {
+        configFile: './.eslintrc',
         failOnWarning: false,
         failOnError: true
     },
