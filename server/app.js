@@ -11,7 +11,6 @@ var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var compression = require('compression');
-var redirect = require("express-redirect");
 
 var models = require("./models");
 var createuser = require('./controllers/createUser');
@@ -32,37 +31,6 @@ var webpack = require('webpack');
 var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
 var config = require('../webpack.config.js');
-
-// redirects (need to move to sep file)
-redirect(app);
-redirect(app);
-app.redirect("/work", "/", 301);
-app.redirect("/contact.html", "/", 301);
-app.redirect("/about.html", "/", 301);
-app.redirect("/graphic-design.html", "/", 301);
-app.redirect("/web-design.html", "/", 301);
-app.redirect("/portfolio/web-design.html", "/", 301);
-app.redirect("/portfolio/graphic-design.html", "/", 301);
-app.redirect("/services/web-design-services.html", "/", 301);
-app.redirect("/services/print-design-services.html", "/", 301);
-app.redirect("/blog.html", "/", 301);
-app.redirect("/blog/:any", "/", 301);
-app.redirect("/blog/:any/:any", "/", 301);
-app.redirect("/services/lessons-and-training", "http://training.jasongallagher.org/services/lessons-and-training.html", 301);
-app.redirect("/services/lessons-and-training/drupal-training.html", "http://training.jasongallagher.org/services/lessons-and-training/drupal-training.html", 301);
-app.redirect("/services/lessons-and-training/web-design-and-development.html", "http://training.jasongallagher.org/services/lessons-and-training/web-design-and-development.html", 301);
-app.redirect("/services/lessons-and-training/photoshop-training.html", "http://training.jasongallagher.org/services/lessons-and-training/photoshop-training.html", 301);
-app.redirect("/services/lessons-and-training/indesign-training.html", "http://training.jasongallagher.org/services/lessons-and-training/indesign-training.html", 301);
-app.redirect("/services/lessons-and-training/illustrator-training.html", "http://training.jasongallagher.org/services/lessons-and-training/illustrator-training.html", 301);
-
-app.get('/*', function(req, res, next) {
-    //console.log(req.headers.host, req.url);
-    if (req.headers.host.match(/^www/) !== null ) {
-        res.redirect(301, 'https://' + req.headers.host.replace(/^www\./, '') + req.url);
-    } else {
-        next();
-    }
-});
 
 if (!process.env.NODE_ENV) {
     const compiler = webpack(config);
@@ -85,6 +53,7 @@ if (!process.env.NODE_ENV) {
 app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
+app.use(require('./redirects'));
 
 // serve static assets
 app.use(express.static('dist'));
