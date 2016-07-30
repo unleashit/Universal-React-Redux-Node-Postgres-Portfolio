@@ -13,7 +13,8 @@ var bsync = new BrowserSyncPlugin(
         // proxy the Webpack Dev Server endpoint
         // (which should be serving on http://localhost:3100/)
         // through BrowserSync
-        proxy: 'http://localhost:3100/'
+        proxy: 'http://localhost:3100/',
+        browser: 'chrome'
     },
     // plugin options
     {
@@ -70,6 +71,10 @@ module.exports = {
                     'file?hash=sha512&digest=hex&name=[hash].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+                loader: 'url'
             }
         ]
     },

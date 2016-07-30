@@ -4,5 +4,4 @@ tmp
 server/config/*
 dist
 app/config.js
-app/images/grunt
 npm-debug.log

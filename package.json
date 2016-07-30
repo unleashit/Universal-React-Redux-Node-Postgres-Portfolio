@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/app.js",
-    "start-prod": "npm run build && NODE_ENV=production|| set NODE_ENV=production&& node server/app.js",
+    "prod": "npm run build && NODE_ENV=production|| set NODE_ENV=production&& node server/app.js",
     "build": "NODE_ENV=production|| set NODE_ENV=production&& webpack --config ./webpack.production.config.js --progress"
   },
   "author": "",
