@@ -7,7 +7,7 @@ import routes from './routes';
 import { Provider } from 'react-redux';
 import Root from './containers/Root';
 import configureStore from './configureStore';
-import {__GOOGLE_ANALYTICS__} from './config'
+import {__GOOGLE_ANALYTICS__} from '../config'
 
 const isClient = typeof document !== 'undefined';
 

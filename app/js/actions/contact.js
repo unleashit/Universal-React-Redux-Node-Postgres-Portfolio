@@ -1,4 +1,4 @@
-import {__API_URL__} from '../config';
+import {__API_URL__} from '../../config';
 import {reset} from 'redux-form';
 
 export const SUBMIT_CONTACT_INVALID = 'SUBMIT_CONTACT_INVALID';

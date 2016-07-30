@@ -12,7 +12,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var compression = require('compression');
 var redirect = require("express-redirect");
-var redirects = require('./config/redirects');
 
 var models = require("./models");
 var createuser = require('./controllers/createUser');

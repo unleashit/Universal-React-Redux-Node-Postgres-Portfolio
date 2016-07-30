@@ -1,4 +1,4 @@
-import {__API_URL__} from '../config';
+import {__API_URL__} from '../../config';
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
