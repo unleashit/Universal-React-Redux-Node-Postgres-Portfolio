@@ -24,7 +24,6 @@ class Root extends Component {
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           {head.link.toComponent()}
           <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png" />
           <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32" />

@@ -9,12 +9,13 @@ class App extends Component {
         return (
             <div>
                 <Helmet
-                    title='Front End Engineer in Berkeley, CA'
+                    title='Front End Engineer in Berkeley, CA specializing in React, Angular, Drupal, Javascript and NodeJs'
                     titleTemplate='Jason Gallagher - %s'
                     meta={[
-            {'char-set': 'utf-8'},
-            {'name': 'description', 'content': 'Jason Gallagher is an Full Stack Developer living in Berkeley, CA'}
-          ]}
+                        {'char-set': 'utf-8'},
+                        {'name': 'description', 'content': 'Full Stack Developer specializing on the Front End. Located n the San Francisco Bay Area and focused on React, Angular, NodeJs, Drupal, UI/UX. In the East Bay near San Francisco and Oakland.'},
+                        {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}
+                    ]}
                 />
                 {this.props.children}
             </div>
