@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Navigation from './navigation';
+import Navigation from '../common/navigation';
 
 export default class Header extends React.Component {
 

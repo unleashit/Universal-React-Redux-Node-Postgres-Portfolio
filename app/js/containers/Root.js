@@ -16,7 +16,6 @@ class Root extends Component {
 
   render() {
     const head = this.props.head;
-    const productionCSS = process.env.NODE_ENV ? <link rel="stylesheet" href="/css/style.min.css" /> : '';
     const attrs = head.htmlAttributes.toComponent();
 
     return (
@@ -31,8 +30,6 @@ class Root extends Component {
           <link rel="manifest" href="/images/favicons/manifest.json" />
           <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#34a93b" />
           <meta name="theme-color" content="#ffffff" />
-          {productionCSS}
-          <link href='https://fonts.googleapis.com/css?family=Oswald|Sanchez' rel='stylesheet' type='text/css' />
         </head>
         <body>
           <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}} />
@@ -40,7 +37,6 @@ class Root extends Component {
           {this.renderInitialState()}
           {head.script.toComponent()}
           <script src={!process.env.NODE_ENV ? '/global.js' : '/js/global.min.js'}></script>
-
         </body>
       </html>
     );

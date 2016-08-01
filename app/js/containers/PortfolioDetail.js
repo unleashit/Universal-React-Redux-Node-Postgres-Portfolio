@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import { browserHistory } from 'react-router'
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../components/stickyHeader';
-import ResponsiveMenu from '../components/responsiveMenu';
-import Footer from '../components/footer';
-import PortfolioItemDetail from '../components/portfolioItemDetail';
+import StickyHeader from '../components/common/stickyHeader';
+import ResponsiveMenu from '../components/common/responsiveMenu';
+import Footer from '../components/common/footer';
+import PortfolioItemDetail from '../components/portfolio-detail/portfolioItemDetail';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
 
-if (typeof document !== 'undefined') require('../../scss/home/home.scss');
+if (typeof document !== 'undefined') require('../../scss/portfolio-detail/portfolio_detail.scss');
 
 export default class PortfolioDetail extends Component {
 
@@ -22,14 +22,14 @@ export default class PortfolioDetail extends Component {
     componentDidMount() {
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
-        //window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
+        window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
 
     }
 
     componentWillUnmount() {
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
-        //window.removeEventListener('scroll', this.handleStickyHeader);
+        window.removeEventListener('scroll', this.handleStickyHeader);
     }
 
     handleStickyHeader(dispatch) {
@@ -48,7 +48,7 @@ export default class PortfolioDetail extends Component {
         this.props.dispatch(globalActions.closeHamburger());
     }
 
-    renderItem(browserHistory) {
+    renderPortfolioItemDetail(browserHistory) {
         const {DetailReadyState, item} = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
@@ -82,7 +82,7 @@ export default class PortfolioDetail extends Component {
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
         
         return (
-            <div id="home">
+            <div id="interior-page">
                 <Helmet
                     title={title}
                     htmlAttributes={htmlClassCheck}
@@ -95,7 +95,10 @@ export default class PortfolioDetail extends Component {
                     closeBurger={this.closeBurger.bind(this)}
                     menuVisible={hamburgerState}
                 />
-                {this.renderItem(browserHistory)}
+                <header />
+
+                {this.renderPortfolioItemDetail(browserHistory)}
+
                 <Footer {...this.props} />
             </div>
         );

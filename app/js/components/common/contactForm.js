@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field} from 'redux-form';
-import * as contactActions  from '../actions/contact';
+import * as contactActions  from '../../actions/contact';
 
 const validate = values => {
     const errors = {}
@@ -64,10 +64,10 @@ const ContactForm = (props) => {
         <div className="contact-form col-lg-8">
             <h4 className="send-message">SEND A MESSAGE</h4>
             <form onSubmit={handleSubmit(submit)}>
-                <Field name="name" type="text" component={renderInput} placeholder="Enter your name"/>
-                <Field name="email" type="text" component={renderInput} placeholder="Enter your email"/>
-                <Field name="phone" type="text" component={renderInput} placeholder="Enter your phone number"/>
-                <Field name="message" component={renderTextarea} placeholder="Enter your message" className="form-control message" />
+                <Field name="name" type="text" component={renderInput} placeholder="Name"/>
+                <Field name="email" type="text" component={renderInput} placeholder="Email"/>
+                <Field name="phone" type="text" component={renderInput} placeholder="Phone"/>
+                <Field name="message" component={renderTextarea} placeholder="Message" className="form-control message" />
                 <div>
                     <button type="submit" disabled={submitting} className="button button-green button-smaller">Send</button>
                 </div>

@@ -16,6 +16,10 @@ class App extends Component {
                         {'name': 'description', 'content': 'Full Stack Developer specializing on the Front End. Located in the San Francisco Bay Area and focused on React, Angular, NodeJs, Drupal, UI/UX. In the East Bay near San Francisco and Oakland.'},
                         {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}
                     ]}
+                    link={[
+                        {'rel': 'stylesheet', 'href': '/css/style.min.css'},
+                        {'rel': 'stylesheet', 'href': 'https://fonts.googleapis.com/css?family=Oswald|Sanchez'}
+                    ]}
                 />
                 {this.props.children}
             </div>

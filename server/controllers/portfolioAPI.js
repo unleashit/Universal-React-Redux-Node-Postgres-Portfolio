@@ -2,7 +2,10 @@ var models = require('../models/index.js');
 
 exports.getPortfolioItems = function(req, res) {
     models.Portfolio
-        .findAll({limit: 20})
+        .findAll({
+            limit: 25,
+            attributes: ['id', 'title', 'main_image', 'url_slug', 'description_short']
+        })
         .then((items) =>{
             res.json(items);
         })

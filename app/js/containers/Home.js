@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../components/stickyHeader';
-import ResponsiveMenu from '../components/responsiveMenu';
-import Header from '../components/header';
-import WhoWhatWhere from '../components/whoWhatWhere';
-import About from '../components/about';
+import StickyHeader from '../components/common/stickyHeader';
+import ResponsiveMenu from '../components/common/responsiveMenu';
+import Header from '../components/home/header';
+import WhoWhatWhere from '../components/home/whoWhatWhere';
+import About from '../components/home/about';
 import Portfolio from './Portfolio';
-import Footer from '../components/footer';
+import Footer from '../components/common/footer';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
 

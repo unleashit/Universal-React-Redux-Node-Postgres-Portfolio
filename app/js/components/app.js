@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './header';
+import Header from './home/header';
 
 if (typeof document !== 'undefined') require('../../scss/style.scss');
 
