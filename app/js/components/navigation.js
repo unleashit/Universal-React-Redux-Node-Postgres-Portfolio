@@ -7,7 +7,7 @@ export default class Navigation extends React.Component {
 
         const logo = (
             <li><Link to="/#home">
-                <img src="images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
+                <img src="/images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
             </Link></li>
         );
 

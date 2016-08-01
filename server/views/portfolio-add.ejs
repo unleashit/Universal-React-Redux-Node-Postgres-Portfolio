@@ -20,6 +20,10 @@
             <input name="link" type="text" class="form-control"/>
         </div>
         <div class="form-group">
+            <label for="url_slug">Url Slug</label>
+            <input name="url_slug" type="text" class="form-control"/>
+        </div>
+        <div class="form-group">
             <label for="description_short">Short Description</label>
             <textarea name="description_short" class="form-control"></textarea>
         </div>
@@ -36,6 +40,7 @@
                 %>
             </select>
         </div>
+
         <div class="form-group">
             <div><strong>Main Image</strong></div>
             <div class="main-image-picker form-group">
@@ -43,6 +48,20 @@
                     <label class="input-group-btn">
                     <span class="btn btn-primary">
                         Browse&hellip; <input type="file" name="main_image" style="display: none;">
+                    </span>
+                    </label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div><strong>Mobile Image</strong></div>
+            <div class="mobile-image-picker form-group">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name="image_mobile" style="display: none;">
                     </span>
                     </label>
                     <input type="text" class="form-control" readonly>

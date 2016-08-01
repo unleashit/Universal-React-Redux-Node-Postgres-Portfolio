@@ -55,7 +55,12 @@ export default class Home extends Component {
         
         return (
             <div id="home">
-                <Helmet htmlAttributes={htmlClassCheck} />
+                <Helmet
+                    htmlAttributes={htmlClassCheck}
+                    link = {[
+                        {"rel": "canonical", "href": "https://jasongallagher.org"},
+                    ]}
+                />
                 <StickyHeader visible={headerState} />
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
                         menuVisible={hamburgerState}

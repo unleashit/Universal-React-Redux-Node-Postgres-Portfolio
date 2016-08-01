@@ -6,16 +6,20 @@
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="title">Title</label>
-                <input name="title" type="text" class="form-control" value=<%= item.title %>>
+                <input name="title" type="text" class="form-control" value='<%= item.title %>'>
             </div>
             <div class="col-md-6">
                 <label for="title">Ordering</label>
-                <input name="sort" type="text" class="form-control" value=<%= item.sort %>>
+                <input name="sort" type="text" class="form-control" value='<%= item.sort %>'>
             </div>
         </div>
         <div class="form-group">
             <label for="link">Link</label>
-            <input name="link" type="text" class="form-control" value=<%= item.link %>>
+            <input name="link" type="text" class="form-control" value='<%= item.link %>'>
+        </div>
+        <div class="form-group">
+            <label for="link">Url Slug</label>
+            <input name="url_slug" type="text" class="form-control" value='<%= item.url_slug %>'>
         </div>
         <div class="form-group">
             <label for="description_short">Short Description</label>
@@ -36,6 +40,7 @@
                 %>
             </select>
         </div>
+
         <div class="row">
             <div class="col-md-2"><strong>Main image</strong></div>
             <div class="col-md-10">
@@ -45,6 +50,23 @@
                         <label class="input-group-btn">
                     <span class="btn btn-primary">
                         Browse&hellip; <input type="file" name="main_image" style="display: none;">
+                    </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"><strong>Mobile image</strong></div>
+            <div class="col-md-10">
+                <div><%- item.image_mobile ? '<img src="/images/portfolio/' + item.image_mobile + '" class="thumbnail"/>' : 'none' %></div>
+                <div class="mobile-image-picker form-group">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Browse&hellip; <input type="file" name="image_mobile" style="display: none;">
                     </span>
                         </label>
                         <input type="text" class="form-control" readonly>

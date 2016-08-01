@@ -37,6 +37,7 @@
     // }
 
     filePicker('.main-image-picker');
+    filePicker('.mobile-image-picker');
     filePicker('.gallery-images-picker');
 
     //confirmDelete('.confirm-delete');

@@ -7,8 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         description_short: DataTypes.TEXT,
         tags: DataTypes.TEXT,
         main_image: DataTypes.STRING,
+        image_mobile: DataTypes.STRING,
         gallery: DataTypes.TEXT('medium'),
         link: DataTypes.STRING,
+        url_slug: DataTypes.STRING,
         sort: {
             type: DataTypes.INTEGER,
             defaultValue: 0

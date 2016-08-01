@@ -11,6 +11,19 @@ exports.getPortfolioItems = function(req, res) {
         })
 };
 
+exports.getPortfolioItem = function(req, res) {
+    models.Portfolio
+        .findOne({where: {
+            url_slug: req.params.slug
+        }})
+        .then((item) =>{
+            res.json(item);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+};
+
 // exports.getMessagesByRoom = function (req, res, next) {
 //     models.Message
 //         .findAll({

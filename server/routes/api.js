@@ -27,6 +27,7 @@ router.use(bodyParser.json());
 
 
 router.get('/portfolio', portfolio.getPortfolioItems);
+router.get('/portfolio/:slug', portfolio.getPortfolioItem);
 router.post('/contact', contactForm.handleContactSubmit);
 
 // router.route('/rooms/:roomId/messages')

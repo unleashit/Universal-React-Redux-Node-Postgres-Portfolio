@@ -1,12 +1,19 @@
 import {__API_URL__} from '../../config';
+import { browserHistory } from 'react-router'
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
 export const WORK_FETCHED = 'WORK_FETCHED';
 export const WORK_FETCH_FAILED = 'WORK_FETCH_FAILED';
+export const WORK_DETAIL_INVALID = 'WORK_DETAIL_INVALID';
+export const WORK_DETAIL_FETCHING = 'WORK_DETAIL_FETCHING';
+export const WORK_DETAIL_FETCHED = 'WORK_DETAIL_FETCHED';
+export const WORK_DETAIL_FETCH_FAILED = 'WORK_DETAIL_FETCH_FAILED';
+export const WORK_DETAIL_RESET = 'WORK_DETAIL_RESET';
 
 function fetchPortfolio() {
   return (dispatch) => {
+
     dispatch({ type: WORK_FETCHING });
 
     return fetch( __API_URL__ + '/portfolio')
@@ -14,13 +21,43 @@ function fetchPortfolio() {
           return response.json();
         })
         .then(
+
             (result) => dispatch({ type: WORK_FETCHED, result }),
+
             (error) => {
               dispatch({ type: WORK_FETCH_FAILED, error });
               console.log(error);
             }
         );
   }
+}
+
+function fetchPortfolioDetail(slug) {
+    return (dispatch) => {
+        
+        dispatch({ type: WORK_DETAIL_FETCHING });
+
+        return fetch( __API_URL__ + '/portfolio/' + slug)
+            .then((response) => {
+                return response.json();
+            })
+            .then(
+
+                (result) => {
+                    if (result) {
+                        dispatch({ type: WORK_DETAIL_FETCHED, result });
+                    } else {
+                       dispatch({ type: WORK_DETAIL_FETCH_FAILED, error: '404' });
+                        browserHistory.push('/not-found');
+                    }
+                },
+
+                (error) => {
+                    dispatch({ type: WORK_DETAIL_FETCH_FAILED, error });
+                    console.log(error);
+                }
+            );
+    }
 }
 
 function shouldFetchPortfolio(state) {
@@ -35,6 +72,18 @@ function shouldFetchPortfolio(state) {
   return false;
 }
 
+function shouldFetchPortfolioDetail(state) {
+    const portfolio = state.portfolio;
+
+    if (portfolio.item === null ||
+        portfolio.readyState === WORK_DETAIL_FETCH_FAILED ||
+        portfolio.readyState === WORK_DETAIL_INVALID) {
+        return true;
+    }
+
+    return false;
+}
+
 export function fetchPortfolioIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchPortfolio(getState())) {
@@ -43,3 +92,16 @@ export function fetchPortfolioIfNeeded() {
   }
 }
 
+export function fetchPortfolioDetailIfNeeded(slug) {
+  return (dispatch, getState) => {
+    if (shouldFetchPortfolioDetail(getState())) {
+      return dispatch(fetchPortfolioDetail(slug));
+    }
+  }
+}
+
+export function resetPortfolioDetail() {
+    return (dispatch) => {
+        return dispatch({ type: WORK_DETAIL_RESET });
+    }
+}

@@ -52,6 +52,15 @@ exports.handlePortfolioSubmit = function(req, res) {
         gallery_images = null;
     }
 
+    // if no url_slug provided, make one from title
+    var url_slug = !req.body.url_slug ?
+        req.body.title
+            .replace(/&/g, 'and')
+            .replace(/[^a-z0-9\s]/gi, '')
+            .split(' ')
+            .join('-') :
+        req.body.url_slug;
+
     models.Portfolio
         .max('sort')
         .then((maxSort) => {
@@ -61,8 +70,10 @@ exports.handlePortfolioSubmit = function(req, res) {
                 description_short: req.body.description_short || null,
                 tags: tags,
                 main_image: main_image,
+                image_mobile: main_image || null,
                 gallery: gallery_images,
                 link: req.body.link || null,
+                url_slug: url_slug || null,
                 UserId: req.body.user,
                 sort: maxSort +1 || 0
             })
@@ -95,11 +106,16 @@ exports.handlePortfolioItemSubmit = function(req, res) {
         description: req.body.description,
         description_short: req.body.description_short,
         link: req.body.link,
+        url_slug: req.body.url_slug,
         sort: req.body.sort
     };
 
     if (typeof req.files.main_image !== 'undefined') {
         properties.main_image = req.files['main_image'][0].filename;
+    }
+
+    if (typeof req.files.image_mobile !== 'undefined') {
+        properties.image_mobile = req.files['image_mobile'][0].filename;
     }
 
     if (typeof req.files.gallery_images !== 'undefined') {

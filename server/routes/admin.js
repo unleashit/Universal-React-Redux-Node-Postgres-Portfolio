@@ -26,6 +26,7 @@ var storage = multer.diskStorage({
 var cpUpload = multer({ storage: storage })
     .fields([
         { name: 'main_image', maxCount: 1 },
+        { name: 'image_mobile', maxCount: 1 },
         { name: 'gallery_images', maxCount: 10 }
     ]);
 
