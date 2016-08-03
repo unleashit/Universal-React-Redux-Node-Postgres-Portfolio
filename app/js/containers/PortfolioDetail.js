@@ -22,6 +22,7 @@ export default class PortfolioDetail extends Component {
     componentDidMount() {
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
+        window.scrollTo(0, 0);
         //window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
 
     }
@@ -29,7 +30,6 @@ export default class PortfolioDetail extends Component {
     componentWillUnmount() {
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
-        console.log('unmounting!!');
         //window.removeEventListener('scroll', this.handleStickyHeader);
     }
 
