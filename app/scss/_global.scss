@@ -57,9 +57,20 @@ button[disabled], html input[disabled] {
   &.button-green {
     background-color: $light-green;
   }
+  &.button-charcoal {
+    background-color: #333;
+  }
   &.button-smaller {
     padding: 10px 18px;
     font-size: .9rem;
+  }
+  &.button-xs {
+    padding: 6px 8px;
+    font-size: .7rem;
+    border-radius: 20px;
+    border: 2px solid #b2b2b2;
+    color: #b2b2b2;
+    background: 0;
   }
   &:link, &:visited, &:active, &:target {
     color: #fff;

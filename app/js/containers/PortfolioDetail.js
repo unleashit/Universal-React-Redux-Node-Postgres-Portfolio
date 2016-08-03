@@ -22,14 +22,20 @@ export default class PortfolioDetail extends Component {
     componentDidMount() {
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
-        window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
+        //window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
 
     }
 
     componentWillUnmount() {
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
-        window.removeEventListener('scroll', this.handleStickyHeader);
+        console.log('unmounting!!');
+        //window.removeEventListener('scroll', this.handleStickyHeader);
+    }
+
+    componentWillUpdate() {
+        //console.log('component will update');
+        //this.forceUpdate();
     }
 
     handleStickyHeader(dispatch) {
@@ -60,10 +66,9 @@ export default class PortfolioDetail extends Component {
         } else if (DetailReadyState === 'WORK_DETAIL_FETCHED') {
 
             return (
-                <PortfolioItemDetail
-                    item={item}
-                    openBurger={this.openBurger.bind(this)}
-                />
+                <div>
+                    {this.props.children}
+                </div>
             );
 
         } else if (DetailReadyState === 'WORK_DETAIL_FETCH_FAILED') {
@@ -90,12 +95,12 @@ export default class PortfolioDetail extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                     ]}
                 />
-                <StickyHeader visible={headerState} />
+                <StickyHeader visible={true} />
+                <div className="hamburger hidden-md-up"><div onClick={this.openBurger.bind(this)}><i className="fa fa-bars"></i> MENU</div></div>
                 <ResponsiveMenu
                     closeBurger={this.closeBurger.bind(this)}
                     menuVisible={hamburgerState}
                 />
-                <header />
 
                 {this.renderPortfolioItemDetail(browserHistory)}
 

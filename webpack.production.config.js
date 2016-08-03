@@ -19,7 +19,7 @@ class CleanPlugin {
 
 module.exports = {
 
-    context: __dirname,
+    //context: __dirname,
 
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
@@ -81,7 +81,7 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }
         ]

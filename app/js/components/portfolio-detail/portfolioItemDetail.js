@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Header from './header';
 import Gallery from './gallery';
 import Tags from './tags';
@@ -24,28 +25,42 @@ export default class PortfolioItemDetail extends React.Component {
     }
 
     render() {
-        const item = this.props.item;
+        const {item} = this.props.portfolio;
 
         return (
 
             <div className="portfolio-detail container-fluid">
-                <Header />
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-lg-4">
                         <h3>{item.title}</h3>
                         <div>{item.description}</div>
                         <Tags tags={item.tags} makeTags={this.makeTags.bind(this)} />
-                        <div className="visit-site-link">
+                        <div className="hidden-md-down visit-site-link">
                             <a href={item.link}>
-                                <button className="button button-smaller">Visit Site</button>
+                                <button className="button button-smaller">VISIT SITE &nbsp;&nbsp;<i className="fa fa-external-link"></i></button>
                             </a>
                         </div>
                     </div>
-                    <div className="col-md-offset-1 col-md-7">
-                        <Gallery gallery={item.gallery} makeGallery={this.makeGallery.bind(this)} />
+                    <div className="col-lg-6">
+                        <Gallery makeGallery={this.makeGallery.bind(this)} />
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        portfolio: state.portfolio,
+        global: state.global
+    };
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch: dispatch
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioItemDetail);
+

@@ -19,11 +19,31 @@ exports.getPortfolioItem = function(req, res) {
         .findOne({where: {
             url_slug: req.params.slug
         }})
-        .then((item) =>{
-            res.json(item);
+        .then((mainItem) => {
+            if (!mainItem) res.json({error: '404'});
+            models.Portfolio.findOne({where: {
+               sort: mainItem.dataValues.sort + 1
+            }})
+            .then((next) => {
+                //if (!next) { next.dataValues.url_slug = null }
+                models.Portfolio.findOne({where: {
+                    sort: mainItem.dataValues.sort - 1
+                }})
+
+                .then((prev) => {
+                    //if (!prev) { prev.dataValues.url_slug = null }
+
+                    mainItem.dataValues.next = next === null ? null : next.dataValues.url_slug;
+                    mainItem.dataValues.prev = prev === null ? null : prev.dataValues.url_slug;
+                    res.json(mainItem);
+                })
+
+            })
+
         })
         .catch((error) => {
             console.log(error);
+            res.json({error: error});
         })
 };
 
