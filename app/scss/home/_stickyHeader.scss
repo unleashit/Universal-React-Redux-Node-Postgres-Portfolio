@@ -20,6 +20,7 @@ html.sticky-menu-open body {
   transition: all .4s;
   h3, p, a {
     transition: all .4s;
+    outline: none !important;
   }
   &.off {
     visibility: hidden;
