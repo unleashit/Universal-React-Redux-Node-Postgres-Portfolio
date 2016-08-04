@@ -69,7 +69,7 @@ export default class PortfolioDetail extends Component {
                 const { item } = this.props.portfolio;
 
                 const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
-                const metadesc = (typeof window === 'undefined') ? item.description : this.props.params.description;
+                //const metadesc = (typeof window === 'undefined') ? item.description : this.props.params.description;
                 const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
 
                 const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
@@ -79,9 +79,6 @@ export default class PortfolioDetail extends Component {
                     <Helmet
                         title={title}
                         htmlAttributes={htmlClassCheck}
-                        meta={[
-                            {'name': 'description', 'content': metadesc}
-                        ]}
                         link = {[
                             {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                         ]}
