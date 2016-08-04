@@ -45,7 +45,7 @@ export default class Gallery extends Component {
                 </ul>
                 {mobileImage}
                 <div className="hidden-lg-up visit-site-link">
-                    <a href={link}>
+                    <a href={link} target="_blank">
                         <button className="button button-smaller">VISIT SITE &nbsp;&nbsp;<i className="fa fa-external-link"></i></button>
                     </a>
                 </div>
