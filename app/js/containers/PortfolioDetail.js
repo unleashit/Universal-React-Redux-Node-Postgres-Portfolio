@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router'
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../components/common/stickyHeader';
+import Loader from '../components/common/loader';
+import Hamburger from '../components/common/hamburger';
 import ResponsiveMenu from '../components/common/responsiveMenu';
 import Footer from '../components/common/footer';
 import PortfolioItemDetail from '../components/portfolio-detail/portfolioItemDetail';
@@ -23,29 +25,17 @@ export default class PortfolioDetail extends Component {
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
         window.scrollTo(0, 0);
-        //window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
-
     }
 
     componentWillUnmount() {
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
-        //window.removeEventListener('scroll', this.handleStickyHeader);
     }
 
-    componentWillUpdate() {
-        //console.log('component will update');
-        //this.forceUpdate();
+    componentWillReceiveProps(nextProps, nextContext) {
+        console.log("will recieve props!");
     }
 
-    handleStickyHeader(dispatch) {
-        if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
-           dispatch(globalActions.setHeader(true));
-        } else if (window.pageYOffset < 250 && this.props.global.headerState === true) {
-           dispatch(globalActions.setHeader(false));
-        }
-    }
-    
     openBurger() {
         this.props.dispatch(globalActions.openHamburger());
     }
@@ -58,10 +48,7 @@ export default class PortfolioDetail extends Component {
         const {DetailReadyState, item} = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
-            return <div className="portfolio-detail-loading">
-                <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i>
-                <div className="caption">Stay tuned...</div>
-            </div>;
+            return <Loader />;
 
         } else if (DetailReadyState === 'WORK_DETAIL_FETCHED') {
 
@@ -77,29 +64,32 @@ export default class PortfolioDetail extends Component {
     }
 
     render() {
-        
-        const { headerState, hamburgerState, htmlClass } = this.props.global;
-        const { item } = this.props.portfolio;
 
-        const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
-        const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
+                const { headerState, hamburgerState, htmlClass } = this.props.global;
+                const { item } = this.props.portfolio;
 
-        const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
-        
-        return (
-            <div id="interior-page">
-                <Helmet
-                    title={title}
-                    htmlAttributes={htmlClassCheck}
-                    link = {[
-                        {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
-                    ]}
-                />
-                <StickyHeader visible={true} />
-                <div className="hamburger hidden-md-up"><div onClick={this.openBurger.bind(this)}><i className="fa fa-bars"></i> MENU</div></div>
-                <ResponsiveMenu
-                    closeBurger={this.closeBurger.bind(this)}
-                    menuVisible={hamburgerState}
+                const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
+                const metadesc = (typeof window === 'undefined') ? item.description : this.props.params.description;
+                const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
+
+                const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
+
+                return (
+                <div id="interior-page">
+                    <Helmet
+                        title={title}
+                        htmlAttributes={htmlClassCheck}
+                        meta={[
+                            {'name': 'description', 'content': metadesc}
+                        ]}
+                        link = {[
+                            {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
+                        ]}
+                    />
+                    <StickyHeader visible={true} displayHamburger={true} openBurger={this.openBurger.bind(this)}/>
+                    <ResponsiveMenu
+                        closeBurger={this.closeBurger.bind(this)}
+                        menuVisible={hamburgerState}
                 />
 
                 {this.renderPortfolioItemDetail(browserHistory)}

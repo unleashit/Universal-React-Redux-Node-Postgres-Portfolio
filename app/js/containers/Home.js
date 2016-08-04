@@ -30,20 +30,23 @@ export default class Home extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleStickyHeader);
+        document.documentElement.className += '';
     }
 
     handleStickyHeader(dispatch) {
         if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
-           dispatch(globalActions.setHeader(true));
+            document.documentElement.className += 'sticky-menu-open';
+            dispatch(globalActions.setHeader(true));
         } else if (window.pageYOffset < 250 && this.props.global.headerState === true) {
-           dispatch(globalActions.setHeader(false));
+            document.documentElement.className = '';
+            dispatch(globalActions.setHeader(false));
         }
     }
     
     openBurger() {
         this.props.dispatch(globalActions.openHamburger());
     }
-    
+
     closeBurger() {
         this.props.dispatch(globalActions.closeHamburger());
     }
@@ -61,7 +64,7 @@ export default class Home extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org"},
                     ]}
                 />
-                <StickyHeader visible={headerState} />
+                <StickyHeader visible={headerState} displayHamburger={false}/>
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
                         menuVisible={hamburgerState}
                         />

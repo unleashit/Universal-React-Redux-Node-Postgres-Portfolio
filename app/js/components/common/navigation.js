@@ -15,18 +15,18 @@ export default class Navigation extends React.Component {
         const position2 = this.props.logo === '2' ? logo : '';
 
         const homeLink = this.props.home ?
-            <li><Link to="/#home">Home</Link></li> : '';
+            <li className="hidden-xs-down"><Link to="/#home">Home</Link></li> : '';
 
         return (
             <nav>
                 <ul className={this.props.ulClass}>
                     {position1}
                     {homeLink}
-                    <li><Link to="/#about">About</Link></li>
-                    <li><Link to="/#skills">Skills</Link></li>
+                    <li className="hidden-xs-down"><Link to="/#about">About</Link></li>
+                    <li className="hidden-xs-down"><Link to="/#skills">Skills</Link></li>
                     {position2}
-                    <li><Link to="/#work">Work</Link></li>
-                    <li><Link to='/#contact'>Contact</Link></li>
+                    <li className="hidden-xs-down"><Link to="/#work">Work</Link></li>
+                    <li className="hidden-xs-down"><Link to='/#contact'>Contact</Link></li>
                 </ul>
             </nav>
         );

@@ -2,10 +2,19 @@
 @import '../_variables';
 @import '../_mixins';
 
-.sticky-header {
+#interior-page .sticky-header {
+  display: block !important;
   transition: none;
   h3, p ,a {
     transition: none;
+  }
+}
+.hamburger-alt {
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  i {
+    font-size: 1.5rem;
   }
 }
 
@@ -104,7 +113,7 @@
 
 @media screen and (max-width: map-get($grid-breakpoints, lg)) {
   .portfolio-detail {
-    margin-top: 120px;
+    margin-top: 104px;
   }
   .gallery {
     margin-top: 25px;
@@ -131,7 +140,16 @@
   }
 }
 
-@media screen and (max-width: map-get($grid-breakpoints, md)) {
+
+@media screen and (max-width: map-get($grid-breakpoints, lg)) {
+  .portfolio-tags {
+    .skill {
+      width: 31% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
   .portfolio-tags {
     .skill {
       width: 47% !important;
