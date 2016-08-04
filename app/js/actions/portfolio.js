@@ -1,5 +1,6 @@
 import {__API_URL__} from '../../config';
 import { browserHistory } from 'react-router'
+import ReactGA from'react-ga';
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
@@ -22,9 +23,19 @@ function fetchPortfolio() {
         })
         .then(
 
-            (result) => dispatch({ type: WORK_FETCHED, result }),
+            (result) => {
+                ReactGA.event({
+                    category: 'Work',
+                    action: 'Work List Fetched via Ajax'
+                });
+                dispatch({ type: WORK_FETCHED, result })
+            },
 
             (error) => {
+                ReactGA.event({
+                    category: 'Work',
+                    action: 'Work List Fetch Failed'
+                });
               dispatch({ type: WORK_FETCH_FAILED, error });
               console.log(error);
             }
@@ -45,8 +56,16 @@ function fetchPortfolioDetail(slug) {
 
                 (result) => {
                     if (result) {
+                        ReactGA.event({
+                            category: 'Work',
+                            action: 'Work Fetched via Ajax: ' + slug
+                        });
                         dispatch({ type: WORK_DETAIL_FETCHED, result });
                     } else {
+                        ReactGA.event({
+                            category: 'Work',
+                            action: 'Work Fetch Failed via Ajax: ' + slug
+                        });
                        dispatch({ type: WORK_DETAIL_FETCH_FAILED, error: '404' });
                         browserHistory.push('/not-found');
                     }

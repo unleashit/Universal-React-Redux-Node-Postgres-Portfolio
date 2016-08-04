@@ -28,6 +28,10 @@ if (isClient) {
                 const id = hash.replace('#', '');
                 const element = document.getElementById(id);
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
+                ReactGA.event({
+                    category: 'Navigation',
+                    action: 'Nav Link Clicked: ' + id
+                });
             }, 0);
         }
     }
