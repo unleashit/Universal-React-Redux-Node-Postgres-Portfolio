@@ -36,7 +36,7 @@ export default class PortfolioItemDetail extends React.Component {
                         <div>{item.description}</div>
                         <Tags tags={item.tags} makeTags={this.makeTags.bind(this)} />
                         <div className="hidden-md-down visit-site-link">
-                            <a href={item.link}>
+                            <a href={item.link} target="_blank">
                                 <button className="button button-smaller">VISIT SITE &nbsp;&nbsp;<i className="fa fa-external-link"></i></button>
                             </a>
                         </div>
