@@ -7,10 +7,6 @@ export const SET_HEADER = 'SET_HEADER';
 
 export function setHeader(bool) {
     return (dispatch) => {
-        ReactGA.event({
-            category: 'UI',
-            action: 'Triggered Sticky Nav'
-        });
         dispatch({type: SET_HEADER, bool});
     }
 }
