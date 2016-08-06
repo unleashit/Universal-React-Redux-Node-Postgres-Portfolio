@@ -7,7 +7,6 @@ import Header from '../components/home/header';
 import WhoWhatWhere from '../components/home/whoWhatWhere';
 import About from '../components/home/about';
 import Portfolio from './Portfolio';
-import Footer from '../components/common/footer';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
 
@@ -72,7 +71,6 @@ export default class Home extends Component {
                 <WhoWhatWhere />
                 <About />
                 <Portfolio />
-                <Footer {...this.props} />
             </div>
         );
     }

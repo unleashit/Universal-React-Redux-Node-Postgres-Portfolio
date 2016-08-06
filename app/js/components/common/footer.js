@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import ContactForm from './contactForm'
 import ReactGA from'react-ga';
 import * as contactActions  from '../../actions/contact';
@@ -10,6 +11,8 @@ export default class Footer extends React.Component {
             <p className="thanks">Thanks for your email!</p> :
             <ContactForm {...this.props} />;
 
+        const footerID = this.props.slug ? 'footer-interior' : '';
+
         const analytics = (type) => {
             ReactGA.event({
                 category: 'button click',
@@ -18,7 +21,7 @@ export default class Footer extends React.Component {
         };
 
         return (
-            <footer className="footer">
+            <footer className="footer" id={footerID}>
                 <div className="footer-border"></div>
                 <div className="footer-wrap">
                     <div className="container-fluid">
@@ -39,3 +42,16 @@ export default class Footer extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        contactForm: state.contactForm
+    };
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch: dispatch
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

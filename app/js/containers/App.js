@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import Footer from '../components/common/footer';
 
 if (typeof document !== 'undefined') require('../../scss/style.scss');
 
@@ -26,6 +27,7 @@ class App extends Component {
                     link={stylesheets}
                 />
                 {this.props.children}
+                <Footer slug={this.props.params.slug}/>
             </div>
         );
     }
