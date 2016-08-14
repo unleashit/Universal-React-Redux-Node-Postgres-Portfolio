@@ -111,9 +111,9 @@ export function fetchPortfolioIfNeeded() {
   }
 }
 
-export function fetchPortfolioDetailIfNeeded(slug) {
+export function fetchPortfolioDetailIfNeeded(slug, bypassCheck) {
   return (dispatch, getState) => {
-    if (shouldFetchPortfolioDetail(getState())) {
+    if (bypassCheck || shouldFetchPortfolioDetail(getState())) {
       return dispatch(fetchPortfolioDetail(slug));
     }
   }

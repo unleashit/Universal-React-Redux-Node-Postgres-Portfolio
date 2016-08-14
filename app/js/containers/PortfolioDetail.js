@@ -14,21 +14,32 @@ if (typeof document !== 'undefined') require('../../scss/portfolio-detail/portfo
 
 export default class PortfolioDetail extends Component {
 
-    static readyOnActions(dispatch, params) {
+    static readyOnActions(dispatch, params, bypassCheck = false) {
         return Promise.all([
-            dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(params.slug))
+            dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(params.slug, bypassCheck))
         ]);
     }
 
     componentDidMount() {
+        console.log("component did mount");
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
         window.scrollTo(0, 0);
     }
 
     componentWillUnmount() {
+        console.log("component will unmount");
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("component will receive props");
+        if (nextProps.params.slug !== this.props.params.slug) {
+            const {dispatch, params} = nextProps;
+           // dispatch(portfolioActions.resetPortfolioDetail());
+            PortfolioDetail.readyOnActions(dispatch, params, true);
+        }
     }
 
     openBurger() {

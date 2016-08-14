@@ -8,7 +8,7 @@ export default class WhoWhatWhere extends React.Component {
                     <div className="col-md-4">
                         <h3>Who I am</h3>
                         <p>Someone who has a problem with stereotypes! I began my career in 1999 as a graphic designer,
-                            but quickly transitioned into web design and development.
+                            but quickly transitioned into web development and design.
                             Currently, my focus is on Full Stack Javscript, React or CMS development.
                         </p>
                         <img src="images/home/who-am-i-icon.png" srcSet="images/home/who-am-i-icon@2x.png 1.1x" alt="Who I am" className="who-i-am" />

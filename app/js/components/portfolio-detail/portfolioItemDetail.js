@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Header from './header';
 import Gallery from './gallery';
 import Tags from './tags';
 
@@ -25,7 +24,7 @@ export default class PortfolioItemDetail extends React.Component {
     }
 
     render() {
-        const {item} = this.props.portfolio;
+        const { item } = this.props.portfolio;
 
         return (
 
@@ -42,7 +41,10 @@ export default class PortfolioItemDetail extends React.Component {
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <Gallery makeGallery={this.makeGallery.bind(this)} />
+                        <Gallery
+                            makeGallery={this.makeGallery.bind(this)}
+                            item={item}
+                        />
                     </div>
                 </div>
             </div>

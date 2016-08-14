@@ -5,4 +5,4 @@ server/config/*
 dist
 app/config.js
 app/images/portfolio
-npm-debug.log
+npm-debug.log*
