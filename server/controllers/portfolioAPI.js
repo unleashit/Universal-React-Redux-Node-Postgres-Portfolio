@@ -4,7 +4,7 @@ exports.getPortfolioItems = function(req, res) {
     models.Portfolio
         .findAll({
             limit: 25,
-            attributes: ['id', 'title', 'main_image', 'url_slug', 'description_short']
+            attributes: ['id', 'title', 'main_image', 'url_slug', 'description', 'description_short']
         })
         .then((items) =>{
             res.json(items);

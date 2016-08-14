@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Gallery from './gallery';
 import Tags from './tags';
 
-export default class PortfolioItemDetail extends React.Component {
+class PortfolioItemDetail extends React.Component {
 
     makeTags(tags) {
         return tags

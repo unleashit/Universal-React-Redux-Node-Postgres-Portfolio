@@ -4,15 +4,13 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../components/common/stickyHeader';
 import Loader from '../components/common/loader';
-import Hamburger from '../components/common/hamburger';
 import ResponsiveMenu from '../components/common/responsiveMenu';
-import PortfolioItemDetail from '../components/portfolio-detail/portfolioItemDetail';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
 
 if (typeof document !== 'undefined') require('../../scss/portfolio-detail/portfolio_detail.scss');
 
-export default class PortfolioDetail extends Component {
+class PortfolioDetail extends Component {
 
     static readyOnActions(dispatch, params, bypassCheck = false) {
         return Promise.all([
@@ -21,23 +19,19 @@ export default class PortfolioDetail extends Component {
     }
 
     componentDidMount() {
-        console.log("component did mount");
         const {dispatch, params} = this.props;
         PortfolioDetail.readyOnActions(dispatch, params);
         window.scrollTo(0, 0);
     }
 
     componentWillUnmount() {
-        console.log("component will unmount");
         const {dispatch} = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("component will receive props");
         if (nextProps.params.slug !== this.props.params.slug) {
             const {dispatch, params} = nextProps;
-           // dispatch(portfolioActions.resetPortfolioDetail());
             PortfolioDetail.readyOnActions(dispatch, params, true);
         }
     }
@@ -71,12 +65,12 @@ export default class PortfolioDetail extends Component {
 
     render() {
 
-        const { headerState, hamburgerState, htmlClass } = this.props.global;
+        const { hamburgerState, htmlClass } = this.props.global;
         const { item } = this.props.portfolio;
 
         const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
-        //const metadesc = (typeof window === 'undefined') ? item.description : this.props.params.description;
         const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
+        const metadesc = item ? item.description.slice(0, 300) : '';
 
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
 
@@ -85,6 +79,9 @@ export default class PortfolioDetail extends Component {
                 <Helmet
                     title={title}
                     htmlAttributes={htmlClassCheck}
+                    meta={[
+                        {'name': 'description', 'content': metadesc}
+                    ]}
                     link = {[
                         {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                     ]}
