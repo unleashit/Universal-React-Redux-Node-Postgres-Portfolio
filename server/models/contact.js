@@ -12,6 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
+    phone: DataTypes.STRING,
     message: DataTypes.TEXT
   });
 

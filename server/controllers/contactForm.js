@@ -4,33 +4,40 @@ var path = require('path');
 var config = require(path.join(__dirname, '/../config/appConfig')).config;
 
 exports.handleContactSubmit = function(req, res) {
-    // models.Portfolio
-    //     .findAll({limit: 20})
-    //     .then((items) =>{
-    //         res.json(items);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     })
 
-    config.mailoptions.html = `
+    models.Contact.create({
+        name: req.body.name || null,
+        email: req.body.email || null,
+        phone: req.body.phone || null,
+        message: req.body.message || null
+    })
+    .then(() => {
+
+        var textarea = req.body.message;
+        textarea = textarea.replace(/\r?\n/g, '<br />');
+
+        config.mailoptions.replyTo = req.body.email;
+        config.mailoptions.html = `
         <h3>New Contact</h3>
-        <p>From: ${req.body.name}</p>
-        <p>email: ${req.body.email}</p>
-        <p>phone: ${req.body.phone}</p>
-        <p>${req.body.message}</p>
+        From: ${req.body.name}<br>
+        email: ${req.body.email}<br>
+        phone: ${req.body.phone}<br><br>
+        ${textarea}
     `;
 
-    var transporter = nodemailer.createTransport(config.smtpConfig);
+        var transporter = nodemailer.createTransport(config.smtpConfig);
 
-    transporter.sendMail(config.mailoptions, function(error, info){
+        transporter.sendMail(config.mailoptions, function(error, info) {
 
-        if(error){
-            console.log(error);
-            res.json({result: error});
+            if(error){
+                console.log(error);
+                res.json({result: error});
 
-        } else {
-            res.json({result: 'Success', info: info.response});
-        }
-    });
+            } else {
+                res.json({result: 'Success', info: info.response});
+            }
+        });
+
+    })
+    .catch(err => console.log('Contact db insertion failure: ' + err ));
 };
