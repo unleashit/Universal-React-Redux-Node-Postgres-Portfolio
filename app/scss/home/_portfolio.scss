@@ -40,10 +40,8 @@
     opacity: 0;
     position: absolute;
     z-index: 100;
-    top:0; left:0; right:0;
-    padding-top: 25%;
+    top:0; left:0; right:0; bottom:0;
     font-size: 1.4rem;
-    line-height: normal;
     color: #fff;
     text-transform: uppercase;
     transition: opacity 350ms ease-out;
