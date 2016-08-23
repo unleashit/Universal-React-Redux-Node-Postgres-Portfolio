@@ -13,6 +13,9 @@ export default class PortfolioItem extends React.Component {
         return (
             <div className="portfolio-item">
                 <Link to={'/portfolio/' + item.url_slug}>
+                    <div className="view-details">
+                        <span>Learn More</span>
+                    </div>
                     <div>
                     
                         <img src={'/images/portfolio/' + item.main_image}
