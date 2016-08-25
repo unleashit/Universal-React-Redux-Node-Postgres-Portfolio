@@ -1,12 +1,12 @@
 var models = require('../models/index.js');
 
-exports.getPortfolioItems = function(req, res) {
+exports.getPortfolioItems = function (req, res) {
     models.Portfolio
         .findAll({
             limit: 25,
-            attributes: ['id', 'title', 'main_image', 'url_slug', 'description_short']
+            attributes: ['id', 'title', 'main_image', 'url_slug', 'description_short', 'sort']
         })
-        .then((items) =>{
+        .then((items) => {
             res.json(items);
         })
         .catch((error) => {
@@ -14,31 +14,41 @@ exports.getPortfolioItems = function(req, res) {
         })
 };
 
-exports.getPortfolioItem = function(req, res) {
+exports.getPortfolioItem = function (req, res) {
     models.Portfolio
-        .findOne({where: {
-            url_slug: req.params.slug
-        }})
+        .findOne({
+            where: {
+                url_slug: req.params.slug
+            }
+        })
         .then((mainItem) => {
             if (!mainItem) res.json({error: '404'});
-            models.Portfolio.findOne({where: {
-               sort: mainItem.dataValues.sort + 1
-            }})
-            .then((next) => {
-                //if (!next) { next.dataValues.url_slug = null }
-                models.Portfolio.findOne({where: {
-                    sort: mainItem.dataValues.sort - 1
-                }})
 
-                .then((prev) => {
-                    //if (!prev) { prev.dataValues.url_slug = null }
-
-                    mainItem.dataValues.next = next === null ? null : next.dataValues.url_slug;
-                    mainItem.dataValues.prev = prev === null ? null : prev.dataValues.url_slug;
-                    res.json(mainItem);
+            models.Portfolio.findAll({
+                    attributes: ['id', 'url_slug', 'sort'],
+                    where: {
+                        sort: {$gt: mainItem.dataValues.sort}
+                    },
+                    order: '`sort` ASC',
+                    limit: 1
                 })
+                .then((next) => {
+                    models.Portfolio.findAll({
+                            attributes: ['id', 'url_slug', 'sort'],
+                            where: {
+                                sort: {$lt: mainItem.dataValues.sort}
+                            },
+                            order: '`sort` DESC',
+                            limit: 1
+                        })
 
-            })
+                        .then((prev) => {
+                            mainItem.dataValues.next = next.length === 0 ? null : next[0].dataValues.url_slug;
+                            mainItem.dataValues.prev = prev.length === 0 ? null : prev[0].dataValues.url_slug;
+                            res.json(mainItem);
+                        })
+
+                })
 
         })
         .catch((error) => {
@@ -85,26 +95,26 @@ exports.getPortfolioItem = function(req, res) {
 //         });
 // };
 
-    // var msgs = messages
-    //     .filter((msg) => msg.roomId === roomId)
-    //     .map(msg => {
-    //         var user = _.find(users, u => u.id === msg.userId);
-    //         return {
-    //             username: user.name,
-    //             text: msg.text
-    //         }
-    //     });
-    //
-    // var room = _.find(rooms, function (val) {
-    //     return val.id === roomId;
-    // });
-    //
-    // var data = {
-    //     messages: msgs,
-    //     room: room
-    // };
-    //
-    // res.json(data);
+// var msgs = messages
+//     .filter((msg) => msg.roomId === roomId)
+//     .map(msg => {
+//         var user = _.find(users, u => u.id === msg.userId);
+//         return {
+//             username: user.name,
+//             text: msg.text
+//         }
+//     });
+//
+// var room = _.find(rooms, function (val) {
+//     return val.id === roomId;
+// });
+//
+// var data = {
+//     messages: msgs,
+//     room: room
+// };
+//
+// res.json(data);
 //};
 
 // exports.postMessage = function (req, res) {
@@ -123,25 +133,25 @@ exports.getPortfolioItem = function(req, res) {
 //     });
 // };
 //     // var roomId = req.params.roomId;
-    //
-    // var room = _.find(rooms, function (val) {
-    //     return val.id === roomId;
-    // });
-    //
-    // // var msgs = messages.filter((msg) => {
-    // //     return msg.roomId === roomId;
-    // // });
-    //
-    // var message = {
-    //     text: req.body.text,
-    //     roomId: roomId,
-    //     userId: req.user.id,
-    //     id: uuid.v4()
-    // };
-    //
-    // messages.push(message);
-    //
-    // res.sendStatus(200);
+//
+// var room = _.find(rooms, function (val) {
+//     return val.id === roomId;
+// });
+//
+// // var msgs = messages.filter((msg) => {
+// //     return msg.roomId === roomId;
+// // });
+//
+// var message = {
+//     text: req.body.text,
+//     roomId: roomId,
+//     userId: req.user.id,
+//     id: uuid.v4()
+// };
+//
+// messages.push(message);
+//
+// res.sendStatus(200);
 //};
 
 // exports.deleteMessages = function (req, res) {

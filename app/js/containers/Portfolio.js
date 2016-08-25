@@ -18,13 +18,18 @@ export default class Portfolio extends React.Component {
             return (
                 <div>
                     {
-                        items.map((item, index)=> {
+                        items
+                            .sort((a, b) => {
+                                if (a.sort > b.sort) return 1;
+                                if (a.sort < b.sort) return -1;
+                                return 0;
+                            })
+                            .map((item, index)=> {
                             let color = (index % 2) ? '#000' : '#353535';
                             return  <PortfolioItem key={index}
                                                    index={index}
                                                    color={color}
-                                                   item={item}
-                                    />
+                                                   item={item} />
                         })
                     }
                 </div>
