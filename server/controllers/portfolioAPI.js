@@ -17,6 +17,10 @@ exports.getPortfolioItems = function (req, res) {
 exports.getPortfolioItem = function (req, res) {
     models.Portfolio
         .findOne({
+            attributes: [
+                'id', 'title', 'description', 'description_short', 'tags', 'main_image',
+                'image_mobile', 'gallery', 'link', 'url_slug', 'sort'
+            ],
             where: {
                 url_slug: req.params.slug
             }

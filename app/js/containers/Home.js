@@ -12,7 +12,7 @@ import * as globalActions  from '../actions/global';
 
 if (typeof document !== 'undefined') require('../../scss/home/home.scss');
 
-export default class Home extends Component {
+class Home extends Component {
 
     static readyOnActions(dispatch) {
         return Promise.all([
@@ -20,16 +20,22 @@ export default class Home extends Component {
         ]);
     }
 
+    constructor(props) {
+        super(props);
+        this.boundHandleStickyHeader = this.handleStickyHeader.bind(this, props.dispatch);
+    }
+
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch);
-        const {dispatch} = this.props;
-        window.addEventListener('scroll', this.handleStickyHeader.bind(this, dispatch));
+        window.addEventListener('scroll', this.boundHandleStickyHeader);
 
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleStickyHeader);
-        document.documentElement.className += '';
+        window.removeEventListener('scroll', this.boundHandleStickyHeader);
+        document.documentElement.className = '';
+        const {dispatch, global} = this.props;
+        if (global.headerState) dispatch(globalActions.setHeader(false));
     }
 
     handleStickyHeader(dispatch) {
