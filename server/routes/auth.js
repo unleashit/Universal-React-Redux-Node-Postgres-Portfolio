@@ -7,18 +7,18 @@ var router = express.Router();
 
 router.get('/login', function (req, res, next) {
 
-    // auto login as admin
-    if (req.app.get('env') === 'development') {
-        if (req.query.user) {
-            user = _.find(users, u=> u.email === req.query.user);
-
-            req.logIn(user, (err) => {
-                if (err) { return next(err); }
-                return res.redirect('/');
-            });
-            return;
-        }
-    }
+    // auto login as admin for development
+    // if (req.app.get('env') === 'development') {
+    //     if (req.query.user) {
+    //         user = _.find(users, u=> u.email === req.query.user);
+    //
+    //         req.logIn(user, (err) => {
+    //             if (err) { return next(err); }
+    //             return res.redirect('/');
+    //         });
+    //         return;
+    //     }
+    // }
 
     res.render('login', {title: 'login', message: req.flash('error')});
 });
@@ -31,7 +31,7 @@ router.post("/login", function(req, res, next) {
         next();
     }
 }, passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/admin/portfolio',
     failureRedirect: '/login',
     failureFlash : true
 }));

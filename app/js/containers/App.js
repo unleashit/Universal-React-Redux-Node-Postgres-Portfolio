@@ -11,8 +11,10 @@ class App extends Component {
         let stylesheets = [
             {'rel': 'stylesheet', 'href': 'https://fonts.googleapis.com/css?family=Oswald|Sanchez'}
         ];
-
         if (process.env.NODE_ENV === 'production') stylesheets.unshift({'rel': 'stylesheet', 'href': '/css/style.min.css'});
+
+        const footer = this.props.children.type.displayName === 'NoMatch' ? '' : <Footer slug={this.props.params.slug}/>;
+
 
         return (
             <div>
@@ -27,7 +29,8 @@ class App extends Component {
                     link={stylesheets}
                 />
                 {this.props.children}
-                <Footer slug={this.props.params.slug}/>
+                {footer}
+
             </div>
         );
     }

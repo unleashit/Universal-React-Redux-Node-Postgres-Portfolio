@@ -1,19 +1,13 @@
 [
   {
-    "email": "jason@jasongallagher.org",
+    "email": "test@testing.com",
     "id": "1",
     "useraccess": 3,
-    "password": "lemmein"
-  },
-  {
-    "email": "abc",
-    "id": "3",
-    "useraccess": 3,
-    "password": "abc"
+    "password": "123"
   },
   {
     "email": "maggie@thecat.com",
     "id": "2",
-    "password": "lemmein"
+    "password": "123"
   }
 ]
