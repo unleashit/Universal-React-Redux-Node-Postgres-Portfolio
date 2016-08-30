@@ -13,8 +13,8 @@ class App extends Component {
         ];
         if (process.env.NODE_ENV === 'production') stylesheets.unshift({'rel': 'stylesheet', 'href': '/css/style.min.css'});
 
-        const footer = this.props.children.type.displayName === 'NoMatch' ? '' : <Footer slug={this.props.params.slug}/>;
-
+        // There must be a better way...
+        const footer = this.props.children.props.route.path === '*' ? '' : <Footer slug={this.props.params.slug}/>;
 
         return (
             <div>
