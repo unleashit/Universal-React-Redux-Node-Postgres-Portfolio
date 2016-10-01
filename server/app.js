@@ -10,10 +10,10 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var appConfig = require('./config/appConfig');
 var compression = require('compression');
 
 var models = require("./models");
-var createuser = require('./controllers/createUser');
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
 
@@ -66,15 +66,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // auth
-require('./passport-init');
+require('./services/passport-config');
 app.use(require('express-session')({
-    secret: 'keyboard cat', resave: false, saveUninitialized: false
+    secret: appConfig.sessionSecret, resave: false, saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// server routes
+// global vars
 app.use((req, res, next) => {
     console.log('client connected');
     res.locals.renderer = 'ejs';
@@ -85,18 +85,13 @@ app.use((req, res, next) => {
     next();
 });
 
+// auth routes
 app.use(require(__dirname + '/routes/auth'));
 
-app.route('/signup')
-    .get((req, res) => {
-        res.render("signup", { title: 'Signup', error: req.flash('error') });
-    })
-    .post(createuser.signup);
+// api routes
+app.use("/api", require(__dirname + '/routes/api'));
 
-var apiRouter = require(__dirname + '/routes/api');
-app.use("/api", apiRouter);
-
-//authenticated routes below here
+// authenticate admin routes
 app.use('/admin*', (req, res, next) => {
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
@@ -106,10 +101,10 @@ app.use('/admin*', (req, res, next) => {
     res.redirect('/login');
 });
 
-// admin router
+// admin routes
 app.use("/admin", require(__dirname + '/routes/admin'));
 
-// react
+// react routes (everything else)
 var reactApp = require('../app/js/index').serverMiddleware;
 app.get('*', reactApp);
 
