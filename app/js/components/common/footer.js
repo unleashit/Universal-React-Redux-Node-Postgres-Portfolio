@@ -4,7 +4,7 @@ import ContactForm from './contactForm'
 import ReactGA from'react-ga';
 import * as contactActions  from '../../actions/contact';
 
-export default class Footer extends React.Component {
+class Footer extends React.Component {
 
     render() {
         const renderContactForm = this.props.contactForm.readyState === 'SUBMIT_CONTACT_SUCCESS' ?
@@ -25,7 +25,7 @@ export default class Footer extends React.Component {
                 <div className="footer-border"></div>
                 <div className="footer-wrap">
                     <div className="container-fluid">
-                        <div className="row" className="contact" id="contact">
+                        <div className="contact row" id="contact">
                             <div className="col-lg-4">
                                 <h4>CONTACT</h4>
                                 <p className="contact-method"><i className="fa fa-phone"></i> (415) 287-3221</p>

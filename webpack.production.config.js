@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var del = require('del');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+//var Purify = require("purifycss-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 class CleanPlugin {
@@ -62,6 +63,17 @@ module.exports = {
                 'NODE_ENV': '"production"'
             }
         })
+        // new Purify({
+        //     basePath: __dirname,
+        //     paths: [
+        //         '/app/js/*.*'
+        //     ],
+        //     resolveExtensions: ['.js'],
+        //     purifyOptions: {
+        //         minify: true,
+        //         rejected: true
+        //     }
+        // })
     ],
     module: {
         loaders: [

@@ -17,16 +17,6 @@ var models = require("./models");
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
 
-// Otherwise errors thrown in Promise routines will be silently swallowed.
-// (e.g. any error during rendering the app server-side!)
-process.on('unhandledRejection', (reason, p) => {
-    if (reason.stack) {
-        console.error(reason.stack);
-    } else {
-        console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
-    }
-});
-
 var webpack = require('webpack');
 var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
@@ -147,6 +137,16 @@ if (app.get('env') === 'development') {
 //         error: {}
 //     });
 // });
+
+// Otherwise errors thrown in Promise routines will be silently swallowed.
+// (e.g. any error during rendering the app server-side!)
+process.on('unhandledRejection', (reason, p) => {
+    if (reason.stack) {
+        console.error(reason.stack);
+    } else {
+        console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+    }
+});
 
 var debug = require('debug')('jg');
 app.set('port', process.env.PORT || 3100);
