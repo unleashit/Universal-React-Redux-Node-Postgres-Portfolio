@@ -22,30 +22,54 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.boundHandleStickyHeader = this.handleStickyHeader.bind(this, props.dispatch);
+        this.boundHandleScroll = this.handleScroll.bind(this, props.dispatch);
     }
 
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch);
-        window.addEventListener('scroll', this.boundHandleStickyHeader);
+        window.addEventListener('scroll', this.boundHandleScroll);
 
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.boundHandleStickyHeader);
+        window.removeEventListener('scroll', this.boundHandleScroll);
         document.documentElement.className = '';
         const {dispatch, global} = this.props;
         if (global.headerState) dispatch(globalActions.setHeader(false));
     }
 
-    handleStickyHeader(dispatch) {
-        if (window.pageYOffset >= 250 && this.props.global.headerState === false) {
+    handleScroll(dispatch) {
+        const scrl = window.pageYOffset;
+
+        // handle sticky header
+        if (scrl >= 250 && this.props.global.headerState === false) {
             document.documentElement.className += 'sticky-menu-open';
             dispatch(globalActions.setHeader(true));
-        } else if (window.pageYOffset < 250 && this.props.global.headerState === true) {
+        } else if (scrl < 250 && this.props.global.headerState === true) {
             document.documentElement.className = '';
             dispatch(globalActions.setHeader(false));
         }
+
+        // handle scroll animations
+
+        // function setAnimationPoint(elem, action, props) {
+        //     if (!props.global[action] &&
+        //         document.getElementById(elem).getBoundingClientRect().top < 500) {
+        //         dispatch(globalActions[action](true));
+        //     }
+        // }
+
+        //setAnimationPoint('about', 'animateAbout', this.props);
+        //setAnimationPoint('work', 'animatePortfolio', this.props);
+        // if (!this.props.global.animateAbout &&
+        //     document.getElementById('about').getBoundingClientRect().top < 500) {
+        //     dispatch(globalActions.animateAbout(true));
+        // }
+        //
+        // if (!this.props.global.animatePortfolio &&
+        //     document.getElementById('portfolio').getBoundingClientRect().top < 500) {
+        //     dispatch(globalActions.animateAbout(true));
+        // }
     }
     
     openBurger() {
@@ -58,7 +82,7 @@ class Home extends Component {
 
     render() {
         
-        const {headerState, hamburgerState, htmlClass} = this.props.global;
+        const {headerState, hamburgerState, htmlClass, animateAbout, animatePortfolio} = this.props.global;
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
         
         return (
@@ -75,8 +99,8 @@ class Home extends Component {
                         />
                 <Header openBurger={this.openBurger.bind(this)} />
                 <WhoWhatWhere />
-                <About />
-                <Portfolio />
+                <About animation={animateAbout} animationType="fadeInUp"/>
+                <Portfolio animation={animatePortfolio} animationType="fadeInUp" />
             </div>
         );
     }

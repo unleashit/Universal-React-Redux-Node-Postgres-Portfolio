@@ -13,6 +13,7 @@
   "author": "",
   "license": "RESTRICTED",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "axios": "^0.12.0",
     "babel-polyfill": "^6.9.1",
     "bcrypt-nodejs": "0.0.3",

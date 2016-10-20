@@ -2,12 +2,18 @@ import {
     TOGGLE_HAMBURGER,
     OPEN_HAMBURGER,
     CLOSE_HAMBURGER,
-    SET_HEADER
+    SET_HEADER,
+    ANIMATE_ABOUT,
+    ANIMATE_PORTFOLIO,
+    ANIMATE_CONTACT
 } from '../actions/global';
 
 export default function global(state = {
   headerState: false,
-  hamburgerState: false
+  hamburgerState: false,
+  animateAbout: false,
+  animatePortfolio: false,
+  animateContact: false
 }, action) {
   switch (action.type) {
     case TOGGLE_HAMBURGER:
@@ -27,6 +33,18 @@ export default function global(state = {
     case SET_HEADER:
       return Object.assign({}, state, {
         headerState: action.bool
+      });
+    case ANIMATE_ABOUT:
+      return Object.assign({}, state, {
+        animateAbout: action.bool
+      });
+    case ANIMATE_PORTFOLIO:
+      return Object.assign({}, state, {
+        animatePortfolio: action.bool
+      });
+    case ANIMATE_CONTACT:
+      return Object.assign({}, state, {
+        animateContact: action.bool
       });
     default:
       return state;
