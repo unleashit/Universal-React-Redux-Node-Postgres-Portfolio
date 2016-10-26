@@ -24,10 +24,10 @@ export default class About extends React.Component {
             });
         };
 
-        const animation = this.props.animation ? 'animated ' + this.props.animationType + ' ' : ' invisible ';
+        // const animation = this.props.animation ? 'animated ' + this.props.animationType + ' ' : ' invisible ';
 
         return (
-            <section className={animation + "about container-fluid"} id="about">
+            <section className={this.props.animation() + "about container-fluid"} id="about">
                 <div className="row">
                     <div className="col-md-8">
                         <h3>About Me</h3>

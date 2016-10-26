@@ -9,6 +9,8 @@ import About from '../components/home/about';
 import Portfolio from './Portfolio';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
+import { animation } from '../components/common/utils';
+import throttle from 'lodash/throttle';
 
 if (typeof document !== 'undefined') require('../../scss/home/home.scss');
 
@@ -22,13 +24,12 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.boundHandleScroll = this.handleScroll.bind(this, props.dispatch);
+        this.boundHandleScroll = throttle(this.handleScroll.bind(this, props.dispatch), 150);
     }
 
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch);
         window.addEventListener('scroll', this.boundHandleScroll);
-
     }
 
     componentWillUnmount() {
@@ -51,25 +52,19 @@ class Home extends Component {
         }
 
         // handle scroll animations
+        // elem = id of element to animate, action = action to dispatch
+        function setupAnimation(elem, action, props) {
+            const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight) || 0;
 
-        // function setAnimationPoint(elem, action, props) {
-        //     if (!props.global[action] &&
-        //         document.getElementById(elem).getBoundingClientRect().top < 500) {
-        //         dispatch(globalActions[action](true));
-        //     }
-        // }
+            if (!props.global[action] &&
+                document.getElementById(elem).getBoundingClientRect().top < viewportHeight * 0.85) {
+                dispatch(globalActions[action](true));
+            }
+        }
 
-        //setAnimationPoint('about', 'animateAbout', this.props);
-        //setAnimationPoint('work', 'animatePortfolio', this.props);
-        // if (!this.props.global.animateAbout &&
-        //     document.getElementById('about').getBoundingClientRect().top < 500) {
-        //     dispatch(globalActions.animateAbout(true));
-        // }
-        //
-        // if (!this.props.global.animatePortfolio &&
-        //     document.getElementById('portfolio').getBoundingClientRect().top < 500) {
-        //     dispatch(globalActions.animateAbout(true));
-        // }
+        setupAnimation('about', 'animateAbout', this.props);
+        setupAnimation('work', 'animatePortfolio', this.props);
+        setupAnimation('contact-area', 'animateContact', this.props);
     }
     
     openBurger() {
@@ -82,7 +77,15 @@ class Home extends Component {
 
     render() {
         
-        const {headerState, hamburgerState, htmlClass, animateAbout, animatePortfolio} = this.props.global;
+        const {
+            headerState,
+            hamburgerState,
+            htmlClass,
+            animateAllOff,
+            animateAbout,
+            animatePortfolio
+        } = this.props.global;
+
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
         
         return (
@@ -99,8 +102,8 @@ class Home extends Component {
                         />
                 <Header openBurger={this.openBurger.bind(this)} />
                 <WhoWhatWhere />
-                <About animation={animateAbout} animationType="fadeInUp"/>
-                <Portfolio animation={animatePortfolio} animationType="fadeInUp" />
+                <About animation={animation.bind(this, animateAbout)} />
+                <Portfolio animation={animation.bind(this, animatePortfolio)} />
             </div>
         );
     }

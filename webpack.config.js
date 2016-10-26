@@ -77,19 +77,16 @@ module.exports = {
             }
         ]
     },
-    preLoaders: [
-        {
-            test: /\.js$/,
-            loader: "eslint-loader?{rules:{semi:0}}",
-            exclude: /node_modules/
-        }
-    ],
-    eslint: {
-        configFile: './.eslintrc',
-        failOnWarning: false,
-        failOnError: true
-    },
-    sassLoader: {
-        includePaths: ['./app/scss']
-    }
+    // preLoaders: [
+    //     {
+    //         test: /\.js$/,
+    //         loader: "eslint-loader?{rules:{semi:0}}",
+    //         exclude: /node_modules/
+    //     }
+    // ],
+    // eslint: {
+    //     configFile: './.eslintrc',
+    //     failOnWarning: false,
+    //     failOnError: true
+    // }
 };

@@ -43,9 +43,9 @@ export default function global(state = {
         animatePortfolio: action.bool
       });
     case ANIMATE_CONTACT:
-      return Object.assign({}, state, {
-        animateContact: action.bool
-      });
+    return Object.assign({}, state, {
+      animateContact: action.bool
+    });
     default:
       return state;
   }

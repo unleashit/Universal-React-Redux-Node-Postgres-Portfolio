@@ -88,7 +88,11 @@ module.exports = {
                 }
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
-            {test: /\.scss$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap!sass?sourceMap' })},
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract({
+                fallbackLoader: 'style',
+                loader: 'css?sourceMap!sass?sourceMap',
+                includePaths: [path.resolve(__dirname, "./app/scss")]
+            })},
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
@@ -97,8 +101,5 @@ module.exports = {
                 ]
             }
         ]
-    },
-    sassLoader: {
-        includePaths: ['./app/scss']
     }
 };

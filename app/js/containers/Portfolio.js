@@ -41,10 +41,8 @@ class Portfolio extends React.Component {
     }
     
     render() {
-        const animation = this.props.animation ? 'animated ' + this.props.animationType + ' ' : ' invisible ';
-
         return (
-            <section className={animation + "portfolio clearfix"} id="work">
+            <section className={ this.props.animation() + "portfolio clearfix" } id="work">
                 {this.renderPortfolio()}
             </section>
         );
