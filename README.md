@@ -44,14 +44,16 @@ After this, you can now run the project in dev mode via `npm start` (a browser-s
 
 ### Administration and Login
 
-To acess the admin and add portfolio projects, you need to add a user and then elevate its access level. To create a user, just go to /signup and create it. To elevate the user, go into the DB and change the access level to 3. Now you can login at /login with your user and manage the portfolio. One caveat that I plan on fixing on some rainy day: you must run `npm run build` or `npm run prod` in the terminal after you add projects to view the images. The build process is needed for now to optimize and copy the uploaded images to the public (dist) folder.
+To acess the admin and add portfolio projects, you need to add a user and then elevate its access level. To create a user, just go to /signup and create it. To elevate the user, go into the DB and change the access level to 3. Now you can login at /login with your user and manage the portfolio. One caveat that I plan on fixing on some rainy day: you must run `npm run build` or `npm run prod` in the terminal after you add projects to view the images. Webpack is needed for now to optimize and copy the uploaded images to the public (dist) folder.
 
-### Contact Form
+### Other Config
 
-For the contact form to function, you need to make a second config file inside the config folder called appConfig.js. The contents of it should be (with your SMTP credentials):
+For the site to function, you'll also need to make a second config file inside the server/config folder called appConfig.js. The contents of it should be (with your SMTP credentials):
 
 ```
 module.exports = {
+
+    sessionSecret: 'Not Keyboard Cat!',
 
     mailoptions: {
         from: '{from_email}',
@@ -68,10 +70,9 @@ module.exports = {
             pass: '{auth_password}'
         }
     },
-
 };
 ```
-The contact form will both send an email to the creditials provided and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point.
+`sessionSecret` can be any string, but it must exist. `mailoptions` and `smtpConfig` are for the contact form and are optional. The contact form will both send an email to the creditials provided and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point.
 
 `Reminder: this code/theme/site is NOT open source. You have DO NOT have permission to use it for any other purpose except for your own personal viewing. Please see license file for further details.`
 

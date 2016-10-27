@@ -30,7 +30,7 @@ class Home extends Component {
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch);
 
-        if (getEnvironment('client') && window.pageYOffset > 10) {
+        if (getEnvironment('client') && window.pageYOffset > 10 && !window.location.hash === '') {
             this.props.dispatch(globalActions.animateOff());
         } else {
             window.addEventListener('scroll', this.boundHandleScroll);
