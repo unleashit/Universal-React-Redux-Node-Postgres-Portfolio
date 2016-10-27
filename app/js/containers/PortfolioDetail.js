@@ -72,7 +72,7 @@ class PortfolioDetail extends Component {
 
         const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
         const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
-        const metadesc = item ? item.description.slice(0, 300) : '';
+        const metadesc = item ? item.description.slice(0, 300) : ''; // TODO: item.description sometimes undefined
 
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
 

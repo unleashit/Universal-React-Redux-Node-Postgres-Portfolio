@@ -23,7 +23,7 @@ export default class Header extends React.Component {
                     <h1>FRONT END ENGINEER</h1>
                     <h2>17 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>
                 </div>
-                <div className="button-wrapper animated bounce">
+                <div className="button-wrapper animated bounceInUp">
                     <Link to="/#work"><button className="button button-green" onClick={analytics.bind(this, 'See my work')}>See my work</button></Link>
                 </div>
             </header>
