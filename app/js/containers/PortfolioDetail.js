@@ -33,7 +33,6 @@ class PortfolioDetail extends Component {
         if (nextProps.params.slug !== this.props.params.slug) {
             const {dispatch, params} = nextProps;
             PortfolioDetail.readyOnActions(dispatch, params, true);
-            console.log('scrollTo from detail page');
             window.scrollTo(0, 0);
         }
     }

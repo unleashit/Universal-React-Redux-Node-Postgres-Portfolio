@@ -9,7 +9,7 @@ import About from '../components/home/about';
 import Portfolio from './Portfolio';
 import * as portfolioActions  from '../actions/portfolio';
 import * as globalActions  from '../actions/global';
-import { animation } from '../components/common/utils';
+import { animation, getEnvironment } from '../libs/utils';
 import throttle from 'lodash/throttle';
 
 if (typeof document !== 'undefined') require('../../scss/home/home.scss');
@@ -29,7 +29,12 @@ class Home extends Component {
 
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch);
-        window.addEventListener('scroll', this.boundHandleScroll);
+
+        if (getEnvironment('client') && window.pageYOffset > 10) {
+            this.props.dispatch(globalActions.animateOff());
+        } else {
+            window.addEventListener('scroll', this.boundHandleScroll);
+        }
     }
 
     componentWillUnmount() {
@@ -81,7 +86,7 @@ class Home extends Component {
             headerState,
             hamburgerState,
             htmlClass,
-            animateAllOff,
+            animateOff,
             animateAbout,
             animatePortfolio
         } = this.props.global;
@@ -102,8 +107,8 @@ class Home extends Component {
                         />
                 <Header openBurger={this.openBurger.bind(this)} />
                 <WhoWhatWhere />
-                <About animation={animation.bind(this, animateAbout)} />
-                <Portfolio animation={animation.bind(this, animatePortfolio)} />
+                <About animation={animation.bind(this, animateAbout, animateOff)} />
+                <Portfolio animation={animation.bind(this, animatePortfolio, animateOff)} />
             </div>
         );
     }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ContactForm from './contactForm'
 import ReactGA from'react-ga';
 import * as contactActions  from '../../actions/contact';
-import { animation } from './utils';
+import { animation } from '../../libs/utils';
 
 class Footer extends React.Component {
 
@@ -25,7 +25,7 @@ class Footer extends React.Component {
             <footer className="footer" id={footerID}>
                 <div className="footer-border"></div>
                 <div className="footer-wrap" id="contact-area">
-                    <div className={animation(this.props.global.animateContact) + "container-fluid"}>
+                    <div className={animation(this.props.global.animateContact, this.props.global.animateOff) + "container-fluid"}>
                         <div className="contact row" id="contact">
                             <div className="col-lg-4">
                                 <h4>CONTACT</h4>

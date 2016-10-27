@@ -5,7 +5,8 @@ import {
     SET_HEADER,
     ANIMATE_ABOUT,
     ANIMATE_PORTFOLIO,
-    ANIMATE_CONTACT
+    ANIMATE_CONTACT,
+    ANIMATE_OFF
 } from '../actions/global';
 
 export default function global(state = {
@@ -13,7 +14,8 @@ export default function global(state = {
   hamburgerState: false,
   animateAbout: false,
   animatePortfolio: false,
-  animateContact: false
+  animateContact: false,
+  animateOff: false
 }, action) {
   switch (action.type) {
     case TOGGLE_HAMBURGER:
@@ -46,6 +48,10 @@ export default function global(state = {
     return Object.assign({}, state, {
       animateContact: action.bool
     });
+    case ANIMATE_OFF:
+      return Object.assign({}, state, {
+        animateOff: action.bool
+      });
     default:
       return state;
   }

@@ -7,6 +7,7 @@ export const SET_HEADER = 'SET_HEADER';
 export const ANIMATE_ABOUT = 'ANIMATE_ABOUT';
 export const ANIMATE_PORTFOLIO = 'ANIMATE_PORTFOLIO';
 export const ANIMATE_CONTACT= 'ANIMATE_CONTACT';
+export const ANIMATE_OFF= 'ANIMATE_OFF';
 
 export function setHeader(bool) {
     return (dispatch) => {
@@ -29,6 +30,12 @@ export function animatePortfolio(bool) {
 export function animateContact(bool) {
     return (dispatch) => {
         dispatch({type: ANIMATE_CONTACT, bool});
+    }
+}
+
+export function animateOff(bool=true) {
+    return (dispatch) => {
+        dispatch({type: ANIMATE_OFF, bool});
     }
 }
 
