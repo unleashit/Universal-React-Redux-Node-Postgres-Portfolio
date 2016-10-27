@@ -17,7 +17,6 @@ table.portfolio-list.table td {
 
 .form-signin {
   .btn-github {
-    @extend .btn-primary;
     background-color: #555;
     &:hover, &:active, &:visited {
       background-color: #555;

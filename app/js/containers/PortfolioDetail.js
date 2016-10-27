@@ -14,7 +14,8 @@ class PortfolioDetail extends Component {
 
     static readyOnActions(dispatch, params, bypassCheck = false) {
         return Promise.all([
-            dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(params.slug, bypassCheck))
+            dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(params.slug, bypassCheck)),
+            dispatch(globalActions.animateOff())
         ]);
     }
 

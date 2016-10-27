@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var del = require('del');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//var Purify = require("purifycss-webpack-plugin");
+var Purify = require("purifycss-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 class CleanPlugin {
@@ -20,8 +20,6 @@ class CleanPlugin {
 
 module.exports = {
 
-    //context: __dirname,
-
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
         admin: './app/js/admin.js'
@@ -32,7 +30,6 @@ module.exports = {
         publicPath: '/'
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
         new CleanPlugin({
             files: ['dist/*']
         }),
@@ -48,7 +45,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new ExtractTextPlugin('./css/style.min.css'),
+        new ExtractTextPlugin('./css/[name].min.css'),
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
             cssProcessorOptions: {discardComments: {removeAll: true}},
@@ -62,21 +59,21 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': '"production"'
             }
+        }),
+        new Purify({
+            basePath: __dirname,
+            paths: [
+                '/app/js/*.*'
+            ],
+            resolveExtensions: ['.js'],
+            purifyOptions: {
+                minify: true,
+                rejected: true
+            }
         })
-        // new Purify({
-        //     basePath: __dirname,
-        //     paths: [
-        //         '/app/js/*.*'
-        //     ],
-        //     resolveExtensions: ['.js'],
-        //     purifyOptions: {
-        //         minify: true,
-        //         rejected: true
-        //     }
-        // })
     ],
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js?$/,
                 loader: 'babel',
@@ -101,5 +98,7 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+
+    devtool: false
 };

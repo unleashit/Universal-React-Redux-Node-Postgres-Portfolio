@@ -5,14 +5,9 @@ var webpack = require('webpack');
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 var bsync = new BrowserSyncPlugin(
-    // BrowserSync options
     {
-        // browse to http://localhost:3000/ during development
         host: 'localhost',
         port: 3000,
-        // proxy the Webpack Dev Server endpoint
-        // (which should be serving on http://localhost:3100/)
-        // through BrowserSync
         proxy: 'http://localhost:3100/',
         browser: 'chrome'
     },
@@ -36,13 +31,12 @@ module.exports = {
         publicPath: 'http://localhost:3100/'
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         bsync
     ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js?$/,
             loader: 'babel',
             include: path.join(__dirname, 'app'),
@@ -57,7 +51,7 @@ module.exports = {
                             locals: ['module']
                         }]
                     }],
-                    ['transform-object-assign']
+                    'transform-object-assign', 'transform-es2015-destructuring', 'transform-object-rest-spread'
                 ]
             }
             },

@@ -27,8 +27,8 @@ const renderInput = field => (
     <div className="form-group">
         {/*<label>{field.input.placeholder}</label>*/}
         <div>
-            <input {...field.input} className="form-control" />
-            {field.touched && field.error && <span className="error">{field.error}</span>}
+            <input {...field.input} type={field.type} placeholder={field.placeholder} className="form-control" />
+            {field.meta.touched && field.meta.error && <span className="error">{field.meta.error}</span>}
         </div>
     </div>
 );
@@ -37,8 +37,8 @@ const renderTextarea = field => (
     <div className="form-group">
         {/*<label>{field.input.placeholder}</label>*/}
         <div>
-            <textarea {...field.input} />
-            {field.touched && field.error && <span className="error">{field.error}</span>}
+            <textarea {...field.input} placeholder={field.placeholder} className={field.className} />
+            {field.meta.touched && field.meta.error && <span className="error">{field.meta.error}</span>}
         </div>
     </div>
 );
@@ -56,24 +56,26 @@ const submit = (data, dispatch) => {
 };
 
 
-const ContactForm = (props) => {
+class ContactForm extends Component {
 
-    const { handleSubmit, pristine, reset, submitting, dispatch } = props;
+    render() {
+        const { handleSubmit, pristine, reset, submitting, dispatch } = this.props;
 
-    return (
-        <div className="contact-form col-lg-8">
-            <h4 className="send-message">SEND A MESSAGE</h4>
-            <form onSubmit={handleSubmit(submit)}>
-                <Field name="name" type="text" component={renderInput} placeholder="Name"/>
-                <Field name="email" type="text" component={renderInput} placeholder="Email"/>
-                <Field name="phone" type="text" component={renderInput} placeholder="Phone"/>
-                <Field name="message" component={renderTextarea} placeholder="Message" className="form-control message" />
-                <div>
-                    <button type="submit" disabled={submitting} className="button button-green button-smaller">Send</button>
-                </div>
-            </form>
-        </div>
-    );
+        return (
+            <div className="contact-form col-lg-8">
+                <h4 className="send-message">SEND A MESSAGE</h4>
+                <form onSubmit={handleSubmit(submit)}>
+                    <Field name="name" component={renderInput} type="text" placeholder="Name" />
+                    <Field name="email" component={renderInput} type="text" placeholder="Email" />
+                    <Field name="phone" component={renderInput} type="text" placeholder="Phone" />
+                    <Field name="message" placeholder="Message" className="form-control message" component={renderTextarea} />
+                    <div>
+                        <button type="submit" disabled={submitting} className="button button-green button-smaller">Send</button>
+                    </div>
+                </form>
+            </div>
+        );
+    }
 };
 
 export default reduxForm({

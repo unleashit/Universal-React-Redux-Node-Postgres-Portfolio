@@ -24,8 +24,6 @@ export default class About extends React.Component {
             });
         };
 
-        // const animation = this.props.animation ? 'animated ' + this.props.animationType + ' ' : ' invisible ';
-
         return (
             <section className={this.props.animation() + "about container-fluid"} id="about">
                 <div className="row">

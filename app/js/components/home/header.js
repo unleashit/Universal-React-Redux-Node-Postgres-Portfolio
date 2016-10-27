@@ -18,7 +18,7 @@ export default class Header extends React.Component {
         return (
             <header className="main-header">
                 <Hamburger openBurger={this.props.openBurger} />
-                <Navigation home={true} ulClass="main-nav" logo="2" displayHamburger={false} />
+                <Navigation home={false} ulClass="main-nav" logo="2" displayHamburger={false} />
                 <div className="title-tagline-wrapper">
                     <h1>FRONT END ENGINEER</h1>
                     <h2>17 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>
