@@ -30,7 +30,7 @@ class Home extends Component {
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch)
             .then(() => {
-                if (getEnvironment('client') && (window.pageYOffset > 10 || !window.location.hash === '')) {
+                if (getEnvironment('client') && (window.pageYOffset > 10 || window.location.hash)) {
                     this.props.dispatch(globalActions.animateOff());
                 } else {
                     window.addEventListener('scroll', this.boundHandleScroll);
@@ -63,7 +63,7 @@ class Home extends Component {
             const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight) || 0;
 
             if (!props.global[action] &&
-                document.getElementById(elem).getBoundingClientRect().top < viewportHeight * 0.85) {
+                document.getElementById(elem).getBoundingClientRect().top < viewportHeight * 0.9) {
                 dispatch(globalActions[action](true));
             }
         }
@@ -106,7 +106,7 @@ class Home extends Component {
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
                         menuVisible={hamburgerState}
                         />
-                <Header openBurger={this.openBurger.bind(this)} />
+                <Header openBurger={this.openBurger.bind(this)} animation={animation.bind(this, true, animateOff)} />
                 <WhoWhatWhere />
                 <About animation={animation.bind(this, animateAbout, animateOff)} />
                 <Portfolio animation={animation.bind(this, animatePortfolio, animateOff)} />

@@ -22,7 +22,7 @@ export function getFullWindowHeight() {
         html.clientHeight, html.scrollHeight, html.offsetHeight ) || 0;
 }
 
-export function animation(animationArea, animateOff, animationType="fadeInUp") {
+export function animation(animationArea, animateOff, animationType='zoomInUp') {
     return !animateOff ?
         (animationArea ? `animated ${animationType} ` : ` invisible `)
             : '';

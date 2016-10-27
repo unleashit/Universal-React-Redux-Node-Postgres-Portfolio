@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import Footer from '../components/common/footer';
 
+// if (typeof document !== 'undefined') require('animate.css');
 if (typeof document !== 'undefined') require('../../scss/global.scss');
-if (typeof document !== 'undefined') require('animate.css');
 
 class App extends Component {
 

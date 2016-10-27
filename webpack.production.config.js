@@ -90,8 +90,7 @@ module.exports = {
                 loader: 'css?sourceMap!sass?sourceMap',
                 includePaths: [path.resolve(__dirname, "./app/scss")]
             })},
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+            {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file?hash=sha512&digest=hex&name=[hash].[ext]',
                     //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'

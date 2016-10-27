@@ -24,6 +24,9 @@ img.who-i-am, img.what-i-do, img.where-i-am {
   background-color: #f0ecec;
   box-shadow: 0 0 10px rgba(0, 0, 0, .1) inset;
   clear: both;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .about-buttons {
