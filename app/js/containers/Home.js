@@ -88,6 +88,7 @@ class Home extends Component {
             hamburgerState,
             htmlClass,
             animateOff,
+            animateSeeWork,
             animateAbout,
             animatePortfolio
         } = this.props.global;
@@ -118,8 +119,7 @@ class Home extends Component {
 function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
-        global: state.global,
-        contactForm: state.contactForm
+        global: state.global
     };
 }
 function mapDispatchToProps(dispatch) {

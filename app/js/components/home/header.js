@@ -24,7 +24,12 @@ export default class Header extends React.Component {
                     <h2>17 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>
                 </div>
                 <div className="button-wrapper">
-                    <Link to="/#work"><button className={this.props.animation() + "button button-green"} onClick={analytics.bind(this, 'See my work')}>See my work</button></Link>
+                    <Link to="/#work">
+                        <button className={this.props.animation() + "button button-green"}
+                                onClick={analytics.bind(this, 'See my work')}>
+                            See my work
+                        </button>
+                    </Link>
                 </div>
             </header>
         );

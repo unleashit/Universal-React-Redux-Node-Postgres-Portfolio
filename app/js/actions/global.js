@@ -4,6 +4,7 @@ export const TOGGLE_HAMBURGER = 'TOGGLE_HAMBURGER';
 export const OPEN_HAMBURGER = 'OPEN_HAMBURGER';
 export const CLOSE_HAMBURGER = 'CLOSE_HAMBURGER';
 export const SET_HEADER = 'SET_HEADER';
+export const ANIMATE_SEEWORK = 'ANIMATE_SEEWORK';
 export const ANIMATE_ABOUT = 'ANIMATE_ABOUT';
 export const ANIMATE_PORTFOLIO = 'ANIMATE_PORTFOLIO';
 export const ANIMATE_CONTACT= 'ANIMATE_CONTACT';
@@ -12,6 +13,12 @@ export const ANIMATE_OFF= 'ANIMATE_OFF';
 export function setHeader(bool) {
     return (dispatch) => {
         dispatch({type: SET_HEADER, bool});
+    }
+}
+
+export function animateSeeWork(bool) {
+    return (dispatch) => {
+        dispatch({type: ANIMATE_SEEWORK, bool});
     }
 }
 

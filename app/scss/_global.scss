@@ -129,8 +129,12 @@ html.not-found-page body {
   top:0;left:0;right:0;bottom:0;
 }
 
-.animated:not(button) {
+.animated {
   animation-duration: 1600ms;
+}
+
+button.animated {
+  animation-duration: 700ms;
 }
 
 
