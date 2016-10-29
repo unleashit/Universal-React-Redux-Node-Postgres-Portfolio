@@ -88,7 +88,6 @@ class Home extends Component {
             hamburgerState,
             htmlClass,
             animateOff,
-            animateSeeWork,
             animateAbout,
             animatePortfolio
         } = this.props.global;
@@ -107,7 +106,7 @@ class Home extends Component {
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
                         menuVisible={hamburgerState}
                         />
-                <Header openBurger={this.openBurger.bind(this)} animation={animation.bind(this, true, animateOff)} />
+                <Header openBurger={this.openBurger.bind(this)} />
                 <WhoWhatWhere />
                 <About animation={animation.bind(this, animateAbout, animateOff)} />
                 <Portfolio animation={animation.bind(this, animatePortfolio, animateOff)} />

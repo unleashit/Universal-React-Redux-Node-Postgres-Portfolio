@@ -3,7 +3,6 @@ import {
     OPEN_HAMBURGER,
     CLOSE_HAMBURGER,
     SET_HEADER,
-    ANIMATE_SEEWORK,
     ANIMATE_ABOUT,
     ANIMATE_PORTFOLIO,
     ANIMATE_CONTACT,
@@ -14,7 +13,6 @@ export default function global(state = {
   headerState: false,
   hamburgerState: false,
   animateAbout: false,
-  animateSeeWork: true,
   animatePortfolio: false,
   animateContact: false,
   animateOff: false
@@ -37,10 +35,6 @@ export default function global(state = {
     case SET_HEADER:
       return Object.assign({}, state, {
         headerState: action.bool
-      });
-    case ANIMATE_SEEWORK:
-      return Object.assign({}, state, {
-        animateSeeWork: action.bool
       });
     case ANIMATE_ABOUT:
       return Object.assign({}, state, {
