@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import Footer from '../components/common/footer';
 
-// if (typeof document !== 'undefined') require('animate.css');
 if (typeof document !== 'undefined') require('../../scss/global.scss');
 
 class App extends Component {
@@ -12,6 +11,7 @@ class App extends Component {
         let stylesheets = [
             {'rel': 'stylesheet', 'href': 'https://fonts.googleapis.com/css?family=Oswald|Sanchez'}
         ];
+
         if (process.env.NODE_ENV === 'production') stylesheets.unshift({'rel': 'stylesheet', 'href': '/css/global.min.css'});
 
         // There must be a better way...

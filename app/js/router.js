@@ -12,7 +12,7 @@ import {__GOOGLE_ANALYTICS__} from '../config'
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
-    require('smoothscroll-polyfill').polyfill();
+
     var ReactGA = require('react-ga');
     ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
