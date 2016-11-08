@@ -1,4 +1,5 @@
 import '../scss/admin.scss';
+import liveChat from './adminLiveChatManager';
 
 function filePicker(elem) {
     var inputs = document.querySelectorAll(elem + ' input');
@@ -38,5 +39,6 @@ function filePicker(elem) {
 filePicker('.main-image-picker');
 filePicker('.mobile-image-picker');
 filePicker('.gallery-images-picker');
+liveChat();
 
 //confirmDelete('.confirm-delete');

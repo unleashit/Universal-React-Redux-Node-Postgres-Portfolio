@@ -88,7 +88,7 @@ class PortfolioDetail extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                     ]}
                 />
-                <StickyHeader visible={true} displayHamburger={true} openBurger={this.openBurger.bind(this)}/>
+                <StickyHeader visible={true} displayHamburger={true} openBurger={this.openBurger.bind(this)} />
                 <ResponsiveMenu
                     closeBurger={this.closeBurger.bind(this)}
                     menuVisible={hamburgerState}

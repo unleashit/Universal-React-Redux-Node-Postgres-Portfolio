@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var multer  = require('multer');
 
 var managePortfolio = require('../controllers/managePortfolio.js');
+var liveChat = require('../controllers/liveChat.js');
 
 var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -53,5 +54,7 @@ router.route('/portfolio/:id')
     .post(cpUpload, managePortfolio.handlePortfolioItemSubmit);
 
 router.get('/portfolio/delete/:id', managePortfolio.deletePortfolioItem);
+
+router.get('/live-chat-manager', liveChat.chatManager);
 
 module.exports = router;

@@ -32,9 +32,8 @@ class Home extends Component {
             .then(() => {
                 if (getEnvironment('client') && (window.pageYOffset > 10 || window.location.hash)) {
                     this.props.dispatch(globalActions.animateOff());
-                } else {
-                    window.addEventListener('scroll', this.boundHandleScroll);
                 }
+                window.addEventListener('scroll', this.boundHandleScroll);
             });
     }
 
@@ -45,12 +44,20 @@ class Home extends Component {
         if (global.headerState) dispatch(globalActions.setHeader(false));
     }
 
+    componentDidUpdate() {
+        if (getEnvironment('client') && !this.props.global.animateOff && window.location.hash) {
+            setTimeout(() => {
+                this.props.dispatch(globalActions.animateOff());
+            }, 0);
+        }
+    }
+
     handleScroll(dispatch) {
         const scrl = window.pageYOffset;
 
         // handle sticky header
         if (scrl >= 250 && this.props.global.headerState === false) {
-            document.documentElement.className += 'sticky-menu-open';
+            document.documentElement.className = 'sticky-menu-open';
             dispatch(globalActions.setHeader(true));
         } else if (scrl < 250 && this.props.global.headerState === true) {
             document.documentElement.className = '';
@@ -93,7 +100,7 @@ class Home extends Component {
         } = this.props.global;
 
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
-        
+
         return (
             <div id="home">
                 <Helmet
@@ -125,7 +132,6 @@ function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch
     }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

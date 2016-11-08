@@ -9,7 +9,8 @@ var bsync = new BrowserSyncPlugin(
         host: 'localhost',
         port: 3000,
         proxy: 'http://localhost:3100/',
-        browser: 'chrome'
+        browser: 'chrome',
+        open: false
     },
     // plugin options
     {
@@ -22,18 +23,18 @@ var bsync = new BrowserSyncPlugin(
 module.exports = {
     devtool: '#source-map',
     entry: {
-        global: ['webpack-hot-middleware/client', './app/js/index.js'],
-        admin: './app/js/admin.js'
+        "global": ['webpack-hot-middleware/client', './app/js/index.js'],
+        "admin.min": './app/js/admin.js'
     },
     output: {
         path: __dirname + '/dist/',
-        filename: "[name].js",
+        filename: "js/[name].js",
         publicPath: 'http://localhost:3100/'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        bsync
+        // bsync
     ],
     module: {
         rules: [{
@@ -51,7 +52,9 @@ module.exports = {
                             locals: ['module']
                         }]
                     }],
-                    'transform-object-assign', 'transform-es2015-destructuring', 'transform-object-rest-spread'
+                    'transform-object-assign',
+                    'transform-es2015-destructuring',
+                    'transform-object-rest-spread'
                 ]
             }
             },
@@ -61,13 +64,13 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    'file?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
+                    //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             {
                 test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                loader: 'url'
+                loader: 'file?name=fonts/[name].[ext]'
             }
         ]
     },

@@ -28,3 +28,55 @@ table.portfolio-list.table td {
   }
 }
 
+// live chat manager
+.live-chat-manager {
+  .user-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    cursor: pointer;
+    li, li:hover, li:target, li:focus {
+      border: 0;
+    }
+    .connected {
+      background-color: #68aa44;
+    }
+    .disconnected {
+      background-color: #d2474e;
+    }
+    .active {
+      box-shadow: 0 0 25px rgba(0,0,0,.5) inset;
+    }
+    .new-messages {
+      .badge {
+        background-color: #db2e59;
+        color: #fff;
+      }
+    }
+  }
+  .messages {
+    height: 450px;
+    overflow: auto;
+    padding: 12px;
+    background: #292929;
+    color: #fff;
+  }
+  .message-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      padding: 12px 0;
+      line-height: 1.5rem;
+      border-bottom: 1px solid #777;
+      &:last-child {
+        border: 0;
+      }
+    }
+    .date {
+      font-size: .7rem;
+      color: #ddd;
+    }
+  }
+}
+

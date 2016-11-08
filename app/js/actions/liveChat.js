@@ -1,0 +1,52 @@
+import ReactGA from'react-ga';
+
+export const TOGGLE_CHAT = 'TOGGLE_CHAT';
+// export const INIT_SOCKETS = 'INIT_SOCKETS';
+export const CHAT_SET_REMOTE_ID = 'CHAT_SET_REMOTE_ID';
+export const CHAT_CREATE_MESSAGE = 'CHAT_CREATE_MESSAGE';
+export const CHAT_RECEIVE_MESSAGE = 'CHAT_RECEIVE_MESSAGE';
+export const CHAT_ONCHANGE = 'CHAT_ONCHANGE';
+export const CHAT_NEW_USER = 'CHAT_NEW_USER';
+export const CHAT_ISTYPING = 'CHAT_ISTYPING';
+
+export function toggleChat(bool=true) {
+    return (dispatch) => {
+        dispatch({type: TOGGLE_CHAT, bool});
+    }
+}
+
+export function chatSetRemoteId(id, name) {
+    return (dispatch) => {
+        dispatch({type: CHAT_SET_REMOTE_ID, id, name});
+    }
+}
+
+export function chatCreateMesssage(message) {
+    return (dispatch) => {
+        dispatch({type: CHAT_CREATE_MESSAGE, message});
+    }
+}
+
+export function chatReceiveMesssage(message) {
+    return (dispatch) => {
+        dispatch({type: CHAT_RECEIVE_MESSAGE, message});
+    }
+}
+
+export function chatOnChange(message) {
+    return (dispatch) => {
+        dispatch({type: CHAT_ONCHANGE, message});
+    }
+}
+
+export function chatNewUser(user) {
+    return (dispatch) => {
+        dispatch({type: CHAT_NEW_USER, user});
+    }
+}
+
+export function chatIsTyping(bool) {
+    return (dispatch) => {
+        dispatch({type: CHAT_ISTYPING, bool});
+    }
+}

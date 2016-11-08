@@ -2,10 +2,9 @@ require('babel-register')({
     presets: ['es2015', 'react']
 });
 
-//require('babel-core/register');
-
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
 var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
@@ -15,8 +14,11 @@ var compression = require('compression');
 
 var models = require("./models");
 
+// TODO: see if this is still needed
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+global.__HOBGOBLIN__ = '12345';
 
+// configure webpack middleware
 var webpack = require('webpack');
 var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
@@ -44,25 +46,13 @@ app.use(compression());
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 app.use(require('./redirects'));
-
-// serve static assets
 app.use(express.static('dist'));
-
-// logging
-// app.use(require('./logging')); //morgan
-//require('express-debug')(app, {});
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// auth
-require('./services/passport-config');
-app.use(require('express-session')({
-    secret: appConfig.sessionSecret, resave: false, saveUninitialized: false
-}));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+// logging
+// app.use(require('./logging')); //morgan
+// require('express-debug')(app, {});
 
 // global vars
 app.use((req, res, next) => {
@@ -74,6 +64,15 @@ app.use((req, res, next) => {
     res.locals.activeClass = '';
     next();
 });
+
+// auth
+require('./services/passport-config');
+app.use(require('express-session')({
+    secret: appConfig.sessionSecret, resave: false, saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // auth routes
 app.use(require(__dirname + '/routes/auth'));
@@ -94,9 +93,11 @@ app.use('/admin*', (req, res, next) => {
 // admin routes
 app.use("/admin", require(__dirname + '/routes/admin'));
 
-// react routes (everything else)
-var reactApp = require('../app/js/index').serverMiddleware;
-app.get('*', reactApp);
+// react routes (all other http)
+app.get('*', require('../app/js/index').serverMiddleware);
+
+// socket.io
+require('./controllers/liveChat').socketio(http);
 
 // 404 handling
 app.use(function(req, res, next){
@@ -156,8 +157,8 @@ models.sequelize.sync({
     logging: function(str) {console.log(str);}
     })
     .then(function () {
-        var server = app.listen(app.get('port'), function() {
-        console.log('Express server listening on port ' + server.address().port);
-        console.log("Node Environment: " + process.env.NODE_ENV);
-    });
+        var server = http.listen(app.get('port'), function() {
+            console.log('Express server listening on port ' + server.address().port);
+            console.log("Node Environment: " + process.env.NODE_ENV);
+        });
 });

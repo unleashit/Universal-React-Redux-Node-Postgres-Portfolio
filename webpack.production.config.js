@@ -53,24 +53,24 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {context: './app/images', from: '**/**', to: 'images'},
-            {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
+            // {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
         ]),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': '"production"'
             }
         }),
-        new Purify({
-            basePath: __dirname,
-            paths: [
-                '/app/js/*.*'
-            ],
-            resolveExtensions: ['.js'],
-            purifyOptions: {
-                minify: true,
-                rejected: true
-            }
-        })
+        // new Purify({
+        //     basePath: __dirname,
+        //     paths: [
+        //         '/app/js/*.*'
+        //     ],
+        //     resolveExtensions: ['.js'],
+        //     purifyOptions: {
+        //         minify: true,
+        //         rejected: true
+        //     }
+        // })
     ],
     module: {
         rules: [
@@ -78,11 +78,17 @@ module.exports = {
                 test: /\.js?$/,
                 loader: 'babel',
                 include: path.join(__dirname, 'app'),
-                query: {
-                    plugins: [
-                        ["transform-runtime", 'transform-object-assign']
-                    ]
-                }
+                exclude: /(node_modules|bower_components)/,
+                // query: {
+                //     plugins: [
+                //         [
+                //             'transform-runtime',
+                //             'transform-object-assign',
+                //             'transform-es2015-destructuring',
+                //             'transform-object-rest-spread'
+                //         ]
+                //     ]
+                // }
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
             {test: /\.scss$/, loader: ExtractTextPlugin.extract({
@@ -92,9 +98,13 @@ module.exports = {
             })},
             {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'file?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
                     //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+                loader: 'file?name=fonts/[name].[ext]'
             }
         ]
     },

@@ -1,0 +1,23 @@
+<%- include('header') -%>
+
+<div class="live-chat-manager row">
+    <div class="col-md-4">
+        <h3>Current Users</h3>
+        <div id="userList" class="list-group"></div>
+    </div>
+    <div class="col-md-8">
+        <h3>Messages</h3>
+        <div class="form-group">
+            <div id="messages" class="messages"></div>
+        </div>
+        <h3>Post A Message</h3>
+        <form action="">
+            <div class="form-group">
+                <input type="text" id="message"class="form-control"></input>
+            </div>
+            <button id="postMessage" type="submit" class="btn btn-primary">Post</button>
+        </form>
+    </div>
+</div>
+
+<%- include('footer') -%>

@@ -35,24 +35,23 @@ exports.getPortfolioItem = function (req, res) {
                     },
                     order: '`sort` ASC',
                     limit: 1
+            })
+            .then((next) => {
+                models.Portfolio.findAll({
+                        attributes: ['id', 'url_slug', 'sort'],
+                        where: {
+                            sort: {$lt: mainItem.dataValues.sort}
+                        },
+                        order: '`sort` DESC',
+                        limit: 1
                 })
-                .then((next) => {
-                    models.Portfolio.findAll({
-                            attributes: ['id', 'url_slug', 'sort'],
-                            where: {
-                                sort: {$lt: mainItem.dataValues.sort}
-                            },
-                            order: '`sort` DESC',
-                            limit: 1
-                        })
-
-                        .then((prev) => {
-                            mainItem.dataValues.next = next.length === 0 ? null : next[0].dataValues.url_slug;
-                            mainItem.dataValues.prev = prev.length === 0 ? null : prev[0].dataValues.url_slug;
-                            res.json(mainItem);
-                        })
-
+                .then((prev) => {
+                    mainItem.dataValues.next = next.length === 0 ? null : next[0].dataValues.url_slug;
+                    mainItem.dataValues.prev = prev.length === 0 ? null : prev[0].dataValues.url_slug;
+                    res.json(mainItem);
                 })
+
+            })
 
         })
         .catch((error) => {
