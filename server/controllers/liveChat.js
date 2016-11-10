@@ -148,11 +148,11 @@ exports.socketio = function(http) {
             callback(socket.id);
 
             // send sms
-            // try {
-            //     _sendSMS(user.name);
-            // } catch(err) {
-            //     throw new Error(err);
-            // }
+            try {
+                _sendSMS(user.name);
+            } catch(err) {
+                throw new Error(err);
+            }
 
             // console.log('Users object:', JSON.stringify(users, null, 2));
         });
