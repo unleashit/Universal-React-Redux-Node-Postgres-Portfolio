@@ -121,6 +121,7 @@ exports.socketio = function(http) {
             var newUser = {
                 id: socket.id,
                 name: user.name,
+                email: user.email,
                 connected: user.connected,
                 date: Date.now(),
                 messages: []
@@ -148,11 +149,11 @@ exports.socketio = function(http) {
             callback(socket.id);
 
             // send sms
-            try {
-                _sendSMS(user.name);
-            } catch(err) {
-                throw new Error(err);
-            }
+            // try {
+            //     _sendSMS(user.name);
+            // } catch(err) {
+            //     throw new Error(err);
+            // }
 
             // console.log('Users object:', JSON.stringify(users, null, 2));
         });

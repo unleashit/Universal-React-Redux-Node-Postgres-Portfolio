@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
             autoIncrement: false
         },
         name: DataTypes.TEXT,
+        email: DataTypes.TEXT,
         connected: DataTypes.BOOLEAN,
         messages: DataTypes.TEXT,
         date: DataTypes.TEXT

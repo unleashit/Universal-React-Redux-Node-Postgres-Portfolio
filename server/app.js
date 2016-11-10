@@ -14,9 +14,7 @@ var compression = require('compression');
 
 var models = require("./models");
 
-// TODO: see if this is still needed
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
-global.__HOBGOBLIN__ = '12345';
 
 // configure webpack middleware
 var webpack = require('webpack');

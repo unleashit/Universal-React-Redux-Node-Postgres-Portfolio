@@ -15,6 +15,7 @@ export default function portfolio(state = {
     serverStatus: false,
     room: '',
     localName: '',
+    localEmail: '',
     remoteId: '',
     remoteName: '',
     isTyping: false,
@@ -54,6 +55,7 @@ export default function portfolio(state = {
             return Object.assign({}, state, {
                 room: action.user.room,
                 localName: action.user.name,
+                localEmail: action.user.email,
                 registered: action.user.registered
             });
         case CHAT_ISTYPING:

@@ -83,6 +83,7 @@ function formatUsers(users) {
         return {
             socketId: users[u].id,
             name: users[u].name,
+            email: users[u].email,
             connected: users[u].connected,
             messages: JSON.stringify(users[u].messages),
             date: users[u].date
@@ -130,6 +131,7 @@ exports.queryUser = function (id) {
             return {
                 id: data.socketId,
                 name: data.name,
+                email: data.email,
                 connected: true,
                 messages: JSON.parse(data.messages),
                 date: Date.now()
@@ -161,6 +163,7 @@ exports.queryUsers = function (users, offset) {
                 u = {
                     id: u.socketId,
                     name: u.name,
+                    email: u.email,
                     connected: false,
                     messages: JSON.parse(u.messages),
                     date: u.date

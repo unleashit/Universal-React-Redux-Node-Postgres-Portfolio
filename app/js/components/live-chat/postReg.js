@@ -29,7 +29,7 @@ class PostReg extends Component {
         };
 
         return (
-            <form onSubmit={this.props.onSubmit}>
+            <form className="live-chat-chatting" onSubmit={this.props.onSubmit}>
                 <div className="chat-status">{chatStatus()}</div>
                 <div ref="div" className="form-group message-area">
                     <ul className="message-list">
@@ -49,13 +49,15 @@ class PostReg extends Component {
                     </ul>
                     {isTyping()}
                 </div>
-                <div className="form-group">
-                    <input type="text" className="form-control"
-                           name="message" placeholder="Your message..."
-                           value={this.props.message}
-                           onChange={this.props.onChange} />
+                <div className="live-chat-send-group">
+                    <div className="form-group">
+                        <input type="text" className="form-control"
+                               name="message" placeholder="Your message..."
+                               value={this.props.message}
+                               onChange={this.props.onChange} />
+                    </div>
+                    <button type="submit" className="button button-green button-smaller button-block">Send</button>
                 </div>
-                <button type="submit" className="button button-green button-smaller button-block">Send</button>
             </form>
         );
     }

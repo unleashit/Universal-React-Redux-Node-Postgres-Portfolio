@@ -8,12 +8,6 @@ import {__API_URL__, __SOCKET_IO_URL__} from '../../config';
 if (typeof window !== 'undefined') require('../../scss/live-chat/live-chat.scss');
 
 class LiveChatContainer extends Component {
-    //
-    // static readyOnActions(dispatch) {
-    //     return Promise.all([
-    //         dispatch(chatActions.initSockets())
-    //     ]);
-    // }
 
     constructor(props) {
         super(props);
@@ -24,7 +18,6 @@ class LiveChatContainer extends Component {
         this.socketTyping = this.socketTyping.bind(this);
         this.socketDisconnect = this.socketDisconnect.bind(this);
         this.socketStatus = this.socketStatus.bind(this);
-
     }
 
     componentDidMount() {
@@ -43,12 +36,12 @@ class LiveChatContainer extends Component {
     }
 
     socketConnect() {
-        console.log("socket.io connected. Id: " + this.socket.id);
+        // console.log("socket.io connected. Id: " + this.socket.id);
 
         this.socket.emit('chatConnected', {}, (admin) => {
             if (admin) {
                 this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
-                console.log('Chat is online');
+                // console.log('Chat is online');
             }
             if (!this.props.liveChat.serverStatus) {
                 this.props.dispatch(chatActions.chatSetServerStatus(true));
@@ -58,18 +51,13 @@ class LiveChatContainer extends Component {
 
     socketChatmessage(message) {
         if (message.id !== this.props.liveChat.room) {
-            // console.log(this.typingTimer);
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
-            // this.props.dispatch(chatActions.chatSetRemoteId(message.id, message.name));
         }
         this.props.dispatch(chatActions.chatReceiveMesssage(message));
-        // console.log("transport: " + this.socket.io.engine.transport.name);
-
     }
 
     socketTyping(id) {
-        // const parsedId = id.slice(id.indexOf('#') +1);
         if (id === this.props.liveChat.remoteId) {
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(true));
@@ -79,18 +67,18 @@ class LiveChatContainer extends Component {
 
     socketAdminConnected(admin) {
         if (admin) {
-            console.log("Chat is online");
+            // console.log("Chat is online");
             this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
         }
     }
 
     socketAdminDisconnected() {
-        console.log("Chat is offline");
+        // console.log("Chat is offline");
         this.props.dispatch(chatActions.chatSetRemoteId('', ''));
     }
 
     socketDisconnect(message) {
-        console.log('Disconnected from Server: ', message);
+        // console.log('Disconnected from Server: ', message);
         if (message === 'transport close') {
             // server disconnected
             this.props.dispatch(chatActions.chatSetServerStatus(false));
@@ -125,8 +113,7 @@ class LiveChatContainer extends Component {
             })
             .then((response) => {
                 this.props.dispatch(chatActions.contactSent(true));
-                //  console.log (response.json());
-                console.log("contact sent");
+                // console.log("contact sent");
             })
             .catch(err => {
                 throw new Error(err);
@@ -137,11 +124,13 @@ class LiveChatContainer extends Component {
             this.socket.emit('newUser', {
                 id: this.socket.id,
                 name: name,
+                email: email,
                 connected: true
             }, (room) => {
                 this.props.dispatch(chatActions.chatNewUser({
                     room: room,
                     name: name,
+                    email: email,
                     registered: true
                 }));
             });
@@ -167,7 +156,7 @@ class LiveChatContainer extends Component {
         };
         this.socket.emit('chatMessage', message);
         this.props.dispatch(chatActions.chatCreateMesssage(''));
-        console.log("new message: ", message);
+        // console.log("new message: ", message);
     }
 
     onChange(e) {
