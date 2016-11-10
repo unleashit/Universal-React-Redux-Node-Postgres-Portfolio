@@ -28,7 +28,7 @@ class LiveChatContainer extends Component {
     }
 
     componentDidMount() {
-        this.socket = io('http://localhost:3100/live-chat');
+        this.socket = io('https://localhost:3100/live-chat');
         this.socket.on('connect', this.socketConnect);
         this.socket.on('chatConnected', this.socketAdminConnected);
         this.socket.on('chatDisconnected', this.socketAdminDisconnected);
