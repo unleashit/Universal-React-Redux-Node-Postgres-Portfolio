@@ -8,10 +8,18 @@ export const CHAT_RECEIVE_MESSAGE = 'CHAT_RECEIVE_MESSAGE';
 export const CHAT_ONCHANGE = 'CHAT_ONCHANGE';
 export const CHAT_NEW_USER = 'CHAT_NEW_USER';
 export const CHAT_ISTYPING = 'CHAT_ISTYPING';
+export const CHAT_SET_SERVER_STATUS = 'CHAT_SET_SERVER_STATUS';
+export const CHAT_CONTACT_SENT = 'CHAT_CONTACT_SENT';
 
 export function toggleChat(bool=true) {
     return (dispatch) => {
         dispatch({type: TOGGLE_CHAT, bool});
+    }
+}
+
+export function chatSetServerStatus(bool) {
+    return (dispatch) => {
+        dispatch({type: CHAT_SET_SERVER_STATUS, bool});
     }
 }
 
@@ -50,3 +58,10 @@ export function chatIsTyping(bool) {
         dispatch({type: CHAT_ISTYPING, bool});
     }
 }
+
+export function contactSent(bool) {
+    return (dispatch) => {
+        dispatch({type: CHAT_CONTACT_SENT, bool});
+    }
+}
+

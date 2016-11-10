@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import LiveChat from '../components/live-chat/liveChat';
 import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
+import {__API_URL__} from '../../config';
 
 if (typeof window !== 'undefined') require('../../scss/live-chat/live-chat.scss');
 
@@ -16,16 +17,21 @@ class LiveChatContainer extends Component {
 
     constructor(props) {
         super(props);
+        this.socketConnect = this.socketConnect.bind(this);
+        this.socketAdminConnected = this.socketAdminConnected.bind(this);
+        this.socketAdminDisconnected = this.socketAdminDisconnected.bind(this);
         this.socketChatmessage = this.socketChatmessage.bind(this);
         this.socketTyping = this.socketTyping.bind(this);
         this.socketDisconnect = this.socketDisconnect.bind(this);
+        this.socketStatus = this.socketStatus.bind(this);
+
     }
 
     componentDidMount() {
         this.socket = io('http://localhost:3100/live-chat');
-        this.socket.on('connect', () => {
-            console.log("socket.io connected. Id: " + this.socket.id);
-        });
+        this.socket.on('connect', this.socketConnect);
+        this.socket.on('chatConnected', this.socketAdminConnected);
+        this.socket.on('chatDisconnected', this.socketAdminDisconnected);
         this.socket.on('chatMessage', this.socketChatmessage);
         this.socket.on('typing', this.socketTyping);
         this.socket.on('disconnect', this.socketDisconnect);
@@ -36,8 +42,18 @@ class LiveChatContainer extends Component {
         clearTimeout(this.typingTimer);
     }
 
-    socketStatus(message) {
-        console.log(message);
+    socketConnect() {
+        console.log("socket.io connected. Id: " + this.socket.id);
+
+        this.socket.emit('chatConnected', {}, (admin) => {
+            if (admin) {
+                this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
+                console.log('Chat is online');
+            }
+            if (!this.props.liveChat.serverStatus) {
+                this.props.dispatch(chatActions.chatSetServerStatus(true));
+            }
+        })
     }
 
     socketChatmessage(message) {
@@ -45,10 +61,10 @@ class LiveChatContainer extends Component {
             // console.log(this.typingTimer);
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
-            this.props.dispatch(chatActions.chatSetRemoteId(message.id, message.name));
+            // this.props.dispatch(chatActions.chatSetRemoteId(message.id, message.name));
         }
         this.props.dispatch(chatActions.chatReceiveMesssage(message));
-        console.log("transport: " + this.socket.io.engine.transport.name);
+        // console.log("transport: " + this.socket.io.engine.transport.name);
 
     }
 
@@ -61,19 +77,75 @@ class LiveChatContainer extends Component {
         }
     }
 
-    socketDisconnect(id) {
+    socketAdminConnected(admin) {
+        if (admin) {
+            console.log("Chat is online");
+            this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
+        }
+    }
 
-        console.log(id);
-        // if (id === this.state.id) {
-        //     alert('you\'ve been disconnected!');
-        // } else {
-        //     this.setState({
-        //         messages: this.state.messages.map(m => {
-        //             return m.id === id ?
-        //                 Object.assign(m, {connected: false}) : m;
-        //         })
-        //     });
-        // }
+    socketAdminDisconnected() {
+        console.log("Chat is offline");
+        this.props.dispatch(chatActions.chatSetRemoteId('', ''));
+    }
+
+    socketDisconnect(message) {
+        console.log('Disconnected from Server: ', message);
+        if (message === 'transport close') {
+            // server disconnected
+            this.props.dispatch(chatActions.chatSetServerStatus(false));
+        }
+    }
+
+    socketStatus(message) {
+        console.log(message);
+    }
+
+    newUser(e) {
+        e.preventDefault();
+        const name = e.currentTarget[0].value.trim();
+        const email = e.currentTarget[1].value.trim();
+        if (!name) return;
+
+        // chat is offline, send email
+        if (!this.props.liveChat.remoteId) {
+
+            const message = e.currentTarget[2].value.trim();
+            if (!email || !message) return;
+            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) return;
+
+            const contactData = {name, email, message};
+
+            return fetch( __API_URL__ + '/contact', {
+                method: "POST",
+                body: JSON.stringify(contactData),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+            .then((response) => {
+                this.props.dispatch(chatActions.contactSent(true));
+                //  console.log (response.json());
+                console.log("contact sent");
+            })
+            .catch(err => {
+                throw new Error(err);
+            })
+
+        } else {
+
+            this.socket.emit('newUser', {
+                id: this.socket.id,
+                name: name,
+                connected: true
+            }, (room) => {
+                this.props.dispatch(chatActions.chatNewUser({
+                    room: room,
+                    name: name,
+                    registered: true
+                }));
+            });
+        }
     }
 
     typingDelay() {
@@ -101,24 +173,6 @@ class LiveChatContainer extends Component {
     onChange(e) {
         this.socket.emit('typing', this.socket.id);
         this.props.dispatch(chatActions.chatOnChange(e.target.value));
-    }
-
-    newUser(e) {
-        e.preventDefault();
-        const name = e.currentTarget[0].value.trim();
-        if (!name) return;
-
-        this.socket.emit('newUser', {
-            id: this.socket.id,
-            name: name,
-            connected: true
-        }, (room) => {
-            this.props.dispatch(chatActions.chatNewUser({
-                room: room,
-                name: name,
-                registered: true
-            }));
-        });
     }
 
     render() {

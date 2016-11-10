@@ -4,11 +4,16 @@ import io from 'socket.io-client';
 var socket = io('http://localhost:3100/live-chat');
 
 const userList = document.getElementById('userList');
+const archivedUserList = document.getElementById('archivedUserList');
 const messageList = document.getElementById('messages');
+const message = document.getElementById('message');
 const postMessage = document.getElementById('postMessage');
 let users = {};
+let archivedUsers = {};
+let pagination = 0;
 let adminId = null;
 let currentUser = null;
+let isTyping = null;
 
 function init() {
 
@@ -16,12 +21,16 @@ function init() {
 
     socket.on('connect', socketConnect.bind(this, socket));
     socket.on('admin userInit', socketUserInit);
-    socket.on('admin newUser', socketNewUser);
+    socket.on('admin archivedUserUpdate', socketArchivedUserUpdate);
+    // socket.on('admin newUser', socketNewUser);
     socket.on('chatMessage', socketChatmessage);
     socket.on('disconnect', socketDisconnect);
+    socket.on('typing', socketIsTyping);
 
     userList.addEventListener('click', handleUserListUI);
+    archivedUserList.addEventListener('click', handleArchivedUserListUI);
     postMessage.addEventListener('click', handleSubmit);
+    message.addEventListener('input', handleOnChange);
 
     userList.innerHTML = getUserList();
     messageList.innerHTML = '';
@@ -38,9 +47,11 @@ function socketConnect(socket) {
 }
 
 function socketUserInit(usersFromServer) {
-    console.log(usersFromServer);
+    console.log('users update:', usersFromServer);
     users = usersFromServer || {};
-    if (Object.keys(users).length > 0) currentUser = Object.keys(usersFromServer)[0];
+    const keys = Object.keys(users);
+
+    if (keys.length > 0) currentUser = keys[0];
     userList.innerHTML = getUserList();
     messageList.innerHTML = getMessageList(currentUser);
 }
@@ -61,11 +72,22 @@ function socketChatmessage(message) {
     }
 }
 
-function socketNewUser(newUser) {
-    users[newUser.id] = newUser;
-    userList.innerHTML = getUserList();
+// function socketNewUser(newUser) {
+//     users[newUser.id] = newUser;
+//     userList.innerHTML = getUserList();
+//
+//     // updateArchivedUsers([newUser.id]);
+//
+//     console.log("a new user joined.");
+// }
 
-    console.log("a new user joined.");
+function socketIsTyping(resp) {
+    console.log(resp);
+}
+
+function handleOnChange(e) {
+    console.log("onchange");
+    socket.emit('typing', adminId)
 }
 
 function socketDisconnect(user) {
@@ -118,7 +140,7 @@ function getUserList() {
 }
 
 function getMessageList(user) {
-    return users[user].messages.length ?
+    return users[user] !== undefined && users[user].messages.length ?
         '<ul class="message-list">' + users[user].messages.map(m => {
             return `<li class="message-list-message">
                         <div class="date pull-right">${moment(m.date).fromNow()}</div>
@@ -144,6 +166,59 @@ function handleUserListUI(e) {
         userList.innerHTML = getUserList();
         messageList.innerHTML = getMessageList(currentUser);
     }
+}
+
+function socketArchivedUserUpdate(usersFromServer) {
+    // console.log(usersFromServer);
+    archivedUsers = usersFromServer || {};
+    console.log('archived users received: ', archivedUsers);
+    const keys = Object.keys(users);
+
+    archivedUserList.innerHTML = getArchivedUserList();
+}
+
+function getArchivedUserList() {
+    return Object.keys(archivedUsers).length ?
+    '<ul class="user-list">' + Object.keys(archivedUsers).map(u => {
+        return `<li class="archived list-group-item" data-user-id=${archivedUsers[u].id}>
+                        <span>${archivedUsers[u].name}</span>
+                        <span class="badge pull-right">
+                            ${archivedUsers[u].messages.length}
+                        </span>
+                    </li>`
+    }).join('') + '</ul>' : 'No archived users.';
+}
+
+// function updateArchivedUsers(users) {
+//     users.forEach(u => {
+//         const archivedUser = document.querySelector("#archivedUserList [data-user-id='" + u + "']");
+//         if (archivedUser) {
+//             archivedUser.parentNode.removeChild(archivedUser);
+//         }
+//     })
+// }
+
+function handleArchivedUserListUI(e) {
+    e.stopPropagation();
+    if (!e.currentTarget.children.length) return;
+
+    currentUser = e.target.getAttribute('data-user-id') ||
+        e.target.parentNode.getAttribute('data-user-id');
+
+    let messages = archivedUsers[currentUser].messages;
+
+    let html = '<ul class="archived-messages">';
+    html += messages.map(m => {
+        return `
+            <li>
+                <div>${m.name}</div>
+                <div>${m.message}</div>
+            </li>
+         `
+    }).join('');
+
+    html += '</ul>';
+    messageList.innerHTML = html;
 }
 
 export default init;

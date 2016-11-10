@@ -38,7 +38,7 @@ router.post("/login", function(req, res, next) {
         next();
     }
 }, passport.authenticate('local', {
-    successRedirect: '/admin/portfolio',
+    successRedirect: '/admin/live-chat-manager',
     failureRedirect: '/login',
     failureFlash : true
 }));

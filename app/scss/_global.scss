@@ -101,6 +101,10 @@ button[disabled], html input[disabled] {
     color: #b2b2b2;
     background: 0;
   }
+  &.button-block {
+    display: block;
+    width: 100%;
+  }
   &:link, &:visited, &:active, &:target {
     color: #fff;
     text-decoration: none;

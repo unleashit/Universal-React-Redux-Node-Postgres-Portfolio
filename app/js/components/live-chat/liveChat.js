@@ -7,18 +7,26 @@ import * as chatActions from '../../actions/liveChat';
 class LiveChat extends Component {
 
     render() {
-        const showForm = !this.props.registered ?
+        let showForm = !this.props.registered ?
             <PreReg { ...this.props }/> :
             <PostReg { ...this.props } />;
+
+        if (this.props.contactSent) {
+            showForm = <p>Thank's for your note. I'll soon be in touch.</p>
+        }
 
         const close = () => {
             this.props.dispatch(chatActions.toggleChat(false));
         };
 
+        const { chatOpen, remoteId } = this.props;
+
         return (
-            <div className={this.props.chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper"}>
+            <div className={chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper live-chat-closed"}>
                 <CloseButton callback={close.bind(this)} />
-                <h3>Q + A</h3>
+                <h3>LIVE CHAT <span className={remoteId ? 'chat-online pull-right' : 'chat-offline pull-right'}>
+                    <i className="fa fa-cloud"></i> &nbsp;{remoteId ? 'I\'m online' : 'I\'m offline'}</span>
+                </h3>
                 {showForm}
             </div>
         );

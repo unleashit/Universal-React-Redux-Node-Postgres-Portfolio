@@ -1,9 +1,25 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
 var config = require(path.join(__dirname, '/../config/appConfig'));
+var liveChatData = require('./liveChatData');
 
 var users = {};
 var admin = null;
+
+
+function initSaveChatData(chat) {
+    setInterval(() => {
+        if (!Object.keys(users).length) return;
+        liveChatData.save(users)
+            .then(() => {
+                console.log("users were saved to the DB");
+                users = liveChatData.filterOld(users, chat);
+            })
+            .catch(err => {
+                throw new Error(err);
+            });
+    }, config.liveChat.saveInterval);
+}
 
 function _sendSMS(user) {
 
@@ -20,10 +36,47 @@ function _sendSMS(user) {
     });
 }
 
+function _handleQueryUser(socket, chat, message) {
+    liveChatData.queryUser(message.room)
+        .then((user) => {
+            if (user) {
+                users[user.id] = user;
+                console.log("User restored from DB: ", user);
+
+                // add the user back to the room and restore to admin
+                socket.join(message.room);
+                if (admin) {
+                    admin.join(message.room);
+                    socket.broadcast.to(admin.id).emit('admin userInit', users);
+                    console.log('Restored user sent to admin: ', user);
+                }
+
+                // add the new message and broadcast
+                users[user.id].messages.push(message);
+                if (admin) _handleQueryUsers(socket, users, 0);
+                chat.in(message.room).emit('chatMessage', message);
+
+            } else {
+                console.log('Message from unregistered socket: %s', socket.id);
+            }
+        });
+}
+
+function _handleQueryUsers(socket, users, offset) {
+    socket.emit('admin userInit', users);
+    liveChatData.queryUsers(users, offset)
+        .then(archivedUsers => {
+            socket.emit('admin archivedUserUpdate', archivedUsers);
+            console.log("Archived users sent to admin", archivedUsers);
+        });
+}
+
 exports.socketio = function(http) {
 
     var io = require('socket.io')(http);
     var chat = io.of('/live-chat');
+
+    initSaveChatData(chat);
 
     chat.on('connection', function(socket) {
         console.log('Sockets connected: %s', io.engine.clientsCount);
@@ -32,19 +85,34 @@ exports.socketio = function(http) {
         socket.on('admin login', function (message, callback) {
             if (message.pass === '1223') {
                 admin = socket;
+                admin.name = config.liveChat.adminName;
                 console.log(users);
                 Object.keys(users).forEach(u => {
                     admin.join(users[u].id);
                 });
+
+                socket.broadcast.emit('chatConnected', {id: admin.id, name: admin.name});
                 console.log("admin logged in");
 
                 // send namespaced id back to client
                 callback(socket.id);
 
-                socket.emit('admin userInit', users);
+                // get archived users from DB and send to admin
+                _handleQueryUsers(socket, users, 0)
+
             } else {
                 admin = null;
                 console.log('wrong admin password');
+            }
+
+        });
+
+        socket.on('chatConnected', function(message, callback) {
+            if (admin) {
+                // var payload = {id: admin.id, name: admin.name};
+                callback({id: admin.id, name: admin.name});
+            } else {
+                callback(null);
             }
         });
 
@@ -54,6 +122,7 @@ exports.socketio = function(http) {
                 id: socket.id,
                 name: user.name,
                 connected: user.connected,
+                date: Date.now(),
                 messages: []
             };
             users[socket.id] = newUser;
@@ -62,13 +131,13 @@ exports.socketio = function(http) {
 
             if (admin) {
                 admin.join(socket.id);
-                socket.broadcast.to(admin.id).emit('admin newUser', newUser);
-                console.log('new user to admin: ', user)
+                socket.broadcast.to(admin.id).emit('admin userInit', users);
+                console.log('new user to admin: ', user);
             } else {
                 const message = {
-                    id: 'admin',
-                    room: user.name,
-                    name: 'Jason Gallagher',
+                    id: null,
+                    room: socket.id,
+                    name: config.liveChat.adminName,
                     message: 'I\'m currently away, but I will receive your messages and get back to you very soon!',
                     date: Date.now()
                 };
@@ -94,10 +163,8 @@ exports.socketio = function(http) {
                 chat.in(message.room).emit('chatMessage', message);
                 console.log('User:', JSON.stringify(users[message.room], null, 2));
             } else {
-                console.log('Message from unregistered socket.', socket.id);
+                _handleQueryUser(socket, chat, message);
             }
-            // chat.emit('chatMessage', message);
-            // socket.broadcast.to(admin.id).emit('admin chatMessage', users[message.id])
         });
 
         socket.on('disconnect', function() {
@@ -107,6 +174,7 @@ exports.socketio = function(http) {
             } else if (admin && socket.id === admin.id) {
                 console.log('admin disconnected');
                 admin = null;
+                socket.broadcast.emit('chatDisconnected');
             }
             chat.in(socket.id).emit('disconnect', socket.id);
             socket.disconnect();
@@ -114,15 +182,25 @@ exports.socketio = function(http) {
         });
 
         socket.on('admin delete', function (user){
-            if (user in users) {
-                delete users[user];
-            }
-
-            if (io.sockets.connected[user]) {
+             if (io.sockets.connected[user]) {
                 io.sockets.connected[user].disconnect();
                 console.log('%s was deleted and disconnected by admin.', user);
             }
 
+            if (user in users) {
+                users[user].connected = false;
+
+                liveChatData.save(users)
+                    .then(() => {
+                        console.log("users were saved to the DB");
+                        delete users[user];
+                        // console.log(admin);
+                        _handleQueryUsers(socket, users, 0)
+                    })
+                    .catch(err => {
+                        throw new Error(err);
+                    });
+            }
         });
 
         socket.on("typing", function (id) {

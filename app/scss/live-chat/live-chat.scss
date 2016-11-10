@@ -1,7 +1,10 @@
+@import '../variables';
+
 .content-wrapper {
-  transition: all ease .5s;
+  overflow: hidden;
+  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) .5s;
   &.live-chat-open {
-    transform: translate(-375px, 0);
+    transform: translate(-$chat-width, 0);
   }
 }
 
@@ -12,17 +15,47 @@
   bottom: 65px;
   height: 70px;
   width: 70px;
-  padding-top: 17px;
+  padding-top: 22px;
   border-radius: 50%;
   background: #333;
-  border: 3px solid #777;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 5px rgba(0,0,0,.3);
   color: #ddd;
   text-align: center;
   font-family: Oswald, sans-serif;
-  font-size: .8rem;
-  text-transform: uppercase;
+  font-size: .75rem;
   line-height: 1rem;
+  text-transform: uppercase;
   cursor: pointer;
+  opacity: 1;
+  transition: opacity 500ms;
+  &.is-hidden {
+    opacity: 0;
+  }
+}
+
+.chat-indicator {
+  position: absolute;
+  top: 8px;
+  left: 27px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 1;
+  &.chat-online {
+    background-color: $light-green;
+    animation: blink-animation 2.5s infinite;
+  }
+  &.chat-offline {
+    background-color: $chat-offline;
+  }
+}
+
+@keyframes blink-animation {
+  10% {
+    opacity: .4;
+  }
+  13% {opacity: 1}
 }
 
 .live-chat-wrapper {
@@ -31,32 +64,67 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 375px;
-  background: #ccc;
-  padding: 20px;
-  transform: translate(375px, 0);
-  transition: all ease .5s;
+  width: $chat-width;
+  background: #292929;
+  color: #ddd;
+  padding: 60px 30px 30px 30px;
+  transform: translate($chat-width, 0);
+  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) .5s;
   &.live-chat-open {
     transform: translate(0, 0);
   }
   > h3 {
-    text-align: center;
+
   }
   ul {
     list-style: none;
     margin: 0;
     padding: 12px;
   }
+  input, textarea {
+    background-color: #ededed;
+    &:focus {
+      box-shadow: 0 0 25px rgba(0,0,0,.4) inset;
+      color: #999;
+    }
+  }
+  textarea {
+    height: 140px
+  }
   .close-button {
     position: absolute;
-    top: 11px;
-    right: 15px;
+    top: 14px;
+    right: 27px;
     cursor: pointer;
+  }
+  .chat-online {
+    font-size: .9rem;
+    padding-top: 9px;
+    .fa {
+      animation: blink-animation 2.5s infinite;
+      color: $chat-online;
+    }
+  }
+  .chat-offline {
+    font-size: .9rem;
+    padding-top: 9px;
+    .fa {
+      color: $chat-offline;
+    }
+  }
+  .registration-name {
+    margin-top: 30px;
+  }
+  .chat-status {
+    padding: 7px 0;
+    font-size: .9rem;
+    text-align: center;
   }
   .message-area {
     height: 60vh;
     overflow: auto;
-    background: #eee;
+    border-radius: 2px;
+    background: #414141;
   }
   .message-list {
     margin: 0;
@@ -69,13 +137,11 @@
     border-radius: 50%;
     background: forestgreen;
   }
-
   .not-connected {
-    background: red;
+    background: $chat-offline;
   }
-
   .posting {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #555;
     padding: 15px 0;
     margin: 0 15px;
     &:last-child {

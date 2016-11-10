@@ -5,14 +5,19 @@ import * as chatActions from '../../actions/liveChat';
 class LiveChatLauncher extends Component {
 
   openChat() {
-      const {dispatch, liveChat} = this.props;
-      dispatch(chatActions.toggleChat(!liveChat.chatOpen));
+      const { dispatch, liveChat } = this.props;
+      liveChat.serverStatus ?
+          dispatch(chatActions.toggleChat(!liveChat.chatOpen)) :
+          alert('Chat is temporarily down for maintenance. Sorry for the inconvenience. Please send an email or check back again soon!');
   }
 
   render() {
     return (
-        <div className="chat-launcher" onClick={this.openChat.bind(this)}>
-          Live<br />Chat
+        <div className={this.props.liveChat.chatOpen ? "chat-launcher is-hidden" : "chat-launcher"} onClick={this.openChat.bind(this)}>
+            <div className={this.props.liveChat.remoteName ?
+                'chat-indicator chat-online' :
+                'chat-indicator chat-offline'}></div>
+            Live<br />Chat
         </div>
     );
   }

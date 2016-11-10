@@ -5,11 +5,14 @@ import {
     CHAT_ONCHANGE,
     CHAT_NEW_USER,
     CHAT_ISTYPING,
-    CHAT_SET_REMOTE_ID
+    CHAT_SET_REMOTE_ID,
+    CHAT_SET_SERVER_STATUS,
+    CHAT_CONTACT_SENT
 } from '../actions/liveChat';
 
 export default function portfolio(state = {
     chatOpen: false,
+    serverStatus: false,
     room: '',
     localName: '',
     remoteId: '',
@@ -17,12 +20,18 @@ export default function portfolio(state = {
     isTyping: false,
     message: '',
     messages: [],
-    registered: false
+    registered: false,
+    contactSent: false
 }, action) {
     switch (action.type) {
         case TOGGLE_CHAT:
             return Object.assign({}, state, {
-                chatOpen: action.bool
+                chatOpen: action.bool,
+                contactSent: action.bool ? false : true
+            });
+        case CHAT_SET_SERVER_STATUS:
+            return Object.assign({}, state, {
+                serverStatus: action.bool
             });
         case CHAT_SET_REMOTE_ID:
             return Object.assign({}, state, {
@@ -50,6 +59,10 @@ export default function portfolio(state = {
         case CHAT_ISTYPING:
             return Object.assign({}, state, {
                 isTyping: action.bool
+            });
+        case CHAT_CONTACT_SENT:
+            return Object.assign({}, state, {
+                contactSent: action.bool
             });
         default:
             return state;

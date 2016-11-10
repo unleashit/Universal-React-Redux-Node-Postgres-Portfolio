@@ -30,7 +30,7 @@ class PostReg extends Component {
 
         return (
             <form onSubmit={this.props.onSubmit}>
-                <div>{chatStatus()}</div>
+                <div className="chat-status">{chatStatus()}</div>
                 <div ref="div" className="form-group message-area">
                     <ul className="message-list">
                         {
@@ -55,7 +55,7 @@ class PostReg extends Component {
                            value={this.props.message}
                            onChange={this.props.onChange} />
                 </div>
-                <button type="submit" className="button button-green button-smaller">Submit</button>
+                <button type="submit" className="button button-green button-smaller button-block">Send</button>
             </form>
         );
     }

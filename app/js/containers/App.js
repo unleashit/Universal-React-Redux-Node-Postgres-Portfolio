@@ -3,11 +3,18 @@ import Helmet from 'react-helmet';
 import Footer from '../components/common/footer';
 import LiveChatContainer from './liveChat';
 import LiveChatLauncher from '../components/live-chat/chatLauncher';
+import {toggleChat} from '../actions/liveChat';
 import { connect } from 'react-redux';
 
 if (typeof document !== 'undefined') require('../../scss/global.scss');
 
 class App extends Component {
+
+    closeChat() {
+        if (this.props.liveChat.chatOpen) {
+            this.props.dispatch(toggleChat(false));
+        }
+    }
 
     render() {
 
@@ -25,7 +32,8 @@ class App extends Component {
 
         return (
             <div className="page-wrapper">
-                <div className={this.props.liveChat.chatOpen ? 'content-wrapper live-chat-open' : 'content-wrapper'}>
+                <div className={this.props.liveChat.chatOpen ? 'content-wrapper live-chat-open' : 'content-wrapper'}
+                     onClick={this.closeChat.bind(this)}>
                     <Helmet
                         title='Front End Engineer in Berkeley, CA specializing in React, Angular, Drupal, Javascript and NodeJs'
                         titleTemplate='Jason Gallagher - %s'
@@ -55,4 +63,10 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch: dispatch
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
