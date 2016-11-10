@@ -1,7 +1,8 @@
 import moment from 'moment';
 import io from 'socket.io-client';
+import { __SOCKET_IO_URL__} from '../config';
 
-var socket = io('http://localhost:3100/live-chat');
+var socket = io( __SOCKET_IO_URL__ );
 
 const userList = document.getElementById('userList');
 const archivedUserList = document.getElementById('archivedUserList');
