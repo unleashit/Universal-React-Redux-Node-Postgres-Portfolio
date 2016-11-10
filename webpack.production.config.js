@@ -79,16 +79,16 @@ module.exports = {
                 loader: 'babel',
                 include: path.join(__dirname, 'app'),
                 exclude: /(node_modules|bower_components)/,
-                // query: {
-                //     plugins: [
-                //         [
-                //             'transform-runtime',
-                //             'transform-object-assign',
-                //             'transform-es2015-destructuring',
-                //             'transform-object-rest-spread'
-                //         ]
-                //     ]
-                // }
+                query: {
+                    plugins: [
+                        [
+                            'transform-runtime',
+                            'transform-object-assign',
+                            'transform-es2015-destructuring',
+                            'transform-object-rest-spread'
+                        ]
+                    ]
+                }
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
             {test: /\.scss$/, loader: ExtractTextPlugin.extract({
