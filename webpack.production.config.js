@@ -60,17 +60,17 @@ module.exports = {
                 'NODE_ENV': '"production"'
             }
         }),
-        // new Purify({
-        //     basePath: __dirname,
-        //     paths: [
-        //         '/app/js/*.*'
-        //     ],
-        //     resolveExtensions: ['.js'],
-        //     purifyOptions: {
-        //         minify: true,
-        //         rejected: true
-        //     }
-        // })
+        new Purify({
+            basePath: __dirname,
+            paths: [
+                '/app/js/*.*'
+            ],
+            resolveExtensions: ['.js'],
+            purifyOptions: {
+                minify: true,
+                rejected: true
+            }
+        })
     ],
     module: {
         rules: [

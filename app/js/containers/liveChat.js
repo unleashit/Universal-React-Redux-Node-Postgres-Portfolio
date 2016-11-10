@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import LiveChat from '../components/live-chat/liveChat';
 import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
-import {__API_URL__} from '../../config';
+import {__API_URL__, __SOCKET_IO_URL__} from '../../config';
 
 if (typeof window !== 'undefined') require('../../scss/live-chat/live-chat.scss');
 
@@ -28,7 +28,7 @@ class LiveChatContainer extends Component {
     }
 
     componentDidMount() {
-        this.socket = io('https://localhost:3100/live-chat');
+        this.socket = io(__SOCKET_IO_URL__);
         this.socket.on('connect', this.socketConnect);
         this.socket.on('chatConnected', this.socketAdminConnected);
         this.socket.on('chatDisconnected', this.socketAdminDisconnected);
