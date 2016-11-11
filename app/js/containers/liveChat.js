@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import LiveChat from '../components/live-chat/liveChat';
 import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
-import {__API_URL__, __SOCKET_IO_URL__} from '../../config';
+import {__API_URL__, __SOCKET_IO_URL__} from '../../../APPconfig';
 
 if (typeof window !== 'undefined') require('../../scss/live-chat/live-chat.scss');
 

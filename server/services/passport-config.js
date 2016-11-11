@@ -4,7 +4,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var bcrypt = require('bcryptjs');
 var _ = require("lodash");
 var model = require('./../models/index');
-var config = require('./../config/appConfig').githubAuth || {};
+var config = require('./../../APPconfig').githubAuth || {};
 
 passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -35,8 +35,8 @@ passport.use(new LocalStrategy({
 ));
 
 passport.use(new GitHubStrategy({
-        clientID: config.GITHUB_CLIENT_ID || 'add_github_credentials_to_githubAuth_property_in_appConfig',
-        clientSecret: config.GITHUB_CLIENT_SECRET || 'add_github_credentials_to_githubAuth_property_in_appConfig',
+        clientID: config.GITHUB_CLIENT_ID || 'add_github_credentials_to_githubAuth_property_in_APPconfig',
+        clientSecret: config.GITHUB_CLIENT_SECRET || 'add_github_credentials_to_githubAuth_property_in_APPconfig',
         callbackURL: "/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, done) {

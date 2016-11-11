@@ -48,7 +48,7 @@ To acess the admin and add portfolio projects, you need to add a user and then e
 
 ### Other Config
 
-For the site to function, you'll also need to make a second config file inside the server/config folder called appConfig.js. The contents of it should be (with your SMTP credentials):
+For the site to function, you'll also need to make a second config file called APPconfig.js. The contents of it should be (with your SMTP credentials):
 
 ```
 module.exports = {

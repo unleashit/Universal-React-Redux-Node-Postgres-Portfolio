@@ -1,7 +1,6 @@
 var models = require('../models/index.js');
 var nodemailer = require('nodemailer');
-var path = require('path');
-var config = require(path.join(__dirname, '/../config/appConfig'));
+var config = require('../../APPconfig');
 
 exports.handleContactSubmit = function(req, res) {
 

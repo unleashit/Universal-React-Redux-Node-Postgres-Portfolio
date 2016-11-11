@@ -1,84 +1,18 @@
 var models = require('../models/index.js');
 var sequelize = require('sequelize');
 var path = require('path');
-var config = require(path.join(__dirname, '/../config/appConfig'));
+var config = require(path.join(__dirname, '..', '..', 'APPconfig'));
 
-// var users = {
-//     wef14: {
-//         id: 'user1',
-//         name: 'fred',
-//         connected: true,
-//         messages: [
-//             {
-//                 id: 'user1',
-//                 room: 'wef14',
-//                 name: 'fred',
-//                 message: 'test message',
-//                 date: '2342423432423'
-//             },
-//                         {
-//                 id: 'admin',
-//                 room: 'wef14',
-//                 name: 'john doe',
-//                 message: 'lsfas fasfasfasdfa sfasfsdf ',
-//                 date: '234242343286'
-//             }
-//         ]
-//     },
-//     kjjk33: {
-//         id: 'kjjk33',
-//         name: 'Tom Bombodil',
-//         connected: false,
-//         messages: [
-//             {
-//                 id: 'kjjk33',
-//                 room: 'kjjk33',
-//                 name: 'fred',
-//                 message: 'test message',
-//                 date: '2342423432423'
-//             },
-//                         {
-//                 id: 'wef14',
-//                 room: 'wef14',
-//                 name: 'fred',
-//                 message: 'test message',
-//                 date: '2342423432423'
-//             },
-//                         {
-//                 id: 'wef14',
-//                 room: 'wef14',
-//                 name: 'fred',
-//                 message: 'test message',
-//                 date: '2342423432423'
-//             }
-//         ]
-//     },
-//     k3j3ll2: {
-//         id: 'k3j3ll2',
-//         name: 'Maggie the Cat',
-//         connected: false,
-//         messages: [
-//             {
-//                 id: 'k3j3ll2',
-//                 room: 'k3j3ll2',
-//                 name: 'Maggie the Cat',
-//                 message: 'Moo',
-//                 date: '454252242342'
-//             }
-//         ]
-//     },
-// };
-
-function insertChatRecords(users) {
+function _insertChatRecords(users) {
     return models.LiveChat.bulkCreate(users,
         {
             updateOnDuplicate: [
-                'name', 'connected', 'messages', 'date'
+                'name', 'email', 'connected', 'messages', 'date', 'updatedAt'
             ]
         });
 }
 
-function formatUsers(users) {
+function _formatUsers(users) {
     return Object.keys(users).map(u => {
         return {
             socketId: users[u].id,
@@ -89,10 +23,6 @@ function formatUsers(users) {
             date: users[u].date
         }
     })
-}
-
-function parseUsers(users) {
-
 }
 
 exports.filterOld = function (users, chat) {
@@ -119,7 +49,7 @@ exports.filterOld = function (users, chat) {
 };
 
 exports.save = function(users) {
-    return insertChatRecords(formatUsers(users));
+    return _insertChatRecords(_formatUsers(users));
 };
 
 exports.queryUser = function (id) {

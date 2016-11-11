@@ -1,6 +1,6 @@
 import moment from 'moment';
 import io from 'socket.io-client';
-import { __SOCKET_IO_URL__} from '../config';
+import { __SOCKET_IO_URL__} from '../../APPconfig';
 
 var socket = io( __SOCKET_IO_URL__ );
 

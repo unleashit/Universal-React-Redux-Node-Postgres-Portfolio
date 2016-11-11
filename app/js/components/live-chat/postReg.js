@@ -18,7 +18,7 @@ class PostReg extends Component {
         const chatStatus = () => {
             return (this.props.remoteId) ?
                 `You are chatting with ${this.props.remoteName}` :
-                'Chat is offline';
+                'Feel free to leave a message';
         };
 
         const isTyping = () => {

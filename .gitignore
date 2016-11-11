@@ -1,8 +1,8 @@
 .idea
 node_modules
 tmp
-server/config/*
 dist
-app/config.js
+APPconfig.js
+DBconfig.json
 app/images/portfolio
 npm-debug.log*

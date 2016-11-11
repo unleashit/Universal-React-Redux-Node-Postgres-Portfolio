@@ -1,4 +1,4 @@
-import {__API_URL__} from '../../config';
+import {__API_URL__} from '../../../APPconfig';
 import {reset} from 'redux-form';
 import ReactGA from'react-ga';
 

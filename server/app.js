@@ -9,7 +9,7 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var appConfig = require('./config/appConfig');
+var APPconfig = require('../APPconfig');
 var compression = require('compression');
 
 var models = require("./models");
@@ -66,7 +66,7 @@ app.use((req, res, next) => {
 // auth
 require('./services/passport-config');
 app.use(require('express-session')({
-    secret: appConfig.sessionSecret, resave: false, saveUninitialized: false
+    secret: APPconfig.__SESSION_SECRET__, resave: false, saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());
