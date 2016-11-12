@@ -1,12 +1,12 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
-//var sessionStore     = require('awesomeSessionStore');
-//var passportSocketIo = require('passport.socketio');
+var passportSocketIo = require('passport.socketio');
 var config = require(path.join(__dirname, '../../APPconfig'));
 var liveChatData = require('./liveChatData');
 
 var users = {};
 var admin = null;
+var authorized = false;
 
 
 function initSaveChatData(chat) {
@@ -69,23 +69,43 @@ function _handleQueryUsers(socket, users, offset) {
     liveChatData.queryUsers(users, offset)
         .then(archivedUsers => {
             socket.emit('admin archivedUserUpdate', archivedUsers);
-            console.log("Archived users sent to admin", archivedUsers);
+            console.log("%s archived users sent to admin", archivedUsers.length);
         });
 }
 
-exports.socketio = function(http) {
+function _onAuthorizeSuccess(data, accept) {
+    authorized = true;
+    accept();
+    console.log('socket.io: admin is authed')
+}
+
+function _onAuthorizeFail(data, message, error, accept) {
+    authorized = false;
+    accept(); // normal users should pass through
+}
+
+exports.socketio = function(http, sessionStore) {
 
     var io = require('socket.io')(http);
     var chat = io.of('/live-chat');
 
     initSaveChatData(chat);
 
+    chat.use(passportSocketIo.authorize({
+        cookieParser: require('cookie-parser'), //optional your cookie-parser middleware function. Defaults to require('cookie-parser')
+        key:          config.__SESSION_KEY__,       //make sure is the same as in your session settings in app.js
+        secret:       config.__SESSION_SECRET__,      //make sure is the same as in your session settings in app.js
+        store:        sessionStore,        //you need to use the same sessionStore you defined in the app.use(session({... in app.js
+        success:      _onAuthorizeSuccess,
+        fail:         _onAuthorizeFail,
+    }));
+
     chat.on('connection', function(socket) {
         console.log('Sockets connected: %s', io.engine.clientsCount);
         // console.log('from connection:', socket);
 
         socket.on('admin login', function (message, callback) {
-            if (message.pass === '1223') {
+            if (authorized) {
                 admin = socket;
                 admin.name = config.liveChat.adminName;
                 console.log(users);
@@ -120,7 +140,7 @@ exports.socketio = function(http) {
 
         socket.on('newUser', function(user, callback) {
 
-            var newUser = {
+            users[socket.id] = {
                 id: socket.id,
                 name: user.name,
                 email: user.email,
@@ -128,7 +148,6 @@ exports.socketio = function(http) {
                 date: Date.now(),
                 messages: []
             };
-            users[socket.id] = newUser;
 
             socket.join(socket.id);
 
@@ -151,13 +170,14 @@ exports.socketio = function(http) {
             callback(socket.id);
 
             // send sms
-            // try {
-            //     _sendSMS(user.name);
-            // } catch(err) {
-            //     throw new Error(err);
-            // }
+            if (config.liveChat.sendSMS) {
+                try {
+                    _sendSMS(user.name);
+                } catch(err) {
+                    throw new Error(err);
+                }
+            }
 
-            // console.log('Users object:', JSON.stringify(users, null, 2));
         });
 
         socket.on('chatMessage', function(message) {
@@ -177,6 +197,7 @@ exports.socketio = function(http) {
             } else if (admin && socket.id === admin.id) {
                 console.log('admin disconnected');
                 admin = null;
+                authorized = false;
                 socket.broadcast.emit('chatDisconnected');
             }
             chat.in(socket.id).emit('disconnect', socket.id);

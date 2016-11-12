@@ -78,7 +78,7 @@ var mysqlStoreOptions = {
 };
 var sessionStore = new MySQLStore(mysqlStoreOptions);
 app.use(session({
-    key: 'jg_cp',
+    key: APPconfig.__SESSION_KEY__,
     secret: APPconfig.__SESSION_SECRET__,
     store: sessionStore,
     resave: true,
@@ -113,7 +113,7 @@ app.use("/admin", require(__dirname + '/routes/admin'));
 app.get('*', require('../app/js/index').serverMiddleware);
 
 // socket.io
-require('./controllers/liveChat').socketio(http);
+require('./controllers/liveChat').socketio(http, sessionStore);
 
 // 404 handling
 app.use(function(req, res, next){
