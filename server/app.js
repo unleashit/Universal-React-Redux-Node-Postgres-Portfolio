@@ -4,6 +4,8 @@ require('babel-register')({
 
 var express = require('express');
 var app = express();
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 var http = require('http').Server(app);
 var path = require('path');
 var flash = require('connect-flash');
@@ -63,11 +65,27 @@ app.use((req, res, next) => {
     next();
 });
 
-// auth
-require('./services/passport-config');
-app.use(require('express-session')({
-    secret: APPconfig.__SESSION_SECRET__, resave: false, saveUninitialized: false
+// Sessions and auth
+var DBconfig = require('../DBconfig.json')[process.env.NODE_ENV || 'development'];
+var mysqlStoreOptions = {
+    host: DBconfig.host,
+    port: 3306,
+    user: DBconfig.username,
+    password: DBconfig.password,
+    database: DBconfig.database,
+    checkExpirationInterval: 3600000,
+    expiration: 432000000,
+};
+var sessionStore = new MySQLStore(mysqlStoreOptions);
+app.use(session({
+    key: 'jg_cp',
+    secret: APPconfig.__SESSION_SECRET__,
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true
 }));
+
+require('./services/passport-config');
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

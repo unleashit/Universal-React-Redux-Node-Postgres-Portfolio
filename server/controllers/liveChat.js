@@ -1,5 +1,7 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
+//var sessionStore     = require('awesomeSessionStore');
+//var passportSocketIo = require('passport.socketio');
 var config = require(path.join(__dirname, '../../APPconfig'));
 var liveChatData = require('./liveChatData');
 

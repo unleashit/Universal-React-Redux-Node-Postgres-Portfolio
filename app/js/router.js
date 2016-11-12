@@ -14,7 +14,6 @@ const isClient = typeof document !== 'undefined';
 if (isClient) {
 
     require('smoothscroll-polyfill').polyfill();
-    console.log(__GOOGLE_ANALYTICS__);
     var ReactGA = require('react-ga');
     ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
