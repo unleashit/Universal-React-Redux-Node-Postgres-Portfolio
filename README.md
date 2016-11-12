@@ -6,7 +6,7 @@ Personal site and portfolio of Jason Gallagher
 Once you clone the project, you should first run `npm install` to download dependencies. Next run `npm run build` to run the build process and produce the public (dist) folder.
 
 ### Database
-In order to actually run the project you need to create a database (see Sequelize docs for DB options) and a configuration file. For the config file, make a new directory called "config" under "server" and add a file called config.json. Here's the boiler plate which you can fill in with your credentials:
+In order to actually run the project you need to create a database (see Sequelize docs for DB options) and two configuration files. For datatabase credentials, make add a file called DBconfig.json in the root. Here's the boiler plate which you can fill in with your details:
 
 ```
 {
@@ -38,41 +38,62 @@ In order to actually run the project you need to create a database (see Sequeliz
   }
 }
 ```
+### App Config
+A second config file should be made in the root, called APPconfig.js. It's contents should be:
+
+```
+module.exports = {
+
+    __API_URL__: '{localhost or your site}/api',
+    __SOCKET_IO_URL__: '{localhost or your site}/live-chat',
+    __SESSION_SECRET__: '{NotKeyBoardCat!}',
+    __SESSION_KEY__: '{anythingYouLike}', // will be the name of the session cookie
+    __GOOGLE_ANALYTICS__: '{your GA account}' // optional
+
+    liveChat: {
+        adminName: '{your name}',
+        saveInterval: 1*60*1000, // once per 15 mins
+        purgeInterval: 2*60*1000, // min time to persist in ram (1 hr)
+        sendSMS: false // send SMS on new user registrations
+    },
+    
+    // optional
+    mailoptions: {
+        from: '{your_from_email}',
+        to: '{your_to_email}',
+        subject: 'New contact'
+    },
+    
+    // optional
+    smtpConfig: {
+        host: '{your_mail_host}',
+        port: 465,
+        secure: true, // use SSL
+        auth: {
+            user: '{your_mail_user}',
+            pass: '{your_mail_password}'
+        }
+    }
+    
+    // optional
+    // See https://20somethingfinance.com/how-to-send-text-messages-sms-via-email-for-free/
+    smsMailOptions: {
+        from: '{your_from_email}',
+        to: '{your_number@your_provider}', 
+        subject: 'New live chat user has registered'
+    },
+};
+```
+All keys should exist, but if optional can have any value. `mailoptions` and `smtpConfig` are for the contact form and are optional unless you want it to work... The contact form will both send an email and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point.`smsMailOptions` can send a text notification when a user logs into chat.
+
 To automatically add the database schema to your empty DB, open up /server/app.js. In the bottom of the file, under the models.sequelize.sync call, TEMPORARILY change "force" to "true". The first time you run the project via `npm start` or `npm run prod`, if all goes well, it will add the tables. IMPORTANT: don't forget to change "force" back to "false" after you successfully add the schema or else next time your run it will wipe your DB clean!
 
 After this, you can now run the project in dev mode via `npm start` (a browser-sync will automatically launch a browser with webpack hot reload) or in production via `npm run prod`. The URL for the production build is http://localhost:3100 (instead of port 3000 for browser-sync).
 
 ### Administration and Login
 
-To acess the admin and add portfolio projects, you need to add a user and then elevate its access level. To create a user, just go to /signup and create it. To elevate the user, go into the DB and change the access level to 3. Now you can login at /login with your user and manage the portfolio. One caveat that I plan on fixing on some rainy day: you must run `npm run build` or `npm run prod` in the terminal after you add projects to view the images. Webpack is needed for now to optimize and copy the uploaded images to the public (dist) folder.
+To acess the admin to manage chats and the portfolio, you need to add a user and then elevate its access level. To create a user, just go to /signup and create it. To elevate the user, go into the DB and change the access level to 3. Now you can login at /login with your user and access the control panel. One caveat that I plan on fixing on some rainy day: you must run `npm run build` or `npm run prod` in the terminal after you add projects to view their images. Webpack is needed for now to optimize and copy the uploaded images to the public folder.
 
-### Other Config
-
-For the site to function, you'll also need to make a second config file called APPconfig.js. The contents of it should be (with your SMTP credentials):
-
-```
-module.exports = {
-
-    sessionSecret: 'Not Keyboard Cat!',
-
-    mailoptions: {
-        from: '{from_email}',
-        to: '{to_email}',
-        subject: '{subject}'
-    },
-    
-    smtpConfig: {
-        host: '{host}',
-        port: 465,
-        secure: true, // use SSL
-        auth: {
-            user: '{auth_email}',
-            pass: '{auth_password}'
-        }
-    },
-};
-```
-`sessionSecret` can be any string, but it must exist. `mailoptions` and `smtpConfig` are for the contact form and are optional. The contact form will both send an email to the creditials provided and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point.
 
 `Reminder: this code/theme/site is NOT open source. You have DO NOT have permission to use it for any other purpose except for your own personal viewing. Please see license file for further details.`
 
