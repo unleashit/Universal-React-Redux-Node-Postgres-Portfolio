@@ -72,6 +72,7 @@
   padding: 60px 30px 30px 30px;
   background: #292929;
   color: #ddd;
+  border-radius: 2px;
   transform: translate($chat-width, 0);
   transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
   &.live-chat-open {
@@ -134,10 +135,10 @@
     border-radius: 2px;
     background: #414141;
     position: absolute;
-    top: 108px;
+    top: 102px;
     left: 0;
     right: 0;
-    bottom: 107px;
+    bottom: 101px;
   }
   .message-list {
     margin: 0;

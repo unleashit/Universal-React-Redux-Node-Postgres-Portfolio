@@ -1,19 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class PostReg extends Component {
 
+    componentDidMount() {
+        this.updateTime = setInterval(() => {
+            this.forceUpdate();
+        }, 3000)
+    }
+
     componentDidUpdate(prevProps) {
         if (prevProps.messages.length !== this.props.messages.length || this.props.isTyping) {
-            this.refs.div.scrollTop = this.refs.div.scrollHeight;
+            this.refs.div.scrollToBottom();
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.updateTime);
+    }
+
     render() {
-        // const isConnected = (connected, typing) => {
-        //     return connected === true ? <span className={'connected' + isTyping(typing)}></span> :
-        //         <span className="not-connected"></span>
-        // };
 
         const chatStatus = () => {
             return (this.props.remoteId) ?
@@ -31,7 +38,8 @@ class PostReg extends Component {
         return (
             <form className="live-chat-chatting" onSubmit={this.props.onSubmit}>
                 <div className="chat-status">{chatStatus()}</div>
-                <div ref="div" className="form-group message-area">
+                <div className="form-group message-area">
+                    <Scrollbars ref="div">
                     <ul className="message-list">
                         {
                             this.props.messages.map((m, i) => {
@@ -48,6 +56,7 @@ class PostReg extends Component {
                         }
                     </ul>
                     {isTyping()}
+                    </Scrollbars>
                 </div>
                 <div className="live-chat-send-group">
                     <div className="form-group">

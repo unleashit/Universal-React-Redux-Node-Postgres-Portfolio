@@ -3,9 +3,9 @@ import React, { Component, PropTypes } from 'react';
 class PreReg extends Component {
 
     componentDidUpdate(){
-        if (this.props.chatOpen) {
-            this.refs.nameInput.focus();
-        }
+        // if (this.props.chatOpen) {
+        //     this.refs.nameInput.focus();
+        // }
     }
 
     render() {
