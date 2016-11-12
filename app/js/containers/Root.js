@@ -39,7 +39,7 @@ class Root extends Component {
             {this.renderEnvironment()}
             {this.renderInitialState()}
             {head.script.toComponent()}
-            <script src={!process.env.NODE_ENV ? 'js/global.js' : '/js/global.min.js'}></script>
+            <script src={!process.env.NODE_ENV ? '/js/global.js' : '/js/global.min.js'}></script>
             </body>
             </html>
     );

@@ -18,6 +18,10 @@ class CleanPlugin {
     }
 }
 
+var postcss = function() {
+    return [autoprefixer];
+};
+
 module.exports = {
 
     entry: {
@@ -30,6 +34,17 @@ module.exports = {
         publicPath: '/'
     },
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                context: '/',
+                postcss: [
+                    require('autoprefixer')({
+                        browsers: ['> 2%', 'IE 10']
+                    })
+                ]
+                // ...other configs that used to directly on `modules.exports`
+            }
+        }),
         new CleanPlugin({
             files: ['dist/*']
         }),
@@ -46,20 +61,6 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin('./css/[name].min.css'),
-        new OptimizeCssAssetsPlugin({
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: {discardComments: {removeAll: true}},
-            canPrint: true
-        }),
-        new CopyWebpackPlugin([
-            {context: './app/images', from: '**/**', to: 'images'},
-            // {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
-        ]),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': '"production"'
-            }
-        }),
         new Purify({
             basePath: __dirname,
             paths: [
@@ -67,10 +68,19 @@ module.exports = {
             ],
             resolveExtensions: ['.js'],
             purifyOptions: {
-                minify: true,
+                minify: false,
                 rejected: true
             }
-        })
+        }),
+        new OptimizeCssAssetsPlugin({
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: {discardComments: {removeAll: true, autoprefixer: false}},
+            canPrint: true
+        }),
+        new CopyWebpackPlugin([
+            {context: './app/images', from: '**/**', to: 'images'},
+            // {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
+        ])
     ],
     module: {
         rules: [
@@ -91,11 +101,13 @@ module.exports = {
                 }
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
-            {test: /\.scss$/, loader: ExtractTextPlugin.extract({
-                fallbackLoader: 'style',
-                loader: 'css?sourceMap!sass?sourceMap',
-                includePaths: [path.resolve(__dirname, "./app/scss")]
-            })},
+            {
+                test: /\.scss$/, loader: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style',
+                    loader: 'css?sourceMap!postcss!sass?sourceMap',
+                    includePaths: [path.resolve(__dirname, "./app/scss")]
+                })
+            },
             {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',

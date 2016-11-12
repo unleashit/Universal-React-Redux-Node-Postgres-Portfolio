@@ -16,17 +16,21 @@ html.sticky-menu-open body {
   line-height: 70px;
   text-transform: uppercase;
   opacity: 1;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  transition: all .4s;
-  h3, p, a {
-    transition: all .4s;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: all 0.4s;
+  h3,
+  p,
+  a {
+    transition: all 0.4s;
     outline: none !important;
   }
   &.off {
     visibility: hidden;
     opacity: 0;
     height: 0;
-    h3, p, a {
+    h3,
+    p,
+    a {
       font-size: 0;
     }
     .jg-logo {
@@ -37,12 +41,11 @@ html.sticky-menu-open body {
     display: inline-block;
   }
   .jg-logo {
-    display:inline-block;
+    display: inline-block;
     margin-right: 8px;
     margin-top: -2px;
-    transition: all .4s;
+    transition: all 0.4s;
   }
-
 }
 
 .sticky-nav {
@@ -60,20 +63,26 @@ html.sticky-menu-open body {
     display: inline-block;
     padding: 0 17px;
     font-size: 1.2rem;
-    &:link, &:hover, &:active, &:visited {
+    &:link,
+    &:hover,
+    &:active,
+    &:visited {
       color: #eee;
       text-decoration: none;
     }
   }
 }
 .contact-info {
-  font-family: 'Sanchez', serif;
+  font-family: "Sanchez", serif;
   color: #fff;
   .skype {
     padding-left: 18px;
     a {
       color: #55acf1;
-      &:hover, &:active, &:visited, &:target{
+      &:hover,
+      &:active,
+      &:visited,
+      &:target {
         outline: none !important;
         text-decoration: none !important;
         border: 0;

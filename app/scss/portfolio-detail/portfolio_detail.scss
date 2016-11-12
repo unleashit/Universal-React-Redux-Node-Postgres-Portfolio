@@ -1,11 +1,13 @@
-@import '../bootstrap/variables._overrides';
-@import '../_variables';
-@import '../_mixins';
+@import "../bootstrap/variables._overrides";
+@import "../_variables";
+@import "../_mixins";
 
 #interior-page .sticky-header {
   display: block !important;
   transition: none;
-  h3, p ,a {
+  h3,
+  p,
+  a {
     transition: none;
   }
 }
@@ -46,7 +48,7 @@
   list-style: none;
   li {
     display: inline-block;
-/*    &:first-child {
+    /*    &:first-child {
       margin-right: 25px;
     }*/
   }
@@ -55,7 +57,10 @@
     padding: 0 17px;
     font-size: 1.5rem;
     text-transform: uppercase;
-    &:link, &:hover, &:active, &:visited {
+    &:link,
+    &:hover,
+    &:active,
+    &:visited {
       color: #000;
       text-decoration: none;
     }
@@ -71,7 +76,7 @@
   padding: 0;
   list-style: none;
   li {
-   // border: 4px solid #ddd;
+    // border: 4px solid #ddd;
   }
 }
 
@@ -80,7 +85,7 @@
   top: 115px;
   right: -176px;
   transform: rotate(9deg);
-  animation: slide-mobile .8s;
+  animation: slide-mobile 0.8s;
   img {
     width: 82%;
   }
@@ -95,7 +100,7 @@
     width: 31%;
     margin-right: 2%;
     padding: 5px 10px;
-    font-size: .8rem;
+    font-size: 0.8rem;
     box-shadow: none;
   }
 }
@@ -106,7 +111,7 @@
     width: 80px;
     text-transform: none;
     &:first-child {
-      margin-right: 8px
+      margin-right: 8px;
     }
   }
 }
@@ -116,9 +121,15 @@
 }
 
 @keyframes slide-mobile {
-  0%   {right: -4000px;}
-  75%  {right: -4000px}
-  100% {right: -176px;}
+  0% {
+    right: -4000px;
+  }
+  75% {
+    right: -4000px;
+  }
+  100% {
+    right: -176px;
+  }
 }
 
 @media screen and (max-width: map-get($grid-breakpoints, lg)) {

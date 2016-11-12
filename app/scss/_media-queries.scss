@@ -1,9 +1,8 @@
 @media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
 only screen and (-o-min-device-pixel-ratio: 13/10),
-only screen and (min-resolution: 120dpi)
-{
+only screen and (min-resolution: 120dpi) {
   .main-header {
-    background: url("../images/header-image@2x.jpg") #3F7E37 no-repeat center top;
+    background: url("../images/header-image@2x.jpg") #3f7e37 no-repeat center top;
     background-size: auto 725px;
     height: 725px;
   }
@@ -28,17 +27,19 @@ only screen and (min-resolution: 120dpi)
   }
 
   // about
-  img.who-i-am, img.what-i-do, img.where-i-am {
+  img.who-i-am,
+  img.what-i-do,
+  img.where-i-am {
     height: 115px;
   }
 }
 
 @media screen and (max-width: map-get($grid-breakpoints, md)) {
   html {
-   // font-size: 15px;
+    // font-size: 15px;
   }
   p {
-   // font-size: 1.2rem;
+    // font-size: 1.2rem;
   }
 }
 

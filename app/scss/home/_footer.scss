@@ -5,14 +5,17 @@
 }
 
 .footer-border {
-  background: url('../../images/home/footer_tile.png') #000 top left repeat-x;
+  background: url("../../images/home/footer_tile.png") #000 top left repeat-x;
   height: 232px;
 }
 
 .contact {
   margin-top: $section-padding;
   color: #292929;
-  a:link, a:visited, a:hover, a:active {
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
     color: $footer-links;
     text-decoration: none;
     transition: color 300ms;
@@ -42,7 +45,7 @@
     color: $footer-links;
     padding-left: 13px;
   }
-  .send-message{
+  .send-message {
     margin-bottom: 15px;
   }
   button {
@@ -52,13 +55,15 @@
 
 .thanks {
   text-align: center;
-  font-family: 'Sanchez', serif;
+  font-family: "Sanchez", serif;
   font-size: 2em;
   color: $footer-links;
 }
 
 @media screen and (max-width: map-get($grid-breakpoints, lg)) {
-  .contact-me, .about-this-site, .contact-form {
+  .contact-me,
+  .about-this-site,
+  .contact-form {
     margin-top: 45px;
   }
 }

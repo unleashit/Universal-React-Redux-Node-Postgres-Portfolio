@@ -16,7 +16,7 @@
       background-color: $portfolio-2;
     }
     &:hover {
-      .portfolio-caption{
+      .portfolio-caption {
         bottom: 0;
       }
       .view-details {
@@ -40,7 +40,10 @@
     opacity: 0;
     position: absolute;
     z-index: 100;
-    top:0; left:0; right:0; bottom:0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     font-size: 1.4rem;
     color: #fff;
     text-transform: uppercase;
@@ -55,7 +58,7 @@
     position: absolute;
     width: 100%;
     bottom: -46px;
-    left:0;
+    left: 0;
     background-color: $portfolio-1;
     color: #eee;
     transition: all 350ms ease-out;
@@ -63,7 +66,7 @@
       margin: 0;
       height: 46px;
       line-height: 46px;
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
   }
 }
@@ -82,28 +85,28 @@
     width: 25%;
 
     // worlds ugliest code!
-    &:nth-of-type(2n+5)  {
+    &:nth-of-type(2n+5) {
       background-color: $portfolio-2;
     }
-    &:nth-of-type(2n+6)  {
+    &:nth-of-type(2n+6) {
       background-color: $portfolio-1;
     }
-    &:nth-of-type(2n+9)  {
+    &:nth-of-type(2n+9) {
       background-color: $portfolio-1;
     }
-    &:nth-of-type(2n+10)  {
+    &:nth-of-type(2n+10) {
       background-color: $portfolio-2;
     }
-    &:nth-of-type(2n+13)  {
+    &:nth-of-type(2n+13) {
       background-color: $portfolio-2;
     }
-    &:nth-of-type(2n+14)  {
+    &:nth-of-type(2n+14) {
       background-color: $portfolio-1;
     }
-    &:nth-of-type(2n+17)  {
+    &:nth-of-type(2n+17) {
       background-color: $portfolio-1;
     }
-    &:nth-of-type(2n+18)  {
+    &:nth-of-type(2n+18) {
       background-color: $portfolio-2;
     }
   }
@@ -142,13 +145,5 @@
     &:nth-of-type(16) {
       background-color: $portfolio-1;
     }
-
-
-
-
-
-
-
-
   }
 }

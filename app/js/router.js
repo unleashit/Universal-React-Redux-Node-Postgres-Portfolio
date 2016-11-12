@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import routes from './routes';
-import { Provider } from 'react-redux';
 import Root from './containers/Root';
 import configureStore from './configureStore';
-import {__GOOGLE_ANALYTICS__} from '../../APPconfig'
+import { __GOOGLE_ANALYTICS__ } from '../../APPconfig';
 
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
 
     require('smoothscroll-polyfill').polyfill();
-
+    console.log(__GOOGLE_ANALYTICS__);
     var ReactGA = require('react-ga');
     ReactGA.initialize(__GOOGLE_ANALYTICS__);
 

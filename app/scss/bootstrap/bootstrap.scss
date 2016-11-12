@@ -1,57 +1,52 @@
-/*!
- * Bootstrap v4.0.0-alpha.2 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
 // Core variables and mixins
-@import "bootstrap4-alpha2/variables";
+@import "bootstrap4-alpha5/variables";
 @import "variables._overrides";
-@import "bootstrap4-alpha2/mixins";
+@import "bootstrap4-alpha5/mixins";
 
 // Reset and dependencies
-@import "bootstrap4-alpha2/normalize";
-@import "bootstrap4-alpha2/print";
+@import "bootstrap4-alpha5/normalize";
+@import "bootstrap4-alpha5/print";
 
 // Core CSS
-@import "bootstrap4-alpha2/reboot";
-@import "bootstrap4-alpha2/type";
-//@import "bootstrap4-alpha2/images";
-//@import "bootstrap4-alpha2/code";
-@import "bootstrap4-alpha2/grid";
-//@import "bootstrap4-alpha2/tables";
-@import "bootstrap4-alpha2/forms";
-@import "bootstrap4-alpha2/buttons";
+@import "bootstrap4-alpha5/reboot";
+@import "bootstrap4-alpha5/type";
+// @import "bootstrap4-alpha5/images";
+// @import "bootstrap4-alpha5/code";
+@import "bootstrap4-alpha5/grid";
+// @import "bootstrap4-alpha5/tables";
+@import "bootstrap4-alpha5/forms";
+@import "bootstrap4-alpha5/buttons";
 
 // Components
-@import "bootstrap4-alpha2/animation";
-//@import "bootstrap4-alpha2/dropdown";
-@import "bootstrap4-alpha2/button-group";
-@import "bootstrap4-alpha2/input-group";
-@import "bootstrap4-alpha2/custom-forms";
-//@import "bootstrap4-alpha2/nav";
-//@import "bootstrap4-alpha2/navbar";
-//@import "bootstrap4-alpha2/card";
-//@import "bootstrap4-alpha2/breadcrumb";
-//@import "bootstrap4-alpha2/pagination";
-//@import "bootstrap4-alpha2/pager";
-@import "bootstrap4-alpha2/labels";
-//@import "bootstrap4-alpha2/jumbotron";
-@import "bootstrap4-alpha2/alert";
-//@import "bootstrap4-alpha2/progress";
-//@import "bootstrap4-alpha2/media";
-//@import "bootstrap4-alpha2/list-group";
-@import "bootstrap4-alpha2/responsive-embed";
-//@import "bootstrap4-alpha2/close";
+@import "bootstrap4-alpha5/animation";
+// @import "bootstrap4-alpha5/dropdown";
+@import "bootstrap4-alpha5/button-group";
+@import "bootstrap4-alpha5/input-group";
+@import "bootstrap4-alpha5/custom-forms";
+// @import "bootstrap4-alpha5/nav";
+// @import "bootstrap4-alpha5/navbar";
+// @import "bootstrap4-alpha5/card";
+// @import "bootstrap4-alpha5/breadcrumb";
+// @import "bootstrap4-alpha5/pagination";
+// @import "bootstrap4-alpha5/pager";
+// @import "bootstrap4-alpha5/labels"; not in alpha 5
+@import "bootstrap4-alpha5/tags";
+//@import "bootstrap4-alpha5/jumbotron";
+@import "bootstrap4-alpha5/alert";
+//@import "bootstrap4-alpha5/progress";
+//@import "bootstrap4-alpha5/media";
+//@import "bootstrap4-alpha5/list-group";
+@import "bootstrap4-alpha5/responsive-embed";
+//@import "bootstrap4-alpha5/close";
 
 // Components w/ JavaScript
-//@import "bootstrap4-alpha2/modal";
-//@import "bootstrap4-alpha2/tooltip";
-//@import "bootstrap4-alpha2/popover";
-//@import "bootstrap4-alpha2/carousel";
+// @import "bootstrap4-alpha5/modal";
+// @import "bootstrap4-alpha5/tooltip";
+// @import "bootstrap4-alpha5/popover";
+// @import "bootstrap4-alpha5/carousel";
 
 // Utility classes
-@import "bootstrap4-alpha2/utilities";
-@import "bootstrap4-alpha2/utilities-background";
-@import "bootstrap4-alpha2/utilities-spacing";
-@import "bootstrap4-alpha2/utilities-responsive";
+@import "bootstrap4-alpha5/utilities";
+// @import "bootstrap4-alpha5/utilities-background";
+// @import "bootstrap4-alpha5/utilities-spacing";
+// @import "bootstrap4-alpha5/utilities-responsive";

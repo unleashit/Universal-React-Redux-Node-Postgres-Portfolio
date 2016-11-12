@@ -1,6 +1,6 @@
 .main-header {
   height: 825px;
-  background: url('../../images/header-image.jpg') #46823C no-repeat center top;
+  background: url("../../images/header-image.jpg") #46823c no-repeat center top;
   background-size: auto 825px;
   overflow: hidden;
 }
@@ -29,10 +29,10 @@
 }
 
 .title-tagline-wrapper {
-  margin: 0px auto;
+  margin: 0 auto;
   margin-top: 165px;
-  padding-left: .9375rem;
-  padding-right: .9375rem;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
   max-width: 800px;
   color: #fff;
   text-align: center;
@@ -43,7 +43,7 @@
   }
   h2 {
     margin: 0;
-    font-family: 'Sanchez', serif;
+    font-family: "Sanchez", serif;
     font-size: 1.55em;
     line-height: 1.3em;
   }
@@ -67,7 +67,6 @@
 }
 
 @media screen and (max-width: map-get($grid-breakpoints, md)) {
-
   .main-nav {
     display: none;
   }

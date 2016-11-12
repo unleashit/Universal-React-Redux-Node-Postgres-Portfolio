@@ -1,8 +1,11 @@
-.who-what-where, .about {
+.who-what-where,
+.about {
   margin-top: $section-padding;
 }
 
-img.who-i-am, img.what-i-do, img.where-i-am {
+img.who-i-am,
+img.what-i-do,
+img.where-i-am {
   display: block;
   margin: 38px auto 0 auto;
 }
@@ -22,7 +25,7 @@ img.who-i-am, img.what-i-do, img.where-i-am {
   font-size: 1.2rem;
   text-align: center;
   background-color: #f0ecec;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1) inset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
   clear: both;
   &:last-child {
     margin-bottom: 0;
@@ -31,7 +34,7 @@ img.who-i-am, img.what-i-do, img.where-i-am {
 
 .about-buttons {
   margin-top: 30px;
-  .button{
+  .button {
     margin-right: 21px;
     i {
       margin-right: 15px;
@@ -65,7 +68,7 @@ img.who-i-am, img.what-i-do, img.where-i-am {
     .button {
       display: block;
       margin-bottom: 10px;
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
   }
 }

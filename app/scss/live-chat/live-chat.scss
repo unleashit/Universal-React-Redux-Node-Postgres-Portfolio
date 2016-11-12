@@ -1,10 +1,10 @@
-@import '../bootstrap/bootstrap4-alpha2/mixins';
-@import '../bootstrap/variables._overrides';
-@import '../variables';
+@import "../bootstrap/bootstrap4-alpha5/mixins";
+@import "../bootstrap/variables._overrides";
+@import "../variables";
 
 .content-wrapper {
   overflow: hidden;
-  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) .5s;
+  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
   &.live-chat-open {
     transform: translate(-$chat-width, 0);
   }
@@ -21,11 +21,11 @@
   border-radius: 50%;
   background: #333;
   border: 3px solid #fff;
-  box-shadow: 0 0 0 5px rgba(0,0,0,.3);
+  box-shadow: 0 0 0 5px rgba(0,0,0,0.3);
   color: #ddd;
   text-align: center;
   font-family: Oswald, sans-serif;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 1rem;
   text-transform: uppercase;
   cursor: pointer;
@@ -55,9 +55,11 @@
 
 @keyframes blink-animation {
   10% {
-    opacity: .4;
+    opacity: 0.4;
   }
-  13% {opacity: 1}
+  13% {
+    opacity: 1;
+  }
 }
 
 .live-chat-wrapper {
@@ -71,7 +73,7 @@
   background: #292929;
   color: #ddd;
   transform: translate($chat-width, 0);
-  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) .5s;
+  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
   &.live-chat-open {
     transform: translate(0, 0);
   }
@@ -81,22 +83,22 @@
     min-height: 100%;
   }
   > h3 {
-
   }
   ul {
     list-style: none;
     margin: 0;
     padding: 12px;
   }
-  input, textarea {
+  input,
+  textarea {
     background-color: #ededed;
     &:focus {
-      box-shadow: 0 0 25px rgba(0,0,0,.4) inset;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
       color: #999;
     }
   }
   textarea {
-    height: 140px
+    height: 140px;
   }
   .close-button {
     position: absolute;
@@ -105,7 +107,7 @@
     cursor: pointer;
   }
   .chat-online {
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding-top: 9px;
     .fa {
       animation: blink-animation 2.5s infinite;
@@ -113,7 +115,7 @@
     }
   }
   .chat-offline {
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding-top: 9px;
     .fa {
       color: $chat-offline;
@@ -124,7 +126,7 @@
   }
   .chat-status {
     padding: 7px 0;
-    font-size: .9rem;
+    font-size: 0.9rem;
     text-align: center;
   }
   .message-area {
@@ -141,7 +143,8 @@
     margin: 0;
     padding: 0;
   }
-  .connected, .not-connected {
+  .connected,
+  .not-connected {
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -160,7 +163,7 @@
     }
     .date {
       float: right;
-      font-size: .7rem;
+      font-size: 0.7rem;
       color: #999;
     }
     .message {
@@ -171,7 +174,7 @@
   .is-typing {
     padding: 5px 15px 20px 15px;
     text-align: center;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-style: italic;
   }
   .live-chat-send-group {
@@ -205,7 +208,7 @@
     color: #ddd;
     padding: 60px 30px 30px 30px;
     transform: translate(100%, 0);
-    transition: all cubic-bezier(0.65, 0.05, 0.36, 1) .5s;
+    transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
     &.live-chat-open {
       transform: translate(0, 0);
     }
