@@ -113,7 +113,7 @@ app.use("/admin", require(__dirname + '/routes/admin'));
 app.get('*', require('../app/js/index').serverMiddleware);
 
 // socket.io
-require('./controllers/liveChat').socketio(http, sessionStore);
+require('./routes/liveChat').socketio(http, sessionStore);
 
 // 404 handling
 app.use(function(req, res, next){
