@@ -102,12 +102,35 @@ exports.adminLogin = function(socket, chat, message, callback) {
 
     } else {
         admin = null;
-        console.log('wrong admin password');
+        console.log('Admin has incorrect credentials!');
     }
 };
 
-exports.chatConnected = function (socket, chat, message, callback) {
-    if (admin && isAuthorized) {
+exports.chatConnected = function (socket, chat, hydratedUser, callback) {
+
+    // if client was hydrated from session storage, rejoin room and inform admin
+    if (hydratedUser) {
+        console.log('hydrated user: ', hydratedUser);
+
+        if (hydratedUser.id in users){
+            users[hydratedUser.id].connected = true;
+            console.log('id before', socket.id);
+            socket.id = hydratedUser.id;
+            console.log("id after", socket.id);
+            socket.join(socket.id);
+
+            if (admin) {
+                admin.join(socket.id);
+                socket.broadcast.to(admin.id).emit('admin userInit', users);
+            }
+
+        } else {
+            console.log("user not found!!!!!!!!!!!!!!!!");
+        }
+    }
+
+    // if admin is logged in, inform client of status
+    if (admin) {
         // var payload = {id: admin.id, name: admin.name};
         callback({id: admin.id, name: admin.name});
     } else {
@@ -121,14 +144,14 @@ exports.newUser = function(socket, chat, user, callback) {
         id: socket.id,
         name: user.name,
         email: user.email,
-        connected: user.connected,
+        connected: true,
         date: Date.now(),
         messages: []
     };
 
     socket.join(socket.id);
 
-    if (admin && isAuthorized) {
+    if (admin) {
         admin.join(socket.id);
         socket.broadcast.to(admin.id).emit('admin userInit', users);
         console.log('New user to admin: %s', user.name);
@@ -163,11 +186,12 @@ exports.chatMessage = function(socket, chat, message) {
         chat.in(message.room).emit('chatMessage', message);
         console.log('User:', JSON.stringify(users[message.room], null, 2));
     } else {
+        console.log("dino");
         _handleQueryUser(socket, chat, message);
     }
 };
 
-exports.disconnect = function(socket, chat, ) {
+exports.disconnect = function(socket, chat) {
     if (socket.id in users) {
         users[socket.id].connected = false;
         console.log("Client disconnected");
@@ -184,28 +208,28 @@ exports.disconnect = function(socket, chat, ) {
 };
 
 exports.adminDelete = function (socket, chat, user){
-    if (admin && isAuthorized) {
-
-        if (chat.sockets.connected[user]) {
-            chat.sockets.connected[user].disconnect();
-            console.log('%s was deleted and disconnected by admin.', user);
-        }
-
-        if (user in users) {
-            users[user].connected = false;
-
-            liveChatData.save(users)
-                .then(() => {
-                    console.log("users were saved to the DB");
-                    delete users[user];
-                    // console.log(admin);
-                    _handleQueryUsers(socket, users, 0)
-                })
-                .catch(err => {
-                    throw new Error(err);
-                });
-        }
-    }
+    // if (admin && isAuthorized) {
+    //
+    //     if (chat.connected[user]) {
+    //         chat.connected[user].disconnect();
+    //         console.log('%s was deleted and disconnected by admin.', user);
+    //     }
+    //
+    //     if (user in users) {
+    //         users[user].connected = false;
+    //
+    //         liveChatData.save(users)
+    //             .then(() => {
+    //                 console.log("users were saved to the DB");
+    //                 delete users[user];
+    //                 // console.log(admin);
+    //                 _handleQueryUsers(socket, users, 0)
+    //             })
+    //             .catch(err => {
+    //                 throw new Error(err);
+    //             });
+    //     }
+    // }
 };
 
 exports.typing = function (socket, chat, id) {

@@ -8,6 +8,7 @@ import routes from './routes';
 import Root from './containers/Root';
 import configureStore from './configureStore';
 import { __GOOGLE_ANALYTICS__ } from '../../APPconfig';
+import { loadChatState } from './libs/utils';
 
 const isClient = typeof document !== 'undefined';
 
@@ -17,7 +18,7 @@ if (isClient) {
     var ReactGA = require('react-ga');
     ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
-    const store = configureStore(window.__INITIAL_STATE__);
+    const store = configureStore(Object.assign({}, window.__INITIAL_STATE__, loadChatState()));
 
     function hashLinkScroll() {
         const { hash } = window.location;

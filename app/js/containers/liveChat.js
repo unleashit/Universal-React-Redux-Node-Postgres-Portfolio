@@ -5,7 +5,11 @@ import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
 import {__API_URL__, __SOCKET_IO_URL__} from '../../../APPconfig';
 
-if (typeof window !== 'undefined') require('../../scss/live-chat/live-chat.scss');
+if (typeof window !== 'undefined') {
+    require('../../scss/live-chat/live-chat.scss');
+    var ionSound = require('../libs/ion-sound')();
+
+}
 
 class LiveChatContainer extends Component {
 
@@ -29,6 +33,13 @@ class LiveChatContainer extends Component {
         this.socket.on('typing', this.socketTyping);
         this.socket.on('disconnect', this.socketDisconnect);
         this.socket.on('status', this.socketStatus);
+
+        ionSound.sound({
+            sounds: [{ name: "water_droplet_3" }],
+            volume: 0.5,
+            path: "/images/sounds/",
+            preload: true
+        });
     }
 
     componentWillUnmount() {
@@ -36,23 +47,36 @@ class LiveChatContainer extends Component {
     }
 
     socketConnect() {
-        // console.log("socket.io connected. Id: " + this.socket.id);
 
-        this.socket.emit('chatConnected', {}, (admin) => {
+
+        // if user was hydrated from session storage, send user so server can reconnect
+        let payload = null;
+        if (this.props.liveChat.registered) {
+            payload = { id: this.props.liveChat.room };
+            this.socket.id = this.props.liveChat.room;
+        }
+
+        console.log("socket id: " + this.socket.id);
+
+        this.socket.emit('chatConnected', payload, (admin) => {
             if (admin) {
+                // admin is online
                 this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
-                // console.log('Chat is online');
+                console.log('Chat is online');
             }
             if (!this.props.liveChat.serverStatus) {
+                // let the app know server is online
                 this.props.dispatch(chatActions.chatSetServerStatus(true));
             }
         })
     }
 
     socketChatmessage(message) {
+        console.log("received a message!");
         if (message.id !== this.props.liveChat.room) {
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
+            ionSound.sound.play("water_droplet_3");
         }
         this.props.dispatch(chatActions.chatReceiveMesssage(message));
     }
@@ -82,6 +106,7 @@ class LiveChatContainer extends Component {
         if (message === 'transport close') {
             // server disconnected
             this.props.dispatch(chatActions.chatSetServerStatus(false));
+            this.props.dispatch(chatActions.chatSetRemoteId('', ''));
         }
     }
 
@@ -156,7 +181,8 @@ class LiveChatContainer extends Component {
         };
         this.socket.emit('chatMessage', message);
         this.props.dispatch(chatActions.chatCreateMesssage(''));
-        // console.log("new message: ", message);
+
+        console.log("new message: ", message);
     }
 
     onChange(e) {

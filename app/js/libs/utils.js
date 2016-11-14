@@ -27,3 +27,24 @@ export function animation(animationArea, animateOff, animationType='fadeInUp') {
         (animationArea ? `animated ${animationType} ` : ` invisible `)
             : '';
 }
+
+export function loadChatState() {
+    if (!getEnvironment('client')) return;
+    try {
+        const serializedState = sessionStorage.getItem('liveChat');
+        if (serializedState === null) return undefined;
+        return JSON.parse(serializedState);
+    } catch (err) {
+        return undefined;
+    }
+}
+
+export function saveChatState(state) {
+    if (!getEnvironment('client')) return state;
+    try {
+        const serializedState = JSON.stringify(state);
+        sessionStorage.setItem('liveChat', serializedState);
+    } catch (err) {
+        console.log('Error when saving state to sessionStorage: ', err);
+    }
+}

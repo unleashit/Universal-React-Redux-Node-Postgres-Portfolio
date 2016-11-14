@@ -1,8 +1,8 @@
 import moment from 'moment';
 import io from 'socket.io-client';
-import { __SOCKET_IO_URL__} from '../../APPconfig';
+import config from '../../APPconfig';
 
-var socket = io( __SOCKET_IO_URL__ );
+var socket = io( config.__SOCKET_IO_URL__ );
 
 const userList = document.getElementById('userList');
 const archivedUserList = document.getElementById('archivedUserList');
@@ -14,7 +14,9 @@ let archivedUsers = {};
 let pagination = 0;
 let adminId = null;
 let currentUser = null;
-let isTyping = null;
+let isTyping = false;
+let isTypingDetails = null;
+let typingTimer = null;
 
 function init() {
 
@@ -28,21 +30,18 @@ function init() {
     socket.on('disconnect', socketDisconnect);
     socket.on('typing', socketIsTyping);
 
-    userList.addEventListener('click', handleUserListUI);
-    archivedUserList.addEventListener('click', handleArchivedUserListUI);
+    userList.addEventListener('click', userListListener);
+    archivedUserList.addEventListener('click', archivedUserListListener);
     postMessage.addEventListener('click', handleSubmit);
     message.addEventListener('input', handleOnChange);
 
-    userList.innerHTML = getUserList();
+    userList.innerHTML = renderUserList();
     messageList.innerHTML = '';
 }
 
 function socketConnect(socket) {
     console.log("socket.io connected. Id: " + socket.id);
-    socket.emit('admin login', {
-        id: socket.id,
-        pass: '1223'
-    }, (id) => {
+    socket.emit('admin login', {}, (id) => {
         adminId = id;
     });
 }
@@ -53,8 +52,8 @@ function socketUserInit(usersFromServer) {
     const keys = Object.keys(users);
 
     if (keys.length > 0) currentUser = keys[0];
-    userList.innerHTML = getUserList();
-    messageList.innerHTML = getMessageList(currentUser);
+    userList.innerHTML = renderUserList();
+    messageList.innerHTML = getMessageList(currentUser, users);
 }
 
 function socketChatmessage(message) {
@@ -62,9 +61,9 @@ function socketChatmessage(message) {
     if (message.room in users) {
         users[message.room].messages.push(message);
         // console.log('User:', JSON.stringify(users[message.id], null, 2));
-        userList.innerHTML = getUserList();
+        userList.innerHTML = renderUserList();
         if (currentUser === message.room) {
-            messageList.innerHTML = getMessageList(message.room);
+            messageList.innerHTML = getMessageList(message.room, users);
         }
         document.querySelector("[data-user-id='" + message.room + "']")
             .className += ' new-messages';
@@ -73,17 +72,33 @@ function socketChatmessage(message) {
     }
 }
 
-// function socketNewUser(newUser) {
-//     users[newUser.id] = newUser;
-//     userList.innerHTML = getUserList();
-//
-//     // updateArchivedUsers([newUser.id]);
-//
-//     console.log("a new user joined.");
-// }
-
 function socketIsTyping(resp) {
-    console.log(resp);
+    let elem = document.querySelector('#userList [data-user-id="' + resp + '"]');
+
+    if (!elem) return;
+
+    if (isTyping) {
+        window.clearTimeout(typingTimer);
+    } else {
+        isTypingDetails = elem.innerHTML;
+    }
+
+    elem.innerHTML = 'user is typing...';
+    isTyping = true;
+
+    typingTimer = window.setTimeout(() => {
+        elem.innerHTML = isTypingDetails;
+        isTyping = false;
+    }, 1500);
+}
+
+function socketArchivedUserUpdate(usersFromServer) {
+    // console.log(usersFromServer);
+    archivedUsers = usersFromServer || {};
+    console.log('archived users received: ', archivedUsers);
+    const keys = Object.keys(users);
+
+    archivedUserList.innerHTML = renderArchivedUserList();
 }
 
 function handleOnChange(e) {
@@ -95,7 +110,7 @@ function socketDisconnect(user) {
     console.log(user + ' was disconnected');
     if (user in users) {
         users[user].connected = false;
-        userList.innerHTML = getUserList();
+        userList.innerHTML = renderUserList();
     }
 }
 
@@ -105,14 +120,14 @@ function handleSubmit(e) {
     let val = msg.value.trim();
 
     if (!val || !currentUser || !adminId) return;
+
     const message = {
         id: adminId,
-        name: 'Jason Gallagher',
+        name: config.liveChat.adminName,
         room: currentUser,
         message: val,
         date: Date.now()
     };
-    console.log(message);
     socket.emit('chatMessage', message);
     msg.value = '';
 }
@@ -120,12 +135,12 @@ function handleSubmit(e) {
 function deleteUser(user, socket) {
     delete users[user];
     socket.emit('admin delete', user);
-    userList.innerHTML = getUserList();
+    userList.innerHTML = renderUserList();
     messageList.innerHTML = '';
 
 }
 
-function getUserList() {
+function renderUserList() {
     return Object.keys(users).length ?
         '<ul class="user-list">' + Object.keys(users).map(u => {
             const connected = users[u].connected ? 'connected' : 'disconnected';
@@ -140,9 +155,9 @@ function getUserList() {
         }).join('') + '</ul>' : 'No users currently signed in.';
 }
 
-function getMessageList(user) {
-    return users[user] !== undefined && users[user].messages.length ?
-        '<ul class="message-list">' + users[user].messages.map(m => {
+function getMessageList(user, obj) {
+    return (typeof obj[user] !== 'undefined') && obj[user].messages.length ?
+        '<ul class="message-list">' + obj[user].messages.map(m => {
             return `<li class="message-list-message">
                         <div class="date pull-right">${moment(m.date).fromNow()}</div>
                         <div><strong>${m.name}</strong></div>
@@ -151,7 +166,7 @@ function getMessageList(user) {
         }).join('') + '</ul>': 'No messages yet.';
 }
 
-function handleUserListUI(e) {
+function userListListener(e) {
     e.stopPropagation();
     if (!e.currentTarget.children.length) return;
 
@@ -160,25 +175,16 @@ function handleUserListUI(e) {
         console.log('user to delete: ', u);
         delete users[u];
         socket.emit('admin delete', u);
-        userList.innerHTML = getUserList();
+        userList.innerHTML = renderUserList();
     } else {
         currentUser = e.target.getAttribute('data-user-id') ||
             e.target.parentNode.getAttribute('data-user-id');
-        userList.innerHTML = getUserList();
-        messageList.innerHTML = getMessageList(currentUser);
+        userList.innerHTML = renderUserList();
+        messageList.innerHTML = getMessageList(currentUser, users);
     }
 }
 
-function socketArchivedUserUpdate(usersFromServer) {
-    // console.log(usersFromServer);
-    archivedUsers = usersFromServer || {};
-    console.log('archived users received: ', archivedUsers);
-    const keys = Object.keys(users);
-
-    archivedUserList.innerHTML = getArchivedUserList();
-}
-
-function getArchivedUserList() {
+function renderArchivedUserList() {
     return Object.keys(archivedUsers).length ?
     '<ul class="user-list">' + Object.keys(archivedUsers).map(u => {
         return `<li class="archived list-group-item" data-user-id=${archivedUsers[u].id}>
@@ -199,27 +205,14 @@ function getArchivedUserList() {
 //     })
 // }
 
-function handleArchivedUserListUI(e) {
+function archivedUserListListener(e) {
     e.stopPropagation();
     if (!e.currentTarget.children.length) return;
 
     currentUser = e.target.getAttribute('data-user-id') ||
         e.target.parentNode.getAttribute('data-user-id');
 
-    let messages = archivedUsers[currentUser].messages;
-
-    let html = '<ul class="archived-messages">';
-    html += messages.map(m => {
-        return `
-            <li>
-                <div>${m.name}</div>
-                <div>${m.message}</div>
-            </li>
-         `
-    }).join('');
-
-    html += '</ul>';
-    messageList.innerHTML = html;
+    messageList.innerHTML = getMessageList(currentUser, archivedUsers);
 }
 
 export default init;
