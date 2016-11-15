@@ -57,17 +57,17 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin('./css/[name].min.css'),
-        // new Purify({
-        //     basePath: __dirname,
-        //     paths: [
-        //         '/app/js/*.*'
-        //     ],
-        //     resolveExtensions: ['.js'],
-        //     purifyOptions: {
-        //         minify: false,
-        //         rejected: true
-        //     }
-        // }),
+        new Purify({
+            basePath: __dirname,
+            paths: [
+                '/app/js/*.*'
+            ],
+            resolveExtensions: ['.js'],
+            purifyOptions: {
+                minify: false,
+                rejected: true
+            }
+        }),
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
             cssProcessorOptions: {discardComments: {removeAll: true, autoprefixer: false}},
