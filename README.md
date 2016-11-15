@@ -52,6 +52,7 @@ module.exports = {
 
     liveChat: {
         adminName: '{your name}',
+        adminPerPage: 10, // how many archived chats to load per page in control panel
         saveInterval: 1*60*1000, // once per 15 mins
         purgeInterval: 2*60*1000, // min time to persist in ram (1 hr)
         sendSMS: false // send SMS on new user registrations
