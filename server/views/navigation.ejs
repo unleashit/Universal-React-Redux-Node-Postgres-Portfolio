@@ -15,7 +15,7 @@
                 <li class="nav-item <%= (activeClass === 'manage-portfolio') ? 'active' : '' %>"><a href="/admin/portfolio" class="nav-link">Manage Portfolio</a></li>
             </ul>
             <ul class="nav navbar-nav pull-sm-right">
-                <% console.log('heyyyy!!', auth); if (!auth) { %>
+                <% if (!auth) { %>
                 <li class="nav-item"><a href="/login" class="nav-link">Log In</a></li>
                 <% } else { %>
                 <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
