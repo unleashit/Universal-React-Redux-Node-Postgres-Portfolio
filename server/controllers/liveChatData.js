@@ -75,20 +75,20 @@ exports.queryUser = function (id) {
 };
 
 exports.queryUsers = function (users, offset) {
-    return models.LiveChat.findAll({
+    return models.LiveChat.findAndCountAll({
         where: {
             socketId: {
                 $notIn: Object.keys(users).length ? Object.keys(users) : ['']
             }
         },
-        limit: 20,
+        limit: config.liveChat.adminPerPage || 10,
         offset: offset,
         order: [['updatedAt', 'DESC']]
     })
-    .then(archivedUsers => {
-        let usersObj = {};
+    .then(result => {
+        let users = {};
 
-        archivedUsers.map(u => u.dataValues)
+        result.rows.map(u => u.dataValues)
             .forEach(u => {
                 u = {
                     id: u.socketId,
@@ -98,10 +98,10 @@ exports.queryUsers = function (users, offset) {
                     messages: JSON.parse(u.messages),
                     date: u.date
                 };
-                usersObj[u.id] = u;
+                users[u.id] = u;
             });
-
-        return usersObj;
+        console.log('TOTAL NUMBER of users: ', result.count);
+        return { users, count: result.count };
     })
     .catch(err => {
         throw new Error(err);

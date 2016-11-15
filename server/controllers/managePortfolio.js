@@ -18,7 +18,8 @@ exports.getPortfolio = function(req, res) {
             res.render("portfolio", {
                 title: 'Manage Portfolio',
                 items: items,
-                activeClass: 'manage-portfolio'
+                activeClass: 'manage-portfolio',
+                auth: req.isAuthenticated()
             });
         })
 };
@@ -36,7 +37,8 @@ exports.addPortfolioItem = function(req, res) {
                 title: "Add Portfolio Item",
                 users: users,
                 tags: portfolioTags,
-                activeClass: 'manage-portfolio'
+                activeClass: 'manage-portfolio',
+                auth: req.isAuthenticated()
             });
         })
 };
@@ -94,7 +96,8 @@ exports.editPortfolioItem = function(req, res) {
                 title: 'Edit portfolio item',
                 item: item.dataValues,
                 tags: portfolioTags,
-                activeClass: 'manage-portfolio'
+                activeClass: 'manage-portfolio',
+                auth: req.isAuthenticated()
             });
         })
 };

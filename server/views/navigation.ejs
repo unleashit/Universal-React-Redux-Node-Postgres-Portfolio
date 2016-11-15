@@ -1,16 +1,24 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-dark bg-inverse">
     <div class="container">
-        <div id="navbar" class="collapse navbar-collapse">
+
+        <!--allows menu to drop down without bootstrap javascript-->
+        <input type="checkbox" id="navbar-toggle-cbox">
+        <label for="navbar-toggle-cbox" class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
+            &#9776;
+        </label>
+
+        <div class="collapse navbar-toggleable-xs" id="nav-content">
+
             <ul class="nav navbar-nav">
-                <li class="<%= (activeClass === 'home') ? 'active' : '' %>"><a href="/">Home</a></li>
-                <li class="<%= (activeClass === 'manage-live-chat') ? 'active' : '' %>"><a href="/admin/live-chat-manager">Manage Chat</a></li>
-                <li class="<%= (activeClass === 'manage-portfolio') ? 'active' : '' %>"><a href="/admin/portfolio">Manage Portfolio</a></li>
+                <li class="nav-item <%= (activeClass === 'home') ? 'active' : '' %>"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item <%= (activeClass === 'manage-live-chat') ? 'active' : '' %>"><a href="/admin/live-chat-manager" class="nav-link">Manage Chat</a></li>
+                <li class="nav-item <%= (activeClass === 'manage-portfolio') ? 'active' : '' %>"><a href="/admin/portfolio" class="nav-link">Manage Portfolio</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <% if (!auth) { %>
-                <li><a href="/login">Log In</a></li>
+            <ul class="nav navbar-nav pull-sm-right">
+                <% console.log('heyyyy!!', auth); if (!auth) { %>
+                <li class="nav-item"><a href="/login" class="nav-link">Log In</a></li>
                 <% } else { %>
-                <li><a href="/logout">Log Out</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
                 <% } %>
             </ul>
         </div>

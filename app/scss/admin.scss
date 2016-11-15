@@ -1,5 +1,37 @@
+$green: #52b235;
+$red: #d2474e;
+
+// navbar
+#navbar-toggle-cbox:checked ~ .collapse {
+  display:block;
+  .navbar-nav .nav-item+.nav-item, .navbar-nav .nav-item {
+    margin-left: 0;
+    float: none;
+  }
+}
+#navbar-toggle-cbox {
+  display: none;
+}
+.navbar-toggler {
+  background-color: #454646;
+}
+@media (min-width: 544px) {
+  .navbar {
+    border-radius: 0;
+  }
+}
+
+// override client css
+.form-control:focus {
+  color: #ccc;
+  background-color: #292929;
+  border: 0;
+  outline: none;
+}
+
+// main css begins
 .main-content {
-  padding-top: 70px;
+  padding-top: 45px;
 }
 
 h1,
@@ -49,19 +81,30 @@ table.portfolio-list.table td {
       background-color: #68aa44;
     }
     .disconnected {
-      background-color: #d2474e;
+      background-color: $red;
     }
     .active {
-      box-shadow: 0 0 25px rgba(0,0,0,0.5) inset;
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255, 0.07);
+      }
     }
     .new-messages {
-      .badge {
+      .tag {
         background-color: #db2e59;
         color: #fff;
       }
     }
-    .archived {
-      background: #ddd;
+    .archived,
+    .archived:hover {
+      background: #fff;
+      border: 1px solid #ddd;
     }
   }
   .messages {
@@ -69,7 +112,8 @@ table.portfolio-list.table td {
     overflow: auto;
     padding: 12px;
     background: #292929;
-    color: #fff;
+    color: darken($green, 6%);
+    border-radius: .25rem;
   }
   .message-list {
     margin: 0;
@@ -78,15 +122,48 @@ table.portfolio-list.table td {
     li {
       padding: 12px 0;
       line-height: 1.5rem;
-      border-bottom: 1px solid #777;
+      border-bottom: 1px solid #444;
       &:last-child {
         border: 0;
       }
     }
+    .name {
+      color: #8f8f8f
+    }
     .date {
       font-size: 0.7rem;
-      color: #ddd;
+      color: #8f8f8f;
     }
   }
-}
+  .post-input,
+  .post-message {
+    height: 50px;
+  }
+  .post-input {
+    border-radius: .25rem 0 0 .25rem;
+    &:focus {
+      background-color: #292929;
+    }
+  }
+  .post-message {
+    border-radius: 0 .25rem .25rem 0;
+    cursor: pointer;
+    background: $green;
+    color: #fff;
+  }
+  h3.archived-chats,
+  h3.send {
+    margin-top: 30px;
+  }
+  // override pagination color
+  .page-item.active .page-link,
+  .page-item.active .page-link:focus,
+  .page-item.active .page-link:hover {
+    background-color: $green;
+    border-color: #ccc;
+  }
 
+  .tag.pull-right {
+    margin-top: 4px;
+  }
+}

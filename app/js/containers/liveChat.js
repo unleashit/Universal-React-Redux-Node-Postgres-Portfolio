@@ -21,7 +21,6 @@ class LiveChatContainer extends Component {
         this.socketChatmessage = this.socketChatmessage.bind(this);
         this.socketTyping = this.socketTyping.bind(this);
         this.socketDisconnect = this.socketDisconnect.bind(this);
-        this.socketStatus = this.socketStatus.bind(this);
     }
 
     componentDidMount() {
@@ -32,7 +31,6 @@ class LiveChatContainer extends Component {
         this.socket.on('chatMessage', this.socketChatmessage);
         this.socket.on('typing', this.socketTyping);
         this.socket.on('disconnect', this.socketDisconnect);
-        this.socket.on('status', this.socketStatus);
 
         ionSound.sound({
             sounds: [{ name: "water_droplet_3" }],
@@ -47,22 +45,13 @@ class LiveChatContainer extends Component {
     }
 
     socketConnect() {
+        // console.log("socket id: " + this.socket.id);
 
-
-        // if user was hydrated from session storage, send user so server can reconnect
-        let payload = null;
-        if (this.props.liveChat.registered) {
-            payload = { id: this.props.liveChat.room };
-            this.socket.id = this.props.liveChat.room;
-        }
-
-        console.log("socket id: " + this.socket.id);
-
-        this.socket.emit('chatConnected', payload, (admin) => {
+        this.socket.emit('chatConnected', {}, (admin) => {
             if (admin) {
                 // admin is online
                 this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
-                console.log('Chat is online');
+                // console.log('Chat is online');
             }
             if (!this.props.liveChat.serverStatus) {
                 // let the app know server is online
@@ -108,10 +97,6 @@ class LiveChatContainer extends Component {
             this.props.dispatch(chatActions.chatSetServerStatus(false));
             this.props.dispatch(chatActions.chatSetRemoteId('', ''));
         }
-    }
-
-    socketStatus(message) {
-        console.log(message);
     }
 
     newUser(e) {
@@ -186,7 +171,7 @@ class LiveChatContainer extends Component {
     }
 
     onChange(e) {
-        this.socket.emit('typing', this.socket.id);
+        this.socket.emit('typing', this.props.liveChat.room);
         this.props.dispatch(chatActions.chatOnChange(e.target.value));
     }
 

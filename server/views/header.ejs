@@ -9,14 +9,14 @@
     <% } else { %>
         <title><%= title %> - Jason Gallagher</title>
     <% } %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Sanchez">
     <link rel="stylesheet" href="/css/global.min.css">
-    <link rel="stylesheet" href="/css/admin.min.css">
+    <!--<link rel="stylesheet" href="/css/admin.min.css">-->
 </head>
 <body>
 <% if (renderer === 'ejs') { %>
-    <%- include('navigation') %>
+    <%- include('navigation', {auth: auth}) %>
 <% } %>
 <div class="container">
     <div class="main-content">

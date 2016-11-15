@@ -18,10 +18,6 @@ class CleanPlugin {
     }
 }
 
-var postcss = function() {
-    return [autoprefixer];
-};
-
 module.exports = {
 
     entry: {

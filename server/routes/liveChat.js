@@ -29,6 +29,7 @@ exports.socketio = function(http, sessionStore) {
         socket.on('newUser', liveChatController.newUser.bind(this, socket, chat));
         socket.on('chatMessage', liveChatController.chatMessage.bind(this, socket, chat));
         socket.on('disconnect', liveChatController.disconnect.bind(this, socket, chat));
+        socket.on('admin getUsers', liveChatController.adminGetUsers.bind(this, socket, chat));
         socket.on('admin delete', liveChatController.adminDelete.bind(this, socket, chat));
         socket.on("typing", liveChatController.typing.bind(this, socket, chat));
 

@@ -53,7 +53,7 @@ function _handleQueryUsers(socket, users, offset) {
     liveChatData.queryUsers(users, offset)
         .then(archivedUsers => {
             socket.emit('admin archivedUserUpdate', archivedUsers);
-            console.log("%s archived users sent to admin", archivedUsers.length);
+            console.log("%s archived users sent to admin", archivedUsers.users.length);
         });
 }
 
@@ -82,52 +82,7 @@ exports.onAuthorizeFail = function(data, message, error, accept) {
     accept(); // normal users should pass through
 };
 
-exports.adminLogin = function(socket, chat, message, callback) {
-    if (isAuthorized) {
-        admin = socket;
-        admin.name = config.liveChat.adminName;
-
-        Object.keys(users).forEach(u => {
-            admin.join(users[u].id);
-        });
-
-        socket.broadcast.emit('chatConnected', {id: admin.id, name: admin.name});
-        console.log("admin logged in");
-
-        // send namespaced id back to client
-        callback(socket.id);
-
-        // get archived users from DB and send to admin
-        _handleQueryUsers(socket, users, 0);
-
-    } else {
-        admin = null;
-        console.log('Admin has incorrect credentials!');
-    }
-};
-
-exports.chatConnected = function (socket, chat, hydratedUser, callback) {
-
-    // if client was hydrated from session storage, rejoin room and inform admin
-    if (hydratedUser) {
-        console.log('hydrated user: ', hydratedUser);
-
-        if (hydratedUser.id in users){
-            users[hydratedUser.id].connected = true;
-            console.log('id before', socket.id);
-            socket.id = hydratedUser.id;
-            console.log("id after", socket.id);
-            socket.join(socket.id);
-
-            if (admin) {
-                admin.join(socket.id);
-                socket.broadcast.to(admin.id).emit('admin userInit', users);
-            }
-
-        } else {
-            console.log("user not found!!!!!!!!!!!!!!!!");
-        }
-    }
+exports.chatConnected = function (socket, chat, message, callback) {
 
     // if admin is logged in, inform client of status
     if (admin) {
@@ -191,6 +146,11 @@ exports.chatMessage = function(socket, chat, message) {
     }
 };
 
+exports.typing = function (socket, chat, id) {
+    console.log("typing: " + id);
+    chat.in(id).emit("typing", socket.id);
+};
+
 exports.disconnect = function(socket, chat) {
     if (socket.id in users) {
         users[socket.id].connected = false;
@@ -207,41 +167,65 @@ exports.disconnect = function(socket, chat) {
     // console.log("Disconnected %s sockets remaining", io.engine.clientsCount);
 };
 
-exports.adminDelete = function (socket, chat, user){
-    // if (admin && isAuthorized) {
-    //
-    //     if (chat.connected[user]) {
-    //         chat.connected[user].disconnect();
-    //         console.log('%s was deleted and disconnected by admin.', user);
-    //     }
-    //
-    //     if (user in users) {
-    //         users[user].connected = false;
-    //
-    //         liveChatData.save(users)
-    //             .then(() => {
-    //                 console.log("users were saved to the DB");
-    //                 delete users[user];
-    //                 // console.log(admin);
-    //                 _handleQueryUsers(socket, users, 0)
-    //             })
-    //             .catch(err => {
-    //                 throw new Error(err);
-    //             });
-    //     }
-    // }
+exports.adminLogin = function(socket, chat, message, callback) {
+    if (isAuthorized) {
+        admin = socket;
+        admin.name = config.liveChat.adminName;
+
+        Object.keys(users).forEach(u => {
+            admin.join(users[u].id);
+        });
+
+        socket.broadcast.emit('chatConnected', {id: admin.id, name: admin.name});
+        console.log("admin logged in");
+
+        // send namespaced id back to client
+        callback(socket.id);
+
+        // get archived users from DB and send to admin
+        _handleQueryUsers(socket, users, 0);
+
+    } else {
+        admin = null;
+        console.log('Admin has incorrect credentials!');
+    }
 };
 
-exports.typing = function (socket, chat, id) {
-    console.log("typing: " + id);
-    chat.emit("typing", socket.id);
+exports.adminGetUsers = function (socket, chat, offset) {
+    _handleQueryUsers(socket, users, offset);
+};
+
+exports.adminDelete = function (socket, chat, user){
+    if (admin && isAuthorized) {
+
+        if (chat.connected[user]) {
+            chat.connected[user].disconnect();
+            console.log('%s was deleted and disconnected by admin.', user);
+        }
+
+        if (user in users) {
+            users[user].connected = false;
+
+            liveChatData.save(users)
+                .then(() => {
+                    console.log("users were saved to the DB");
+                    delete users[user];
+                    // console.log(admin);
+                    _handleQueryUsers(socket, users, 0)
+                })
+                .catch(err => {
+                    throw new Error(err);
+                });
+        }
+    }
 };
 
 // /admin/live-chat-manager standard route
 exports.chatManager = function(req, res) {
     res.render("live-chat-manager", {
         title: "Manage Live Chat",
-        activeClass: 'manage-live-chat'
+        activeClass: 'manage-live-chat',
+        auth: req.isAuthenticated()
     });
 };
 
