@@ -30,6 +30,7 @@ class Root extends Component {
                 <link rel="manifest" href="/images/favicons/manifest.json"/>
                 <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5"/>
                 <link rel="shortcut icon" href="/images/favicons/favicon.ico"/>
+                <meta name="google-site-verification" content="PcZbHamu8N77ConcEm3oykmUEroNsJhpM6ZTrnvEO40" />
                 <meta name="msapplication-config" content="/images/favicons/browserconfig.xml"/>
                 <meta name="theme-color" content="#ffffff"/>
                 {head.link.toComponent()}
