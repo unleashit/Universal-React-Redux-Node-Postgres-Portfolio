@@ -23,7 +23,7 @@ export function getFullWindowHeight() {
 }
 
 export function animation(animationArea, animateOff, animationType='fadeInUp') {
-    return !animateOff ?
+    return getEnvironment('client') && !animateOff ?
         (animationArea ? `animated ${animationType} ` : ` invisible `)
             : '';
 }

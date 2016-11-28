@@ -33,7 +33,7 @@ class Home extends Component {
                 if (getEnvironment('client') && (window.pageYOffset > 10 || window.location.hash)) {
                     this.props.dispatch(globalActions.animateOff());
                 }
-                window.addEventListener('scroll', this.boundHandleScroll);
+                getEnvironment('client') && window.addEventListener('scroll', this.boundHandleScroll);
             });
     }
 
