@@ -24,7 +24,7 @@ module.exports = {
     devtool: '#source-map',
     entry: {
         "global": ['webpack-hot-middleware/client', './app/js/index.js'],
-        "admin.min": './app/js/admin.js'
+        "admin.min": './app/js/reactHelpDeskAdmin/admin.js'
     },
     output: {
         path: __dirname + '/dist/',
@@ -59,31 +59,19 @@ module.exports = {
             }
             },
             {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
-            {test: /\.css$/, loaders: ["style", "css?sourceMap"]},
-            {test: /\.scss$/, loaders: ["style", "css?sourceMap", "sass?sourceMap"]},
+            {test: /\.css$/, loaders: ["style-loader", "css-loader?sourceMap"]},
+            {test: /\.scss$/, loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]},
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
+                    'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
                     //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             {
-                test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                loader: 'file?name=fonts/[name].[ext]'
+                test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
-    },
-    // preLoaders: [
-    //     {
-    //         test: /\.js$/,
-    //         loader: "eslint-loader?{rules:{semi:0}}",
-    //         exclude: /node_modules/
-    //     }
-    // ],
-    // eslint: {
-    //     configFile: './.eslintrc',
-    //     failOnWarning: false,
-    //     failOnError: true
-    // }
+    }
 };

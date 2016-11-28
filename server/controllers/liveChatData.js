@@ -108,4 +108,10 @@ exports.queryUsers = function (users, offset) {
     });
 };
 
+exports.deleteUser = function (id) {
+    return models.LiveChat.destroy({
+        where: {socketId: id}
+    })
+};
+
 

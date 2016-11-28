@@ -195,7 +195,7 @@ exports.adminGetUsers = function (socket, chat, offset) {
     _handleQueryUsers(socket, users, offset);
 };
 
-exports.adminDelete = function (socket, chat, user){
+exports.adminRemoveUser = function (socket, chat, user){
     if (admin && isAuthorized) {
 
         if (chat.connected[user]) {
@@ -220,10 +220,34 @@ exports.adminDelete = function (socket, chat, user){
     }
 };
 
+exports.adminDeleteUser = function (socket, chat, user) {
+    if (admin && isAuthorized) {
+
+        if (user in users) {
+            chat.connected[user].disconnect();
+            delete users[user];
+        }
+
+        liveChatData.deleteUser(user)
+            .then(() => {
+                console.log("%s was deleted from DB", user);
+
+                // send new archived user list to admin
+                _handleQueryUsers(socket, users, 0);
+                return null;
+            })
+            .catch(err => {
+                console.log('User could not be deleted:');
+                throw new Error(err);
+            });
+    }
+};
+
 // /admin/live-chat-manager standard route
 exports.chatManager = function(req, res) {
+
     res.render("live-chat-manager", {
-        title: "Manage Live Chat",
+        title: "Manage React Help Desk",
         activeClass: 'manage-live-chat',
         auth: req.isAuthenticated()
     });

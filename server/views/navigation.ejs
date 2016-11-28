@@ -14,7 +14,7 @@
                 <li class="nav-item <%= (activeClass === 'manage-live-chat') ? 'active' : '' %>"><a href="/admin/live-chat-manager" class="nav-link">Manage Chat</a></li>
                 <li class="nav-item <%= (activeClass === 'manage-portfolio') ? 'active' : '' %>"><a href="/admin/portfolio" class="nav-link">Manage Portfolio</a></li>
             </ul>
-            <ul class="nav navbar-nav pull-sm-right">
+            <ul class="nav navbar-nav float-sm-right">
                 <% if (!auth) { %>
                 <li class="nav-item"><a href="/login" class="nav-link">Log In</a></li>
                 <% } else { %>
