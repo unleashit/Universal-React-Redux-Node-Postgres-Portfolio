@@ -22,7 +22,7 @@ module.exports = {
 
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
-        admin: './app/js/admin.js'
+        admin: './app/js/reactHelpDeskAdmin/admin.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -65,7 +65,8 @@ module.exports = {
             resolveExtensions: ['.js'],
             purifyOptions: {
                 minify: false,
-                rejected: true
+                rejected: true,
+                whitelist: ['*nav*', '*navbar*', 'bg-inverse', '*live-chat*', '*input-group*', 'post-input', 'post-message']
             }
         }),
         new OptimizeCssAssetsPlugin({
@@ -75,7 +76,6 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {context: './app/images', from: '**/**', to: 'images'},
-            // {context: './app/scss/font-awesome/fonts', from: '**/**', to: 'fonts'},
         ])
     ],
     module: {
@@ -96,23 +96,23 @@ module.exports = {
                     ]
                 }
             },
-            {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?sourceMap' })},
+            {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })},
             {
                 test: /\.scss$/, loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style',
-                    loader: 'css?sourceMap!postcss!sass?sourceMap',
-                    includePaths: [path.resolve(__dirname, "./app/scss")]
+                    fallbackLoader: 'style-loader',
+                    loader: 'css-loader?sourceMap!postcss-loader!sass-loader?sourceMap',
+                    includePaths: [path.resolve(__dirname, "./app/scss"), path.resolve(__dirname, "./app/js/reactHelpDeskAdmin/scss")]
                 })
             },
             {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
+                    'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
                     //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             {
-                test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                loader: 'file?name=fonts/[name].[ext]'
+                test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     },

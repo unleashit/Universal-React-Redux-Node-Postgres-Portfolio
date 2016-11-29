@@ -12,8 +12,6 @@ import * as globalActions  from '../actions/global';
 import { animation, getEnvironment } from '../libs/utils';
 import throttle from 'lodash/throttle';
 
-if (typeof document !== 'undefined') require('../../scss/home/home.scss');
-
 class Home extends Component {
 
     static readyOnActions(dispatch) {

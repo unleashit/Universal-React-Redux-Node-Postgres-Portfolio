@@ -1,4 +1,39 @@
-@import '../../reactHelpDesk/scss/variables';
+// temporarily removed from client scss
+$chat-width: 400px;
+$light-green: #52b235;
+$chat-online: $light-green;
+$chat-offline: #bc2828;
+$panel-transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
+$border-radius: 0.25rem;
+$green: $light-green;
+$red: #d2474e;
+
+.live-chat-wrapper, .live-chat-manager {
+  input,
+  textarea {
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
+    }
+  }
+  &.dark {
+    input,
+    textarea {
+      background-color: #ededed;
+      &:focus {
+        box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
+        color: #999;
+      }
+    }
+  }
+}
+
+.admin .form-control {
+  background-color: inherit;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: .25rem;
+}
+// end from client scss
 
 // navbar
 #navbar-toggle-cbox:checked ~ .collapse {

@@ -6,9 +6,7 @@ import io from 'socket.io-client';
 import {__API_URL__, __SOCKET_IO_URL__} from '../../../APPconfig';
 
 if (typeof window !== 'undefined') {
-    require('../../scss/live-chat/live-chat.scss');
     var ionSound = require('../libs/ion-sound')();
-
 }
 
 class LiveChatContainer extends Component {

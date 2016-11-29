@@ -9,13 +9,13 @@
     <% } else { %>
         <title><%= title %> - Jason Gallagher</title>
     <% } %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Sanchez">
+    <link rel="stylesheet" href="/css/global.min.css">
     <link rel="stylesheet" href="/css/admin.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Sanchez">
 </head>
 <body>
 <% if (renderer === 'ejs') { %>
     <%- include('navigation', {auth: auth}) %>
 <% } %>
 <div class="container">
-    <div class="main-content">
+    <div class="admin main-content">
