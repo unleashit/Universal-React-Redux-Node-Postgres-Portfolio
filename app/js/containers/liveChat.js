@@ -5,9 +5,9 @@ import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
 import {__API_URL__, __SOCKET_IO_URL__} from '../../../APPconfig';
 
-if (typeof window !== 'undefined') {
-    var ionSound = require('../libs/ion-sound')();
-}
+// if (typeof window !== 'undefined') {
+//     var ionSound = require('../libs/ion-sound')();
+// }
 
 class LiveChatContainer extends Component {
 
@@ -29,8 +29,8 @@ class LiveChatContainer extends Component {
         this.socket.on('chatMessage', this.socketChatmessage);
         this.socket.on('typing', this.socketTyping);
         this.socket.on('disconnect', this.socketDisconnect);
-
-        ionSound.sound({
+        this.ionSound = require('../libs/ion-sound')();
+        this.ionSound.sound({
             sounds: [{ name: "water_droplet_3" }],
             volume: 0.5,
             path: "/images/sounds/",
@@ -63,7 +63,7 @@ class LiveChatContainer extends Component {
         if (message.id !== this.props.liveChat.room) {
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
-            ionSound.sound.play("water_droplet_3");
+            this.ionSound.sound.play("water_droplet_3");
         }
         this.props.dispatch(chatActions.chatReceiveMesssage(message));
     }

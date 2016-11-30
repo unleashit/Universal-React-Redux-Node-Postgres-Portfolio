@@ -1071,4 +1071,5 @@ module.exports = function() {
             }
         }
     };
+    return ion;
 };
