@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import ContactForm from './contactForm';
 import OpenChat from './hocs/openChat';
 import ReactGA from'react-ga';
-import * as contactActions  from '../../actions/contact';
 import {animation} from '../../libs/utils';
 
 class Footer extends React.Component {

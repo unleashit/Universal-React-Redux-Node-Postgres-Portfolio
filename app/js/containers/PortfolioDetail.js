@@ -88,7 +88,12 @@ class PortfolioDetail extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                     ]}
                 />
-                <StickyHeader visible={true} displayHamburger={true} openBurger={this.openBurger.bind(this)} />
+                <StickyHeader visible={true}
+                              displayHamburger={true}
+                              openBurger={this.openBurger.bind(this)}
+                              remoteId={this.props.liveChat.remoteId}
+                              dispatch={this.props.dispatch}
+                />
                 <ResponsiveMenu
                     closeBurger={this.closeBurger.bind(this)}
                     menuVisible={hamburgerState}
@@ -104,7 +109,8 @@ function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
         global: state.global,
-        contactForm: state.contactForm
+        contactForm: state.contactForm,
+        liveChat: state.liveChat
     };
 }
 function mapDispatchToProps(dispatch) {

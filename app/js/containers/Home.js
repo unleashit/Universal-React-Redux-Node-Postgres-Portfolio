@@ -110,7 +110,6 @@ class Home extends Component {
                 <StickyHeader visible={headerState}
                               displayHamburger={false}
                               remoteId={this.props.liveChat.remoteId}
-
                               dispatch={this.props.dispatch}
                 />
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
