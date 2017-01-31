@@ -2,7 +2,7 @@
 node_modules
 tmp
 dist
-APPconfig.js
-DBconfig.json
+config/APPconfig.js
+config/DBconfig.json
 app/images/portfolio
 npm-debug*.log

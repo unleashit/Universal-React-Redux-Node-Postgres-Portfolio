@@ -1,5 +1,5 @@
 import * as render from './helpDeskRender'
-import config from '../../../APPconfig';
+import config from '../../../config/APPconfig';
 var ionSound = require('../libs/ion-sound')();
 import {
     socket,

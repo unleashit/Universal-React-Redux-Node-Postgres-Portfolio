@@ -1,4 +1,4 @@
-import {__API_URL__} from '../../../APPconfig';
+import {__API_URL__} from '../../../config/APPconfig';
 import { browserHistory } from 'react-router'
 import ReactGA from'react-ga';
 

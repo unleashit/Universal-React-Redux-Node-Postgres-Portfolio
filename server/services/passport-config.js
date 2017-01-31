@@ -4,7 +4,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var bcrypt = require('bcryptjs');
 var _ = require("lodash");
 var model = require('./../models/index');
-var config = require('./../../APPconfig').githubAuth || {};
+var config = require('./../../config/APPconfig').githubAuth || {};
 
 passport.use(new LocalStrategy({
         usernameField: 'email',

@@ -83,6 +83,7 @@ html input[disabled] {
   font-family: Oswald, sans-serif;
   font-size: 1.1rem;
   text-transform: uppercase;
+  cursor: pointer;
   outline: none !important;
   &.button-green {
     background-color: $light-green;

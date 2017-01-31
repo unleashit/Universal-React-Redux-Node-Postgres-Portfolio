@@ -1,7 +1,7 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
 var passportSocketIo = require('passport.socketio');
-var config = require(path.join(__dirname, '../../APPconfig'));
+var config = require(path.join(__dirname, '../../config/APPconfig'));
 var liveChatController = require('../controllers/liveChat');
 
 exports.socketio = function(http, sessionStore) {

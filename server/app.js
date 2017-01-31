@@ -11,7 +11,7 @@ var path = require('path');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var APPconfig = require('../APPconfig');
+var APPconfig = require('../config/APPconfig');
 var compression = require('compression');
 
 var models = require("./models");
@@ -66,7 +66,7 @@ app.use((req, res, next) => {
 });
 
 // Sessions and auth
-var DBconfig = require('../DBconfig.json')[process.env.NODE_ENV || 'development'];
+var DBconfig = require('../config/DBconfig.json')[process.env.NODE_ENV || 'development'];
 var mysqlStoreOptions = {
     host: DBconfig.host,
     port: 3306,

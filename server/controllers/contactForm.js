@@ -1,6 +1,6 @@
 var models = require('../models/index.js');
 var nodemailer = require('nodemailer');
-var config = require('../../APPconfig');
+var config = require('../../config/APPconfig');
 
 exports.handleContactSubmit = function(req, res) {
 

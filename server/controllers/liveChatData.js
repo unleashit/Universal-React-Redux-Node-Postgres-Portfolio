@@ -1,7 +1,7 @@
 var models = require('../models/index.js');
 var sequelize = require('sequelize');
 var path = require('path');
-var config = require(path.join(__dirname, '..', '..', 'APPconfig'));
+var config = require(path.join(__dirname, '..', '..', 'config', 'APPconfig'));
 
 function _insertChatRecords(users) {
     return models.LiveChat.bulkCreate(users,

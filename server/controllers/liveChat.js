@@ -1,6 +1,6 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
-var config = require(path.join(__dirname, '../../APPconfig'));
+var config = require(path.join(__dirname, '../../config/APPconfig'));
 var liveChatData = require('./liveChatData');
 
 var users = {};
