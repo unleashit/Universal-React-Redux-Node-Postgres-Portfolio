@@ -2,7 +2,6 @@
 
 var express = require("express");
 var _ = require("lodash");
-var uuid = require("node-uuid");
 var bodyParser = require('body-parser');
 
 var portfolio = require('../controllers/portfolioAPI.js');

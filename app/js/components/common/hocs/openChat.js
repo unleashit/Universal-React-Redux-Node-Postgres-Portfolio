@@ -10,6 +10,7 @@ class OpenChat extends Component {
         if (liveChat.serverStatus) {
             dispatch(chatActions.toggleChat(!liveChat.chatOpen));
             dispatch(globalActions.setHeader(false));
+            document.documentElement.className = '';
 
         } else {
             alert('Chat is temporarily down for maintenance. Sorry for the inconvenience. ' +

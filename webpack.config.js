@@ -39,7 +39,7 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js?$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             include: path.join(__dirname, 'app'),
             query: {
                 plugins: [

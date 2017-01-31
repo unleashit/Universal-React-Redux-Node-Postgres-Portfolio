@@ -82,7 +82,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js?$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: path.join(__dirname, 'app'),
                 exclude: /(node_modules|bower_components)/,
                 query: {
