@@ -5,4 +5,4 @@ dist
 APPconfig.js
 DBconfig.json
 app/images/portfolio
-npm-debug.log*
+npm-debug*.log

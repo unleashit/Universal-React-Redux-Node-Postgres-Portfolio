@@ -103,20 +103,8 @@
     right: 0;
     cursor: pointer;
   }
-  .chat-online {
-    font-size: 0.9rem;
+  .chat-online, .chat-offline {
     padding-top: 9px;
-    .fa {
-      animation: blink-animation 2.5s infinite;
-      color: $chat-online;
-    }
-  }
-  .chat-offline {
-    font-size: 0.9rem;
-    padding-top: 9px;
-    .fa {
-      color: $chat-offline;
-    }
   }
   .registration-name {
     margin-top: 30px;
@@ -178,6 +166,20 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+  }
+}
+
+.chat-online {
+  font-size: 0.9rem;
+  .fa {
+    animation: blink-animation 2.5s infinite;
+    color: $chat-online;
+  }
+}
+.chat-offline {
+  font-size: 0.9rem;
+  .fa {
+    color: $chat-offline;
   }
 }
 

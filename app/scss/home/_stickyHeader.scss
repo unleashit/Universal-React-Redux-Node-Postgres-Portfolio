@@ -75,10 +75,10 @@ html.sticky-menu-open body {
 .contact-info {
   font-family: "Sanchez", serif;
   color: #fff;
-  .skype {
+  .chat-status {
     padding-left: 18px;
+    cursor: pointer;
     a {
-      color: #55acf1;
       &:hover,
       &:active,
       &:visited,
@@ -86,9 +86,6 @@ html.sticky-menu-open body {
         outline: none !important;
         text-decoration: none !important;
         border: 0;
-      }
-      &:hover {
-        color: #8cd3ff;
       }
     }
   }

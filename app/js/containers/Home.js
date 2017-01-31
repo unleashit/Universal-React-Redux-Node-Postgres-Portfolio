@@ -107,7 +107,12 @@ class Home extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org"},
                     ]}
                 />
-                <StickyHeader visible={headerState} displayHamburger={false}/>
+                <StickyHeader visible={headerState}
+                              displayHamburger={false}
+                              remoteId={this.props.liveChat.remoteId}
+
+                              dispatch={this.props.dispatch}
+                />
                 <ResponsiveMenu closeBurger={this.closeBurger.bind(this)}
                         menuVisible={hamburgerState}
                         />
@@ -123,7 +128,8 @@ class Home extends Component {
 function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
-        global: state.global
+        global: state.global,
+        liveChat: state.liveChat
     };
 }
 function mapDispatchToProps(dispatch) {

@@ -1,39 +1,27 @@
 import React, {Component, PropTypes} from 'react';
+import OpenChat from '../common/hocs/openChat'
 import {connect} from 'react-redux';
-import * as chatActions from '../../actions/liveChat';
-import * as globalActions from '../../actions/global';
 
 class LiveChatLauncher extends Component {
 
-    openChat() {
-        const {dispatch, liveChat} = this.props;
-        if (liveChat.serverStatus) {
-            dispatch(chatActions.toggleChat(!liveChat.chatOpen));
-            dispatch(globalActions.setHeader(false));
-
-        } else {
-            alert('Chat is temporarily down for maintenance. Sorry for the inconvenience. ' +
-                'Please send an email or check back again soon!');
-        }
-    }
-
     render() {
         return (
-            <div className={this.props.liveChat.chatOpen ? "chat-launcher is-hidden" : "chat-launcher"}
-                 onClick={this.openChat.bind(this)}>
-                <div className={this.props.liveChat.remoteName ?
-                    'chat-indicator chat-online' :
-                    'chat-indicator chat-offline'}></div>
-                Live<br />Chat
-            </div>
+            <OpenChat>
+                <div className={this.props.liveChat.chatOpen ? "chat-launcher is-hidden" : "chat-launcher"}>
+                    <div className={this.props.liveChat.remoteName ?
+                        'chat-indicator chat-online' :
+                        'chat-indicator chat-offline'}></div>
+                    Live<br />
+                    Chat
+                </div>
+            </OpenChat>
         );
     }
 }
 
 function mapStateToProps(state) {
     return {
-        liveChat: state.liveChat,
-        lobal: state.global
+        liveChat: state.liveChat
     };
 }
 

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import PreReg from './preReg';
 import PostReg from './postReg';
 import CloseButton from '../common/closeButton';
+import LiveChatStatus from '../common/liveChatStatus';
 import * as chatActions from '../../actions/liveChat';
 
 class LiveChat extends Component {
@@ -25,9 +26,7 @@ class LiveChat extends Component {
             <div className={chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper live-chat-closed"}>
                 <div className="inner-wrap">
                     <CloseButton callback={close.bind(this)} />
-                    <h3>LIVE CHAT <span className={remoteId ? 'chat-online pull-right' : 'chat-offline pull-right'}>
-                        <i className="fa fa-cloud"></i> &nbsp;{remoteId ? 'I\'m online' : 'I\'m offline'}</span>
-                    </h3>
+                    <h3>LIVE CHAT <LiveChatStatus remoteId={remoteId} /></h3>
                     {showForm}
                 </div>
             </div>
