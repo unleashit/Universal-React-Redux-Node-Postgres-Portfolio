@@ -23,7 +23,7 @@ class LiveChat extends Component {
         const { chatOpen, remoteId } = this.props;
 
         return (
-            <div className={chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper live-chat-closed"}>
+            <div className={chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper"}>
                 <div className="inner-wrap">
                     <CloseButton callback={close.bind(this)} />
                     <h3>LIVE CHAT <LiveChatStatus remoteId={remoteId} /></h3>

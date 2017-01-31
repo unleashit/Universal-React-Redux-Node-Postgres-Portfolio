@@ -69,7 +69,7 @@
   background: #292929;
   color: #ddd;
   transform: translate($chat-width, 0);
-  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
+  transition: transform cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
   &.live-chat-open {
     transform: translate(0, 0);
   }

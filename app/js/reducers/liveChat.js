@@ -27,8 +27,7 @@ export default function portfolio(state = {
     switch (action.type) {
         case TOGGLE_CHAT:
             return Object.assign({}, state, {
-                chatOpen: action.bool,
-                contactSent: action.bool ? false : true
+                chatOpen: action.bool
             });
         case CHAT_SET_SERVER_STATUS:
             return Object.assign({}, state, {
