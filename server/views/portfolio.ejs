@@ -17,13 +17,13 @@
     <% items.forEach(function(item) { %>
     <tr>
         <td style="">
-            <a href="/admin/portfolio/<%= item.id %>"><span class="fa fa-pencil"></span></a>
+            <a href="/admin/portfolio/<%= item.id %>"><i class="fa fa-pencil"></i></a>
         </td>
         <td style="width: 65%"><%= item.title %></td>
         <td><img src="/images/portfolio/<%= item.main_image %>" style="max-width: 200px; height: auto;" /></td>
         <td><%= item.sort %></td>
         <td style="">
-            <a href="/admin/portfolio/delete/<%= item.id %>" class="confirm-delete"><span class="fa fa-remove"></span></a>
+            <a href="/admin/portfolio/delete/<%= item.id %>" class="confirm-delete"><i class="fa fa-remove"></i></a>
         </td>
     </tr>
     <% }); %>
