@@ -16,7 +16,7 @@ export default class WhoWhatWhere extends React.Component {
                     <div className="col-md-4">
                         <h3>What I do</h3>
                         <p>I collaborate with companies to determine user needs, requirements and goals to develop modern user
-                            interfaces for both web and mobile applications. I am available for your
+                            interfaces and/or full stack applications. I am available for your
                             project or a great permanent full-time role.
                         </p>
                         <img src="images/home/what-i-do-icon.png" srcSet="images/home/what-i-do-icon@2x.png 1.1x" alt="What I do" className="what-i-do"/>

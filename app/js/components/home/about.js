@@ -39,8 +39,8 @@ export default class About extends React.Component {
                         <img src="images/home/me.png" alt="Jason Gallagher" className="jg-image"/>
                     </div>
                     <div className="col-sm-9 col-lg-6">
-                        <p>I have more than 17 years of desktop and mobile development experience involving a wide variety of applications and industries.</p>
-                        <p>While my roots are in design and the user experience, I have made a major transition over the years to focus on development. For a while this translated to simply being good at html, css and knowing enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a deeper dive into engineering. </p>
+                        <p>I have more than 17 years of desktop and mobile web development experience involving a wide variety of applications and industries.</p>
+                        <p>While my roots are in design and the user experience, I made a major transition over the years to focus on development. For a while this translated to simply being good at html, css and knowing enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a deeper dive into engineering. </p>
                     <p>In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the start-up level. I would love to speak with you about your needs and see how we can work together.</p>
                         <div className="about-buttons">
                             <a href="http://www.jasongallagher.org/JasonGallagherResPub.doc" className="button button-smaller resume" onClick={analytics.bind(this, 'resume download')}><i className="fa fa-file-text"></i>Download Resume</a>
@@ -55,9 +55,11 @@ export default class About extends React.Component {
                         <div className="skill half" style={getColor()}>React/Redux</div>
                         <div className="skill half" style={getColor()}>AngularJs</div>
                         <div className="skill half" style={getColor()}>NodeJs</div>
-                        <div className="skill half" style={getColor()}>MySql</div>
-                        <div className="skill half" style={getColor()}>Linux, Apache</div>
+                        <div className="skill half" style={getColor()}>React Native</div>
                         <div className="skill half" style={getColor()}>Php</div>
+                        <div className="skill half" style={getColor()}>MySql</div>
+                        <div className="skill half" style={getColor()}>Linux</div>
+                        <div className="skill half" style={getColor()}>Nginx, Apache</div>
                         <div className="skill half" style={getColor()}>Drupal</div>
                         <div className="skill half" style={getColor()}>Wordpress</div>
                         <div className="skill half" style={getColor()}>Webpack</div>

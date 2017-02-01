@@ -35,13 +35,13 @@ class App extends Component {
                 <div className={this.props.liveChat.chatOpen ? 'content-wrapper live-chat-open' : 'content-wrapper'}
                      onClick={this.closeChat.bind(this)}>
                     <Helmet
-                        title='Front End Engineer in Berkeley, CA specializing in React, Angular, Drupal, Javascript and NodeJs'
+                        title='Front End Engineer in Berkeley, CA specializing in React, Angular, Drupal, Javascript and Node.Js'
                         titleTemplate='Jason Gallagher - %s'
                         meta={[
                             {'char-set': 'utf-8'},
                             {
                                 'name': 'description',
-                                'content': 'Full Stack Developer specializing on the Front End. Located in the San Francisco Bay Area and focused on React, Angular, NodeJs, Drupal, UI/UX. In the East Bay near San Francisco and Oakland.'
+                                'content': 'Full Stack Engineer in Berkeley specializing in Front End Development. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.'
                             },
                             {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}
                         ]}
