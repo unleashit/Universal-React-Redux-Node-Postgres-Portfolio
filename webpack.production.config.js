@@ -101,7 +101,7 @@ module.exports = {
                 test: /\.scss$/, loader: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
                     loader: 'css-loader?sourceMap!postcss-loader!sass-loader?sourceMap',
-                    includePaths: [path.resolve(__dirname, "./app/scss"), path.resolve(__dirname, "./app/js/reactHelpDeskAdmin/scss")]
+                    // includePaths: [path.resolve(__dirname, "./app/scss"), path.resolve(__dirname, "./app/js/reactHelpDeskAdmin/scss")]
                 })
             },
             {test: /\.(jpe?g|png|gif|svg)$/i,

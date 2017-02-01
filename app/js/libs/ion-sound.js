@@ -10,7 +10,7 @@
  * http://ionden.com/a/plugins/licence-en.html
  */
 
-module.exports = function() {
+export function ionSound() {
     "use strict";
 
     var ion = {};

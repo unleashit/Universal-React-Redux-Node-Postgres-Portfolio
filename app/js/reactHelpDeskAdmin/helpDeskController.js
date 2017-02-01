@@ -1,6 +1,6 @@
 import * as render from './helpDeskRender'
 import config from '../../../config/APPconfig';
-var ionSound = require('../libs/ion-sound')();
+var ionSound = require('../libs/ion-sound').ionSound();
 import {
     socket,
     messageList,
