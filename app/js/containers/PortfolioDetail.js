@@ -76,6 +76,9 @@ class PortfolioDetail extends Component {
 
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
 
+        // hide header on small devices when chat is open
+        const headerVisible = window.innerWidth < 769 ? !this.props.liveChat.chatOpen : true;
+
         return (
             <div id="interior-page">
                 <Helmet
@@ -88,7 +91,7 @@ class PortfolioDetail extends Component {
                         {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
                     ]}
                 />
-                <StickyHeader visible={true}
+                <StickyHeader visible={headerVisible}
                               displayHamburger={true}
                               openBurger={this.openBurger.bind(this)}
                               remoteId={this.props.liveChat.remoteId}
