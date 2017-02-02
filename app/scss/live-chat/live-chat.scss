@@ -67,7 +67,7 @@
   width: $chat-width;
   padding: 60px 30px 30px 30px;
   background: #292929;
-  color: #ddd;
+  color: #eee;
   transform: translate($chat-width, 0);
   transition: transform cubic-bezier(0.65, 0.05, 0.36, 1) 0.5s;
   &.live-chat-open {
@@ -80,6 +80,10 @@
   }
   > h3 {
   }
+  .disclaimer {
+    color: #bbb;
+    font-size: .9rem;
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -88,10 +92,7 @@
   input,
   textarea {
     background-color: #ededed;
-    &:focus {
-      box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
-      color: #999;
-    }
+    color: #999;
   }
   textarea {
     height: 140px;

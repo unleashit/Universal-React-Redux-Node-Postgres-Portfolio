@@ -51,6 +51,11 @@
   button {
     width: 140px;
   }
+  .form-control:focus {
+    color: #999;
+    background-color: #444;
+    outline: none;
+  }
 }
 
 .thanks {

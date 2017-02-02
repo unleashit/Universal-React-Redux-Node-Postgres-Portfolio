@@ -18,6 +18,14 @@ h3 {
   margin-bottom: 1.4rem;
 }
 
+input,
+textarea {
+  &:focus {
+    box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
+    color: #999;
+  }
+}
+
 button[disabled],
 html input[disabled] {
   cursor: not-allowed;
