@@ -32,7 +32,7 @@ class Footer extends React.Component {
                                 <h4>CONTACT</h4>
                                 <p className="contact-method"><i className="fa fa-phone"></i> &nbsp;(415) 287-3221</p>
                                 <p className="contact-method chat">
-                                    <i className="fa fa-cloud"></i> &nbsp;<OpenChat><a href="#">Live Chat</a></OpenChat>
+                                    <i className="fa fa-comments"></i> &nbsp;<OpenChat><a href="#">Live Chat</a></OpenChat>
                                 </p>
                                 <p className="contact-method"><i className="fa fa-envelope"></i> &nbsp;
                                     <a href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services"
