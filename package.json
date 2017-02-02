@@ -54,7 +54,7 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.23.3",
     "sequelize-cli": "^2.4.0",
-    "smoothscroll-polyfill": "^0.3.3",
+    "smoothscroll-polyfill": "^0.3.4",
     "socket.io": "^1.5.1",
     "socket.io-client": "^1.5.1"
   },

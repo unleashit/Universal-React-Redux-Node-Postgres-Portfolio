@@ -13,15 +13,17 @@ import { __GOOGLE_ANALYTICS__ } from '../../config/APPconfig';
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
-
     require('smoothscroll-polyfill').polyfill();
-    var ReactGA = require('react-ga');
-    ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
     const store = configureStore(window.__INITIAL_STATE__);
 
+    const ReactGA = require('react-ga');
+    ReactGA.initialize(__GOOGLE_ANALYTICS__);
+
     function hashLinkScroll() {
         const { hash } = window.location;
+        const isIE = document.documentMode || /Edge/.test(navigator.userAgent);
+        
         if (hash !== '') {
             // Push onto callback queue so it runs after the DOM is updated,
             // this is required when navigating from a different page so that
@@ -29,7 +31,10 @@ if (isClient) {
             setTimeout(() => {
                 const id = hash.replace('#', '');
                 const element = document.getElementById(id);
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
+                if (element) {
+                    isIE ? element.scrollIntoView() :
+                        element.scrollIntoView({ behavior: 'smooth' });
+                }
                 ReactGA.event({
                     category: 'Navigation',
                     action: 'Nav Link Clicked: ' + id

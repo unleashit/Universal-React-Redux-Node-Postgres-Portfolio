@@ -10,7 +10,7 @@ var bsync = new BrowserSyncPlugin(
         port: 3000,
         proxy: 'http://localhost:3100/',
         browser: 'chrome',
-        open: true
+        open: false
     },
     // plugin options
     {
