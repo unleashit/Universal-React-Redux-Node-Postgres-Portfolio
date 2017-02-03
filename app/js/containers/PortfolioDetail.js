@@ -30,8 +30,16 @@ class PortfolioDetail extends Component {
         dispatch(portfolioActions.resetPortfolioDetail());
     }
 
-    componentWillReceiveProps(nextProps){
-        if (nextProps.params.slug !== this.props.params.slug) {
+    componentWillReceiveProps(nextProps) {
+        const {DetailReadyState} = this.props.portfolio;
+
+        if (nextProps.params.slug !== this.props.params.slug
+            && DetailReadyState === 'WORK_DETAIL_FETCHED') {
+
+            // get height from project for next spinner so it doesn't bounce
+            const lastProject = this.refs.lastProject.clientHeight;
+            this.props.dispatch(portfolioActions.lastProjectHeight(lastProject));
+
             const {dispatch, params} = nextProps;
             PortfolioDetail.readyOnActions(dispatch, params, true);
             window.scrollTo(0, 0);
@@ -47,15 +55,16 @@ class PortfolioDetail extends Component {
     }
 
     renderPortfolioItemDetail(browserHistory) {
-        const {DetailReadyState, item} = this.props.portfolio;
+        const {DetailReadyState, lastProjectHeight, item} = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
-            return <Loader />;
+
+            return <Loader height={lastProjectHeight} />;
 
         } else if (DetailReadyState === 'WORK_DETAIL_FETCHED') {
 
             return (
-                <div>
+                <div ref="lastProject">
                     {this.props.children}
                 </div>
             );

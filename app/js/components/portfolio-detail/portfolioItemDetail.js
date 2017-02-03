@@ -40,7 +40,7 @@ class PortfolioItemDetail extends React.Component {
                             </a>
                         </div>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 image-wrapper">
                         <Gallery
                             makeGallery={this.makeGallery.bind(this)}
                             item={item}

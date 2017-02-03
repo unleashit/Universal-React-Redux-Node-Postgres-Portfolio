@@ -21,20 +21,25 @@
 }
 
 .portfolio-detail-loading {
-  padding-top: 200px;
-  padding-bottom: 150px;
-  text-align: center;
+  height: 400px;
   color: #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   .caption {
     padding-top: 10px;
   }
 }
-
 .portfolio-detail {
-  margin-top: 140px;
-  margin-bottom: 100px;
-  min-height: 500px;
+  min-height: 400px;
 }
+.portfolio-detail, .portfolio-detail-loading {
+  margin-top: 140px;
+  margin-bottom: 80px;
+}
+
 .detail-page-header {
   margin: $section-padding 0 85px;
   nav {

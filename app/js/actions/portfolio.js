@@ -11,6 +11,7 @@ export const WORK_DETAIL_FETCHING = 'WORK_DETAIL_FETCHING';
 export const WORK_DETAIL_FETCHED = 'WORK_DETAIL_FETCHED';
 export const WORK_DETAIL_FETCH_FAILED = 'WORK_DETAIL_FETCH_FAILED';
 export const WORK_DETAIL_RESET = 'WORK_DETAIL_RESET';
+export const WORK_LAST_PROJECT_HEIGHT = 'WORK_LAST_PROJECT_HEIGHT';
 
 function fetchPortfolio() {
   return (dispatch) => {
@@ -122,5 +123,11 @@ export function fetchPortfolioDetailIfNeeded(slug, bypassCheck) {
 export function resetPortfolioDetail() {
     return (dispatch) => {
         return dispatch({ type: WORK_DETAIL_RESET });
+    }
+}
+
+export function lastProjectHeight(height) {
+    return (dispatch) => {
+        return dispatch({ type: WORK_LAST_PROJECT_HEIGHT, payload: height });
     }
 }

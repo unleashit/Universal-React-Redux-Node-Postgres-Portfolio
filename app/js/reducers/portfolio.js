@@ -8,13 +8,15 @@ import {
     WORK_DETAIL_FETCHED,
     WORK_DETAIL_FETCH_FAILED,
     WORK_DETAIL_RESET,
+    WORK_LAST_PROJECT_HEIGHT
 } from '../actions/portfolio';
 
 export default function portfolio(state = {
   readyState: WORK_INVALID,
   DetailReadyState: WORK_DETAIL_INVALID,
   items: null,
-  item: null
+  item: null,
+  lastProjectHeight: 400
 }, action) {
   switch (action.type) {
     case WORK_FETCHING:
@@ -50,6 +52,10 @@ export default function portfolio(state = {
         DetailReadyState: WORK_DETAIL_INVALID,
         item: null
       });
+    case WORK_LAST_PROJECT_HEIGHT:
+        return Object.assign({}, state, {
+            lastProjectHeight: action.payload
+        });
     default:
       return state;
   }
