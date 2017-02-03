@@ -14,6 +14,22 @@ class Root extends Component {
         return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
     }
 
+    renderMainScript() {
+        if (!process.env.NODE_ENV) {
+            return <script src={'/js/global.js'}></script>
+
+        } else {
+            const innerHtml = `
+                function downloadJSAtOnload() {
+                    var element = document.createElement("script");
+                    element.src = "/js/global.min.js";
+                    document.body.appendChild(element);
+                }
+                window.addEventListener("load", downloadJSAtOnload, false);`;
+            return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
+        }
+    }
+
     render() {
         const head = this.props.head;
         const attrs = head.htmlAttributes.toComponent();
@@ -41,7 +57,7 @@ class Root extends Component {
             {this.renderEnvironment()}
             {this.renderInitialState()}
             {head.script.toComponent()}
-            <script src={!process.env.NODE_ENV ? '/js/global.js' : '/js/global.min.js'}></script>
+            {this.renderMainScript()}
             </body>
             </html>
     );
