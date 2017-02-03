@@ -107,7 +107,21 @@ module.exports = {
             {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
-                    //'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                    {
+                        loader: 'image-webpack-loader',
+                        query: {
+                            optipng: {
+                                optimizationLevel: 6
+                            },
+                            mozjpeg: {
+                                quality: 78
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            }
+                        }
+                    }
                 ]
             },
             {
