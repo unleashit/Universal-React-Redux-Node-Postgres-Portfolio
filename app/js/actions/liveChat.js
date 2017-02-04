@@ -9,6 +9,7 @@ export const CHAT_NEW_USER = 'CHAT_NEW_USER';
 export const CHAT_ISTYPING = 'CHAT_ISTYPING';
 export const CHAT_SET_SERVER_STATUS = 'CHAT_SET_SERVER_STATUS';
 export const CHAT_CONTACT_SENT = 'CHAT_CONTACT_SENT';
+export const CHAT_ADMIN_ACTIVE = 'CHAT_ADMIN_ACTIVE';
 
 export function toggleChat(bool=true) {
     return (dispatch) => {
@@ -79,6 +80,12 @@ export function contactSent(bool) {
 
     return (dispatch) => {
         dispatch({type: CHAT_CONTACT_SENT, bool});
+    }
+}
+
+export function adminActive(bool) {
+    return (dispatch) => {
+        dispatch({type: CHAT_ADMIN_ACTIVE, bool});
     }
 }
 

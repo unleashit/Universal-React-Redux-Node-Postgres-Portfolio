@@ -57,11 +57,15 @@ class LiveChatContainer extends Component {
     }
 
     socketChatmessage(message) {
-        console.log("received a message!");
         if (message.id !== this.props.liveChat.room) {
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
             this.ionSound.sound.play("water_droplet_3");
+
+            // admin is active
+            if (!this.props.liveChat.adminActive) {
+                this.props.dispatch(chatActions.adminActive(true));
+            }
         }
         this.props.dispatch(chatActions.chatReceiveMesssage(message));
     }
@@ -76,18 +80,15 @@ class LiveChatContainer extends Component {
 
     socketAdminConnected(admin) {
         if (admin) {
-            // console.log("Chat is online");
             this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
         }
     }
 
     socketAdminDisconnected() {
-        // console.log("Chat is offline");
         this.props.dispatch(chatActions.chatSetRemoteId('', ''));
     }
 
     socketDisconnect(message) {
-        // console.log('Disconnected from Server: ', message);
         if (message === 'transport close') {
             // server disconnected
             this.props.dispatch(chatActions.chatSetServerStatus(false));
@@ -139,8 +140,29 @@ class LiveChatContainer extends Component {
                     email: email,
                     registered: true
                 }));
+
+                this.setAdminTimer();
             });
         }
+    }
+
+    setAdminTimer() {
+        return this.adminTimer = setTimeout( () => {
+            if (!this.props.liveChat.adminActive) {
+
+                const message = {
+                    id: this.props.liveChat.room,
+                    room: this.props.liveChat.room,
+                    name: this.props.liveChat.remoteName,
+                    message: 'It looks like it\'s taking me a while to reply. You\'re welcome to wait a bit longer,' +
+                    ' or please leave a note along with your contact info if you didn\'t' +
+                    ' already. I will see your messages and get in touch before you know it!',
+                    date: Date.now()
+                };
+
+                this.socket.emit('chatMessage', message);
+            }
+        }, 120000);
     }
 
     typingDelay() {
@@ -162,8 +184,6 @@ class LiveChatContainer extends Component {
         };
         this.socket.emit('chatMessage', message);
         this.props.dispatch(chatActions.chatCreateMesssage(''));
-
-        console.log("new message: ", message);
     }
 
     onChange(e) {

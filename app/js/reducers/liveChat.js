@@ -7,7 +7,8 @@ import {
     CHAT_ISTYPING,
     CHAT_SET_REMOTE_ID,
     CHAT_SET_SERVER_STATUS,
-    CHAT_CONTACT_SENT
+    CHAT_CONTACT_SENT,
+    CHAT_ADMIN_ACTIVE
 } from '../actions/liveChat';
 
 export default function portfolio(state = {
@@ -22,7 +23,8 @@ export default function portfolio(state = {
     message: '',
     messages: [],
     registered: false,
-    contactSent: false
+    contactSent: false,
+    adminActive: false
 }, action) {
     switch (action.type) {
         case TOGGLE_CHAT:
@@ -64,6 +66,10 @@ export default function portfolio(state = {
         case CHAT_CONTACT_SENT:
             return Object.assign({}, state, {
                 contactSent: action.bool
+            });
+        case CHAT_ADMIN_ACTIVE:
+            return Object.assign({}, state, {
+                adminActive: action.bool
             });
         default:
             return state;
