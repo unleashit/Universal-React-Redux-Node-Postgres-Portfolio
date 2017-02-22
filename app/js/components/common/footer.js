@@ -30,7 +30,7 @@ class Footer extends React.Component {
                         <div className="contact row" id="contact">
                             <div className="col-lg-4">
                                 <h4>CONTACT</h4>
-                                <p className="contact-method"><i className="fa fa-phone"></i> &nbsp;(415) 287-3221</p>
+                                <p className="contact-method"><i className="fa fa-phone"></i> &nbsp;(707) 280-3629</p>
                                 <p className="contact-method chat">
                                     <i className="fa fa-comments"></i> &nbsp;<OpenChat><a href="#">Live Chat</a></OpenChat>
                                 </p>

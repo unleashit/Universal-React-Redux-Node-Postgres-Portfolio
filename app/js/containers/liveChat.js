@@ -155,7 +155,7 @@ class LiveChatContainer extends Component {
                     room: this.props.liveChat.room,
                     name: this.props.liveChat.remoteName,
                     message: 'It looks like it\'s taking me a while to reply. You\'re welcome to wait a bit longer,' +
-                    ' or please leave a note along with your contact info if you didn\'t' +
+                    ' or please leave a note along with your contact info if you haven\'t' +
                     ' already. I will see your messages and get in touch before you know it!',
                     date: Date.now()
                 };

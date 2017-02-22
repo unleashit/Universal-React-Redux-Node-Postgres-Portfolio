@@ -29,7 +29,7 @@ export default class StickyHeader extends React.Component {
                     {hamburger}
                      <div className="contact-info pull-right hidden-sm-down">
                         <div>
-                            <span className="phone" onClick={analytics.bind(this, 'phone number in header')}><i className="fa fa-phone"></i> (415) 287.3221</span>
+                            <span className="phone" onClick={analytics.bind(this, 'phone number in header')}><i className="fa fa-phone"></i> (707) 280-3629</span>
                             <span className="chat-status" onClick={analytics.bind(this, 'chat in header')}>
                                 <OpenChat>
                                     <LiveChatStatus remoteId={this.props.remoteId} />

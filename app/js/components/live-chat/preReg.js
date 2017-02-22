@@ -14,7 +14,7 @@ class PreReg extends Component {
             <p>Say hello. Please enter your name to begin.</p>
             <p className="disclaimer"><i>Disclaimer: I may or may not be able to respond right away, but if I can't I will receive your message and get back to you soon.</i></p></div> :
             <p>I'm not available right now, but feel free to leave your name, email and message and I'll back to you shortly.
-            <br /><br />You can also reach me at <br />(415) 287-3221 (voice only).</p>;
+            <br /><br />You can also reach me at <br />(707) 280-3629 (voice only).</p>;
 
         const chatOffline = !this.props.remoteId ? <div className="registration-message form-group">
                 <textarea className="form-control" name="message" placeholder="Message"></textarea>
