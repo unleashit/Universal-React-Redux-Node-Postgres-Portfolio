@@ -50,6 +50,18 @@ class Root extends Component {
                 <meta name="format-detection" content="telephone=no" />
                 <meta name="msapplication-config" content="/images/favicons/browserconfig.xml"/>
                 <meta name="theme-color" content="#ffffff"/>
+
+ {/*               <meta property="og:url" content="https://jasongallagher.org/" />
+                <meta property="og:site_name" content="jasongallagher.org" />
+                <meta property="og:title" content="Jason Gallagher, Front End Engineer in Berkeley, Ca" />
+                <meta property="og:description" content="Full Stack Engineer in the San Francisco Bay Area specializing in Front End Development, React, Angular, Node.Js, Drupal, UI/UX." />*/}
+{/*                <meta property="og:image" content="https://jasongallagher.org/#" />*/}
+
+                {/*<meta name="twitter:card" content="#" />*/}
+                {/*<meta name="twitter:site" content="@unleashit" />*/}
+                {/*<meta name="twitter:title" content="Jason Gallagher, Front End Engineer in Berkeley, Ca" />*/}
+                {/*<meta name="twitter:description" content="Full Stack Engineer in the San Francisco Bay Area specializing in Front End Development, React, Angular, Node.Js, Drupal, UI/UX." />*/}
+                {/*<meta name="twitter:image" content="https://#" />*/}
                 {head.link.toComponent()}
             </head>
             <body>
