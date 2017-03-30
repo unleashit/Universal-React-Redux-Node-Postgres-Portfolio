@@ -33,8 +33,8 @@ class Training extends Component {
         const { hamburgerState, htmlClass } = this.props.global;
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
 
-        const title = 'Jason Gallagher - Training';
-        const metadesc = 'Training';
+        const title = 'Jason Gallagher - Front End Development Bootcamp';
+        const metadesc = 'Full Stack Training in Javascript, Html, CSS, React, Node.js, Mysql, Linux and more';
 
         // hide header on small devices when chat is open
         const headerVisible = () => {
