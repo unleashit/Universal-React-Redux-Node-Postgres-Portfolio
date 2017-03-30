@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router'
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../components/common/stickyHeader';
-import Loader from '../components/common/loader';
 import ResponsiveMenu from '../components/common/responsiveMenu';
 import TrainingMain from '../components/training/trainingMain';
 import * as globalActions  from '../actions/global';
@@ -12,24 +10,14 @@ if (typeof document !== 'undefined') require('../../scss/training/training.scss'
 
 class Training extends Component {
 
-    // static readyOnActions(dispatch, params, bypassCheck = false) {
-    //     return Promise.all([
-    //         dispatch(globalActions.animateOff())
-    //     ]);
-    // }
+    static readyOnActions(dispatch, params, bypassCheck = false) {
+        return Promise.all([dispatch(globalActions.animateOff())]);
+    }
 
     componentDidMount() {
-        // const {dispatch, params} = this.props;
-        // PortfolioDetail.readyOnActions(dispatch, params);
-        // window.scrollTo(0, 0);
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-
+        const {dispatch, params} = this.props;
+        Training.readyOnActions(dispatch, params);
+        window.scrollTo(0, 0);
     }
 
     openBurger() {
