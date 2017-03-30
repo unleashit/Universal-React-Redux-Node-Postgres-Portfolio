@@ -1,0 +1,42 @@
+.accordion {
+  list-style: none;
+  margin: .8rem 0 .8rem 32px;
+  padding: 0;
+  h4 {
+    position: relative;
+    cursor: pointer;
+  }
+  h4::before {
+    position: absolute;
+    top: 4px;
+    left: -32px;
+    content: "\F147";
+    font-family: FontAwesome;
+    color: #888;
+    font-size: 1.3rem;
+
+  }
+  .faq-header span {
+    font-size: 1rem;
+    vertical-align: top;
+    padding-top: 7px;
+    display: inline-block;
+    color: #888;
+  }
+  .faq-body > ul {
+    margin: 1rem 0 1rem 1rem;
+    padding: 0;
+  }
+  &.closed h4::before {
+    content: "\f196";
+  }
+  &.open .faq-body {
+    height: auto;
+    visibility: visible;
+    transition: all 300ms ease-in;
+  }
+  &.closed .faq-body, &.open .faq-header span {
+    visibility: hidden;
+    height: 0;
+  }
+}

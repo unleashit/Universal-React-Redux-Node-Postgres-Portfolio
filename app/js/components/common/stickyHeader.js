@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from './navigation';
-import OpenChat from './hocs/openChat'
+import OpenChat from '../live-chat/openChat'
 import LiveChatStatus from './liveChatStatus';
 import ReactGA from'react-ga';
 

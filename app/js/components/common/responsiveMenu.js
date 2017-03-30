@@ -23,6 +23,7 @@ export default class ResponsiveMenu extends React.Component {
                         <li><Link to="/#about" onClick={close.bind(this)}>About</Link></li>
                         <li><Link to="/#skills" onClick={close.bind(this)}>Skills</Link></li>
                         <li><Link to="/#work" onClick={close.bind(this)}>Work</Link></li>
+                        <li><Link to="/training" onClick={close.bind(this)}>Training</Link></li>
                         <li><a href='/#contact' onClick={close.bind(this)}>Contact</a></li>
                     </ul>
                 </nav>

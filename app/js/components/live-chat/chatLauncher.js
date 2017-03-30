@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import OpenChat from '../common/hocs/openChat'
+import OpenChat from './openChat'
 import {connect} from 'react-redux';
 
 class LiveChatLauncher extends Component {

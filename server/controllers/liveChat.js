@@ -141,7 +141,7 @@ exports.chatMessage = function(socket, chat, message) {
         chat.in(message.room).emit('chatMessage', message);
         console.log('User:', JSON.stringify(users[message.room], null, 2));
     } else {
-        console.log("dino");
+
         _handleQueryUser(socket, chat, message);
     }
 };

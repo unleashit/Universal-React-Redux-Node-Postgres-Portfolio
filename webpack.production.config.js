@@ -49,7 +49,8 @@ module.exports = {
                 warnings: false,
                 screw_ie8: true
             },
-            comments: false
+            comments: false,
+            sourceMap: false
         }),
         new webpack.DefinePlugin({
             'process.env': {
@@ -84,8 +85,12 @@ module.exports = {
                 test: /\.js?$/,
                 loader: 'babel-loader',
                 include: path.join(__dirname, 'app'),
-                exclude: /(node_modules|bower_components)/,
+                //exclude: /(node_modules|bower_components)/,
                 query: {
+                    presets: [
+                        'es2015',
+                        'react'
+                    ],
                     plugins: [
                         [
                             'transform-runtime',
@@ -96,11 +101,11 @@ module.exports = {
                     ]
                 }
             },
-            {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })},
+            {test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' })},
             {
                 test: /\.scss$/, loader: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
-                    loader: 'css-loader?sourceMap!postcss-loader!sass-loader?sourceMap',
+                    loader: 'css-loader!postcss-loader!sass-loader',
                     // includePaths: [path.resolve(__dirname, "./app/scss"), path.resolve(__dirname, "./app/js/reactHelpDeskAdmin/scss")]
                 })
             },

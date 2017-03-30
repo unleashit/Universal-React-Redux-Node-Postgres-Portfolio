@@ -23,6 +23,7 @@ class Root extends Component {
                 function downloadJSAtOnload() {
                     var element = document.createElement("script");
                     element.src = "/js/global.min.js";
+                    element.async = true;
                     document.body.appendChild(element);
                 }
                 window.addEventListener("load", downloadJSAtOnload, false);`;

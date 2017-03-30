@@ -24,7 +24,7 @@ var dev = require('webpack-dev-middleware');
 var hot = require('webpack-hot-middleware');
 var config = require('../webpack.config.js');
 
-if (!process.env.NODE_ENV) {
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     const compiler = webpack(config);
 
     app.use(dev(compiler, {

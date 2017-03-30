@@ -17,6 +17,9 @@ export default class Navigation extends React.Component {
         const homeLink = this.props.home ?
             <li className="hidden-xs-down"><Link to="/#home">Home</Link></li> : '';
 
+        const trainingLink = this.props.home ?
+            <li className="hidden-xs-down"><Link to="/training">Training</Link></li> : '';
+
         return (
             <nav>
                 <ul className={this.props.ulClass}>
@@ -26,6 +29,7 @@ export default class Navigation extends React.Component {
                     <li className="hidden-xs-down"><Link to="/#skills">Skills</Link></li>
                     {position2}
                     <li className="hidden-xs-down"><Link to="/#work">Work</Link></li>
+                    {trainingLink}
                     <li className="hidden-xs-down"><Link to='/#contact'>Contact</Link></li>
                 </ul>
             </nav>
