@@ -112,21 +112,21 @@ module.exports = {
             {test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
-                    {
-                        loader: 'image-webpack-loader',
-                        query: {
-                            optipng: {
-                                optimizationLevel: 6
-                            },
-                            mozjpeg: {
-                                quality: 78
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4
-                            }
-                        }
-                    }
+                    // {
+                    //     loader: 'image-webpack-loader',
+                    //     query: {
+                    //         optipng: {
+                    //             optimizationLevel: 6
+                    //         },
+                    //         mozjpeg: {
+                    //             quality: 78
+                    //         },
+                    //         pngquant: {
+                    //             quality: '65-90',
+                    //             speed: 4
+                    //         }
+                    //     }
+                    // }
                 ]
             },
             {

@@ -13,7 +13,7 @@ import { __GOOGLE_ANALYTICS__ } from '../../config/APPconfig';
 const isClient = typeof document !== 'undefined';
 
 if (isClient) {
-    require('smoothscroll-polyfill').polyfill();
+    // require('smoothscroll-polyfill').polyfill();
 
     const store = configureStore(window.__INITIAL_STATE__);
 
@@ -32,8 +32,16 @@ if (isClient) {
                 const id = hash.replace('#', '');
                 const element = document.getElementById(id);
                 if (element) {
-                    isIE ? element.scrollIntoView() :
-                        element.scrollIntoView({ behavior: 'smooth' });
+                    if (id === 'home') {
+                        // temp fix: after recent browser updates (at least Chrome), no longer smooth scrolling to top
+                        // Firefox was fine but haven't tested in other browsers so changing globally for now
+                        history.pushState("", document.title, window.location.pathname);
+                        window.scrollTo(0, 0);
+                    } else {
+                        isIE
+                            ? element.scrollIntoView() // IE smooth scroll behavior weird so remove
+                            : element.scrollIntoView({behavior: 'smooth'});
+                    }
                 }
                 ReactGA.event({
                     category: 'Navigation',

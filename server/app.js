@@ -18,13 +18,13 @@ var models = require("./models");
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
 
-// configure webpack middleware
-var webpack = require('webpack');
-var dev = require('webpack-dev-middleware');
-var hot = require('webpack-hot-middleware');
-var config = require('../webpack.config.js');
-
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+
+    // configure webpack middleware
+    const webpack = require('webpack');
+    const dev = require('webpack-dev-middleware');
+    const hot = require('webpack-hot-middleware');
+    const config = require('../webpack.config.js');
     const compiler = webpack(config);
 
     app.use(dev(compiler, {
@@ -66,8 +66,8 @@ app.use((req, res, next) => {
 });
 
 // Sessions and auth
-var DBconfig = require('../config/DBconfig.json')[process.env.NODE_ENV || 'development'];
-var mysqlStoreOptions = {
+const DBconfig = require('../config/DBconfig.json')[process.env.NODE_ENV || 'development'];
+const mysqlStoreOptions = {
     host: DBconfig.host,
     port: 3306,
     user: DBconfig.username,
@@ -76,7 +76,7 @@ var mysqlStoreOptions = {
     checkExpirationInterval: 3600000,
     expiration: 432000000,
 };
-var sessionStore = new MySQLStore(mysqlStoreOptions);
+const sessionStore = new MySQLStore(mysqlStoreOptions);
 app.use(session({
     key: APPconfig.__SESSION_KEY__,
     secret: APPconfig.__SESSION_SECRET__,

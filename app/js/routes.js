@@ -11,7 +11,7 @@ export default (
     <Route component={App}>
         <Route path='/' component={Home}>
             <Route path="/index:hashRoute" component={Home} />
-        </Route>S
+        </Route>
         <Route path="/portfolio" component={PortfolioDetail} >
             <Route path="/portfolio/:slug" component={PortfolioItemDetail} />
         </Route>

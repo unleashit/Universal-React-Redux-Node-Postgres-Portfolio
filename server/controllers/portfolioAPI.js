@@ -30,7 +30,8 @@ exports.getPortfolioItem = function (req, res) {
 
             models.Portfolio.findAll({
                     attributes: ['id', 'url_slug', 'sort'],
-                    where: {
+                    where:
+                        {
                         sort: {$gt: mainItem.dataValues.sort}
                     },
                     order: '`sort` ASC',

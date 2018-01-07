@@ -73,9 +73,12 @@ class Home extends Component {
             }
         }
 
-        setupAnimation('about', 'animateAbout', this.props);
-        setupAnimation('work', 'animatePortfolio', this.props);
-        setupAnimation('contact-area', 'animateContact', this.props);
+        [
+            [ 'about', 'animateAbout', this.props ],
+            [ 'work', 'animatePortfolio', this.props ],
+            [ 'contact-area', 'animateContact', this.props ]
+        ]
+            .forEach((animation) => setupAnimation.apply(this, animation));
     }
     
     openBurger() {

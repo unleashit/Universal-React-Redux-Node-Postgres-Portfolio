@@ -1,7 +1,7 @@
-import { shallow } from 'enzyme';
-
-describe('(Component) LiveChat', () => {
-  it('exists', () => {
-
-  });
-});
+// import { shallow } from 'enzyme';
+//
+// describe('(Component) LiveChat', () => {
+//   it('exists', () => {
+//
+//   });
+// });

@@ -14,19 +14,24 @@ class Root extends Component {
         return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
     }
 
-    renderMainScript() {
-        if (!process.env.NODE_ENV) {
+    lazyLoadScripts() {
+            const innerHtml = `
+                function lazyLoadScript(scrpt) {
+                    var element = document.createElement("script");
+                    element.src = scrpt;
+                    element.async = true;
+                    document.body.appendChild(element);
+                }`;
+            return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
+    }
+
+    lazyLoadScript(scrpt) {
+        if (!process.env.NODE_ENV && scrpt.global) {
             return <script src={'/js/global.js'}></script>
 
         } else {
             const innerHtml = `
-                function downloadJSAtOnload() {
-                    var element = document.createElement("script");
-                    element.src = "/js/global.min.js";
-                    element.async = true;
-                    document.body.appendChild(element);
-                }
-                window.addEventListener("load", downloadJSAtOnload, false);`;
+                window.addEventListener('load', lazyLoadScript.bind(null, '${scrpt.src}'), false);`;
             return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
         }
     }
@@ -64,17 +69,19 @@ class Root extends Component {
                 {/*<meta name="twitter:description" content="Full Stack Engineer in the San Francisco Bay Area specializing in Front End Development, React, Angular, Node.Js, Drupal, UI/UX." />*/}
                 {/*<meta name="twitter:image" content="https://#" />*/}
                 {head.link.toComponent()}
+                {this.lazyLoadScripts()}
             </head>
             <body>
-            <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}}/>
-            {this.renderEnvironment()}
-            {this.renderInitialState()}
-            {head.script.toComponent()}
-            {this.renderMainScript()}
+                <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}}/>
+                {this.renderEnvironment()}
+                {this.renderInitialState()}
+                {head.script.toComponent()}
+                {this.lazyLoadScript({src: '/js/global.min.js', global: true})}
+                {this.lazyLoadScript({src: 'https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/11.0.2/js/smooth-scroll.min.js'})}
             </body>
             </html>
-    );
-    }
+            );
+        }
     }
 
     export default Root;

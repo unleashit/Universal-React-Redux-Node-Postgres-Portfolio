@@ -13,7 +13,7 @@ class PreReg extends Component {
         const chatOnline = this.props.remoteId ? <div>
             <p>Say hello. Please enter your name to begin.</p>
             <p className="disclaimer"><i>Disclaimer: I may or may not be able to respond right away, but if I can't I will receive your message and get back to you soon.</i></p></div> :
-            <p>I'm not available right now, but feel free to leave your name, email and message and I'll back to you shortly.
+            <p>I'm not available right now, but feel free to leave your name, email and message and I'll get back to you shortly.
             <br /><br />You can also reach me at <br />(707) 280-3629.</p>;
 
         const chatOffline = !this.props.remoteId ? <div className="registration-message form-group">
