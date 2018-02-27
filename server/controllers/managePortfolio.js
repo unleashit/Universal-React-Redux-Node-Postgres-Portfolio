@@ -1,7 +1,12 @@
 var models = require('../models/index.js');
 var sequelize = require('sequelize');
 
-var portfolioTags = ['Joomla', 'Drupal', 'Wordpress', 'Angular', 'React', 'jQuery', 'Javascript', 'Html', 'CSS', 'Design/UX', 'Frontend', 'Backend', 'PHP', 'MySql', 'Ecommerce', 'AWS', 'Devops', 'Other'];
+var portfolioTags = [
+    'Joomla', 'Drupal', 'Wordpress', 'Angular',
+    'React', 'jQuery', 'Javascript', 'Html', 'CSS',
+    'Design/UX', 'Frontend', 'Backend', 'PHP', 'MySql',
+    'PostgreSQL', 'Ecommerce', 'AWS', 'Devops', 'Other'
+];
 
 //var bodyParser = require('body-parser');
 //router.use(bodyParser.urlencoded({ extended: true }));
