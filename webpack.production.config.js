@@ -67,7 +67,10 @@ module.exports = {
             purifyOptions: {
                 minify: false,
                 rejected: true,
-                whitelist: ['*nav*', '*navbar*', 'bg-inverse', '*live-chat*', '*input-group*', 'post-input', 'post-message']
+                whitelist: [
+                    '*nav*', '*navbar*', 'bg-inverse', '*live-chat*',
+                    '*input-group*', 'post-input', 'post-message', 'fa-pencil'
+                ]
             }
         }),
         new OptimizeCssAssetsPlugin({
