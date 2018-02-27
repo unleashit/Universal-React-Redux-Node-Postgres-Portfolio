@@ -1,6 +1,7 @@
 import * as controller from './helpDeskController'
 import * as render from './helpDeskRender'
 import io from 'socket.io-client';
+import filePicker from './adminPortfolio';
 import config from '../../../config/APPconfig';
 
 import './scss/admin.scss';
@@ -45,6 +46,10 @@ export function deleteUser(userID) {
 }
 
 function init() {
+    // init listeners on admin portfolio list page
+    filePicker('.main-image-picker');
+    filePicker('.gallery-images-picker');
+
     if (!userList) return;
 
     socket.on('connect', controller.socketConnect );
