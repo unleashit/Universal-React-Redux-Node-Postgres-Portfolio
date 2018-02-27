@@ -10,32 +10,32 @@ const TrainingMain = (props) => {
             <h2>Front End/Full Stack Development Bootcamp</h2>
             <img src={trainingImg} alt="Front End Development Bootcamp" className="bootcamp-img"/>
             <p>Over the years I have helped hundreds of students from many backgrounds, interests and levels of experience unravel the mysteries of web development. Whether you are a brand new developer or just need to learn the front end, I can teach you best practices and help you get off to a proper and <strong>current</strong> start.</p>
-            <p>This program focuses on the fundamentals and the art of front end engineering and as such is <strong>not for casual students</strong>. If for example you just need to make a site/app for your business and have limited time, professional training would probably be overkill. You would be better off hiring it out or going with a cloud service. But if you are interested in a career as a Front End or Full Stack Developer, or maybe if the front end has been a missing link in your CS program or code school, this might be for you.</p>
-            <p>What I am offering beginners or intermediates is a group of rigorous courses divided into 3 parts. The first two are for Front End while the third is optional if you are interested in the Full Stack. This is not a dusty old program where the skills you learn are already obsolete. We will prioritize the fundamentals because they are more or less a constant, but we will also be using some of the very latest tools, patterns and best practices.</p>
+            <p>This program focuses on gaining an understanding of the <strong>fundamentals</strong> of development and as such is not for casual students. If for example you just need to make a site/app for your business and have limited time, this is probably not for you. On the other hand if you are interested in a career as a Front End or Full Stack Developer, or maybe if the front end has been a missing link in your CS program or code school, this could be right up your alley.</p>
+            <p>What I am offering beginners or intermediates is a group of courses divided into 3 parts. The first two are enough if you're mainly concerned about front end. A third part is available if you'd like to take things a step further and explore the back end (full stack). This is not a dusty old program where the skills you learn are already obsolete. We will prioritize the fundamentals because they are more or less a constant, but we will also be using some of the very latest tools, patterns and best practices.</p>
 
             <div className="part1">
                 <h3>Part 1: Html 5 and CSS</h3>
 
-                <p><strong>Lecture Time:</strong> Approximately 8-12 two hour sessions | <strong>Homework Time:</strong> 4-6 hours /week | <strong>Prerequisite:</strong> none, anyone is welcome!</p>
-                <p>Part one begins with a survey into the various technologies that make up the stack and begins with HTML and CSS. These days the hipsters and pundits aren't talking about HTML/CSS as much as they used to, partly because they're not as fresh and exciting and partly because it is sometimes incorrectly assumed that frameworks like Bootstrap are enough. Unless your focus ends up on simple prototypes that look like every other Bootstrap app (in which case you can expect that your app will become as popular as going to the Dentist), this is dangerous thinking! Limited HTML/CSS ability will also hinder your Javascript,  since they all work together hand in hand. In this program, CSS and HTML are treated as first class citizens. This will make your skills more marketable and the entire road ahead much easier.</p>
-                <p>Note that this track (or demonstrated knowledge) is a prerequisite for the rest of the program.</p>
+                <p><strong>Lecture Time:</strong> Approximately 8-10 two hour sessions | <strong>Homework Time:</strong> 3-6 hours /week | <strong>Prerequisite:</strong> none, anyone is welcome!</p>
+                <p>Part one begins with a survey into the various technologies that make up the web stack then focuses on HTML and CSS. It's easy to get the impression that html/css are "easy". This is because these days the pundits aren't talking about them as much, due to the fact that they're not as fresh and exciting as they used to be. Many tutorials glance over html/css and tend to give you the assumption that frameworks like Bootstrap will take care of things. But unless your focus ends up on simple prototypes that look like every other Bootstrap app (in which case you can expect that your app will become as popular as going to the Dentist), this is dangerous thinking! The ability to create a user interface involves html, css and javascript, at a minimum. In this program, CSS and HTML are treated as first class citizens. This will make your skills more marketable and the entire road ahead much easier.</p>
+                <p>Note that this track or demonstrated knowledge is a prerequisite for the rest of the program.</p>
 
                 <AccordionPane>
                     <h4 className="faq-header">Part I goals <span> - click to expand</span></h4>
                     <div className="faq-body">
                         <ul>
-                            <li>Start with a talk and see some demos about the various front end (and some backend)technologies, current trends, and where/why they come into play</li>
-                            <li>Set up a good front end environment. Choose and configure a code editor, install Node.js, Git and other tools</li>
+                            <li>Start with a talk and see some demos about the various web technologies, current trends, and where/why they come into play</li>
+                            <li>Set up a real front end environment. Choose and configure a code editor, install Node, Git and other tools</li>
                             <li>Git, Github and terminal basics. We will use Git throughout the course to communicate and collaborate on projects</li>
-                            <li>Basics of html5 and css including the dom, cascade and inheritance, box model, inline &amp; block, layout strategies and more</li>
-                            <li>Proper use of semantic markup and metadata for search engines and machine scraping</li>
+                            <li>Basics of html5 and css3 including the dom, cascade and inheritance, box model, inline vs. block, layout strategies and more</li>
+                            <li>Proper use of semantic markup and metadata for search engines, accessibility and machine scraping</li>
                             <li>CSS resets for normalizing browser compatibility</li>
                             <li>Creating a simple blog style web page with the above strategies applied, basic styling but no layout yet</li>
                             <li>Creating a more detailed and interesting responsive home page with some layout challenges</li>
-                            <li>Adding an interior page that shares a template but has layout and other changes</li>
-                            <li>Working with media queries and responsive, fluid layouts that adapt to all screen sizes</li>
+                            <li>Adding an interior pages that share a main template but with some layout and other changes</li>
+                            <li>Working with flexbox and media queries to create responsive, fluid layouts that adapt to all screen sizes</li>
                             <li>CSS animation basics</li>
-                            <li>Using Chrome Developer Tools to debug code in the browser, and online tools to test and identify issues</li>
+                            <li>Using Chrome Developer Tools to debug code in the browser and online tools to test and identify issues</li>
                             <li>Basic FTP deployment</li>
                             <li>Recommended: Bootstrap and Sass</li>
                             <li>Optional: Any areas of interest that you might have like translating a design from a mockup, etc.</li>
@@ -45,9 +45,9 @@ const TrainingMain = (props) => {
             </div>
 
             <div className="part2">
-                <h3>Part 2: Javascript and Front End Tools</h3>
-                <p><strong>Lecture Time:</strong> Approximately 10-15 two hour sessions | <strong>Homework Time:</strong> 4-6 hours /week | <strong>Prerequisites:</strong> Part 1 or skills test</p>
-                <p>These days without a good knowledge of javascript it will be hard to land a job. It is used for everything from user interface interactivity in the browser to the majority of application logic. This course has two goals. First to give you a good grasp on the fundamentals of the language. Second to give you some practice implementing the typical needs of client side web apps. Our main focus will be on vanilla ES6 because this is the most important knowledge to have, but if your time and budget allows we will also cover React/Redux. We will also be covering modern tooling including NPM, Babel, Webpack, and SASS.</p>
+                <h3>Part 2: Javascript and Tooling</h3>
+                <p><strong>Lecture Time:</strong> Approximately 10-15 two hour sessions | <strong>Homework Time:</strong> 3-6 hours /week | <strong>Prerequisites:</strong> Part 1 or demonstrate ability</p>
+                <p>For the better or worse, Javascript is now the world's most popular programing language. It is used for everything from user interface interactivity in the browser to the entirety of an application's logic. This course has two goals. First to give you a good grasp on the fundamentals of the language and programming habits. Second to give you some practice implementing the typical needs of client side web apps. Our main focus will be on vanilla ES6 because this is the most important knowledge to have, but if your time and budget allows we will also cover React/Redux. We will also be covering the modern frontend development environment including NPM, Babel, Eslint and Webpack.</p>
 
                 <p>Part one (or demonstrated knowledge) is a prerequisite for this track.</p>
 
@@ -56,28 +56,26 @@ const TrainingMain = (props) => {
                     <div className="faq-body">
                         <ul>
                             <li>Start with a talk about how it works, the common frameworks and libraries, how to best ask questions, find documentation, etc.</li>
-                            <li>Javascript syntax: operators, primitives, arrays, objects, loops, functions, classes, ES6+</li>
-                            <li>Javascript scope (including what's new in ES6+)</li>
-                            <li>Common Javascript patterns including object literal, classical and prototypal inheritance, MVC and Functional Programming</li>
+                            <li>Javascript ES6+ syntax: operators, primitives, arrays, objects, loops, functions, classes, etc.</li>
+                            <li>Javascript scope</li>
+                            <li>Common Javascript patterns including object literal, classical &amp; prototypal inheritance, composition, closures, MVC and functional programming</li>
                             <li>Higher order functions like filter, map and reduce</li>
                             <li>Dom selection/manipulation</li>
                             <li>Event handling and common UI interactions</li>
                             <li>Forms and form validation</li>
-                            <li>Using browser dev tools to debug, set breakpoints, etc.</li>
+                            <li>Using browser dev tools to debug, set breakpoints, view network requests, etc.</li>
                             <li>Using a module loader (Webpack) and the ES6 module pattern</li>
-                            <li>Using Webpack to compile ES6+, SASS, lint using ESLint, live reload, and to automate asset management for better front end performance</li>
-                            <li>Working with REST, JSON and AJAX, understanding the HTTP(S) lifecycle</li>
-                            <li>Asynchronous Javascript and callbacks vs. Promise vs. Async/Await patterns</li>
-                            <li>Working with 3rd party APIs and generating a mock database/api for prototyping or testing with Json Web Server</li>
-                            <li>Various small Javascript projects in vanilla Javascript and optionally React</li>
-                            <li>Recommended: Introduction to vanilla React using built in state management</li>
-                            <li>Recommended: Adding Redux for state and event management</li>
-                            <li>Recommended: Higher order components</li>
-                            <li>Recommended: Using community React components like React Router, Redux Form, UI components, etc.</li>
-                            <li>Recommended: Redux dev tools for state based debugging (aka "Time Travel", with Flux Capacitor!)</li>
-                            <li>Optional: Introduction to jQuery. jQuery is less important nowadays, but since it's still common it's good idea to at least learn the basics</li>
-                            <li>Optional: Intro to unit testing with Mocha and Chai</li>
-                            <li>Optional: Areas of interest</li>
+                            <li>Using Webpack to compile ES6+, SASS, lint using ESLint, live reload, and to automate asset management to acheive better front end performance</li>
+                            <li>Working with REST, JSON and AJAX, understanding the HTTP lifecycle</li>
+                            <li>Asynchronous Javascript: callbacks vs. Promise vs. Async/Await</li>
+                            <li>Working with 3rd party APIs and generating a mock database/api with Json Web Server for prototyping</li>
+                            <li>Various small Javascript projects in vanilla Javascript</li>
+                            <li>Recommended: Intro to unit testing with Mocha and Chai or Jest</li>
+                            <li>Recommended: Working with a JS framework (React)</li>
+                            <li>Recommended: Redux for managing state</li>
+                            <li>Recommended: More advanced React patterns and/or addons like React Router, Redux Form, UI toolkits, etc. </li>
+                            <li>Optional: Introduction to jQuery. jQuery is less important nowadays, but since it's still common it can be a good idea to at least learn the basics</li>
+                            <li>Optional: Any areas of interest</li>
                         </ul>
                     </div>
                 </AccordionPane>
@@ -85,8 +83,8 @@ const TrainingMain = (props) => {
 
             <div className="part3">
                 <h3>Part 3 (optional): Full Stack </h3>
-                <p><strong>Lecture Time:</strong> Approximately 8-15 two hour sessions | <strong>Homework Time:</strong> 5-15+ hours /week | <strong>Prerequisites:</strong> Parts 1 and 2, or skills test</p>
-                <p>When Node started becoming popular around 2011, the writing was on the wall that the lines between front and back end would begin to fade. If you know already Javascript, you've already taken a big step towards full stack. There are a lot of new concepts like databases and servers to learn, but since Node.js is basically Javascript, you already have the biggest piece of the puzzle. Of course the backend is a big area and there are other popular programming languages like Ruby, Java, Python, Go (and countless others), having full stack skills in Javascript is quite valuable and will set you apart. Our focus will be on Node, Express, Mysql and Linux. The reason for Mysql and not a NoSql DB like Mongo, is because once you learn SQL and relational databases, you will have an easier time picking up NoSql than the other way around. Sooner or later it's probably not a bad idea to know both, but the current trend has been more towards RDBMS like Mysql and Postgres (both of which now actually have NoSql data types).</p>
+                <p><strong>Lecture Time:</strong> Approximately 8-15 two hour sessions | <strong>Homework Time:</strong> 3-6++ hours /week | <strong>Prerequisites:</strong> Parts 1 and 2, or demonstrated knowledge</p>
+                <p>When Node started becoming popular around 2011, the writing was on the wall that the lines between front and back end would begin to fade. If you know already Javascript, you've already taken a big step towards full stack. There are a lot of new concepts like databases and servers to learn, and of course there are other popular programming languages like Ruby, Java, Python, Go and many others. That said, since Node.js is basically Javascript, you already have taken the large step. These days having full stack ability in Javascript is quite valuable and will set you apart. Our focus will be on Node, Express, Mysql (or Postgres), Linux and basic devops. How far we go in this section is up to you. You don't have to tackle everything on the backend at once and the following is mainly a recommendation for a good starting point.</p>
 
                 <p>Both parts one and two (or demonstrated knowledge) are prerequisites for moving into the Full Stack.</p>
 
@@ -96,27 +94,27 @@ const TrainingMain = (props) => {
                         <ul>
                             <li>Start with a talk about the various technologies, programming languages and infrastructures involved in the back end, along with some of the pros and cons</li>
                             <li>Set up an Amazon EC2 or Digital Ocean instance and Introduction to Linux OS</li>
-                            <li>Bash commands, Bash scripting, SSH, Curl and Apt, the Linux package manager</li>
-                            <li>Introduction to the Nginx web server and simple load balancing</li>
+                            <li>Bash commands, simple Bash scripting, SSH, Curl and Apt, the Linux package manager</li>
                             <li>Learn about security and how to harden the server against common threats</li>
-                            <li>Setting up and using Mysql, learning database and SQL basics</li>
+                            <li>Introduction and configuring the Nginx webserver and MySql (or Postgres)</li>
                             <li>Node.js and Javascript on the server</li>
-                            <li>Express.js to handle both traditional routing and expose a REST API</li>
-                            <li>Use Mysql and EJS templates to create dynamic server rendered content</li>
-                            <li>Add registration and login using classic cookie based authentication and Passport.js</li>
-                            <li>Explore and implement some of the modern authentication methods including JWT, Oauth and OpenId (ex: register with Google, etc.)</li>
+                            <li>Express.js to handle both traditional server rendered routing and expose a REST API</li>
+                            <li>SQL basics</li>
+                            <li>Integrate a database with node templates (EJS or Jade/Pug) and with a REST API</li>
+                            <li>Add signup, login and authentication using a stateless JWT (json web token) and/or traditional cookie based with Passport.js</li>
                             <li>Learn CRUD basics (create, read, update, delete) by making a simple Content Management System using Javascript, Node/Express and Mysql</li>
-                            <li>Reuse the signup/authentication modules you created in the previous excercise</li>
-                            <li>Optional: Add pagination and sorting widgets to lists of content in the CMS</li>
-                            <li>Create a Social Network with user posts, comments and likes using React (or plain Javascript if you don't know it), REST, Node/Express and Mysql</li>
-                            <li>Optional: Add a search with typeahead (search suggestions as you type) to the Social Network app</li>
-                            <li>Setting up production Node, Nginx reverse proxy and PM2</li>
-                            <li>Deployment with Git and optionally Flightplan.js. Discussion of newer and more enterprise strategies like Containers, Microservices and cloud services like AWS Lambda or Firebase</li>
-                            <li>Optional: Make a real time chat app with Websockets and Socket.io</li>
-                            <li>Optional: Working with a database ORM like Sequelize</li>
-                            <li>Optional: Universal/Isomorphic React (React on the server)</li>
+                            <li>Deployment with Git. Discussion and/or implementation of newer and more enterprise strategies like containers, microservices and cloud services like AWS Lambda or Firebase</li>
+                            <li>Setting up production Node, SSL, Nginx reverse proxy and PM2</li>
+                            <li>Optional: Add pagination, user filters and sorting widgets to lists of content from the CMS</li>
+                            <li>Optional: Create a full stack social network app with user posts, comments and likes. React on the front end (or plain Javascript if you don't know it), REST API and database on the backend</li>
+                            <li>Optional: Add a search with typeahead (show suggestions as you type) to the Social Network app</li>
+                            <li>Optional: Working with Sequelize, a database ORM for Node</li>
+                            <li>Optional: Alternative authentication methods like JWT, Oauth and OpenId (ex: register with Google, etc.)</li>
+                            <li>Optional: Make a real time app with Websockets</li>
+                            <li>Optional: Universal/Isomorphic React (React on the server for better SEO/performance)</li>
                             <li>Optional: Any areas of interest</li>
                         </ul>
+                        <p>If you have any questions about the program, don't hesitate to ask. I'm always happy to set up a call to answer your questions, explain the program and even talk about your other options in an unbiased way.</p>
                     </div>
                 </AccordionPane>
             </div>
