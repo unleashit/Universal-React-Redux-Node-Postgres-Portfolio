@@ -48,6 +48,7 @@ export function deleteUser(userID) {
 function init() {
     // init listeners on admin portfolio list page
     filePicker('.main-image-picker');
+    filePicker('.mobile-image-picker');
     filePicker('.gallery-images-picker');
 
     if (!userList) return;
