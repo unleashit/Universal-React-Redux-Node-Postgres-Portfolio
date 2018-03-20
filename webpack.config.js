@@ -40,36 +40,36 @@ module.exports = {
             test: /\.js?$/,
             loader: 'babel-loader',
             include: path.join(__dirname, 'app'),
-            query: {
-                plugins: [
-                    ['react-transform', {
-                        'transforms': [{
-                            transform: 'react-transform-hmr',
-                            // If you use React Native, pass 'react-native' instead:
-                            imports: ['react'],
-                            // This is important for Webpack HMR:
-                            locals: ['module']
-                        }]
-                    }],
-                    'transform-object-assign',
-                    'transform-es2015-destructuring',
-                    'transform-object-rest-spread'
-                ]
-            }
+            // query: {
+            //     plugins: [
+            //         ['react-transform', {
+            //             'transforms': [{
+            //                 transform: 'react-transform-hmr',
+            //                 // If you use React Native, pass 'react-native' instead:
+            //                 imports: ['react'],
+            //                 // This is important for Webpack HMR:
+            //                 locals: ['module']
+            //             }]
+            //         }],
+            //         'transform-object-assign',
+            //         'transform-es2015-destructuring',
+            //         'transform-object-rest-spread'
+            //     ]
+            // }
             },
-            {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
-            {test: /\.css$/, loaders: ["style-loader", "css-loader?sourceMap"]},
-            {test: /\.scss$/, loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]},
+            // {test: /\.js$/, use: "eslint-loader", exclude: /node_modules/},
+            {test: /\.css$/, use: ["style-loader", "css-loader?sourceMap"]},
+            {test: /\.scss$/, use: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]},
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: [
+                use: [
                     'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
                     //'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             {
                 test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                loader: 'file-loader?name=fonts/[name].[ext]'
+                use: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     }
