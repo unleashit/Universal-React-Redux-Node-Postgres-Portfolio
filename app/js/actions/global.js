@@ -1,4 +1,4 @@
-import ReactGA from'react-ga';
+import { ReactGA } from '../libs/utils';
 
 export const TOGGLE_HAMBURGER = 'TOGGLE_HAMBURGER';
 export const OPEN_HAMBURGER = 'OPEN_HAMBURGER';

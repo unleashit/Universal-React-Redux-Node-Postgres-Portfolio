@@ -1,3 +1,5 @@
+import { default as RGA } from'react-ga';
+
 function getElemScrollPos(elem) {
     return document.getElementById(elem).getBoundingClientRect().top;
 }
@@ -48,3 +50,16 @@ export function saveChatState(state) {
         console.log('Error when saving state to sessionStorage: ', err);
     }
 }
+
+// ReactGA isn't server render friendly.
+// Need to wrap calls to it
+export const ReactGA = {
+    event: function({ category, action}) {
+        if (getEnvironment('client')) {
+            RGA.event({
+                category,
+                action
+            });
+        }
+    }
+};

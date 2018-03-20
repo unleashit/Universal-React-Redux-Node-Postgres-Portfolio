@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import LiveChat from '../components/live-chat/liveChat';
 import * as chatActions from '../actions/liveChat';

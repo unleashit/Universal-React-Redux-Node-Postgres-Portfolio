@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import PreReg from './preReg';
 import PostReg from './postReg';
 import CloseButton from '../common/closeButton';
@@ -35,10 +36,10 @@ class LiveChat extends Component {
 }
 
 LiveChat.propTypes = {
-    onSubmit: React.PropTypes.func.isRequired,
-    message: React.PropTypes.string.isRequired,
-    messages: React.PropTypes.array.isRequired,
-    registered: React.PropTypes.bool.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    message: PropTypes.string.isRequired,
+    messages: PropTypes.array.isRequired,
+    registered: PropTypes.bool.isRequired
 };
 LiveChat.defaultProps = {};
 

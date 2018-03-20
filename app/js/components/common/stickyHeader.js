@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './navigation';
 import OpenChat from '../live-chat/openChat'
 import LiveChatStatus from './liveChatStatus';
-import ReactGA from'react-ga';
+import { ReactGA } from '../../libs/utils';
 
 export default class StickyHeader extends React.Component {
     render() {

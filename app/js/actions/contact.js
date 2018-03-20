@@ -1,6 +1,6 @@
 import {__API_URL__} from '../../../config/APPconfig';
 import {reset} from 'redux-form';
-import ReactGA from'react-ga';
+import { ReactGA } from '../libs/utils';
 
 export const SUBMIT_CONTACT_INVALID = 'SUBMIT_CONTACT_INVALID';
 export const SUBMIT_CONTACT_SENDING = 'SUBMIT_CONTACT_SENDING';

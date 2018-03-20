@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node server/app.js",
+    "start": "node server/app.js --mode development",
     "nodemon": "nodemon --watch server server/app.js",
     "prod": "NODE_ENV=production npm run build && NODE_ENV=production node server/app.js",
     "p": "NODE_ENV=production node server/app.js",
@@ -50,7 +50,7 @@
     "react-ga": "^2.4.1",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
+    "react-router": "^3.2.1",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
     "redux-thunk": "^2.1.0",

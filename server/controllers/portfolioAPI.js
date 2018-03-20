@@ -34,7 +34,7 @@ exports.getPortfolioItem = function (req, res) {
                         {
                         sort: {$gt: mainItem.dataValues.sort}
                     },
-                    order: '`sort` ASC',
+                    order: [['sort', 'ASC']],
                     limit: 1
             })
             .then((next) => {
@@ -43,7 +43,7 @@ exports.getPortfolioItem = function (req, res) {
                         where: {
                             sort: {$lt: mainItem.dataValues.sort}
                         },
-                        order: '`sort` DESC',
+                        order: [['sort', 'DESC']],
                         limit: 1
                 })
                 .then((prev) => {

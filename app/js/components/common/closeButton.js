@@ -1,6 +1,4 @@
-import React, {
-    PropTypes,
-} from 'react';
+import React from 'react';
 
 const CloseButton = (props) => {
     return (

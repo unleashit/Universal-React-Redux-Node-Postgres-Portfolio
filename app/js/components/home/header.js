@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Navigation from '../common/navigation';
 import Hamburger from '../common/hamburger';
-import ReactGA from'react-ga';
+import { ReactGA } from '../../libs/utils';
 
 export default class Header extends React.Component {
 

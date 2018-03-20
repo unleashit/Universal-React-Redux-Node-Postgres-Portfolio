@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -73,9 +74,9 @@ class PostReg extends Component {
 }
 
 PostReg.propTypes = {
-    onChange: React.PropTypes.func.isRequired,
-    message: React.PropTypes.string.isRequired,
-    messages: React.PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    message: PropTypes.string.isRequired,
+    messages: PropTypes.array.isRequired,
 };
 PostReg.defaultProps = {};
 

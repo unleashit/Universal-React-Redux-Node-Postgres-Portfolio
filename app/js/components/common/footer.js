@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ContactForm from './contactForm';
 import OpenChat from '../live-chat/openChat';
-import ReactGA from'react-ga';
+import { ReactGA } from '../../libs/utils';
 import {animation} from '../../libs/utils';
 
 class Footer extends React.Component {
