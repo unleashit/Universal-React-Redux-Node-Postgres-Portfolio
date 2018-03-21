@@ -57,7 +57,7 @@ export default class About extends React.Component {
                         <div className="skill half" style={getColor()}>NodeJs</div>
                         <div className="skill half" style={getColor()}>React Native</div>
                         <div className="skill half" style={getColor()}>Php</div>
-                        <div className="skill half" style={getColor()}>MySql</div>
+                        <div className="skill half" style={getColor()}>Postgres</div>
                         <div className="skill half" style={getColor()}>Linux</div>
                         <div className="skill half" style={getColor()}>Nginx, Apache</div>
                         <div className="skill half" style={getColor()}>Drupal</div>

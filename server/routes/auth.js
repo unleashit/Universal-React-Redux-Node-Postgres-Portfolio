@@ -43,31 +43,6 @@ router.post("/login", function(req, res, next) {
     failureFlash : true
 }));
 
-router.post("/auth/github", function(req, res, next) {
-    var pattern = /^\s*$/;
-    if (pattern.test(req.body.username) || pattern.test(req.body.password)) {
-        res.render('login', {message: 'Please enter a username and password'});
-    } else {
-        next();
-    }
-}, passport.authenticate('github', {
-    scope: [ 'user:email' ]
-}));
-
-router.get('/auth/github',
-    passport.authenticate('github', { scope: [ 'user:email' ] }));
-
-router.get('/auth/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
-        // Successful authentication, redirect home.
-        // res.send({
-        //     accessToken: req.user.github_access_token,
-        //     refreshToken: req.user.github_refresh_token
-        // });
-        res.redirect('/admin/portfolio');
-    });
-
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/login');

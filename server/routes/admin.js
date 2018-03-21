@@ -18,9 +18,11 @@ var storage = multer.diskStorage({
         cb(null, __dirname + '/../../app/images/portfolio')
     },
     filename: function (req, file, cb) {
+        console.dir(file);
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err);
-            cb(null, raw.toString('hex') + path.extname(file.originalname));
+            const fp = path.parse(file.originalname);
+            cb(null, fp.name.replace(/\s/ig, '') + '-' + raw.toString('hex')  + fp.ext);
         })
     }
 });

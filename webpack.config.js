@@ -21,6 +21,7 @@ var bsync = new BrowserSyncPlugin(
 );
 
 module.exports = {
+    mode: 'development',
     devtool: '#source-map',
     entry: {
         "global": ['webpack-hot-middleware/client', './app/js/index.js'],
@@ -38,24 +39,8 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js?$/,
-            loader: 'babel-loader',
+            loader: 'babel-loader?cacheDirectory',
             include: path.join(__dirname, 'app'),
-            // query: {
-            //     plugins: [
-            //         ['react-transform', {
-            //             'transforms': [{
-            //                 transform: 'react-transform-hmr',
-            //                 // If you use React Native, pass 'react-native' instead:
-            //                 imports: ['react'],
-            //                 // This is important for Webpack HMR:
-            //                 locals: ['module']
-            //             }]
-            //         }],
-            //         'transform-object-assign',
-            //         'transform-es2015-destructuring',
-            //         'transform-object-rest-spread'
-            //     ]
-            // }
             },
             // {test: /\.js$/, use: "eslint-loader", exclude: /node_modules/},
             {test: /\.css$/, use: ["style-loader", "css-loader?sourceMap"]},

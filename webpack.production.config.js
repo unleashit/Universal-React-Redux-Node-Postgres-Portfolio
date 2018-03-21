@@ -6,9 +6,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var Purify = require("purifycss-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
         admin: './app/js/reactHelpDeskAdmin/admin.js'
@@ -47,29 +47,21 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {context: './app/images', from: '**/**', to: 'images'},
-        ])
+        ]),
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true
+        }),
+        // ignore locales in moment.js
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
     module: {
         rules: [
             {
                 test: /\.js?$/,
                 loader: 'babel-loader',
-                include: path.join(__dirname, 'app'),
-                exclude: /(node_modules|bower_components)/,
-                // query: {
-                //     presets: [
-                //         'es2015',
-                //         'react'
-                //     ],
-                //     plugins: [
-                //         [
-                //             'transform-runtime',
-                //             'transform-object-assign',
-                //             'transform-es2015-destructuring',
-                //             'transform-object-rest-spread'
-                //         ]
-                //     ]
-                // }
+                // include: path.join(__dirname, 'app'),
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/,

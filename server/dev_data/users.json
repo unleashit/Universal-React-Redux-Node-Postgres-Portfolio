@@ -4,10 +4,5 @@
     "id": "1",
     "useraccess": 3,
     "password": "123"
-  },
-  {
-    "email": "maggie@thecat.com",
-    "id": "2",
-    "password": "123"
   }
 ]

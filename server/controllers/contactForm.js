@@ -20,7 +20,7 @@ exports.handleContactSubmit = function(req, res) {
         <h3>New Contact</h3>
         From: ${req.body.name}<br>
         email: ${req.body.email}<br>
-        phone: ${req.body.phone}<br><br>
+        phone: ${req.body.phone || 'n/a'}<br><br>
         ${textarea}
     `;
 
@@ -38,5 +38,5 @@ exports.handleContactSubmit = function(req, res) {
         });
 
     })
-    .catch(err => console.log('Contact db insertion failure: ' + err ));
+    .catch(err => console.error('Contact db insertion failure: ' + err ));
 };

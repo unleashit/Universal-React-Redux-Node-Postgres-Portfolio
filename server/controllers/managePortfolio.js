@@ -17,7 +17,7 @@ exports.getPortfolio = function(req, res) {
     models.Portfolio
         .findAll({
             limit: 100,
-            order: '`sort` ASC'
+            order: [['sort', 'ASC']]
         })
         .then((items) =>{
             res.render("portfolio", {

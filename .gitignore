@@ -6,3 +6,4 @@ config/APPconfig.js
 config/DBconfig.json
 app/images/portfolio
 npm-debug*.log
+server/production

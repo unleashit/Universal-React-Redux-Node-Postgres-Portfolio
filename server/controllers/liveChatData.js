@@ -4,12 +4,10 @@ var path = require('path');
 var config = require(path.join(__dirname, '..', '..', 'config', 'APPconfig'));
 
 function _insertChatRecords(users) {
-    return models.LiveChat.bulkCreate(users,
-        {
-            updateOnDuplicate: [
-                'name', 'email', 'connected', 'messages', 'date', 'updatedAt'
-            ]
-        });
+    const promises = users.map(user => {
+        return models.LiveChat.upsert(user);
+    });
+    return Promise.all(promises);
 }
 
 function _formatUsers(users) {

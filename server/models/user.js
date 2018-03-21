@@ -19,12 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 1
     }
-    // github_userID: DataTypes.INTEGER,
-    // github_userName: DataTypes.STRING,
-    // github_email: DataTypes.STRING,
-    // github_repos: DataTypes.STRING,
-    // github_access_token: DataTypes.STRING,
-    // github_refresh_token: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
