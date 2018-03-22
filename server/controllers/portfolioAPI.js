@@ -1,4 +1,5 @@
 var models = require('../models/index.js');
+const Op = models.Sequelize.Op;
 
 exports.getPortfolioItems = function (req, res) {
     models.Portfolio
@@ -32,8 +33,8 @@ exports.getPortfolioItem = function (req, res) {
                     attributes: ['id', 'url_slug', 'sort'],
                     where:
                         {
-                        sort: {$gt: mainItem.dataValues.sort}
-                    },
+                            sort: {[Op.gt]: mainItem.dataValues.sort}
+                        },
                     order: [['sort', 'ASC']],
                     limit: 1
             })
@@ -41,7 +42,7 @@ exports.getPortfolioItem = function (req, res) {
                 models.Portfolio.findAll({
                         attributes: ['id', 'url_slug', 'sort'],
                         where: {
-                            sort: {$lt: mainItem.dataValues.sort}
+                            sort: {[Op.lt]: mainItem.dataValues.sort}
                         },
                         order: [['sort', 'DESC']],
                         limit: 1

@@ -2,6 +2,7 @@ var models = require('../models/index.js');
 var sequelize = require('sequelize');
 var path = require('path');
 var config = require(path.join(__dirname, '..', '..', 'config', 'APPconfig'));
+const Op = models.Sequelize.Op;
 
 function _insertChatRecords(users) {
     const promises = users.map(user => {
@@ -76,7 +77,7 @@ exports.queryUsers = function (users, offset) {
     return models.LiveChat.findAndCountAll({
         where: {
             socketId: {
-                $notIn: Object.keys(users).length ? Object.keys(users) : ['']
+                [Op.notIn]: Object.keys(users).length ? Object.keys(users) : ['']
             }
         },
         limit: config.liveChat.adminPerPage || 10,
