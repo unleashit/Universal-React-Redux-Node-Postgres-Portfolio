@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile-nginx
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - app
+  #   # environment:
+  #     # - NGINX_HOST=foobar.com
+  #     # - NGINX_PORT=80
+
+  db:
+    container_name: db
+    build:
+      context: ./
+      dockerfile: Dockerfile-db
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=${JG_DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
+      - POSTGRES_DB=${JG_DATABASE_DATABASE}
+    volumes:
+      - './pgData:/var/lib/postgresql/data/'
+    healthcheck:
+      test: exit 0
+
+  app:
+    container_name: jasongallagher
+    build:
+      context: ./
+      dockerfile: Dockerfile-app
+    volumes:
+      - './app:/src/app'
+      - './server:/src/server'
+      - './config:/src/config'
+      - './package.json:/src/package.json'
+      - './webpack.config.js:/src/webpack.config.js'
+      - './webpack.production.config.js:/src/webpack.production.config.js'
+      - './.babelrc:/src/.babelrc'
+      - './.eslintrc:/src/.eslintrc'
+      - './postcss.config.js:/src/postcss.config.js'
+    ports:
+      - '3100:3100'
+    environment:
+      - DATABASE_USERNAME=${JG_DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${JG_DATABASE_PASSWORD}
+      - DATABASE_DATABASE=${JG_DATABASE_DATABASE}
+      - DATABASE_HOST=${JG_DATABASE_HOST}
+      - DATABASE_PORT=${JG_DATABASE_PORT}
+      - DATABASE_DIALECT=${JG_DATABASE_DIALECT}
+      - SECRET_KEY=${JG_SECRET_KEY}
+      - NODE_ENV=${NODE_ENV}
+    depends_on:
+      - db
+networks:
+  default:
+    external:
+      name: jg

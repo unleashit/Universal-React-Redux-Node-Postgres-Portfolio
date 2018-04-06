@@ -3,7 +3,8 @@ node_modules
 tmp
 dist
 config/APPconfig.js
-config/DBconfig.json
+config/xxxDBconfig.json
+config/secrets.sh
 app/images/portfolio
 npm-debug*.log
 server/production

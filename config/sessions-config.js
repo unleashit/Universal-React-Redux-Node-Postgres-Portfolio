@@ -1,13 +1,13 @@
 var session = require('express-session');
 var config = require('./APPconfig');
-var DBconfig = require('./DBconfig.json')[process.env.NODE_ENV || 'development'];
 
 var options = {
-    host: DBconfig.host,
-    port: DBconfig.port,
-    user: DBconfig.username,
-    password: DBconfig.password,
-    database: DBconfig.database,
+    user: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_DATABASE,
+    dialect: process.env.DATABASE_DIALECT,
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
     checkExpirationInterval: 3600000,
     expiration: 432000000,
 };
@@ -16,12 +16,12 @@ var sessionStore;
 
 module.exports = function (app) {
 
-    if (DBconfig.dialect === 'mysql') {
+    if (options.dialect === 'mysql') {
 
         var MySQLStore = require('express-mysql-session')(session);
         sessionStore = new MySQLStore(options);
 
-    } else if (DBconfig.dialect === 'postgres') {
+    } else if (options.dialect === 'postgres') {
 
         var pg = require('pg');
         var pgSession = require('connect-pg-simple')(session);

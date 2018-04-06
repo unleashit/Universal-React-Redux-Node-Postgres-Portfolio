@@ -1,0 +1,6 @@
+FROM nginx:alpine
+
+# install app dependencies
+# ENV PATH /src/node_modules/.bin:$PATH
+
+COPY ./config/docker/nginx.conf /etc/nginx/nginx.conf

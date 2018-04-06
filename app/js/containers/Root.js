@@ -26,7 +26,7 @@ class Root extends Component {
     }
 
     lazyLoadScript(scrpt) {
-        if (!process.env.NODE_ENV && scrpt.global) {
+        if (process.env.NODE_ENV !== 'production' && scrpt.global) {
             return <script src={'/js/global.js'}></script>
 
         } else {

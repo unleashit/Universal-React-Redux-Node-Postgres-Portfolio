@@ -2,23 +2,23 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
-var bsync = new BrowserSyncPlugin(
-    {
-        host: 'localhost',
-        port: 3000,
-        proxy: 'http://localhost:3100/',
-        // browser: 'chrome',
-        // open: false
-    },
-    // plugin options
-    {
-        // prevent BrowserSync from reloading the page
-        // and let Webpack Dev Server take care of this
-        reload: false
-    }
-);
+// var bsync = new BrowserSyncPlugin(
+//     {
+//         host: 'localhost',
+//         port: 3000,
+//         proxy: 'http://localhost:3100/',
+//         // browser: 'chrome',
+//         // open: false
+//     },
+//     // plugin options
+//     {
+//         // prevent BrowserSync from reloading the page
+//         // and let Webpack Dev Server take care of this
+//         reload: false
+//     }
+// );
 
 module.exports = {
     mode: 'development',
@@ -30,17 +30,41 @@ module.exports = {
     output: {
         path: __dirname + '/dist/',
         filename: "js/[name].js",
-        publicPath: 'http://localhost:3100/'
+        publicPath: '/'
     },
+    // devServer: {
+    //     host: '0.0.0.0',
+    // },
+    // watchOptions: {
+    //     ignored: /node_modules/,
+    //     aggregateTimeout: 300,
+    //     poll: 500
+    //   },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        bsync
+        // bsync
     ],
     module: {
         rules: [{
             test: /\.js?$/,
             loader: 'babel-loader?cacheDirectory',
             include: path.join(__dirname, 'app'),
+            query: {
+                plugins: [
+                    ['react-transform', {
+                        'transforms': [{
+                            transform: 'react-transform-hmr',
+                            // If you use React Native, pass 'react-native' instead:
+                            imports: ['react'],
+                            // This is important for Webpack HMR:
+                            locals: ['module']
+                        }]
+                    }],
+                    'transform-object-assign',
+                    'transform-es2015-destructuring',
+                    'transform-object-rest-spread'
+                ]
+            }
             },
             // {test: /\.js$/, use: "eslint-loader", exclude: /node_modules/},
             {test: /\.css$/, use: ["style-loader", "css-loader?sourceMap"]},

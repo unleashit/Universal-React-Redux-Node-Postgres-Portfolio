@@ -1,0 +1,9 @@
+FROM postgres
+
+ENV POSTGRES_DB ${JG_DATABASE_DATABASE}
+ENV POSTGRES_USER ${JG_DATABASE_USERNAME}
+ENV POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
+
+# run create.sql on init
+COPY ./config/docker/sessions.sql /docker-entrypoint-initdb.d
+COPY ./pgData /var/lib/postgresql/data/
