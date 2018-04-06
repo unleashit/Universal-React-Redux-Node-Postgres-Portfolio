@@ -27,6 +27,7 @@ services:
       - POSTGRES_DB=${JG_DATABASE_DATABASE}
     volumes:
       - './pgData:/var/lib/postgresql/data/'
+    restart: always
     healthcheck:
       test: exit 0
 
@@ -56,6 +57,7 @@ services:
       - DATABASE_DIALECT=${JG_DATABASE_DIALECT}
       - SECRET_KEY=${JG_SECRET_KEY}
       - NODE_ENV=${NODE_ENV}
+    restart: always
     depends_on:
       - db
 networks:
