@@ -157,7 +157,7 @@ var debug = require('debug')('jg');
 app.set('port', process.env.PORT || 3100);
 
 // models.sequelize.sync({
-//     force: false,
+//     force: true,
 //     logging: function(str) {console.log(str);}
 //     })
 //     .then(function () {
