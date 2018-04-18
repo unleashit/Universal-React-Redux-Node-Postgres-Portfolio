@@ -8,3 +8,4 @@ config/secrets.sh
 app/images/portfolio
 npm-debug*.log
 server/production
+pgData

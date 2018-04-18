@@ -153,16 +153,20 @@ process.on('unhandledRejection', (reason, p) => {
     }
 });
 
-var debug = require('debug')('jg');
 app.set('port', process.env.PORT || 3100);
+var debug = require('debug')('jg');
 
-// models.sequelize.sync({
-//     force: false,
-//     logging: function(str) {console.log(str);}
-//     })
-//     .then(function () {
-        var server = http.listen(app.get('port'), function() {
-            console.log('Express server listening on port ' + server.address().port);
-            console.log("Node Environment: " + process.env.NODE_ENV);
-        });
-// });
+var startServer = function() {
+    var server = http.listen(app.get('port'), function() {
+        console.log('Express server listening on port ' + server.address().port);
+        console.log("Node Environment: " + process.env.NODE_ENV);
+    });
+};
+
+if (process.env.NODE_ENV !== 'production') {
+    models.sequelize.sync({
+        // force: false,
+        logging: function(str) {console.log(str);}
+    })
+    .then(startServer);
+} else startServer();
