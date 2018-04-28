@@ -15,7 +15,9 @@ A sample config file exists in `config/APPconfig.sample.js`. Rename it to `confi
 Rename `sample.secrets.sh` to `secrets.sh` and make changes if desired. I recommend leaving the node environment as development here and let npm scripts override as needed.
 
 ### Npm Scripts
-After you clone the project and add the config and secrets files, run `npm run docker:build` to build the containers and install dependencies. Once that's done, you can either seed the database or just run it in dev or production mode (it will have no portfolio items until you either seed or add manually). To seed simply run `npm run seed`.
+After you clone the project and add the config and secrets files, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
+
+Next run `npm run docker:build` to build the containers and install dependencies. Once that's done, you can either seed the database or just run it in dev or production mode. It won't have any portfolio items until you either seed or add manually. To seed with sample data, run `npm run seed` followed by `npm run build` to process the images with webpack (see below for explanation).
 
 `npm run dev` runs the project in dev mode with webpack and hot module replacement. To view in the browser, go to `http://localhost:3100`
 
@@ -36,6 +38,8 @@ After you clone the project and add the config and secrets files, run `npm run d
 `npm run docker:attach:db` attaches and logs into database
 
 `npm run test` runs tests (app must already be running)
+
+`npm run seed` runs `db:seed:all` via sequelize-cli to seed the database
 
 `npm run stats` analyzes dependencies and runs webpack-bundle-analyzer
 
