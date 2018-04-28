@@ -1,3 +1,10 @@
+.git
+.idea
+.vscode
+secrets.sh
 node_modules
 dist
-test
+database
+.dockerignore*
+docker-compose.yml
+Dockerfile*

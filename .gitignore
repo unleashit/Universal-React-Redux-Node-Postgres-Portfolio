@@ -2,10 +2,11 @@
 node_modules
 tmp
 dist
+secrets.sh
 config/APPconfig.js
-config/xxxDBconfig.json
-config/secrets.sh
 app/images/portfolio
 npm-debug*.log
 server/production
 pgData
+database/pgData
+stats.json

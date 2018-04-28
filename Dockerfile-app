@@ -6,10 +6,10 @@ WORKDIR /src
 
 # install app dependencies
 ENV PATH /src/node_modules/.bin:$PATH
-ADD . .
+COPY . .
 
 RUN npm install
-RUN npm run build
+RUN npm run build:script
 
 # start app
 CMD ["npm", "start"]

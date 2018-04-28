@@ -1,7 +1,7 @@
 import _$ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import jsdom from 'jsdom';
 import chai, {expect} from 'chai';
 import chaiJquery from 'chai-jquery';
@@ -11,7 +11,12 @@ import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import fetch from 'isomorphic-fetch';
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+// TODO: upgrading test deps broke component tree rendering (now needs mocking or shallow rendering)
+
+const { JSDOM } = jsdom;
+const { document } = (new JSDOM('')).window;
+
+global.document = document;
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 const $ = _$(window);

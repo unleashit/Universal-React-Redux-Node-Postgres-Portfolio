@@ -1,5 +1,5 @@
 import {renderComponent, expect} from '../test_helper';
-import Home from '../../app/js/containers/home';
+import Home from '../../app/js/containers/Home';
 
 describe('Home container', () => {
     let component;

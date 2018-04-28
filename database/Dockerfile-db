@@ -6,4 +6,4 @@ ENV POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
 
 # run create.sql on init
 COPY ./pgData /var/lib/postgresql/data/
-COPY ./config/docker/sessions.sql /docker-entrypoint-initdb.d
+COPY ./sessions.sql /docker-entrypoint-initdb.d

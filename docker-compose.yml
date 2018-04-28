@@ -7,7 +7,7 @@ services:
   #     context: ./
   #     dockerfile: Dockerfile-nginx
   #   ports:
-  #     - "3000:80"
+  #     - "80:80"
   #   depends_on:
   #     - app
   #   # environment:
@@ -17,7 +17,7 @@ services:
   db:
     container_name: db
     build:
-      context: ./
+      context: ./database
       dockerfile: Dockerfile-db
     ports:
       - '5433:5432'
@@ -26,7 +26,7 @@ services:
       - POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
       - POSTGRES_DB=${JG_DATABASE_DATABASE}
     volumes:
-      - './pgData:/var/lib/postgresql/data/'
+      - './database/pgData:/var/lib/postgresql/data/'
     restart: always
     healthcheck:
       test: exit 0
@@ -46,8 +46,10 @@ services:
       - './.babelrc:/src/.babelrc'
       - './.eslintrc:/src/.eslintrc'
       - './postcss.config.js:/src/postcss.config.js'
+      - './test:/src/test'
     ports:
       - '3100:3100'
+      - '8888:8888'
     environment:
       - DATABASE_USERNAME=${JG_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${JG_DATABASE_PASSWORD}

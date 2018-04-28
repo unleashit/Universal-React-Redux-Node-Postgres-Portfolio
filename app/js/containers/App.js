@@ -17,7 +17,7 @@ class App extends Component {
     }
 
     render() {
-
+        
         let stylesheets = [
             {'rel': 'stylesheet', 'href': 'https://fonts.googleapis.com/css?family=Oswald|Sanchez', 'async': true}
         ];
@@ -29,7 +29,17 @@ class App extends Component {
 
         // footer needs a different background color on homepage vs. the rest of site
         // There must be a better way...
-        const footer = this.props.children.props.route.path === '*' ? '' : <Footer slug={this.props.children.props.route.path.slice(1)}/>;
+        let footer = null;
+        if (
+            typeof this.props.children !== 'undefined' &&
+            typeof this.props.children.props !== 'undefined' &&
+            typeof this.props.children.props.route !== 'undefined' &&
+            typeof this.props.children.props.route.path !== 'undefined'
+        ) {
+            footer = this.props.children.props.route.path === '*' 
+                ? null
+                : <Footer slug={this.props.children.props.route.path.slice(1)}/>;
+        }
 
         return (
             <div className="page-wrapper">
