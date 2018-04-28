@@ -1,0 +1,8 @@
+export JG_DATABASE_USERNAME=jg_db
+export JG_DATABASE_PASSWORD=password
+export JG_DATABASE_DATABASE=jg_db
+export JG_DATABASE_HOST=db
+export JG_DATABASE_PORT=5432
+export JG_DATABASE_DIALECT=postgres
+export JG_SECRET_KEY=abcdef
+export NODE_ENV=development

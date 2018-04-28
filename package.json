@@ -17,6 +17,7 @@
     "docker:down": "docker-compose down",
     "docker:logs": "docker logs -f jasongallagher",
     "docker:attach": "docker exec -it jasongallagher /bin/bash",
+    "docker:attach:db": "docker exec -it db bash -c 'psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
     "test": "docker exec -it jasongallagher mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test --require ignore-styles",
     "test:watch": "docker exec -it jasongallagher npm run test -- --watch",
     "seed": "docker exec -it jasongallagher node_modules/.bin/sequelize db:seed:all",
