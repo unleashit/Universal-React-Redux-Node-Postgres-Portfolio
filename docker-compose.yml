@@ -19,7 +19,7 @@ services:
     # build:
     #   context: ./database
     #   dockerfile: Dockerfile-db
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db:0.10.0
+    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db
     ports:
       - '5433:5432'
     environment:
@@ -37,7 +37,7 @@ services:
     # build:
     #   context: ./
     #   dockerfile: Dockerfile-app
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:1.3.1
+    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
       - './app:/src/app'
       - './server:/src/server'
