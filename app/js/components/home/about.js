@@ -49,7 +49,7 @@ export default class About extends React.Component {
                     </div>
                     <div className="skills col-lg-4 clearfix" id="skills">
                         <h3 className="hidden-lg-up">Skills</h3>
-                        <div className="skill full" style={getColor()}>Javascript ES3/5/6</div>
+                        <div className="skill full" style={getColor()}>Javascript ES3/5/6+</div>
                         <div className="skill half" style={getColor()}>Html5</div>
                         <div className="skill half" style={getColor()}>CSS3</div>
                         <div className="skill half" style={getColor()}>React/Redux</div>
