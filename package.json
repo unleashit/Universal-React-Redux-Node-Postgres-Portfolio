@@ -72,7 +72,8 @@
     "smoothscroll-polyfill": "^0.4.3",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -127,7 +128,6 @@
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-cli": "^2.0.12",
     "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2"
   }
