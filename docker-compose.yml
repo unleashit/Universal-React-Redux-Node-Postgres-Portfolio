@@ -59,6 +59,8 @@ services:
       - DATABASE_HOST=${JG_DATABASE_HOST}
       - DATABASE_PORT=${JG_DATABASE_PORT}
       - DATABASE_DIALECT=${JG_DATABASE_DIALECT}
+      - API_URL=${JG_API_URL}
+      - SOCKET_IO_URL=${JG_SOCKET_IO_URL}
       - SECRET_KEY=${JG_SECRET_KEY}
       - NODE_ENV=${NODE_ENV}
     restart: always
