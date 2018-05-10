@@ -1,7 +1,7 @@
 module.exports = {
 
-    __API_URL__: 'http://localhost:3100/api',
-    __SOCKET_IO_URL__: 'http://localhost:3100/live-chat', // explicit url needed because of namespace
+    __API_URL__: '/api',
+    __SOCKET_IO_URL__: '/live-chat', // using a socket.io namespace
     __SESSION_SECRET__: '[anything_you_like]',
     __SESSION_KEY__: 'helpdesk_session',
     __GOOGLE_ANALYTICS__: '',

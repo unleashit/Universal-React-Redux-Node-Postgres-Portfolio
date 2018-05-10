@@ -7,12 +7,12 @@ Personal site and portfolio of Jason Gallagher. A nice mix of react, redux, node
 Docker and docker-compose.
 
 ### App Config
-A sample config file exists in `config/APPconfig.sample.js`. Rename it to `config/APPconfig.js` and make changes as desired. The app will run with the defaults but certain features won't work.
+A sample config file exists in `config/APPconfig.sample.js`. Rename it to `config/APPconfig.js` and make changes as desired. The app will run with the defaults but certain features won't work. 
 
-`mailoptions` and `smtpConfig` are for the contact form and needed to submit. When configured correctly, it will both send an email and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point. `smsMailOptions` can send a text notification when a user starts a new chat.
+`mailoptions` and `smtpConfig` are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point. `smsMailOptions` can send a text notification when a user starts a new chat.
 
 ### App Secrets
-Rename `sample.secrets.sh` to `secrets.sh` and make changes if desired. I recommend leaving the node environment as development here and let npm scripts override as needed.
+Rename `sample.secrets.sh` to `secrets.sh` and make changes if desired. I recommend leaving the node environment as development here and let npm scripts override as appropriate.
 
 ### Npm Scripts
 After you clone the project and add the config and secrets files, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
@@ -29,7 +29,7 @@ Next run `npm run docker:build` to build the containers and install dependencies
 
 `npm run build` rebuilds webpack static assets in production mode
 
-`npm run docker:build` runs `docker-compose build` to build/rebuild the docker images
+`npm run docker:build` runs `docker-compose build` to build/rebuild the docker images. You need to first comment out the build step in docker-compose.yml.
 
 `npm run stop` and `npm run down` stops the app or stops plus deletes all containers respectively
 
