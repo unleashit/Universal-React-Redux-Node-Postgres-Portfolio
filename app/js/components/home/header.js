@@ -20,7 +20,7 @@ export default class Header extends React.Component {
                 <Hamburger openBurger={this.props.openBurger} />
                 <Navigation home={false} ulClass="main-nav" logo="2" displayHamburger={false} />
                 <div className="title-tagline-wrapper">
-                    <h1>FULL STACK ENGINEER</h1>
+                    <h1>FRONT END ENGINEER</h1>
                     <h2>18 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>
                 </div>
                 <div className="button-wrapper">
