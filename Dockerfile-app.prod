@@ -8,7 +8,7 @@ WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
 COPY . .
 
-RUN npm install --production
+RUN npm install
 RUN npm run build:script
 
 # start app
