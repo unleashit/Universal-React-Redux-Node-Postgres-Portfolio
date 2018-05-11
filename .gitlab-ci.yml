@@ -10,7 +10,7 @@ stages:
   - release
 
 variables:
-  APP_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_BUILD_REF_NAME
+  APP_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_COMMIT_SHA
   APP_RELEASE_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
 
 before_script:
