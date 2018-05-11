@@ -1,14 +1,13 @@
 FROM node:9.11.1
 
-# set working directory
 RUN mkdir /src
 WORKDIR /src
-
-# install app dependencies
 ENV PATH /src/node_modules/.bin:$PATH
-COPY . .
 
+COPY ./package.json ./
 RUN npm install
+
+COPY . .
 RUN npm run build:script
 
 # start app
