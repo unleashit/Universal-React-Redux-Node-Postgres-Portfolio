@@ -10,8 +10,8 @@ stages:
   - release
 
 variables:
-  - CONTAINER_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_BUILD_REF_NAME
-  - CONTAINER_RELEASE_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+  APP_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_BUILD_REF_NAME
+  APP_RELEASE_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
@@ -19,20 +19,20 @@ before_script:
 build-app:
   stage: build
   script:
-    - docker build --pull -t $CONTAINER_TEST_IMAGE -f Dockerfile-app .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker build --pull -t $APP_TEST_IMAGE -f Dockerfile-app .
+    - docker push $APP_TEST_IMAGE
 
 test1:
   stage: test
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test --require ignore-styles"
+    - docker pull $APP_TEST_IMAGE
+    - docker run $APP_TEST_IMAGE bash -c "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test --require ignore-styles"
 
 release-app:
   stage: release
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_IMAGE
+    - docker pull $APP_TEST_IMAGE
+    - docker tag $APP_TEST_IMAGE $APP_RELEASE_IMAGE
+    - docker push $APP_RELEASE_IMAGE
   only:
     - master
