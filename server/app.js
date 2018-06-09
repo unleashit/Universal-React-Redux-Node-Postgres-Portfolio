@@ -16,6 +16,7 @@ var compression = require('compression');
 var models = require("./models");
 
 global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+global.__GOOGLE_ANALYTICS__ = process.env.GOOGLE_ANALYTICS || '';
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     // configure webpack middleware

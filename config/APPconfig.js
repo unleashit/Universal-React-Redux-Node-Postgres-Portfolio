@@ -5,6 +5,7 @@ const {
     EMAIL_FROM,
     EMAIL_TO,
     EMAIL_SUBJECT,
+    SMS_ACTIVE,
     SMS_FROM,
     SMS_TO,
     SMS_SUBJECT,
@@ -12,23 +13,26 @@ const {
     SMTP_PORT,
     SMTP_SECURE,
     SMTP_AUTH_USERNAME,
-    SMTP_AUTH_PASSWORD
+    SMTP_AUTH_PASSWORD,
+    API_BASE
 } = process.env;
+
+const isClient = typeof window !== 'undefined';
 
 module.exports = {
 
-    __API_URL__: '/api',
-    __SOCKET_IO_URL__: '/live-chat',
+    __API_URL__: isClient ? `/api` : `${API_BASE}/api`,
+    __SOCKET_IO_URL__: isClient ? `/live-chat` : `${API_BASE}/live-chat`,
     __SESSION_SECRET__: SESSION_SECRET,
     __SESSION_KEY__: SESSION_KEY,
-    __GOOGLE_ANALYTICS__: GOOGLE_ANALYTICS,
+    __GOOGLE_ANALYTICS__: isClient ? window.__GOOGLE_ANALYTICS__ : GOOGLE_ANALYTICS,
 
     liveChat: {
         adminName: 'Jason Gallagher',
         adminPerPage: 10, // how many archived chats to load per page in control panel
         saveInterval: 10*60*1000, // once per 15 mins
         purgeInterval: 20*60*1000, // min time to persist in ram (1 hr)
-        sendSMS: false // send SMS on new user registrations
+        sendSMS: SMS_ACTIVE || false // send SMS on new user registrations
     },
 
     mailoptions: {

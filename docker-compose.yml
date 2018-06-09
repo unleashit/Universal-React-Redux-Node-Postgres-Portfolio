@@ -34,9 +34,9 @@ services:
 
   app:
     container_name: jasongallagher
-    # build:
-    #   context: ./
-    #   dockerfile: Dockerfile-app
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile-app
     image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
       - './app:/src/app'
@@ -66,6 +66,7 @@ services:
       - EMAIL_FROM=${JG_EMAIL_FROM}
       - EMAIL_TO=${JG_EMAIL_TO}
       - EMAIL_SUBJECT=${JG_EMAIL_SUBJECT}
+      - SMS_ACTIVE=${JG_SMS_ACTIVE}
       - SMS_FROM=${JG_SMS_FROM}
       - SMS_TO=${JG_SMS_TO}
       - SMS_SUBJECT=${JG_SMS_SUBJECT}
@@ -74,6 +75,7 @@ services:
       - SMTP_SECURE=${JG_SMTP_SECURE}
       - SMTP_AUTH_USERNAME=${JG_SMTP_AUTH_USERNAME}
       - SMTP_AUTH_PASSWORD=${JG_SMTP_AUTH_PASSWORD}
+      - API_BASE=${JG_API_BASE}
       - NODE_ENV=${NODE_ENV}
     restart: always
     depends_on:
