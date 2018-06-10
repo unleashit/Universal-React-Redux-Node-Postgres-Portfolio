@@ -14,10 +14,11 @@ export JG_GOOGLE_ANALYTICS=
 
 export JG_EMAIL_FROM=some@email.com
 export JG_EMAIL_TO=some@email.com
-export JG_EMAIL_SUBJECT=New Contact
+export JG_EMAIL_SUBJECT="New Contact"
 
 export JG_LIVE_CHAT_ADMIN_NAME="Administrator"
 
+export JG_SMS_ACTIVE=false
 export JG_SMS_FROM=some@emai.com
 export JG_SMS_TO=number@mobile-provider.com
 export JG_SMS_SUBJECT=jasongallagher.org=new live chat
@@ -28,6 +29,6 @@ export JG_SMTP_SECURE=true
 export JG_SMTP_AUTH_USERNAME=username
 export JG_SMTP_AUTH_PASSWORD=password
 
-export JG_API_BASE=http://localhost:3100
+export JG_API_BASE=http://localhost:3100 # used by fetch on the server
 
 export NODE_ENV=development

@@ -6,13 +6,12 @@ Personal site and portfolio of Jason Gallagher. A nice mix of react, redux, node
 ### Prerequisites
 Docker and docker-compose.
 
-### App Config
-A sample config file exists in `config/APPconfig.sample.js`. Rename it to `config/APPconfig.js` and make changes if desired. 
+### App Secrets and Config
+Copy `sample.secrets.sh` to `secrets.sh` and make changes as desired. Next add them to your environment by running`source secrets.sh`.
 
-`mailoptions` and `smtpConfig` are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. I didn't bother to make a GUI for contacts, but may at some point. `smsMailOptions` can send a text notification when a user starts a new chat.
+The app will run with the defaults but certain features won't work. Email and SMTP info are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. SMS options if configured will send a text notification when a user initiates a new chat.
 
-### App Secrets
-Rename `sample.secrets.sh` to `secrets.sh` and make changes as desired. Add to your environment with `source secrets.sh`. The app will run with the defaults but certain features won't work. 
+A few misc settings that aren't important for running the app can also be found in `/config/APPconfig.sample.js`.
 
 ### Npm Scripts
 After you clone the project and add the config and secrets files, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
@@ -44,7 +43,7 @@ Next run `npm run docker:build` to build the containers and install dependencies
 `npm run stats` analyzes dependencies and runs webpack-bundle-analyzer
 
 ### Administration and Login
-To access the admin to manage chats or the portfolio, you need to add a user and then elevate its access level. To create a user, just go to `/signup` and create it. To elevate the user, log into the DB with `npm run docker:attach:db` and change the access level of your new user to 3. Now you can login at `/login` with the user and have administrator access to the control panel.
+To access the admin to manage chats or the portfolio, you need to add a user and then elevate its access level. To create a user, just go to `/signup` and create it. To elevate the user, log into the DB with `npm run docker:attach:db` and change the `accesslevel` field of your new user to 3. Now you can login at `/login` with the user and have administrator access to the control panel.
 
 One caveat with the portfolio that I plan on fixing on some rainy day: you must run `npm run build` in the terminal after you add projects before their images will display. Webpack is needed for now to optimize and copy the uploaded images to the dist folder.
 
