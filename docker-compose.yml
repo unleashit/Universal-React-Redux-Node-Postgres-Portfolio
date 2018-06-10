@@ -34,10 +34,10 @@ services:
 
   app:
     container_name: jasongallagher
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-app
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    build:
+      context: ./
+      dockerfile: Dockerfile-app
+    # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
       - './app:/src/app'
       - './server:/src/server'
@@ -50,8 +50,10 @@ services:
       - './postcss.config.js:/src/postcss.config.js'
       - './test:/src/test'
     ports:
-      - '3100:3100'
-      - '8888:8888'
+      # - '3000:3000' # browser-sync
+      # - '3001:3001' # browser-sync
+      - '3100:3100' # app
+      - '8888:8888' # webpack-bundle-analyzer
     environment:
       - DATABASE_USERNAME=${JG_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${JG_DATABASE_PASSWORD}
@@ -66,6 +68,7 @@ services:
       - EMAIL_FROM=${JG_EMAIL_FROM}
       - EMAIL_TO=${JG_EMAIL_TO}
       - EMAIL_SUBJECT=${JG_EMAIL_SUBJECT}
+      - LIVE_CHAT_ADMIN_NAME=${JG_LIVE_CHAT_ADMIN_NAME}
       - SMS_ACTIVE=${JG_SMS_ACTIVE}
       - SMS_FROM=${JG_SMS_FROM}
       - SMS_TO=${JG_SMS_TO}

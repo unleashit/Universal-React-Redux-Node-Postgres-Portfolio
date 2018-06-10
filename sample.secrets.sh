@@ -16,6 +16,8 @@ export JG_EMAIL_FROM=some@email.com
 export JG_EMAIL_TO=some@email.com
 export JG_EMAIL_SUBJECT=New Contact
 
+export JG_LIVE_CHAT_ADMIN_NAME="Administrator"
+
 export JG_SMS_FROM=some@emai.com
 export JG_SMS_TO=number@mobile-provider.com
 export JG_SMS_SUBJECT=jasongallagher.org=new live chat

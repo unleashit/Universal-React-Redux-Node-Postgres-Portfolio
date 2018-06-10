@@ -6,10 +6,10 @@ var webpack = require('webpack');
 
 // var bsync = new BrowserSyncPlugin(
 //     {
-//         host: 'localhost',
+//         host: '192.168.99.100',
 //         port: 3000,
-//         proxy: 'http://localhost:3100/',
-//         // browser: 'chrome',
+//         proxy: 'http://192.168.99.100:3100/',
+//         browser: false,
 //         // open: false
 //     },
 //     // plugin options
@@ -32,14 +32,6 @@ module.exports = {
         filename: "js/[name].js",
         publicPath: '/'
     },
-    // devServer: {
-    //     host: '0.0.0.0',
-    // },
-    // watchOptions: {
-    //     ignored: /node_modules/,
-    //     aggregateTimeout: 300,
-    //     poll: 500
-    //   },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         // bsync

@@ -5,6 +5,7 @@ const {
     EMAIL_FROM,
     EMAIL_TO,
     EMAIL_SUBJECT,
+    LIVE_CHAT_ADMIN_NAME,
     SMS_ACTIVE,
     SMS_FROM,
     SMS_TO,
@@ -19,16 +20,23 @@ const {
 
 const isClient = typeof window !== 'undefined';
 
+// select env variables (with double underscore) are added
+// to the window object via script tag in root.js
+const crossEnvVar = (envVar) =>
+  typeof window !== 'undefined'
+    ? window[`__${envVar}__`]
+    : process.env[envVar];
+
 module.exports = {
 
     __API_URL__: isClient ? `/api` : `${API_BASE}/api`,
     __SOCKET_IO_URL__: isClient ? `/live-chat` : `${API_BASE}/live-chat`,
     __SESSION_SECRET__: SESSION_SECRET,
     __SESSION_KEY__: SESSION_KEY,
-    __GOOGLE_ANALYTICS__: isClient ? window.__GOOGLE_ANALYTICS__ : GOOGLE_ANALYTICS,
+    __GOOGLE_ANALYTICS__: crossEnvVar('GOOGLE_ANALYTICS'),
 
     liveChat: {
-        adminName: 'Jason Gallagher',
+        adminName: crossEnvVar('LIVE_CHAT_ADMIN_NAME'),
         adminPerPage: 10, // how many archived chats to load per page in control panel
         saveInterval: 10*60*1000, // once per 15 mins
         purgeInterval: 20*60*1000, // min time to persist in ram (1 hr)

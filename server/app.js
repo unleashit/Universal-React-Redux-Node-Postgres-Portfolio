@@ -15,8 +15,10 @@ var compression = require('compression');
 
 var models = require("./models");
 
-global.__ENVIRONMENT__ = process.env.NODE_ENV || 'default';
+// varables to be passed to the client as scripts in root html template (root.js)
+global.__ENVIRONMENT__ = process.env.NODE_ENV || 'development';
 global.__GOOGLE_ANALYTICS__ = process.env.GOOGLE_ANALYTICS || '';
+global.__LIVE_CHAT_ADMIN_NAME__ = process.env.LIVE_CHAT_ADMIN_NAME || '';
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     // configure webpack middleware
@@ -35,6 +37,10 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
             chunks: false,
             chunkModules: false,
             modules: false,
+        },
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
         }
     }));
     app.use(hot(compiler));

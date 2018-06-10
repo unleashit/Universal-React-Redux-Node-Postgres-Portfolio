@@ -11,7 +11,8 @@ class Root extends Component {
 
     renderEnvironment() {
         const innerHtml = `window.__ENVIRONMENT__ = '${__ENVIRONMENT__};'
-            window.__GOOGLE_ANALYTICS__ = '${__GOOGLE_ANALYTICS__}';`;
+            window.__GOOGLE_ANALYTICS__ = '${__GOOGLE_ANALYTICS__}';
+            window.__LIVE_CHAT_ADMIN_NAME__ = '${__LIVE_CHAT_ADMIN_NAME__}';`;
         return <script dangerouslySetInnerHTML={{__html: innerHtml}}/>
     }
 
@@ -58,11 +59,11 @@ class Root extends Component {
                 <meta name="msapplication-config" content="/images/favicons/browserconfig.xml"/>
                 <meta name="theme-color" content="#ffffff"/>
                 {head.link.toComponent()}
+                {this.renderEnvironment()}
                 {this.lazyLoadScripts()}
             </head>
             <body>
                 <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}}/>
-                {this.renderEnvironment()}
                 {this.renderInitialState()}
                 {head.script.toComponent()}
                 {this.lazyLoadScript({src: '/js/global.min.js', global: true})}
