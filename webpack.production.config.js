@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var Purify = require("purifycss-webpack-plugin");
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+// var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
@@ -45,9 +45,9 @@ module.exports = {
             cssProcessorOptions: {discardComments: {removeAll: true, autoprefixer: false}},
             canPrint: true
         }),
-        new CopyWebpackPlugin([
-            {context: './app/images', from: '**/**', to: 'images'},
-        ]),
+        // new CopyWebpackPlugin([
+        //     {context: './app/images', from: '**/**', to: 'images'},
+        // ]),
         new UglifyJsPlugin({
             cache: true,
             parallel: true

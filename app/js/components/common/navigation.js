@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router';
+import jgLogo from '../../../images/jg-logo.svg';
 
 export default class Navigation extends React.Component {
     
@@ -7,7 +8,7 @@ export default class Navigation extends React.Component {
 
         const logo = (
             <li><Link to="/#home">
-                <img src="/images/jg-logo.svg" className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
+                <img src={jgLogo} className="jg-logo" alt="Jason Gallagher" width="42" height="42" />
             </Link></li>
         );
 

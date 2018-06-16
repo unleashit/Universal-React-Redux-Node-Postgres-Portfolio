@@ -32,7 +32,7 @@ class LiveChatContainer extends Component {
         this.ionSound.sound({
             sounds: [{ name: "water_droplet_3" }],
             volume: 0.5,
-            path: "/images/sounds/",
+            path: "/sounds/",
             preload: true
         });
     }

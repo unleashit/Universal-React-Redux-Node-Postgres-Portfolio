@@ -5,6 +5,7 @@ tmp
 dist
 secrets.sh
 app/images/portfolio
+public/images/portfolio
 npm-debug*.log
 server/production
 pgData

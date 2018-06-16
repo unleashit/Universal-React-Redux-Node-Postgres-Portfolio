@@ -7,7 +7,7 @@ Personal site and portfolio of Jason Gallagher. A nice mix of react, redux, node
 Docker and docker-compose.
 
 ### App Secrets and Config
-Copy `sample.secrets.sh` to `secrets.sh` and make changes as desired. Next add them to your environment by running`source secrets.sh`.
+Copy `sample.secrets.sh` to `secrets.sh` and make changes as desired. The main npm commands will automatically source this file to your environment or you can run `source secrets.sh` to do it manually.
 
 The app will run with the defaults but certain features won't work. Email and SMTP info are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. SMS options if configured will send a text notification when a user initiates a new chat.
 

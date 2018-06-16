@@ -34,10 +34,10 @@ services:
 
   app:
     container_name: jasongallagher
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-app
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    build:
+      context: ./
+      dockerfile: Dockerfile-app
+    # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
       - './app:/src/app'
       - './server:/src/server'
@@ -49,6 +49,7 @@ services:
       - './.eslintrc:/src/.eslintrc'
       - './postcss.config.js:/src/postcss.config.js'
       - './test:/src/test'
+      - './public:/src/public'
     ports:
       # - '3000:3000' # browser-sync
       # - '3001:3001' # browser-sync
@@ -61,7 +62,6 @@ services:
       - DATABASE_HOST=${JG_DATABASE_HOST}
       - DATABASE_PORT=${JG_DATABASE_PORT}
       - DATABASE_DIALECT=${JG_DATABASE_DIALECT}
-      - SECRET_KEY=${JG_SECRET_KEY}
       - SESSION_SECRET=${JG_SESSION_SECRET}
       - SESSION_KEY=${JG_SESSION_KEY}
       - GOOGLE_ANALYTICS=${JG_GOOGLE_ANALYTICS}

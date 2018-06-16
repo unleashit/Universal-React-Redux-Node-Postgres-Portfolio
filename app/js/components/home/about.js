@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactGA } from '../../libs/utils';
+import meImage from '../../../images/home/me.png'
 
 export default class About extends React.Component {
     render() {
@@ -36,7 +37,7 @@ export default class About extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-3 col-lg-2">
-                        <img src="images/home/me.png" alt="Jason Gallagher" className="jg-image"/>
+                        <img src={meImage} alt="Jason Gallagher" className="jg-image"/>
                     </div>
                     <div className="col-sm-9 col-lg-6">
                         <p>I have more than 18 years of desktop and mobile web development experience involving a wide variety of applications and industries.</p>

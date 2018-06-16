@@ -6,7 +6,6 @@ export JG_DATABASE_DATABASE=jg_db
 export JG_DATABASE_HOST=db # service name from docker-compose.yml
 export JG_DATABASE_PORT=5432
 export JG_DATABASE_DIALECT=postgres
-export JG_SECRET_KEY=secret_key
 
 export JG_SESSION_SECRET=session_secret
 export JG_SESSION_KEY=jg_cp

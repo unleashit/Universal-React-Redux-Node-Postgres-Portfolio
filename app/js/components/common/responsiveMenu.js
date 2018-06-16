@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import jgLogo from '../../../images/jg-logo.svg';
 
 export default class ResponsiveMenu extends React.Component {
     render() {
@@ -28,7 +29,7 @@ export default class ResponsiveMenu extends React.Component {
                     </ul>
                 </nav>
 
-                <img src="/images/jg-logo.svg" className="jg-logo-menu" alt="Jason Gallagher" width="100" height="100" />
+                <img src={jgLogo} className="jg-logo-menu" alt="Jason Gallagher" width="100" height="100" />
 
             </div>
         );

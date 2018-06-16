@@ -4,6 +4,7 @@
 secrets.sh
 node_modules
 dist
+public/images/portfolio
 database
 .dockerignore*
 docker-compose.yml
