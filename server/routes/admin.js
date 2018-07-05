@@ -15,7 +15,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, __dirname + '/../../app/images/portfolio')
+        cb(null, __dirname + '/../../public/images/portfolio')
     },
     filename: function (req, file, cb) {
         console.dir(file);
