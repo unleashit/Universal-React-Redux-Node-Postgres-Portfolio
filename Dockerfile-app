@@ -11,4 +11,4 @@ COPY . .
 RUN npm run build:script
 
 # start app
-CMD ["npm", "start"]
+CMD /bin/bash ./run.sh

@@ -34,10 +34,10 @@ services:
 
   app:
     container_name: jasongallagher
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-app
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    build:
+      context: ./
+      dockerfile: Dockerfile-app
+    # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
       - './app:/src/app'
       - './server:/src/server'
