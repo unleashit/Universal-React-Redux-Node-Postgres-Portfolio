@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var IsomorphicLoaderPlugin = require("isomorphic-loader/lib/webpack-plugin");
 // var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 // var bsync = new BrowserSyncPlugin(
@@ -34,6 +35,7 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new IsomorphicLoaderPlugin(),
         // bsync
     ],
     module: {
@@ -65,12 +67,16 @@ module.exports = {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 use: [
                     'file-loader?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
+                    'isomorphic-loader'
                     //'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },
             {
                 test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                use: 'file-loader?name=fonts/[name].[ext]'
+                use: [
+                    'file-loader?name=fonts/[name].[ext]',
+                    'isomorphic-loader'
+                ]
             }
         ]
     }

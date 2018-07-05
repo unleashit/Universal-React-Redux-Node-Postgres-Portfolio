@@ -7,6 +7,7 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var Purify = require("purifycss-webpack-plugin");
 // var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var IsomorphicLoaderPlugin = require("isomorphic-loader/lib/webpack-plugin");
 
 module.exports = {
     entry: {
@@ -54,6 +55,7 @@ module.exports = {
         }),
         // ignore locales in moment.js
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new IsomorphicLoaderPlugin(),
     ],
     module: {
         rules: [
@@ -103,11 +105,15 @@ module.exports = {
                             bypassOnDebug: true,
                         },
                     },
+                    'isomorphic-loader'
                 ],
             },
             {
                 test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-                use: 'file-loader?name=fonts/[name].[ext]'
+                use: [
+                    'file-loader?name=fonts/[name].[ext]',
+                    'isomorphic-loader'
+                ]
             }
         ]
     },
