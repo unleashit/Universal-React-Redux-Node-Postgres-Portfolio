@@ -1,14 +1,34 @@
-FROM node:9.11.1
+FROM node:9.11.2-alpine
 
 RUN mkdir /src
 WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
 
-COPY ./package*.json ./
-RUN npm install
+# uncomment to cache npm (bigger image)
+# COPY ./package*.json ./
 
+# remove if caching npm
 COPY . .
-RUN npm run build:script
+
+# remove npm run build line if caching npm
+RUN apk add --no-cache --virtual .gyp \
+        libpng-dev@edge \
+        python \
+        make \
+        automake \
+        g++ \
+        autoconf \
+        libtool \
+        nasm \
+    && npm install \
+    && npm run build:script \
+    && apk del .gyp \
+    && apk add --update bash \
+    && rm -rf /var/cache/apk/*
+
+# uncomment to cache npm (bigger image)
+# COPY . .
+# RUN npm run build:script && apk del .gyp
 
 # start app
 CMD /bin/bash ./run.sh
