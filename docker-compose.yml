@@ -51,8 +51,6 @@ services:
       - './test:/src/test'
       - './public:/src/public'
     ports:
-      # - '3000:3000' # browser-sync
-      # - '3001:3001' # browser-sync
       - '3100:3100' # app
       - '8888:8888' # webpack-bundle-analyzer
     environment:
