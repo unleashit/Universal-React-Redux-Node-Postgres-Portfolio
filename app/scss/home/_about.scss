@@ -22,7 +22,7 @@ img.where-i-am {
 .skill {
   padding: 6px 12px;
   margin-bottom: 11px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   text-align: center;
   background-color: #f0ecec;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
@@ -38,11 +38,14 @@ img.where-i-am {
     margin-right: 21px;
     i {
       margin-right: 15px;
+      vertical-align: middle;
       font-size: 1.6em;
       color: #000;
     }
-    &.resume i {
-      font-size: 1.35em;
+    &.resume {
+      i {
+        font-size: 1.4em;
+      }
     }
   }
 }
@@ -74,7 +77,7 @@ img.where-i-am {
 }
 @media screen and (min-width: map-get($grid-breakpoints, sm)) and (max-width: map-get($grid-breakpoints, lg)) {
   .skill {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     &.full {
       clear: both;
       float: none;
@@ -94,7 +97,7 @@ img.where-i-am {
 }
 @media screen and (min-width: 1200px) {
   .skill {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     &.full {
       clear: both;
       float: none;

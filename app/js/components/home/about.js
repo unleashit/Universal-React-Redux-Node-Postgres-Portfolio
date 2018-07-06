@@ -50,22 +50,24 @@ export default class About extends React.Component {
                     </div>
                     <div className="skills col-lg-4 clearfix" id="skills">
                         <h3 className="hidden-lg-up">Skills</h3>
-                        <div className="skill full" style={getColor()}>Javascript ES3/5/6+</div>
-                        <div className="skill half" style={getColor()}>Html5</div>
-                        <div className="skill half" style={getColor()}>CSS3</div>
+                        <div className="skill full" style={getColor()}>Javascript ES6+</div>
                         <div className="skill half" style={getColor()}>React/Redux</div>
                         <div className="skill half" style={getColor()}>AngularJs</div>
                         <div className="skill half" style={getColor()}>NodeJs</div>
                         <div className="skill half" style={getColor()}>React Native</div>
+                        <div className="skill half" style={getColor()}>Webpack</div>
+                        <div className="skill half" style={getColor()}>Typescript</div>
                         <div className="skill half" style={getColor()}>Php</div>
-                        <div className="skill half" style={getColor()}>Postgres, MySql</div>
+                        <div className="skill half" style={getColor()}>MySql</div>
+                        <div className="skill half" style={getColor()}>Postgres</div>
+                        <div className="skill half" style={getColor()}>Mongo</div>
+                        <div className="skill half" style={getColor()}>Docker</div>
+                        <div className="skill half" style={getColor()}>Nginx/Apache</div>
                         <div className="skill half" style={getColor()}>Linux</div>
-                        <div className="skill half" style={getColor()}>Nginx, Apache</div>
+                        <div className="skill half" style={getColor()}>AWS</div>
                         <div className="skill half" style={getColor()}>Drupal</div>
                         <div className="skill half" style={getColor()}>Wordpress</div>
-                        <div className="skill half" style={getColor()}>Webpack</div>
-                        <div className="skill half" style={getColor()}>Grunt</div>
-                        <div className="skill full" style={getColor()}>Photoshop, Illustrator, Indesign</div>
+                        <div className="skill full" style={getColor()}>Html5, CSS3</div>
                     </div>
                 </div>
             </section>
