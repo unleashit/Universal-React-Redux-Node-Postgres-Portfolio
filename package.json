@@ -26,7 +26,7 @@
     "stats:build": "docker exec -it jasongallagher bash -c 'webpack --config ./webpack.production.config.js --profile --json > stats.json'",
     "stats:display": "docker exec -it jasongallagher webpack-bundle-analyzer stats.json dist -h 0.0.0.0"
   },
-  "author": "",
+  "author": "Jason Gallagher",
   "license": "RESTRICTED",
   "dependencies": {
     "animate.css": "^3.6.1",

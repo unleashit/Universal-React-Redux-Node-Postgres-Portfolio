@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router'
+import { withRouter, browserHistory } from 'react-router'
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../components/common/stickyHeader';
@@ -19,9 +19,18 @@ class PortfolioDetail extends Component {
         ]);
     }
 
+    constructor(props) {
+        super(props);
+    }
+
+    // componentWillMount() {
+    //     this.redirect404IfNeeded();
+    // }
+
     componentDidMount() {
         const {dispatch, params} = this.props;
-        PortfolioDetail.readyOnActions(dispatch, params);
+        PortfolioDetail.readyOnActions(dispatch, params)
+            .then(() => this.redirect404IfNeeded() );
         window.scrollTo(0, 0);
     }
 
@@ -46,6 +55,12 @@ class PortfolioDetail extends Component {
         }
     }
 
+    redirect404IfNeeded() {
+        if (this.props.portfolio.DetailReadyState === 'WORK_DETAIL_FETCH_FAILED') {
+            return this.props.router.push('/not-found');
+        }
+    }
+
     openBurger() {
         this.props.dispatch(globalActions.openHamburger());
     }
@@ -54,7 +69,7 @@ class PortfolioDetail extends Component {
         this.props.dispatch(globalActions.closeHamburger());
     }
 
-    renderPortfolioItemDetail(browserHistory) {
+    renderPortfolioItemDetail() {
         const {DetailReadyState, lastProjectHeight, item} = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
@@ -70,18 +85,19 @@ class PortfolioDetail extends Component {
             );
 
         } else if (DetailReadyState === 'WORK_DETAIL_FETCH_FAILED') {
-            browserHistory.push('/not-found');
+            this.props.router.push('/not-found');
         }
     }
 
     render() {
-
         const { hamburgerState, htmlClass } = this.props.global;
-        const { item } = this.props.portfolio;
+        const { item, lastProjectHeight } = this.props.portfolio;
+
+        if (!item) return <Loader height={lastProjectHeight} />;
 
         const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
         const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
-        const metadesc = item ? item.description.slice(0, 300) : ''; // TODO: item.description sometimes undefined
+        const metadesc = item.description ? item.description.slice(0, 300) : ''; // TODO: item.description sometimes undefined
 
         const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
 
@@ -115,7 +131,7 @@ class PortfolioDetail extends Component {
                     menuVisible={hamburgerState}
                 />
 
-                {this.renderPortfolioItemDetail(browserHistory)}
+                {this.renderPortfolioItemDetail()}
             </div>
         );
     }
@@ -135,4 +151,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PortfolioDetail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PortfolioDetail));

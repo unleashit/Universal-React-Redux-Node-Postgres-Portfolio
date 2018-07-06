@@ -51,32 +51,27 @@ function fetchPortfolioDetail(slug) {
 
         return fetch( __API_URL__ + '/portfolio/' + slug)
             .then((response) => {
+                if (response.status === 404) {
+                    ReactGA.event({
+                        category: 'Work',
+                        action: 'Work Fetch Failed via Ajax: ' + slug
+                    });
+                    dispatch({ type: WORK_DETAIL_FETCH_FAILED, error: '404' });
+                    throw new Error(404);
+                }
                 return response.json();
             })
-            .then(
-
-                (result) => {
-                    if (result) {
-                        ReactGA.event({
-                            category: 'Work',
-                            action: 'Work Fetched via Ajax: ' + slug
-                        });
-                        dispatch({ type: WORK_DETAIL_FETCHED, result });
-                    } else {
-                        ReactGA.event({
-                            category: 'Work',
-                            action: 'Work Fetch Failed via Ajax: ' + slug
-                        });
-                       dispatch({ type: WORK_DETAIL_FETCH_FAILED, error: '404' });
-                        browserHistory.push('/not-found');
-                    }
-                },
-
-                (error) => {
-                    dispatch({ type: WORK_DETAIL_FETCH_FAILED, error });
-                    console.log(error);
+            .then((result) => {
+                    ReactGA.event({
+                        category: 'Work',
+                        action: 'Work Fetched via Ajax: ' + slug
+                    });
+                    dispatch({ type: WORK_DETAIL_FETCHED, result });
                 }
-            );
+            )
+            .catch(err => {
+               if (err.message === 404) return undefined;
+            })
     }
 }
 

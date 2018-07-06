@@ -15,7 +15,7 @@ exports.getPortfolioItems = function (req, res) {
         })
 };
 
-exports.getPortfolioItem = function (req, res) {
+exports.getPortfolioItem = function (req, res, next) {
     models.Portfolio
         .findOne({
             attributes: [
@@ -27,9 +27,11 @@ exports.getPortfolioItem = function (req, res) {
             }
         })
         .then((mainItem) => {
-            if (!mainItem) res.json({error: '404'});
+            if (!mainItem) {
+                throw new Error('404');
+            }
 
-            models.Portfolio.findAll({
+            return models.Portfolio.findAll({
                     attributes: ['id', 'url_slug', 'sort'],
                     where:
                         {
@@ -39,7 +41,7 @@ exports.getPortfolioItem = function (req, res) {
                     limit: 1
             })
             .then((next) => {
-                models.Portfolio.findAll({
+                return models.Portfolio.findAll({
                         attributes: ['id', 'url_slug', 'sort'],
                         where: {
                             sort: {[Op.lt]: mainItem.dataValues.sort}
@@ -57,7 +59,13 @@ exports.getPortfolioItem = function (req, res) {
 
         })
         .catch((error) => {
-            console.log(error);
-            res.json({error: error});
+            if (error.message === '404') {
+                console.log('404: can\'t get portfolio item');
+                res.json(404, {error: '404 not found'});
+            }
+            else {
+                console.log(error);
+                res.json(500, {error: 'Can\'t get item'});
+            }
         })
 };
