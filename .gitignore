@@ -11,3 +11,4 @@ server/production
 pgData
 database/pgData
 stats.json
+coverage

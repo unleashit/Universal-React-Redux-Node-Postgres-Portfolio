@@ -1,0 +1,359 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> matches snapshot (without footer) 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <App
+    liveChat={
+      Object {
+        "chatOpen": false,
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className="content-wrapper"
+          onClick={[Function]}
+        >
+          <HelmetWrapper
+            defer={true}
+            encodeSpecialCharacters={true}
+            link={
+              Array [
+                Object {
+                  "href": "/css/global.min.css",
+                  "rel": "stylesheet",
+                },
+                Object {
+                  "async": true,
+                  "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                  "rel": "stylesheet",
+                },
+              ]
+            }
+            meta={
+              Array [
+                Object {
+                  "char-set": "utf-8",
+                },
+                Object {
+                  "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                  "name": "description",
+                },
+                Object {
+                  "content": "width=device-width, initial-scale=1",
+                  "name": "viewport",
+                },
+              ]
+            }
+            title="Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal"
+            titleTemplate="Jason Gallagher - %s"
+          />
+        </div>,
+        <Connect(LiveChatLauncher) />,
+        <Connect(LiveChatContainer) />,
+      ],
+      "className": "page-wrapper",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <HelmetWrapper
+              defer={true}
+              encodeSpecialCharacters={true}
+              link={
+                Array [
+                  Object {
+                    "href": "/css/global.min.css",
+                    "rel": "stylesheet",
+                  },
+                  Object {
+                    "async": true,
+                    "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                    "rel": "stylesheet",
+                  },
+                ]
+              }
+              meta={
+                Array [
+                  Object {
+                    "char-set": "utf-8",
+                  },
+                  Object {
+                    "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                    "name": "description",
+                  },
+                  Object {
+                    "content": "width=device-width, initial-scale=1",
+                    "name": "viewport",
+                  },
+                ]
+              }
+              title="Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal"
+              titleTemplate="Jason Gallagher - %s"
+            />,
+            undefined,
+            null,
+          ],
+          "className": "content-wrapper",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "defer": true,
+              "encodeSpecialCharacters": true,
+              "link": Array [
+                Object {
+                  "href": "/css/global.min.css",
+                  "rel": "stylesheet",
+                },
+                Object {
+                  "async": true,
+                  "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                  "rel": "stylesheet",
+                },
+              ],
+              "meta": Array [
+                Object {
+                  "char-set": "utf-8",
+                },
+                Object {
+                  "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                  "name": "description",
+                },
+                Object {
+                  "content": "width=device-width, initial-scale=1",
+                  "name": "viewport",
+                },
+              ],
+              "title": "Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal",
+              "titleTemplate": "Jason Gallagher - %s",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          undefined,
+          null,
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="content-wrapper"
+            onClick={[Function]}
+          >
+            <HelmetWrapper
+              defer={true}
+              encodeSpecialCharacters={true}
+              link={
+                Array [
+                  Object {
+                    "href": "/css/global.min.css",
+                    "rel": "stylesheet",
+                  },
+                  Object {
+                    "async": true,
+                    "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                    "rel": "stylesheet",
+                  },
+                ]
+              }
+              meta={
+                Array [
+                  Object {
+                    "char-set": "utf-8",
+                  },
+                  Object {
+                    "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                    "name": "description",
+                  },
+                  Object {
+                    "content": "width=device-width, initial-scale=1",
+                    "name": "viewport",
+                  },
+                ]
+              }
+              title="Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal"
+              titleTemplate="Jason Gallagher - %s"
+            />
+          </div>,
+          <Connect(LiveChatLauncher) />,
+          <Connect(LiveChatContainer) />,
+        ],
+        "className": "page-wrapper",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <HelmetWrapper
+                defer={true}
+                encodeSpecialCharacters={true}
+                link={
+                  Array [
+                    Object {
+                      "href": "/css/global.min.css",
+                      "rel": "stylesheet",
+                    },
+                    Object {
+                      "async": true,
+                      "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                      "rel": "stylesheet",
+                    },
+                  ]
+                }
+                meta={
+                  Array [
+                    Object {
+                      "char-set": "utf-8",
+                    },
+                    Object {
+                      "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                      "name": "description",
+                    },
+                    Object {
+                      "content": "width=device-width, initial-scale=1",
+                      "name": "viewport",
+                    },
+                  ]
+                }
+                title="Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal"
+                titleTemplate="Jason Gallagher - %s"
+              />,
+              undefined,
+              null,
+            ],
+            "className": "content-wrapper",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "defer": true,
+                "encodeSpecialCharacters": true,
+                "link": Array [
+                  Object {
+                    "href": "/css/global.min.css",
+                    "rel": "stylesheet",
+                  },
+                  Object {
+                    "async": true,
+                    "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+                    "rel": "stylesheet",
+                  },
+                ],
+                "meta": Array [
+                  Object {
+                    "char-set": "utf-8",
+                  },
+                  Object {
+                    "content": "Full Stack Engineer in Berkeley. Focused on React, Angular, Node.Js, Drupal, UI/UX. San Francisco Bay Area, East Bay, San Francisco and Oakland.",
+                    "name": "description",
+                  },
+                  Object {
+                    "content": "width=device-width, initial-scale=1",
+                    "name": "viewport",
+                  },
+                ],
+                "title": "Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal",
+                "titleTemplate": "Jason Gallagher - %s",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            undefined,
+            null,
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

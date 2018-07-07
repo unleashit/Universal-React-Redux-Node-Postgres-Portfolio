@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 if (typeof document !== 'undefined') require('../../scss/global.scss');
 
-class App extends Component {
+export class App extends Component {
 
     closeChat() {
         if (this.props.liveChat.chatOpen) {

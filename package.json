@@ -18,8 +18,9 @@
     "docker:down": "docker-compose down",
     "docker:attach": "docker exec -it jasongallagher /bin/bash",
     "docker:attach:db": "docker exec -it db bash -c 'psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
-    "test": "docker exec -it jasongallagher mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test --require ignore-styles",
-    "test:watch": "docker exec -it jasongallagher npm run test -- --watch",
+    "test": "docker exec -it jasongallagher jest",
+    "test:coverage": "docker exec -it jasongallagher jest --coverage",
+    "test:watch": "docker exec -it jasongallagher jest --watchAll",
     "seed": "docker exec -it jasongallagher node_modules/.bin/sequelize db:seed:all",
     "seed:undo": "docker exec -it jasongallagher node_modules/.bin/sequelize db:seed:undo:all",
     "stats": "npm run stats:build && npm run stats:display",
@@ -89,11 +90,11 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
-    "chai": "^4.1.2",
-    "chai-jquery": "^2.0.0",
     "css-loader": "^0.28.11",
     "cssnano": "^4.0.0",
     "debug": "^3.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.13.0",
@@ -104,11 +105,8 @@
     "html-webpack-plugin": "^3.2.0",
     "ignore-styles": "^5.0.1",
     "image-webpack-loader": "^3.6.0",
-    "jquery": "^3.3.1",
-    "jsdom": "^11.11.0",
+    "jest": "^23.3.0",
     "loader-utils": "^1.1.0",
-    "mocha": "^5.2.0",
-    "mocha-clean": "^1.0.0",
     "morgan": "^1.9.0",
     "node-sass": "^4.9.1",
     "nodemon": "^1.17.5",
@@ -127,5 +125,19 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.2"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
+    "collectCoverageFrom": [
+      "app/js/**/*.{js,jsx}"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/(config|database|node_modules|server|public)/"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

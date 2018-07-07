@@ -12,7 +12,7 @@ import * as globalActions  from '../actions/global';
 import { animation, getEnvironment } from '../libs/utils';
 import throttle from 'lodash/throttle';
 
-class Home extends Component {
+export class Home extends Component {
 
     static readyOnActions(dispatch) {
         return Promise.all([
