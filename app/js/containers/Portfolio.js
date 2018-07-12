@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PortfolioItem from '../components/home/portfolioItem';
 
-class Portfolio extends React.Component {
+export class Portfolio extends React.Component {
 
     renderPortfolio() {
         const {readyState, items} = this.props.portfolio;

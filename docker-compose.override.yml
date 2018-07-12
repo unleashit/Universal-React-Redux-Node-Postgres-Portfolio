@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  db:
+#    build:
+#      context: ./database
+#      dockerfile: Dockerfile-db
+    restart: "no"
+
+  app:
+    image: jasongallagher:dev
+    command: ["npm", "run", "nodemon"]
+    volumes:
+      - './app:/src/app'
+      - './server:/src/server'
+      - './config:/src/config'
+      - './package.json:/src/package.json'
+      - './package-lock.json:/src/package-lock.json'
+      - './webpack.config.js:/src/webpack.config.js'
+      - './webpack.production.config.js:/src/webpack.production.config.js'
+      - './.babelrc:/src/.babelrc'
+      - './.eslintrc:/src/.eslintrc'
+      - './postcss.config.js:/src/postcss.config.js'
+      - './test:/src/test'
+      - './public:/src/public'
+    ports:
+      - '3100:3100' # app
+      - '8888:8888' # webpack-bundle-analyzer
+    restart: "no"

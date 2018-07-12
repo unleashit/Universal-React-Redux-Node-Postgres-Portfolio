@@ -3,7 +3,7 @@ set -e
 set -x
 
 if [ $NODE_ENV == "development" ]; then
-  npm run nodemon
+  nodemon ./server/app.js
 else
-  npm start
+  node ./server/app.js
 fi

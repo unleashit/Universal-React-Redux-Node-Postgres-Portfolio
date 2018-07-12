@@ -53,10 +53,7 @@ module.exports = {
                             // This is important for Webpack HMR:
                             locals: ['module']
                         }]
-                    }],
-                    'transform-object-assign',
-                    'transform-es2015-destructuring',
-                    'transform-object-rest-spread'
+                    }]
                 ]
             }
             },

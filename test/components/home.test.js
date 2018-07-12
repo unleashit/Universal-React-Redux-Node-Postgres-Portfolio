@@ -1,7 +1,4 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import { Home } from '../../app/js/containers/Home';
-import Header from '../../app/js/components/Home/Header';
 
 describe('Home container', () => {
     let wrapper;
@@ -18,28 +15,40 @@ describe('Home container', () => {
         dispatch: () => {}
     };
 
-    beforeEach(() => {
-        wrapper = shallow(<Home {...props} />);
-    });
     describe('<Home />', () => {
+        beforeEach(() => {
+            wrapper = shallow(<Home {...props} />);
+        });
+
         it('it renders', () => {
             expect(wrapper.find('#home')).toHaveLength(1);
         });
 
+        it('React Helmet is used', () => {
+            expect(wrapper.find('HelmetWrapper')).toHaveLength(1);
+        });
+
         describe('Sections', () => {
-            it('has a header', () => {
-                // console.log(wrapper.debug());
-                // expect(wrapper.find(Header)).toHaveLength(1);
+            it('has a sticky header', () => {
+                expect(wrapper.find('StickyHeader')).toHaveLength(1);
             });
-            // it('has the who-what-where section', () => {
-            //     expect(wrapper.find('.who-what-where')).toHaveLength(1);
-            // });
-            // it('has the about section', () => {
-            //     expect(wrapper.find('.about')).toHaveLength(1);
-            // });
-            // it('has renders the portfolio thumbs', () => {
-            //     expect(wrapper.find('.portfolio')).toHaveLength(1);
-            // });
+            it('has a responsive menu', () => {
+                expect(wrapper.find('ResponsiveMenu')).toHaveLength(1);
+            });
+            it('has a header', () => {
+                expect(wrapper.find('Header')).toHaveLength(1);
+            });
+            it('has the who-what-where section', () => {
+                expect(wrapper.find('WhoWhatWhere')).toHaveLength(1);
+            });
+            it('has the about section', () => {
+                expect(wrapper.find('About')).toHaveLength(1);
+            });
+            it('has renders the connected portfolio', () => {
+                // wrapper = shallow(<Home {...props} />).dive();
+                // console.log(wrapper);
+                // expect(wrapper.find('Portfolio').shallow()).toHaveLength(1);
+            });
         });
 
     });

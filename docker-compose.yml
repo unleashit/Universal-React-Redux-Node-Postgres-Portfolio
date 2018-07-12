@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   # nginx:
@@ -16,9 +16,6 @@ services:
 
   db:
     container_name: db
-#    build:
-#      context: ./database
-#      dockerfile: Dockerfile-db
     image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db
     ports:
       - '5433:5432'
@@ -34,25 +31,10 @@ services:
 
   app:
     container_name: jasongallagher
-    build:
-      context: ./
-      dockerfile: Dockerfile-app
-    # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
     volumes:
-      - './app:/src/app'
-      - './server:/src/server'
-      - './config:/src/config'
-      - './package.json:/src/package.json'
-      - './webpack.config.js:/src/webpack.config.js'
-      - './webpack.production.config.js:/src/webpack.production.config.js'
-      - './.babelrc:/src/.babelrc'
-      - './.eslintrc:/src/.eslintrc'
-      - './postcss.config.js:/src/postcss.config.js'
-      - './test:/src/test'
       - './public:/src/public'
     ports:
       - '3100:3100' # app
-      - '8888:8888' # webpack-bundle-analyzer
     environment:
       - DATABASE_USERNAME=${JG_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${JG_DATABASE_PASSWORD}

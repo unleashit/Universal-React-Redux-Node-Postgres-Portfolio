@@ -2,10 +2,12 @@
 .idea
 .vscode
 secrets.sh
+sample.secrets.sh
 node_modules
 dist
 public/images/portfolio
 database
-.dockerignore*
-docker-compose.yml
-Dockerfile*
+.docker*
+docker*
+Docker*
+readme.md

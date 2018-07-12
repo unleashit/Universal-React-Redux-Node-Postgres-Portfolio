@@ -1,16 +1,22 @@
 {
   "presets": [
-    ["es2015", {
-      "es2015": {
-        "loose": true,
-        "modules": false
-      }
-    }], "react"
+    ["env", {
+      "loose": true,
+      "modules": false
+    }],
+    "stage-3",
+    "react"
   ],
-  "plugins": [
-    "transform-runtime",
-    "transform-object-assign",
-    "transform-es2015-destructuring",
-    "transform-object-rest-spread"
-  ]
+  "env": {
+    "testing": {
+      "presets": [
+        ["env", {
+            "modules": "commonjs"
+        }],
+        "stage-3",
+        "react",
+        "jest"
+      ]
+    }
+  }
 }
