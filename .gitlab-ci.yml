@@ -20,16 +20,16 @@ before_script:
 build-app:
   stage: build
   script:
-    - docker build --pull -t $APP_PRODUCTION_IMAGE -f Dockerfile-app .
+    - docker build -t $APP_PRODUCTION_IMAGE -f Dockerfile-app .
     - docker push $APP_PRODUCTION_IMAGE
-    - docker build --pull --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
+    - docker build --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
     - docker push $APP_TEST_IMAGE
 
 test1:
   stage: test
   script:
     - docker pull $APP_TEST_IMAGE
-    - docker run $APP_TEST_IMAGE bash -c "jest"
+    - docker run $APP_TEST_IMAGE bash -e NODE_ENV='testing' -c "jest"
 
 release-app:
   stage: release
