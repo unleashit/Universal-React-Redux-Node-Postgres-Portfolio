@@ -10,7 +10,8 @@ stages:
   - release
 
 variables:
-  APP_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_COMMIT_SHA
+  APP_PRODUCTION_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app:$CI_COMMIT_SHA
+  APP_TEST_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/dev:$CI_COMMIT_SHA
   APP_RELEASE_IMAGE: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
 
 before_script:
@@ -19,7 +20,9 @@ before_script:
 build-app:
   stage: build
   script:
-    - docker build --pull -t $APP_TEST_IMAGE -f Dockerfile-app .
+    - docker build --pull -t $APP_PRODUCTION_IMAGE -f Dockerfile-app .
+    - docker push $APP_PRODUCTION_IMAGE
+    - docker build --pull --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
     - docker push $APP_TEST_IMAGE
 
 test1:
@@ -31,8 +34,8 @@ test1:
 release-app:
   stage: release
   script:
-    - docker pull $APP_TEST_IMAGE
-    - docker tag $APP_TEST_IMAGE $APP_RELEASE_IMAGE
+    - docker pull $APP_PRODUCTION_IMAGE
+    - docker tag $APP_PRODUCTION_IMAGE $APP_RELEASE_IMAGE
     - docker push $APP_RELEASE_IMAGE
   only:
     - master
