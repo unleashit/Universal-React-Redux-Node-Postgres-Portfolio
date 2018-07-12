@@ -2,5 +2,5 @@ version: '3.4'
 
 services:
   app:
-    image: jasongallagher:prod
-    # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    # image: jasongallagher:prod
+    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app

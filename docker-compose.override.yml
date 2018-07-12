@@ -15,7 +15,7 @@ services:
       - './server:/src/server'
       - './config:/src/config'
       - './package.json:/src/package.json'
-      - './package-lock.json:/src/package-lock.json'
+      # - './package-lock.json:/src/package-lock.json'
       - './webpack.config.js:/src/webpack.config.js'
       - './webpack.production.config.js:/src/webpack.production.config.js'
       - './.babelrc:/src/.babelrc'

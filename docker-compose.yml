@@ -1,19 +1,6 @@
 version: '3.4'
 
 services:
-  # nginx:
-  #   container_name: nginx
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile-nginx
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - app
-  #   # environment:
-  #     # - NGINX_HOST=foobar.com
-  #     # - NGINX_PORT=80
-
   db:
     container_name: db
     image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db
@@ -34,32 +21,8 @@ services:
     volumes:
       - './public:/src/public'
     ports:
-      - '3100:3100' # app
-    environment:
-      - DATABASE_USERNAME=${JG_DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${JG_DATABASE_PASSWORD}
-      - DATABASE_DATABASE=${JG_DATABASE_DATABASE}
-      - DATABASE_HOST=${JG_DATABASE_HOST}
-      - DATABASE_PORT=${JG_DATABASE_PORT}
-      - DATABASE_DIALECT=${JG_DATABASE_DIALECT}
-      - SESSION_SECRET=${JG_SESSION_SECRET}
-      - SESSION_KEY=${JG_SESSION_KEY}
-      - GOOGLE_ANALYTICS=${JG_GOOGLE_ANALYTICS}
-      - EMAIL_FROM=${JG_EMAIL_FROM}
-      - EMAIL_TO=${JG_EMAIL_TO}
-      - EMAIL_SUBJECT=${JG_EMAIL_SUBJECT}
-      - LIVE_CHAT_ADMIN_NAME=${JG_LIVE_CHAT_ADMIN_NAME}
-      - SMS_ACTIVE=${JG_SMS_ACTIVE}
-      - SMS_FROM=${JG_SMS_FROM}
-      - SMS_TO=${JG_SMS_TO}
-      - SMS_SUBJECT=${JG_SMS_SUBJECT}
-      - SMTP_HOST=${JG_SMTP_HOST}
-      - SMTP_PORT=${JG_SMTP_PORT}
-      - SMTP_SECURE=${JG_SMTP_SECURE}
-      - SMTP_AUTH_USERNAME=${JG_SMTP_AUTH_USERNAME}
-      - SMTP_AUTH_PASSWORD=${JG_SMTP_AUTH_PASSWORD}
-      - API_BASE=${JG_API_BASE}
-      - NODE_ENV=${NODE_ENV}
+      - '3100:3100'
+    env_file: ./.env
     restart: always
     depends_on:
       - db
