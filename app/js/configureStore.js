@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 // import {saveChatState} from './libs/utils';
@@ -10,11 +10,11 @@ export default function configureStore(initialState) {
     const store = createStoreWithMiddleware(
         rootReducer,
         initialState,
-        typeof window === 'object'
-            && typeof window.devToolsExtension !== 'undefined'
-            && process.env.NODE_ENV !== 'production'
-                ? window.devToolsExtension()
-                : f => f
+        typeof window === 'object' &&
+        typeof window.devToolsExtension !== 'undefined' &&
+        process.env.NODE_ENV !== 'production'
+            ? window.devToolsExtension()
+            : f => f
     );
 
     // store.subscribe(throttle(() => {
@@ -32,4 +32,4 @@ export default function configureStore(initialState) {
     }
 
     return store;
-};
+}

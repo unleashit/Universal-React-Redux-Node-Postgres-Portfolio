@@ -1,3 +1,3 @@
 import 'isomorphic-fetch';
 
-export {serverMiddleware} from './router';
+export { serverMiddleware } from './router';

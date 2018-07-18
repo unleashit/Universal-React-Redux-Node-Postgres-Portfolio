@@ -1,5 +1,5 @@
-import {__API_URL__} from '../../../config/APPconfig';
-import { browserHistory } from 'react-router'
+import { __API_URL__ } from '../../../config/APPconfig';
+import { browserHistory } from 'react-router';
 import { ReactGA } from '../libs/utils';
 
 export const WORK_INVALID = 'WORK_INVALID';
@@ -14,43 +14,40 @@ export const WORK_DETAIL_RESET = 'WORK_DETAIL_RESET';
 export const WORK_LAST_PROJECT_HEIGHT = 'WORK_LAST_PROJECT_HEIGHT';
 
 function fetchPortfolio() {
-  return (dispatch) => {
+    return dispatch => {
+        dispatch({ type: WORK_FETCHING });
 
-    dispatch({ type: WORK_FETCHING });
+        return fetch(__API_URL__ + '/portfolio')
+            .then(response => {
+                return response.json();
+            })
+            .then(
+                result => {
+                    ReactGA.event({
+                        category: 'Work',
+                        action: 'Work List Fetched via Ajax'
+                    });
+                    dispatch({ type: WORK_FETCHED, result });
+                },
 
-    return fetch( __API_URL__ + '/portfolio')
-        .then((response) => {
-          return response.json();
-        })
-        .then(
-
-            (result) => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work List Fetched via Ajax'
-                });
-                dispatch({ type: WORK_FETCHED, result })
-            },
-
-            (error) => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work List Fetch Failed'
-                });
-              dispatch({ type: WORK_FETCH_FAILED, error });
-              console.log(error);
-            }
-        );
-  }
+                error => {
+                    ReactGA.event({
+                        category: 'Work',
+                        action: 'Work List Fetch Failed'
+                    });
+                    dispatch({ type: WORK_FETCH_FAILED, error });
+                    console.log(error);
+                }
+            );
+    };
 }
 
 function fetchPortfolioDetail(slug) {
-    return (dispatch) => {
-        
+    return dispatch => {
         dispatch({ type: WORK_DETAIL_FETCHING });
 
-        return fetch( __API_URL__ + '/portfolio/' + slug)
-            .then((response) => {
+        return fetch(__API_URL__ + '/portfolio/' + slug)
+            .then(response => {
                 if (response.status === 404) {
                     ReactGA.event({
                         category: 'Work',
@@ -61,38 +58,41 @@ function fetchPortfolioDetail(slug) {
                 }
                 return response.json();
             })
-            .then((result) => {
-                    ReactGA.event({
-                        category: 'Work',
-                        action: 'Work Fetched via Ajax: ' + slug
-                    });
-                    dispatch({ type: WORK_DETAIL_FETCHED, result });
-                }
-            )
-            .catch(err => {
-               if (err.message === 404) return undefined;
+            .then(result => {
+                ReactGA.event({
+                    category: 'Work',
+                    action: 'Work Fetched via Ajax: ' + slug
+                });
+                dispatch({ type: WORK_DETAIL_FETCHED, result });
             })
-    }
+            .catch(err => {
+                if (err.message === 404) return undefined;
+            });
+    };
 }
 
 function shouldFetchPortfolio(state) {
-  const portfolio = state.portfolio;
+    const portfolio = state.portfolio;
 
-  if (portfolio.items === null ||
-      portfolio.readyState === WORK_FETCH_FAILED ||
-      portfolio.readyState === WORK_INVALID) {
-    return true;
-  }
+    if (
+        portfolio.items === null ||
+        portfolio.readyState === WORK_FETCH_FAILED ||
+        portfolio.readyState === WORK_INVALID
+    ) {
+        return true;
+    }
 
-  return false;
+    return false;
 }
 
 function shouldFetchPortfolioDetail(state) {
     const portfolio = state.portfolio;
 
-    if (portfolio.item === null ||
+    if (
+        portfolio.item === null ||
         portfolio.readyState === WORK_DETAIL_FETCH_FAILED ||
-        portfolio.readyState === WORK_DETAIL_INVALID) {
+        portfolio.readyState === WORK_DETAIL_INVALID
+    ) {
         return true;
     }
 
@@ -100,29 +100,29 @@ function shouldFetchPortfolioDetail(state) {
 }
 
 export function fetchPortfolioIfNeeded() {
-  return (dispatch, getState) => {
-    if (shouldFetchPortfolio(getState())) {
-      return dispatch(fetchPortfolio());
-    }
-  }
+    return (dispatch, getState) => {
+        if (shouldFetchPortfolio(getState())) {
+            return dispatch(fetchPortfolio());
+        }
+    };
 }
 
 export function fetchPortfolioDetailIfNeeded(slug, bypassCheck) {
-  return (dispatch, getState) => {
-    if (bypassCheck || shouldFetchPortfolioDetail(getState())) {
-      return dispatch(fetchPortfolioDetail(slug));
-    }
-  }
+    return (dispatch, getState) => {
+        if (bypassCheck || shouldFetchPortfolioDetail(getState())) {
+            return dispatch(fetchPortfolioDetail(slug));
+        }
+    };
 }
 
 export function resetPortfolioDetail() {
-    return (dispatch) => {
+    return dispatch => {
         return dispatch({ type: WORK_DETAIL_RESET });
-    }
+    };
 }
 
 export function lastProjectHeight(height) {
-    return (dispatch) => {
+    return dispatch => {
         return dispatch({ type: WORK_LAST_PROJECT_HEIGHT, payload: height });
-    }
+    };
 }

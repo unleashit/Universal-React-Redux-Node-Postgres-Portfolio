@@ -50,19 +50,15 @@ describe('Home container', () => {
                 // expect(wrapper.find('Portfolio').shallow()).toHaveLength(1);
             });
         });
-
     });
 
-
-//     describe('UI Triggers', () => {
-//         it('sticky header is invisible by default', () => {
-//             expect(component.find('.sticky-header.off')).to.exist;
-//         });
-//         // it('sticky header displays when scrolling', () => {
-//         //     window.simulate('scroll', 1500);
-//         //     expect(component.find('.sticky-header.on')).to.exist;
-//         // });
-//     });
-
-
+    //     describe('UI Triggers', () => {
+    //         it('sticky header is invisible by default', () => {
+    //             expect(component.find('.sticky-header.off')).to.exist;
+    //         });
+    //         // it('sticky header displays when scrolling', () => {
+    //         //     window.simulate('scroll', 1500);
+    //         //     expect(component.find('.sticky-header.on')).to.exist;
+    //         // });
+    //     });
 });

@@ -1,4 +1,4 @@
-import * as render from './helpDeskRender'
+import * as render from './helpDeskRender';
 import config from '../../../config/APPconfig';
 var ionSound = require('../libs/ion-sound').ionSound();
 import {
@@ -28,8 +28,8 @@ ionSound.sound({
 // *
 
 export function socketConnect() {
-    socket.emit('admin login', {}, (id) => {
-        setState({adminId: id});
+    socket.emit('admin login', {}, id => {
+        setState({ adminId: id });
         // console.log(`socket.io connected. Id: ${props.adminId}`);
     });
 }
@@ -42,12 +42,15 @@ export function socketUserInit(usersFromServer) {
     const keys = Object.keys(props.users);
 
     if (keys.length > 0) {
-        setState({currentUser: keys[0]});
-        postBox.style.display = "block";
+        setState({ currentUser: keys[0] });
+        postBox.style.display = 'block';
     }
 
     userList.innerHTML = render.renderUserList();
-    messageList.innerHTML = render.renderMessageList(props.currentUser, props.users);
+    messageList.innerHTML = render.renderMessageList(
+        props.currentUser,
+        props.users
+    );
     messageList.scrollTop = messageList.scrollHeight;
 }
 
@@ -58,17 +61,23 @@ export function socketChatmessage(message) {
         userList.innerHTML = render.renderUserList();
 
         // ensures active class is removed
-        archivedUserList.innerHTML = render.renderArchivedUserList(props.currentOffset);
+        archivedUserList.innerHTML = render.renderArchivedUserList(
+            props.currentOffset
+        );
 
         if (props.currentUser === message.room) {
-            messageList.innerHTML = render.renderMessageList(message.room, props.users);
+            messageList.innerHTML = render.renderMessageList(
+                message.room,
+                props.users
+            );
             messageList.scrollTop = messageList.scrollHeight;
         }
 
         // add 'new-messages' class only if message is from client
         // TODO: persist the class after next renderMessages if needed
         if (message.id !== props.adminId) {
-            document.querySelector(`[data-user-id='${message.room}']`)
+            document
+                .querySelector(`[data-user-id='${message.room}']`)
                 .classList.toggle('new-messages');
         }
     } else {
@@ -93,12 +102,12 @@ export function socketIsTyping(resp) {
     }
 
     elem.innerHTML = 'user is typing...';
-    setState({isTyping: true});
+    setState({ isTyping: true });
 
     setState({
         typingTimer: window.setTimeout(() => {
             elem.innerHTML = props.isTypingDetails;
-            setState({isTyping: false});
+            setState({ isTyping: false });
         }, 1500)
     });
 }
@@ -109,10 +118,13 @@ export function socketArchivedUserUpdate(usersFromServer) {
         totalUsers: usersFromServer.count
     });
 
-    archivedUserList.innerHTML = render.renderArchivedUserList(props.currentOffset);
+    archivedUserList.innerHTML = render.renderArchivedUserList(
+        props.currentOffset
+    );
 
     if (document.getElementById('pagination')) {
-        document.getElementById('pagination')
+        document
+            .getElementById('pagination')
             .addEventListener('click', handleChangePagination);
     }
 }
@@ -133,10 +145,9 @@ export function handleOnChange() {
     socket.emit('typing', props.currentUser);
 }
 
-
 export function handleSubmit(e) {
     e.preventDefault();
-    let {adminId, currentUser} = props;
+    let { adminId, currentUser } = props;
 
     if (e.keyCode === 13 || e.target.getAttribute('id') === 'postMessage') {
         const msg = document.getElementById('message');
@@ -167,20 +178,25 @@ export function userListListener(e) {
         deleteUser(userID);
         socket.emit('admin remove', userID);
         userList.innerHTML = render.renderUserList();
-
     } else {
         setState({
-            currentUser: e.target.getAttribute('data-user-id') ||
+            currentUser:
+                e.target.getAttribute('data-user-id') ||
                 e.target.parentNode.getAttribute('data-user-id')
         });
         userList.innerHTML = render.renderUserList();
-        messageList.innerHTML = render.renderMessageList(props.currentUser, props.users);
+        messageList.innerHTML = render.renderMessageList(
+            props.currentUser,
+            props.users
+        );
         messageList.scrollTop = messageList.scrollHeight;
-        postBox.style.display = "block";
+        postBox.style.display = 'block';
     }
 
     // ensures active class is removed
-    archivedUserList.innerHTML = render.renderArchivedUserList(props.currentOffset);
+    archivedUserList.innerHTML = render.renderArchivedUserList(
+        props.currentOffset
+    );
 }
 
 export function archivedUserListListener(e) {
@@ -189,26 +205,31 @@ export function archivedUserListListener(e) {
     if (!e.currentTarget.children.length) return;
 
     if (e.target.getAttribute('data-delete') === 'deleteUser') {
-
         // deleting a user
         const userID = e.target.parentNode.getAttribute('data-user-id');
         socket.emit('admin delete', userID);
     } else {
-
         // view archived messages
         setState({
-            currentUser: e.target.getAttribute('data-user-id') ||
-            e.target.parentNode.getAttribute('data-user-id')
+            currentUser:
+                e.target.getAttribute('data-user-id') ||
+                e.target.parentNode.getAttribute('data-user-id')
         });
-        archivedUserList.innerHTML = render.renderArchivedUserList(props.currentOffset);
+        archivedUserList.innerHTML = render.renderArchivedUserList(
+            props.currentOffset
+        );
         userList.innerHTML = render.renderUserList();
-        messageList.innerHTML = render.renderMessageList(props.currentUser, props.archivedUsers);
+        messageList.innerHTML = render.renderMessageList(
+            props.currentUser,
+            props.archivedUsers
+        );
         messageList.scrollTop = messageList.scrollHeight;
-        postBox.style.display = "none";
+        postBox.style.display = 'none';
 
         if (document.getElementById('pagination')) {
-        document.getElementById('pagination')
-            .addEventListener('click', handleChangePagination);
+            document
+                .getElementById('pagination')
+                .addEventListener('click', handleChangePagination);
         }
     }
 }
@@ -219,7 +240,7 @@ export function handleChangePagination(e) {
     const pageNumber = e.target.innerText;
 
     setState({
-        currentOffset: (pageNumber * props.perPage) - props.perPage
+        currentOffset: pageNumber * props.perPage - props.perPage
     });
 
     socket.emit('admin getUsers', props.currentOffset);

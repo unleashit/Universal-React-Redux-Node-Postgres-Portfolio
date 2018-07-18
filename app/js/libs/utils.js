@@ -1,4 +1,4 @@
-import { default as RGA } from'react-ga';
+import { default as RGA } from 'react-ga';
 
 function getElemScrollPos(elem) {
     return document.getElementById(elem).getBoundingClientRect().top;
@@ -11,7 +11,7 @@ export function getEnvironment(type) {
     return {
         env: process.env.NODE_ENV === 'production' ? 'prod' : 'dev',
         loc: typeof window === 'undefined' ? 'server' : 'client'
-    }
+    };
 }
 
 export function getFullWindowHeight() {
@@ -20,14 +20,27 @@ export function getFullWindowHeight() {
     var body = document.body,
         html = document.documentElement;
 
-    return Math.max( body.scrollHeight, body.offsetHeight,
-        html.clientHeight, html.scrollHeight, html.offsetHeight ) || 0;
+    return (
+        Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ) || 0
+    );
 }
 
-export function animation(animationArea, animateOff, animationType='fadeInUp') {
-    return getEnvironment('client') && !animateOff ?
-        (animationArea ? `animated ${animationType} ` : ` invisible `)
-            : '';
+export function animation(
+    animationArea,
+    animateOff,
+    animationType = 'fadeInUp'
+) {
+    return getEnvironment('client') && !animateOff
+        ? animationArea
+            ? `animated ${animationType} `
+            : ` invisible `
+        : '';
 }
 
 export function loadChatState() {
@@ -54,7 +67,7 @@ export function saveChatState(state) {
 // ReactGA isn't server render friendly.
 // Need to wrap calls to it
 export const ReactGA = {
-    event: function({ category, action}) {
+    event: function({ category, action }) {
         if (getEnvironment('client')) {
             RGA.event({
                 category,

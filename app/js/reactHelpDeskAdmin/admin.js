@@ -1,5 +1,5 @@
-import * as controller from './helpDeskController'
-import * as render from './helpDeskRender'
+import * as controller from './helpDeskController';
+import * as render from './helpDeskRender';
 import io from 'socket.io-client';
 import filePicker from './adminPortfolio';
 import config from '../../../config/APPconfig';
@@ -15,7 +15,7 @@ export const postMessage = document.getElementById('postMessage');
 export const postBox = document.getElementById('postBox');
 
 export let state = {
-    users:  {},
+    users: {},
     totalUsers: 0,
     archivedUsers: {},
     perPage: config.liveChat.adminPerPage,
@@ -42,7 +42,7 @@ export function setConnected(userID, bool) {
 }
 
 export function deleteUser(userID) {
-    delete state.users[userID]
+    delete state.users[userID];
 }
 
 function init() {
@@ -53,7 +53,7 @@ function init() {
 
     if (!userList) return;
 
-    socket.on('connect', controller.socketConnect );
+    socket.on('connect', controller.socketConnect);
     socket.on('admin userInit', controller.socketUserInit);
     socket.on('admin archivedUserUpdate', controller.socketArchivedUserUpdate);
     socket.on('chatMessage', controller.socketChatmessage);
@@ -61,7 +61,10 @@ function init() {
     socket.on('typing', controller.socketIsTyping);
 
     userList.addEventListener('click', controller.userListListener);
-    archivedUserList.addEventListener('click', controller.archivedUserListListener);
+    archivedUserList.addEventListener(
+        'click',
+        controller.archivedUserListListener
+    );
     postMessage.addEventListener('click', controller.handleSubmit);
     message.addEventListener('input', controller.handleOnChange);
     message.addEventListener('keyup', controller.handleSubmit);

@@ -4,18 +4,24 @@ import { Link } from 'react-router';
 import notFoundImage from '../../images/404.png';
 
 class NoMatch extends Component {
-
-  render() {
-    return (
-      <div className="center-container">
-        <Helmet title='404 Not Found' htmlAttributes={{"class": "not-found-page"}} />
-          <div className="not-found-404">
-              <img src={notFoundImage} alt="Not Found"/>
-              <Link to="/"><button className="button button-green button-smaller">Go Home</button></Link>
-          </div>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div className="center-container">
+                <Helmet
+                    title="404 Not Found"
+                    htmlAttributes={{ class: 'not-found-page' }}
+                />
+                <div className="not-found-404">
+                    <img src={notFoundImage} alt="Not Found" />
+                    <Link to="/">
+                        <button className="button button-green button-smaller">
+                            Go Home
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default NoMatch;

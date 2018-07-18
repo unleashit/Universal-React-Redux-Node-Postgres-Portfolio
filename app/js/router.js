@@ -23,7 +23,7 @@ if (isClient) {
     function hashLinkScroll() {
         const { hash } = window.location;
         const isIE = document.documentMode || /Edge/.test(navigator.userAgent);
-        
+
         if (hash !== '') {
             // Push onto callback queue so it runs after the DOM is updated,
             // this is required when navigating from a different page so that
@@ -35,12 +35,16 @@ if (isClient) {
                     if (id === 'home') {
                         // temp fix: after recent browser updates (at least Chrome), no longer smooth scrolling to top
                         // Firefox was fine but haven't tested in other browsers so changing globally for now
-                        history.pushState("", document.title, window.location.pathname);
+                        history.pushState(
+                            '',
+                            document.title,
+                            window.location.pathname
+                        );
                         window.scrollTo(0, 0);
                     } else {
                         isIE
                             ? element.scrollIntoView() // IE smooth scroll behavior weird so remove
-                            : element.scrollIntoView({behavior: 'smooth'});
+                            : element.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
                 ReactGA.event({
@@ -52,7 +56,7 @@ if (isClient) {
     }
 
     function logPageView() {
-        ReactGA.set({page: window.location.pathname});
+        ReactGA.set({ page: window.location.pathname });
         ReactGA.pageview(window.location.pathname);
     }
 
@@ -63,7 +67,9 @@ if (isClient) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={browserHistory} onUpdate={handleRouteUpdates}>{routes}</Router>
+            <Router history={browserHistory} onUpdate={handleRouteUpdates}>
+                {routes}
+            </Router>
         </Provider>,
         document.getElementById('root')
     );
@@ -79,9 +85,16 @@ function renderComponentWithRoot(Component, componentProps, store) {
     const head = Helmet.rewind();
     const initialState = store.getState();
 
-    return '<!doctype html>\n' + renderToStaticMarkup(
-            <Root content={componentHtml} initialState={initialState} head={head} />
-        );
+    return (
+        '<!doctype html>\n' +
+        renderToStaticMarkup(
+            <Root
+                content={componentHtml}
+                initialState={initialState}
+                head={head}
+            />
+        )
+    );
 }
 
 function handleError(res, error) {
@@ -100,25 +113,32 @@ function handleRoute(res, renderProps) {
     const store = configureStore();
     const status = routeIsUnmatched(renderProps) ? 404 : 200;
     const readyOnAllActions = renderProps.components
-        .filter((component) => component.readyOnActions)
-        .map((component) => component.readyOnActions(store.dispatch, renderProps.params));
+        .filter(component => component.readyOnActions)
+        .map(component =>
+            component.readyOnActions(store.dispatch, renderProps.params)
+        );
 
-    Promise
-        .all(readyOnAllActions)
-        .then(() => res.status(status).send(renderComponentWithRoot(RouterContext, renderProps, store)));
+    Promise.all(readyOnAllActions).then(() =>
+        res
+            .status(status)
+            .send(renderComponentWithRoot(RouterContext, renderProps, store))
+    );
 }
 
 export function serverMiddleware(req, res, next) {
-    match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-        if (error) {
-            handleError(error);
-        } else if (redirectLocation) {
-            handleRedirect(res, redirectLocation);
-        } else if (renderProps) {
-            handleRoute(res, renderProps);
-        } else {
-            //res.sendStatus(404);
-            next();
+    match(
+        { routes, location: req.url },
+        (error, redirectLocation, renderProps) => {
+            if (error) {
+                handleError(error);
+            } else if (redirectLocation) {
+                handleRedirect(res, redirectLocation);
+            } else if (renderProps) {
+                handleRoute(res, renderProps);
+            } else {
+                //res.sendStatus(404);
+                next();
+            }
         }
-    });
+    );
 }

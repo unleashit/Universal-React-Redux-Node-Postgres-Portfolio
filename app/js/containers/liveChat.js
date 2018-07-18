@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import LiveChat from '../components/live-chat/liveChat';
 import * as chatActions from '../actions/liveChat';
 import io from 'socket.io-client';
-import {ionSound} from '../libs/ion-sound';
-import {__API_URL__, __SOCKET_IO_URL__} from '../../../config/APPconfig';
+import { ionSound } from '../libs/ion-sound';
+import { __API_URL__, __SOCKET_IO_URL__ } from '../../../config/APPconfig';
 
 class LiveChatContainer extends Component {
-
     constructor(props) {
         super(props);
         this.socketConnect = this.socketConnect.bind(this);
@@ -30,9 +29,9 @@ class LiveChatContainer extends Component {
 
         this.ionSound = ionSound();
         this.ionSound.sound({
-            sounds: [{ name: "water_droplet_3" }],
+            sounds: [{ name: 'water_droplet_3' }],
             volume: 0.5,
-            path: "/sounds/",
+            path: '/sounds/',
             preload: true
         });
     }
@@ -44,24 +43,26 @@ class LiveChatContainer extends Component {
     socketConnect() {
         // console.log("socket id: " + this.socket.id);
 
-        this.socket.emit('chatConnected', {}, (admin) => {
+        this.socket.emit('chatConnected', {}, admin => {
             if (admin) {
                 // admin is online
-                this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
+                this.props.dispatch(
+                    chatActions.chatSetRemoteId(admin.id, admin.name)
+                );
                 // console.log('Chat is online');
             }
             if (!this.props.liveChat.serverStatus) {
                 // let the app know server is online
                 this.props.dispatch(chatActions.chatSetServerStatus(true));
             }
-        })
+        });
     }
 
     socketChatmessage(message) {
         if (message.id !== this.props.liveChat.room) {
             clearTimeout(this.typingTimer);
             this.props.dispatch(chatActions.chatIsTyping(false));
-            this.ionSound.sound.play("water_droplet_3");
+            this.ionSound.sound.play('water_droplet_3');
 
             // admin is active
             if (!this.props.liveChat.adminActive) {
@@ -81,7 +82,9 @@ class LiveChatContainer extends Component {
 
     socketAdminConnected(admin) {
         if (admin) {
-            this.props.dispatch(chatActions.chatSetRemoteId(admin.id, admin.name));
+            this.props.dispatch(
+                chatActions.chatSetRemoteId(admin.id, admin.name)
+            );
         }
     }
 
@@ -105,71 +108,75 @@ class LiveChatContainer extends Component {
 
         // chat is offline, send email
         if (!this.props.liveChat.remoteId) {
-
             const message = e.currentTarget[2].value.trim();
             if (!email || !message) return;
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) return;
+            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))
+                return;
 
-            const contactData = {name, email, message};
+            const contactData = { name, email, message };
 
-            return fetch( __API_URL__ + '/contact', {
-                method: "POST",
+            return fetch(__API_URL__ + '/contact', {
+                method: 'POST',
                 body: JSON.stringify(contactData),
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 })
             })
-            .then((response) => {
-                this.props.dispatch(chatActions.contactSent(true));
-                // console.log("contact sent");
-            })
-            .catch(err => {
-                throw new Error(err);
-            })
-
+                .then(response => {
+                    this.props.dispatch(chatActions.contactSent(true));
+                    // console.log("contact sent");
+                })
+                .catch(err => {
+                    throw new Error(err);
+                });
         } else {
-
-            this.socket.emit('newUser', {
-                id: this.socket.id,
-                name: name,
-                email: email,
-                connected: true
-            }, (room) => {
-                this.props.dispatch(chatActions.chatNewUser({
-                    room: room,
+            this.socket.emit(
+                'newUser',
+                {
+                    id: this.socket.id,
                     name: name,
                     email: email,
-                    registered: true
-                }));
+                    connected: true
+                },
+                room => {
+                    this.props.dispatch(
+                        chatActions.chatNewUser({
+                            room: room,
+                            name: name,
+                            email: email,
+                            registered: true
+                        })
+                    );
 
-                this.setAdminTimer();
-            });
+                    this.setAdminTimer();
+                }
+            );
         }
     }
 
     setAdminTimer() {
-        return this.adminTimer = setTimeout( () => {
+        return (this.adminTimer = setTimeout(() => {
             if (!this.props.liveChat.adminActive) {
-
                 const message = {
                     id: this.props.liveChat.room,
                     room: this.props.liveChat.room,
                     name: this.props.liveChat.remoteName,
-                    message: 'It looks like it\'s taking me a while to reply. You\'re welcome to wait a bit longer,' +
-                    ' or please leave a note along with your contact info if you haven\'t' +
-                    ' already. I will see your messages and get in touch before you know it!',
+                    message:
+                        "It looks like it's taking me a while to reply. You're welcome to wait a bit longer," +
+                        " or please leave a note along with your contact info if you haven't" +
+                        ' already. I will see your messages and get in touch before you know it!',
                     date: Date.now()
                 };
 
                 this.socket.emit('chatMessage', message);
             }
-        }, 120000);
+        }, 120000));
     }
 
     typingDelay() {
-        return this.typingTimer = setTimeout( () => {
+        return (this.typingTimer = setTimeout(() => {
             this.props.dispatch(chatActions.chatIsTyping(false));
-        }, 1200);
+        }, 1200));
     }
 
     onSubmit(e) {
@@ -195,12 +202,14 @@ class LiveChatContainer extends Component {
     render() {
         return (
             <div>
-                <LiveChat onSubmit={this.onSubmit.bind(this)}
-                          onChange={this.onChange.bind(this)}
-                          newUser={this.newUser.bind(this)}
-                          chatOpen={this.props.liveChat.chatOpen}
-                          dispatch={this.props.dispatch}
-                          {...this.props.liveChat} />
+                <LiveChat
+                    onSubmit={this.onSubmit.bind(this)}
+                    onChange={this.onChange.bind(this)}
+                    newUser={this.newUser.bind(this)}
+                    chatOpen={this.props.liveChat.chatOpen}
+                    dispatch={this.props.dispatch}
+                    {...this.props.liveChat}
+                />
             </div>
         );
     }
@@ -214,7 +223,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch
-    }
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LiveChatContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LiveChatContainer);

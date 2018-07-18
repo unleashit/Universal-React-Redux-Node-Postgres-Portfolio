@@ -11,21 +11,24 @@ import {
     CHAT_ADMIN_ACTIVE
 } from '../actions/liveChat';
 
-export default function portfolio(state = {
-    chatOpen: false,
-    serverStatus: false,
-    room: '',
-    localName: '',
-    localEmail: '',
-    remoteId: '',
-    remoteName: '',
-    isTyping: false,
-    message: '',
-    messages: [],
-    registered: false,
-    contactSent: false,
-    adminActive: false
-}, action) {
+export default function portfolio(
+    state = {
+        chatOpen: false,
+        serverStatus: false,
+        room: '',
+        localName: '',
+        localEmail: '',
+        remoteId: '',
+        remoteName: '',
+        isTyping: false,
+        message: '',
+        messages: [],
+        registered: false,
+        contactSent: false,
+        adminActive: false
+    },
+    action
+) {
     switch (action.type) {
         case TOGGLE_CHAT:
             return Object.assign({}, state, {
@@ -75,4 +78,3 @@ export default function portfolio(state = {
             return state;
     }
 }
-

@@ -11,81 +11,77 @@ export const CHAT_SET_SERVER_STATUS = 'CHAT_SET_SERVER_STATUS';
 export const CHAT_CONTACT_SENT = 'CHAT_CONTACT_SENT';
 export const CHAT_ADMIN_ACTIVE = 'CHAT_ADMIN_ACTIVE';
 
-export function toggleChat(bool=true) {
-    return (dispatch) => {
-
+export function toggleChat(bool = true) {
+    return dispatch => {
         ReactGA.event({
             category: 'UI',
             action: bool ? 'Opened Live Chat' : 'Closed Live Chat'
         });
 
-        dispatch({type: TOGGLE_CHAT, bool});
-    }
+        dispatch({ type: TOGGLE_CHAT, bool });
+    };
 }
 
 export function chatSetServerStatus(bool) {
-    return (dispatch) => {
-        dispatch({type: CHAT_SET_SERVER_STATUS, bool});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_SET_SERVER_STATUS, bool });
+    };
 }
 
 export function chatSetRemoteId(id, name) {
-    return (dispatch) => {
-        dispatch({type: CHAT_SET_REMOTE_ID, id, name});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_SET_REMOTE_ID, id, name });
+    };
 }
 
 export function chatCreateMesssage(message) {
-    return (dispatch) => {
-        dispatch({type: CHAT_CREATE_MESSAGE, message});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_CREATE_MESSAGE, message });
+    };
 }
 
 export function chatReceiveMesssage(message) {
-    return (dispatch) => {
-        dispatch({type: CHAT_RECEIVE_MESSAGE, message});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_RECEIVE_MESSAGE, message });
+    };
 }
 
 export function chatOnChange(message) {
-    return (dispatch) => {
-        dispatch({type: CHAT_ONCHANGE, message});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_ONCHANGE, message });
+    };
 }
 
 export function chatNewUser(user) {
-
     ReactGA.event({
         category: 'LiveChat',
         action: 'New user registered'
     });
 
-    return (dispatch) => {
-        dispatch({type: CHAT_NEW_USER, user});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_NEW_USER, user });
+    };
 }
 
 export function chatIsTyping(bool) {
-    return (dispatch) => {
-        dispatch({type: CHAT_ISTYPING, bool});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_ISTYPING, bool });
+    };
 }
 
 export function contactSent(bool) {
-
     ReactGA.event({
         category: 'LiveChat',
         action: 'Offline email sent'
     });
 
-    return (dispatch) => {
-        dispatch({type: CHAT_CONTACT_SENT, bool});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_CONTACT_SENT, bool });
+    };
 }
 
 export function adminActive(bool) {
-    return (dispatch) => {
-        dispatch({type: CHAT_ADMIN_ACTIVE, bool});
-    }
+    return dispatch => {
+        dispatch({ type: CHAT_ADMIN_ACTIVE, bool });
+    };
 }
-

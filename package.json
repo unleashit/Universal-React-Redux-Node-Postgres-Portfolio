@@ -108,6 +108,7 @@
     "optimize-css-assets-webpack-plugin": "^4.0.3",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
+    "prettier": "1.13.7",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-addons-test-utils": "^15.6.2",
     "react-hot-loader": "^4.3.3",

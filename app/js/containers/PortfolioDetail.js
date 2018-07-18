@@ -1,20 +1,25 @@
-import React, {Component} from 'react';
-import { withRouter, browserHistory } from 'react-router'
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { withRouter, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../components/common/stickyHeader';
 import Loader from '../components/common/loader';
 import ResponsiveMenu from '../components/common/responsiveMenu';
-import * as portfolioActions  from '../actions/portfolio';
-import * as globalActions  from '../actions/global';
+import * as portfolioActions from '../actions/portfolio';
+import * as globalActions from '../actions/global';
 
-if (typeof document !== 'undefined') require('../../scss/portfolio-detail/portfolio_detail.scss');
+if (typeof document !== 'undefined')
+    require('../../scss/portfolio-detail/portfolio_detail.scss');
 
 class PortfolioDetail extends Component {
-
     static readyOnActions(dispatch, params, bypassCheck = false) {
         return Promise.all([
-            dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(params.slug, bypassCheck)),
+            dispatch(
+                portfolioActions.fetchPortfolioDetailIfNeeded(
+                    params.slug,
+                    bypassCheck
+                )
+            ),
             dispatch(globalActions.animateOff())
         ]);
     }
@@ -28,35 +33,41 @@ class PortfolioDetail extends Component {
     // }
 
     componentDidMount() {
-        const {dispatch, params} = this.props;
-        PortfolioDetail.readyOnActions(dispatch, params)
-            .then(() => this.redirect404IfNeeded() );
+        const { dispatch, params } = this.props;
+        PortfolioDetail.readyOnActions(dispatch, params).then(() =>
+            this.redirect404IfNeeded()
+        );
         window.scrollTo(0, 0);
     }
 
     componentWillUnmount() {
-        const {dispatch} = this.props;
+        const { dispatch } = this.props;
         dispatch(portfolioActions.resetPortfolioDetail());
     }
 
     componentWillReceiveProps(nextProps) {
-        const {DetailReadyState} = this.props.portfolio;
+        const { DetailReadyState } = this.props.portfolio;
 
-        if (nextProps.params.slug !== this.props.params.slug
-            && DetailReadyState === 'WORK_DETAIL_FETCHED') {
-
+        if (
+            nextProps.params.slug !== this.props.params.slug &&
+            DetailReadyState === 'WORK_DETAIL_FETCHED'
+        ) {
             // get height from project for next spinner so it doesn't bounce
             const lastProject = this.refs.lastProject.clientHeight;
-            this.props.dispatch(portfolioActions.lastProjectHeight(lastProject));
+            this.props.dispatch(
+                portfolioActions.lastProjectHeight(lastProject)
+            );
 
-            const {dispatch, params} = nextProps;
+            const { dispatch, params } = nextProps;
             PortfolioDetail.readyOnActions(dispatch, params, true);
             window.scrollTo(0, 0);
         }
     }
 
     redirect404IfNeeded() {
-        if (this.props.portfolio.DetailReadyState === 'WORK_DETAIL_FETCH_FAILED') {
+        if (
+            this.props.portfolio.DetailReadyState === 'WORK_DETAIL_FETCH_FAILED'
+        ) {
             return this.props.router.push('/not-found');
         }
     }
@@ -64,26 +75,22 @@ class PortfolioDetail extends Component {
     openBurger() {
         this.props.dispatch(globalActions.openHamburger());
     }
-    
+
     closeBurger() {
         this.props.dispatch(globalActions.closeHamburger());
     }
 
     renderPortfolioItemDetail() {
-        const {DetailReadyState, lastProjectHeight, item} = this.props.portfolio;
+        const {
+            DetailReadyState,
+            lastProjectHeight,
+            item
+        } = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
-
             return <Loader height={lastProjectHeight} />;
-
         } else if (DetailReadyState === 'WORK_DETAIL_FETCHED') {
-
-            return (
-                <div ref="lastProject">
-                    {this.props.children}
-                </div>
-            );
-
+            return <div ref="lastProject">{this.props.children}</div>;
         } else if (DetailReadyState === 'WORK_DETAIL_FETCH_FAILED') {
             this.props.router.push('/not-found');
         }
@@ -95,16 +102,22 @@ class PortfolioDetail extends Component {
 
         if (!item) return <Loader height={lastProjectHeight} />;
 
-        const title = (typeof window === 'undefined') ? item.title : this.props.params.slug;
-        const url_slug = (typeof window === 'undefined') ? item.url_slug : this.props.params.slug;
+        const title =
+            typeof window === 'undefined' ? item.title : this.props.params.slug;
+        const url_slug =
+            typeof window === 'undefined'
+                ? item.url_slug
+                : this.props.params.slug;
         const metadesc = item.description ? item.description.slice(0, 300) : ''; // TODO: item.description sometimes undefined
 
-        const htmlClassCheck = htmlClass ? {"class": htmlClass} : {};
+        const htmlClassCheck = htmlClass ? { class: htmlClass } : {};
 
         // hide header on small devices when chat is open
         const headerVisible = () => {
             if (typeof window !== 'undefined') {
-                return window.innerWidth <= 768 ? !this.props.liveChat.chatOpen : true;
+                return window.innerWidth <= 768
+                    ? !this.props.liveChat.chatOpen
+                    : true;
             } else return true;
         };
 
@@ -113,18 +126,22 @@ class PortfolioDetail extends Component {
                 <Helmet
                     title={title}
                     htmlAttributes={htmlClassCheck}
-                    meta={[
-                        {'name': 'description', 'content': metadesc}
-                    ]}
-                    link = {[
-                        {"rel": "canonical", "href": "https://jasongallagher.org/portfolio/" + url_slug}
+                    meta={[{ name: 'description', content: metadesc }]}
+                    link={[
+                        {
+                            rel: 'canonical',
+                            href:
+                                'https://jasongallagher.org/portfolio/' +
+                                url_slug
+                        }
                     ]}
                 />
-                <StickyHeader visible={headerVisible()}
-                              displayHamburger={true}
-                              openBurger={this.openBurger.bind(this)}
-                              remoteId={this.props.liveChat.remoteId}
-                              dispatch={this.props.dispatch}
+                <StickyHeader
+                    visible={headerVisible()}
+                    displayHamburger={true}
+                    openBurger={this.openBurger.bind(this)}
+                    remoteId={this.props.liveChat.remoteId}
+                    dispatch={this.props.dispatch}
                 />
                 <ResponsiveMenu
                     closeBurger={this.closeBurger.bind(this)}
@@ -148,7 +165,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch
-    }
+    };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PortfolioDetail));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(PortfolioDetail)
+);
