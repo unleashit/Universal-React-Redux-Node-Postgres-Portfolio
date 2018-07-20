@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { ionSound } from '../libs/ion-sound';
 import { __API_URL__, __SOCKET_IO_URL__ } from '../../../config/APPconfig';
 
-class LiveChatContainer extends Component {
+export class LiveChatContainer extends Component {
     constructor(props) {
         super(props);
         this.socketConnect = this.socketConnect.bind(this);

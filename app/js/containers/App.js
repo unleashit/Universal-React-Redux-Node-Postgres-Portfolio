@@ -9,9 +9,15 @@ import { connect } from 'react-redux';
 if (typeof document !== 'undefined') require('../../scss/global.scss');
 
 export class App extends Component {
-    closeChat() {
+    constructor(props) {
+        super(props);
+
+        this.toggleChatHandler = this.toggleChatHandler.bind(this);
+    }
+
+    toggleChatHandler() {
         if (this.props.liveChat.chatOpen) {
-            this.props.dispatch(toggleChat(false));
+            this.props.toggleChat(false);
         }
     }
 
@@ -30,22 +36,17 @@ export class App extends Component {
                 href: '/css/global.min.css'
             });
 
-        // footer needs a different background color on homepage vs. the rest of site
-        // There must be a better way...
-        let footer = null;
-        if (
-            typeof this.props.children !== 'undefined' &&
-            typeof this.props.children.props !== 'undefined' &&
-            typeof this.props.children.props.route !== 'undefined' &&
-            typeof this.props.children.props.route.path !== 'undefined'
-        ) {
-            footer =
-                this.props.children.props.route.path === '*' ? null : (
-                    <Footer
-                        slug={this.props.children.props.route.path.slice(1)}
-                    />
-                );
-        }
+        // Don't display the footer on 404 pages
+        // TODO: better solution
+        const { children } = this.props;
+        const footer = this.props.children &&
+            children.props &&
+            children.props.route &&
+            children.props.route.path
+                ? children.props.route.path === '*'
+                    ? null
+                    : (<Footer slug={children.props.route.path.slice(1)} />)
+                : null;
 
         return (
             <div className="page-wrapper">
@@ -55,7 +56,7 @@ export class App extends Component {
                             ? 'content-wrapper live-chat-open'
                             : 'content-wrapper'
                     }
-                    onClick={this.closeChat.bind(this)}
+                    onClick={this.toggleChatHandler}
                 >
                     <Helmet
                         title="Front End Engineer in Berkeley, CA specializing in React, Javascript, Node.Js, Angular and Drupal"
@@ -90,13 +91,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        dispatch: dispatch
-    };
-}
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    {toggleChat}
 )(App);

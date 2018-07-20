@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LiveChatLauncher /> it matches snapshot 1`] = `
+<div
+  className="chat-launcher"
+  onClick={[Function]}
+>
+  <div
+    className="chat-indicator chat-offline"
+  />
+  Live
+  <br />
+  Chat
+</div>
+`;

@@ -9,7 +9,7 @@ services:
 
   app:
     image: jasongallagher:dev
-    command: ["npm", "run", "nodemon"]
+    command: ["npm", "start"]
     volumes:
       - './app:/src/app'
       - './server:/src/server'

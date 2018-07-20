@@ -8,7 +8,7 @@
     "react"
   ],
   "env": {
-    "testing": {
+    "test": {
       "presets": [
         ["env", {
             "modules": "commonjs"
