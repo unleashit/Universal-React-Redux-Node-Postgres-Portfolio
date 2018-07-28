@@ -29,7 +29,7 @@ test1:
   stage: test
   script:
     - docker pull $APP_TEST_IMAGE
-    - docker run -e NODE_ENV='testing' $APP_TEST_IMAGE bash -c "jest"
+    - docker run -e NODE_ENV='test' $APP_TEST_IMAGE bash -c "jest"
 
 release-app:
   stage: release
