@@ -5,13 +5,14 @@ ENV PATH /src/node_modules/.bin:$PATH
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build:script
+RUN npm run build:script && git init
 
 FROM node:9.11.2-alpine AS production
 WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
 COPY --from=build /src ./
 RUN rm -rf node_modules \
+    && rm -rf .git
     && npm install --only=production \
     && apk add --update --no-cache bash
 CMD ["node", "server/app.js"]

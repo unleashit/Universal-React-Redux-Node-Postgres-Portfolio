@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PortfolioItem from '../components/home/portfolioItem';
+import PortfolioItem from '../home/portfolioItem';
 
 export class Portfolio extends React.Component {
     renderPortfolio() {

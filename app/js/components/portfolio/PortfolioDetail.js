@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { withRouter, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../components/common/stickyHeader';
-import Loader from '../components/common/loader';
-import ResponsiveMenu from '../components/common/responsiveMenu';
-import * as portfolioActions from '../actions/portfolio';
-import * as globalActions from '../actions/global';
+import StickyHeader from '../common/stickyHeader';
+import Loader from '../common/loader';
+import ResponsiveMenu from '../common/responsiveMenu';
+import * as portfolioActions from '../../actions/portfolio';
+import * as globalActions from '../../actions/global';
 
 if (typeof document !== 'undefined')
-    require('../../scss/portfolio-detail/portfolio_detail.scss');
+    require('../../../scss/portfolio-detail/portfolio_detail.scss');
 
 class PortfolioDetail extends Component {
     static readyOnActions(dispatch, params, bypassCheck = false) {

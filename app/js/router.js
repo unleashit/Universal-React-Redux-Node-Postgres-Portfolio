@@ -5,7 +5,7 @@ import { Router, match, RouterContext, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import routes from './routes';
-import Root from './containers/Root';
+import Root from './components/App/Root';
 import configureStore from './configureStore';
 import { __GOOGLE_ANALYTICS__ } from '../../config/APPconfig';
 // import { loadChatState } from './libs/utils';

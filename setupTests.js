@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
-import combineReducers from '../app/js/reducers';
+import combineReducers from './app/js/reducers';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import configureStore from 'redux-mock-store';
@@ -15,32 +15,24 @@ global.React = React;
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-window.alert = (msg) => console.log(msg);
+window.alert = jest.fn(msg => console.log(msg));
 
 // redux helpers
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 export const store = createStoreWithMiddleware(combineReducers, {});
 
 export function wrapActualStore(Component, props = {}) {
-    return (
-        <Provider store={store}>
-            <Component {...props} />
-        </Provider>
-    );
+    return <Component store={store} {...props} />;
 }
 
 export function wrapMockStore(Component, initialState = {}, props = {}) {
-    const mockStore = configureStore();
+    const mockStore = configureStore([thunkMiddleware]);
     const mockedStore = mockStore(initialState);
 
-    return (
-        <Provider store={mockedStore}>
-            <Component {...props} />
-        </Provider>
-    );
+    return <Component store={mockedStore} {...props} />;
 }
 
 export function createMockStore(initialState = {}) {
-    const mockStore = configureStore();
+    const mockStore = configureStore([thunkMiddleware]);
     return mockStore(initialState);
 }

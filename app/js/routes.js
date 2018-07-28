@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router';
-import App from './containers/App';
-import Home from './containers/Home';
-import PortfolioDetail from './containers/PortfolioDetail';
+import App from './components/App/App';
+import Home from './components/home/Home';
+import PortfolioDetail from './components/portfolio/PortfolioDetail';
 import PortfolioItemDetail from './components/portfolio-detail/portfolioItemDetail';
-import Training from './containers/Training';
-import NoMatch from './containers/NoMatch';
+import Training from './components/training/Training';
+import NoMatch from './components/404/NoMatch';
 
 export default (
     <Route component={App}>

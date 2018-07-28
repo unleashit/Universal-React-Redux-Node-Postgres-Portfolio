@@ -1,5 +1,4 @@
-import { LiveChatLauncher } from '../../app/js/components/live-chat/chatLauncher';
-import openChat from "../../app/js/components/live-chat/openChat";
+import { LiveChatLauncher } from './chatLauncher';
 import cloneDeep from 'lodash/cloneDeep';
 
 const openChatSpy = jest.spyOn(LiveChatLauncher.prototype, 'openChat')
@@ -49,8 +48,8 @@ describe('<LiveChatLauncher />', () => {
         openChatSpy.mockRestore();
         let newProps = cloneDeep(props);
         newProps.liveChat.serverStatus = false;
+
         wrapper = shallow(<LiveChatLauncher {...newProps} />);
-        
         const launcher = wrapper.find('.chat-launcher');
         launcher.simulate('click');
 

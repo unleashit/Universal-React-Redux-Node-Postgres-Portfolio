@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import Footer from '../components/common/footer';
-import LiveChatContainer from './liveChat';
-import LiveChatLauncher from '../components/live-chat/chatLauncher';
-import { toggleChat } from '../actions/liveChat';
+import Footer from '../common/footer';
+import LiveChatContainer from '../live-chat/liveChatContainer';
+import LiveChatLauncher from '../live-chat/chatLauncher';
+import { toggleChat } from '../../actions/liveChat';
 import { connect } from 'react-redux';
 
-if (typeof document !== 'undefined') require('../../scss/global.scss');
+if (typeof document !== 'undefined') require('../../../scss/global.scss');
 
 export class App extends Component {
     constructor(props) {

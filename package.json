@@ -6,21 +6,21 @@
   "scripts": {
     "start": "node server/app.js",
     "nodemon": "nodemon --legacy-watch ./server/app.js",
-    "dev": ". ./secrets.sh && docker-compose up -d",
-    "dev:logs": ". ./secrets.sh && docker-compose up",
+    "dev:detached": ". ./secrets.sh && docker-compose up -d",
+    "dev": ". ./secrets.sh && docker-compose up",
     "logs": "docker logs -f jasongallagher",
     "prod": ". ./secrets.sh && NODE_ENV=production docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d",
     "prod:build": "npm run prod && npm run build",
     "build": "docker exec -it jasongallagher npm run build:script",
     "build:script": "rm -rf dist && NODE_ENV=production webpack --mode production --config ./webpack.production.config.js",
-    "docker:build": "docker build -t jasongallagher:prod -f Dockerfile-app .",
-    "docker:stop": "docker-compose stop",
-    "docker:down": "docker-compose down",
-    "docker:attach": "docker exec -it jasongallagher /bin/bash",
-    "docker:attach:db": "docker exec -it db bash -c 'psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
+    "build:docker": "docker build -t jasongallagher:prod -f Dockerfile-app . && docker build --target build -t jasongallagher:dev -f Dockerfile-app .",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "attach": "docker exec -it jasongallagher /bin/bash",
+    "attach:db": "docker exec -it db bash -c 'psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
     "test": "docker exec -it -e NODE_ENV=test jasongallagher jest",
     "test:coverage": "docker exec -it -e NODE_ENV=test jasongallagher jest --coverage",
-    "test:watch": "docker exec -it -e NODE_ENV=test jasongallagher jest --watchAll",
+    "test:watch": "docker exec -it -e NODE_ENV=test jasongallagher jest --watch",
     "seed": "docker exec -it jasongallagher node_modules/.bin/sequelize db:seed:all",
     "seed:undo": "docker exec -it jasongallagher node_modules/.bin/sequelize db:seed:undo:all",
     "stats": "npm run stats:build && npm run stats:display",
@@ -126,7 +126,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./test/setupTests.js"
+      "<rootDir>/setupTests.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

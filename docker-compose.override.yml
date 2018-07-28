@@ -21,7 +21,6 @@ services:
       - './.babelrc:/src/.babelrc'
       - './.eslintrc:/src/.eslintrc'
       - './postcss.config.js:/src/postcss.config.js'
-      - './test:/src/test'
       - './public:/src/public'
     ports:
       - '3100:3100' # app

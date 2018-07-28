@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PreReg from './preReg';
 import PostReg from './postReg';
 import CloseButton from '../common/closeButton';
-import LiveChatStatus from '../common/liveChatStatus';
+import LiveChatStatus from './liveChatStatus';
 import * as chatActions from '../../actions/liveChat';
 
 class LiveChat extends Component {

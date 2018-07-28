@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../components/common/stickyHeader';
-import ResponsiveMenu from '../components/common/responsiveMenu';
-import TrainingMain from '../components/training/trainingMain';
-import * as globalActions from '../actions/global';
+import StickyHeader from '../common/stickyHeader';
+import ResponsiveMenu from '../common/responsiveMenu';
+import TrainingMain from './trainingMain';
+import * as globalActions from '../../actions/global';
 
 if (typeof document !== 'undefined')
-    require('../../scss/training/training.scss');
+    require('../../../scss/training/training.scss');
 
 class Training extends Component {
     static readyOnActions(dispatch, params, bypassCheck = false) {
