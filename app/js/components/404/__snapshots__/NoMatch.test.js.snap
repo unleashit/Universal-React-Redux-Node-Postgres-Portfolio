@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LiveChatLauncher /> matches snapshot 1`] = `
+<div
+  className="center-container"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+    htmlAttributes={
+      Object {
+        "class": "not-found-page",
+      }
+    }
+    title="404 Not Found"
+  />
+  <div
+    className="not-found-404"
+  >
+    <img
+      alt="Not Found"
+      src="test-file-stub"
+    />
+    <Link
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/"
+    >
+      <button
+        className="button button-green button-smaller"
+      >
+        Go Home
+      </button>
+    </Link>
+  </div>
+</div>
+`;

@@ -62,11 +62,10 @@ describe('<App />', () => {
         });
     });
 
-
-    it.skip('matches snapshot (without footer)', () => {
-        // TODO: is it possible to ignore a Helmet attribute in the snapshot?
-        // css filename depends on production and development modes
-        // console.log(wrapper.debug());
-        expect(wrapper).toMatchSnapshot();
-    });
+    // it('matches snapshot (without footer)', () => {
+    //     // TODO: is it possible to ignore a Helmet attribute in the snapshot?
+    //     // css filename depends on production and development modes
+    //     // console.log(wrapper.debug());
+    //     expect(wrapper).toMatchSnapshot();
+    // });
 });
