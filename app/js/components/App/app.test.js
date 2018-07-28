@@ -13,8 +13,15 @@ describe('<App />', () => {
         }
     };
 
+    // make it output the production JS
+    process.env.NODE_ENV = 'production';
+
     beforeEach(() => {
         wrapper = shallow(<App { ...props } />);
+    });
+
+    afterAll(() => {
+        process.env.NODE_ENV = 'test';
     });
 
     it('Renders', () => {
@@ -62,10 +69,7 @@ describe('<App />', () => {
         });
     });
 
-    // it('matches snapshot (without footer)', () => {
-    //     // TODO: is it possible to ignore a Helmet attribute in the snapshot?
-    //     // css filename depends on production and development modes
-    //     // console.log(wrapper.debug());
-    //     expect(wrapper).toMatchSnapshot();
-    // });
+    it('matches snapshot (without footer)', () => {
+        expect(wrapper).toMatchSnapshot();
+    });
 });
