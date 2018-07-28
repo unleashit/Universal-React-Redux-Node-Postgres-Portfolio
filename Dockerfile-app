@@ -12,7 +12,7 @@ WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
 COPY --from=build /src ./
 RUN rm -rf node_modules \
-    && rm -rf .git
+    && rm -rf .git \
     && npm install --only=production \
     && apk add --update --no-cache bash
 CMD ["node", "server/app.js"]

@@ -1,7 +1,7 @@
 import NoMatch from './NoMatch';
 import { Link } from 'react-router';
 
-describe('<LiveChatLauncher />', () => {
+describe('<NoMatch />', () => {
     let wrapper;
 
     beforeEach(() => {

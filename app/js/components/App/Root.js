@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Root extends Component {
     renderInitialState() {
-        if (this.props.initialState) {
+        if (this.props.initialStateinitialState) {
             const innerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(
                 this.props.initialState
             )}`;
