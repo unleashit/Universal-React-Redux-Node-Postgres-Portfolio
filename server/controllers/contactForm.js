@@ -38,5 +38,11 @@ exports.handleContactSubmit = function(req, res) {
         });
 
     })
-    .catch(err => console.error('Contact db insertion failure: ' + err ));
+    .catch(err => {
+        console.error('Contact db insertion failure: ' + err );
+        res.status(500).json({
+            result: 'Error',
+            info: err.status || 500
+        });
+    });
 };

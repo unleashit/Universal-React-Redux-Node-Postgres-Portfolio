@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow, render, mount } from 'enzyme';
+import fetchMock from 'fetch-mock';
 import Adapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
 import combineReducers from './app/js/reducers';
@@ -15,7 +16,10 @@ global.React = React;
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-window.alert = jest.fn(msg => console.log(msg));
+global.fetchMock = fetchMock;
+
+// global mocks
+window.alert = global.alert = jest.fn(msg => console.log(msg));
 
 // redux helpers
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);

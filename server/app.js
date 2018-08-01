@@ -95,17 +95,17 @@ extendRequire().then(function () {
     app.use("/api", require(__dirname + '/routes/api'));
 
 // authenticate admin routes
-    app.use('/admin*', (req, res, next) => {
+    const isAdmin = (req, res, next) => {
         if (req.isAuthenticated()) {
             res.locals.user = req.user;
             next();
             return;
         }
         res.redirect('/login');
-    });
+    };
 
 // admin routes
-    app.use("/admin", require(__dirname + '/routes/admin'));
+    app.use("/admin", isAdmin, require(__dirname + '/routes/admin'));
 
 // react routes (all other http)
     app.get('*', require('../app/js/index').serverMiddleware);

@@ -18,12 +18,17 @@ export function submitContact(contactData) {
         return fetch(__API_URL__ + '/contact', {
             method: 'POST',
             body: JSON.stringify(contactData),
-            headers: new Headers({
+            headers: {
                 'Content-Type': 'application/json'
-            })
+            }
         })
             .then(response => {
-                return response.json();
+                if (response.status > 199 && response.status < 300) {
+                    return response.json();
+                }
+                else {
+                    throw new Error('Received wrong status code, contact cannot be sent.');
+                }
             })
             .then(
                 result => {
@@ -33,13 +38,15 @@ export function submitContact(contactData) {
                     });
                     dispatch({ type: SUBMIT_CONTACT_SUCCESS, result });
                     dispatch(reset('contactForm'));
-                },
+                }
+            )
+            .catch(
                 error => {
                     ReactGA.event({
                         category: 'Forms',
                         action: 'Contact Failed'
                     });
-                    dispatch({ type: SUBMIT_CONTACT_FAILED, error });
+                    dispatch({ type: SUBMIT_CONTACT_FAILED, error: error.message });
                     console.log(error);
                 }
             );
