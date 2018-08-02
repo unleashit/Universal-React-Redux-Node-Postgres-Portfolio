@@ -11,6 +11,7 @@ import {
     CHAT_CONTACT_SENT,
     CHAT_ADMIN_ACTIVE
 } from '../../actions/liveChat';
+import globalReducer from '../global';
 
 
 describe('liveChat reducer', () => {
@@ -30,6 +31,11 @@ describe('liveChat reducer', () => {
         adminActive: false
     };
 
+    const runExpecs = (action, newState) => {
+        expect(liveChatReducer(undefined, action)).toEqual(newState);
+        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+    };
+
     test('initial state is correct', () => {
         const action = { type: 'test_action' };
 
@@ -44,8 +50,7 @@ describe('liveChat reducer', () => {
             chatOpen: action.bool,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_SET_SERVER_STATUS', () => {
@@ -55,8 +60,7 @@ describe('liveChat reducer', () => {
             serverStatus: action.bool,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_SET_REMOTE_ID', () => {
@@ -67,8 +71,7 @@ describe('liveChat reducer', () => {
             remoteName: action.name,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_CREATE_MESSAGE', () => {
@@ -78,8 +81,7 @@ describe('liveChat reducer', () => {
             message: action.message,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_RECEIVE_MESSAGE', () => {
@@ -106,8 +108,7 @@ describe('liveChat reducer', () => {
             message: action.message,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_NEW_USER', () => {
@@ -128,8 +129,7 @@ describe('liveChat reducer', () => {
             registered: action.user.registered
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_ISTYPING', () => {
@@ -139,8 +139,7 @@ describe('liveChat reducer', () => {
             isTyping: action.bool,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_CONTACT_SENT', () => {
@@ -150,8 +149,7 @@ describe('liveChat reducer', () => {
             contactSent: action.bool,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CHAT_ADMIN_ACTIVE', () => {
@@ -161,8 +159,6 @@ describe('liveChat reducer', () => {
             adminActive: action.bool,
         };
 
-        expect(liveChatReducer(undefined, action)).toEqual(newState);
-        expect(liveChatReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
-
 });

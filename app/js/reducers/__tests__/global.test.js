@@ -9,6 +9,7 @@ import {
     ANIMATE_CONTACT,
     ANIMATE_OFF
 } from '../../actions/global';
+import contactFormReducer from '../contactForm';
 
 
 describe('global reducer', () => {
@@ -21,6 +22,11 @@ describe('global reducer', () => {
         animateOff: false
     };
 
+    const runExpecs = (action, newState) => {
+        expect(globalReducer(undefined, action)).toEqual(newState);
+        expect(globalReducer(undefined, action)).toMatchSnapshot();
+    };
+
     test('initial state is correct', () => {
         const action = { type: 'test_action' };
 
@@ -30,91 +36,83 @@ describe('global reducer', () => {
 
     test('TOGGLE_HAMBURGER', () => {
         const action = { type: TOGGLE_HAMBURGER };
-        const expectedState = {
+        const newState = {
             ...initialState,
             hamburgerState: true
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('OPEN_HAMBURGER', () => {
         const action = { type: OPEN_HAMBURGER };
-        const expectedState = {
+        const newState = {
             ...initialState,
             hamburgerState: true,
             htmlClass: 'menu-open'
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('CLOSE_HAMBURGER', () => {
         const action = { type: CLOSE_HAMBURGER };
-        const expectedState = {
+        const newState = {
             ...initialState,
             hamburgerState: false,
             htmlClass: null
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('SET_HEADER', () => {
         const action = { type: SET_HEADER, bool: true };
-        const expectedState = {
+        const newState = {
             ...initialState,
             headerState: action.bool
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('ANIMATE_ABOUT', () => {
         const action = { type: ANIMATE_ABOUT, bool: true };
-        const expectedState = {
+        const newState = {
             ...initialState,
             animateAbout: action.bool,
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('ANIMATE_PORTFOLIO', () => {
         const action = { type: ANIMATE_PORTFOLIO, bool: true };
-        const expectedState = {
+        const newState = {
             ...initialState,
             animatePortfolio: true
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('ANIMATE_CONTACT', () => {
         const action = { type: ANIMATE_CONTACT, bool: true };
-        const expectedState = {
+        const newState = {
             ...initialState,
             animateContact: true
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('ANIMATE_OFF', () => {
         const action = { type: ANIMATE_OFF, bool: true };
-        const expectedState = {
+        const newState = {
             ...initialState,
             animateOff: true
         };
 
-        expect(globalReducer(undefined, action)).toEqual(expectedState);
-        expect(globalReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 });

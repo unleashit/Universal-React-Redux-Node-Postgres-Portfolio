@@ -22,6 +22,11 @@ describe('portfolio reducer', () => {
         lastProjectHeight: 400
     };
 
+    const runExpecs = (action, newState) => {
+        expect(portfolioReducer(undefined, action)).toEqual(newState);
+        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+    };
+
     test('initial state is correct', () => {
         const action = { type: 'test_action' };
 
@@ -36,8 +41,7 @@ describe('portfolio reducer', () => {
             readyState: WORK_FETCHING,
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_FETCH_FAILED', () => {
@@ -48,8 +52,7 @@ describe('portfolio reducer', () => {
             error: action.error
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState)
     });
 
     test('WORK_FETCHED', () => {
@@ -71,8 +74,7 @@ describe('portfolio reducer', () => {
             items: action.result
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_DETAIL_FETCHING', () => {
@@ -82,8 +84,7 @@ describe('portfolio reducer', () => {
             DetailReadyState: WORK_DETAIL_FETCHING,
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_DETAIL_FETCH_FAILED', () => {
@@ -94,8 +95,7 @@ describe('portfolio reducer', () => {
             error: action.error
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_DETAIL_FETCHED', () => {
@@ -122,8 +122,7 @@ describe('portfolio reducer', () => {
             item: action.result
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_DETAIL_RESET', () => {
@@ -134,8 +133,7 @@ describe('portfolio reducer', () => {
             item: null
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
 
     test('WORK_LAST_PROJECT_HEIGHT', () => {
@@ -148,8 +146,6 @@ describe('portfolio reducer', () => {
             lastProjectHeight: action.payload
         };
 
-        expect(portfolioReducer(undefined, action)).toEqual(newState);
-        expect(portfolioReducer(undefined, action)).toMatchSnapshot();
+        runExpecs(action, newState);
     });
-
 });
