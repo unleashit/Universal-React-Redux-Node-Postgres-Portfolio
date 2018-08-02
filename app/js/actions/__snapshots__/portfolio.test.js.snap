@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Portfolio Actions fetchPorfolioDetailIfNeeded() Fetches work from server if not already cached 1`] = `
+Object {
+  "description_short": "React Ecommerce and Tattoo Builder App",
+  "id": 1,
+  "main_image": "TatteasyLogo.svg",
+  "sort": 1,
+  "title": "Tatteasy",
+  "url_slug": "tatteasy",
+}
+`;
+
+exports[`Portfolio Actions fetchPorfolioIfNeeded() Fetches work from server if not already cached 1`] = `
+Array [
+  Object {
+    "description_short": "React Ecommerce and Tattoo Builder App",
+    "id": 1,
+    "main_image": "TatteasyLogo.svg",
+    "sort": 1,
+    "title": "Tatteasy",
+    "url_slug": "tatteasy",
+  },
+]
+`;
