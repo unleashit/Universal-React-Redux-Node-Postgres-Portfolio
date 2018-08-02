@@ -1,4 +1,4 @@
-import NoMatch from './NoMatch';
+import NoMatch from '../NoMatch';
 import { Link } from 'react-router';
 
 describe('<NoMatch />', () => {

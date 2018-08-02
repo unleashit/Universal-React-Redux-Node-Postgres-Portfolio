@@ -1,7 +1,7 @@
-import * as contactActions from './contact';
-import { __API_URL__ } from '../../../config/APPconfig';
-import { createMockStore } from '../../../setupTests';
-import { ReactGA } from '../libs/utils';
+import * as contactActions from '../contact';
+import { __API_URL__ } from '../../../../config/APPconfig';
+import { createMockStore } from '../../../../setupTests';
+import { ReactGA } from '../../libs/utils';
 
 describe('Contact Actions', () => {
     const initialState = {};

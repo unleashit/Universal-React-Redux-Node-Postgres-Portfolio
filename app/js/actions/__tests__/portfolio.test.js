@@ -1,7 +1,7 @@
-import * as portfolioActions from './portfolio';
-import { createMockStore } from '../../../setupTests';
-import { ReactGA } from '../libs/utils';
-import { __API_URL__ } from '../../../config/APPconfig';
+import * as portfolioActions from '../portfolio';
+import { createMockStore } from '../../../../setupTests';
+import { ReactGA } from '../../libs/utils';
+import { __API_URL__ } from '../../../../config/APPconfig';
 
 describe('Portfolio Actions', () => {
     let initialState = {};

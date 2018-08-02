@@ -1,6 +1,6 @@
-import * as globalActions from './global';
-import { createMockStore } from '../../../setupTests';
-import { ReactGA } from '../libs/utils';
+import * as globalActions from '../global';
+import { createMockStore } from '../../../../setupTests';
+import { ReactGA } from '../../libs/utils';
 
 describe('Global Actions', () => {
     const initialState = {};

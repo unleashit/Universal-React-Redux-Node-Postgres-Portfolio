@@ -1,6 +1,6 @@
-import { Home } from './Home';
-import Portfolio from '../portfolio/Portfolio';
-import { wrapActualStore, wrapMockStore, createMockStore } from "../../../../setupTests";
+import { Home } from '../Home';
+import Portfolio from '../../portfolio/Portfolio';
+import { wrapActualStore, wrapMockStore, createMockStore } from "../../../../../setupTests";
 
 describe('Home container', () => {
     let wrapper;

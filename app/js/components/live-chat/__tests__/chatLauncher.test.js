@@ -1,4 +1,4 @@
-import { LiveChatLauncher } from './chatLauncher';
+import { LiveChatLauncher } from '../chatLauncher';
 import cloneDeep from 'lodash/cloneDeep';
 
 const openChatSpy = jest.spyOn(LiveChatLauncher.prototype, 'openChat')

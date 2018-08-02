@@ -1,4 +1,4 @@
-import Root from './Root';
+import Root from '../Root';
 
 describe('<Root />', () => {
     let wrapper;

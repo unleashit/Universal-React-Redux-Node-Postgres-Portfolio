@@ -1,6 +1,6 @@
-import * as liveChatActions from './liveChat';
-import { createMockStore } from '../../../setupTests';
-import { ReactGA } from '../libs/utils';
+import * as liveChatActions from '../liveChat';
+import { createMockStore } from '../../../../setupTests';
+import { ReactGA } from '../../libs/utils';
 
 describe('LiveChat Actions', () => {
     let initialState = {};

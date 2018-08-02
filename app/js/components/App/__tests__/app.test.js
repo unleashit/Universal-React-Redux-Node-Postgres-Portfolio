@@ -1,9 +1,9 @@
-import { App } from './App';
+import { App } from '../App';
 import Helmet from 'react-helmet';
-import Footer from '../common/footer';
-import LiveChatContainer from '../live-chat/liveChatContainer';
-import LiveChatLauncher from '../live-chat/chatLauncher';
-import { wrapActualStore } from '../../../../setupTests';
+import Footer from '../../common/footer';
+import LiveChatContainer from '../../live-chat/liveChatContainer';
+import LiveChatLauncher from '../../live-chat/chatLauncher';
+import { wrapActualStore } from '../../../../../setupTests';
 
 describe('<App />', () => {
     let wrapper;
