@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`global reducer ANIMATE_ABOUT 1`] = `
+Object {
+  "animateAbout": true,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": false,
+}
+`;
+
+exports[`global reducer ANIMATE_CONTACT 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": true,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": false,
+}
+`;
+
+exports[`global reducer ANIMATE_OFF 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": true,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": false,
+}
+`;
+
+exports[`global reducer ANIMATE_PORTFOLIO 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": true,
+  "hamburgerState": false,
+  "headerState": false,
+}
+`;
+
+exports[`global reducer CLOSE_HAMBURGER 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": false,
+  "htmlClass": null,
+}
+`;
+
+exports[`global reducer OPEN_HAMBURGER 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": true,
+  "headerState": false,
+  "htmlClass": "menu-open",
+}
+`;
+
+exports[`global reducer SET_HEADER 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": true,
+}
+`;
+
+exports[`global reducer TOGGLE_HAMBURGER 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": true,
+  "headerState": false,
+}
+`;
+
+exports[`global reducer initial state is correct 1`] = `
+Object {
+  "animateAbout": false,
+  "animateContact": false,
+  "animateOff": false,
+  "animatePortfolio": false,
+  "hamburgerState": false,
+  "headerState": false,
+}
+`;

@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`portfolio reducer WORK_DETAIL_FETCH_FAILED 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_FETCH_FAILED",
+  "error": "Big fat error",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_INVALID",
+}
+`;
+
+exports[`portfolio reducer WORK_DETAIL_FETCHED 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_FETCHED",
+  "item": Object {
+    "description": "Weaved is an IoT company in Palo Alto, CA that offers cloud services as well as hardware. Over a period of time, I redeveloped and helped redesign a user portal that allows users to connect to their IOT devices. Also performed miscellaneous development work for several online properties as needed.",
+    "description_short": "Internet of Things (IoT) App",
+    "gallery": "WeavedGallery.png",
+    "id": 41,
+    "image_mobile": "WeavedMobile.png",
+    "link": "https://www.weaved.com",
+    "main_image": "WeavedLogo.png",
+    "next": "terra-global-capital",
+    "prev": "relola",
+    "sort": 3,
+    "tags": "jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP",
+    "title": "Weaved",
+    "url_slug": "weaved",
+  },
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_INVALID",
+}
+`;
+
+exports[`portfolio reducer WORK_DETAIL_FETCHING 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_FETCHING",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_INVALID",
+}
+`;
+
+exports[`portfolio reducer WORK_DETAIL_RESET 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_INVALID",
+}
+`;
+
+exports[`portfolio reducer WORK_FETCH_FAILED 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "error": "Big fat error",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_FETCH_FAILED",
+}
+`;
+
+exports[`portfolio reducer WORK_FETCHED 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "item": null,
+  "items": Array [
+    Object {
+      "description_short": "Internet of Things (IoT) App",
+      "id": 41,
+      "main_image": "WeavedLogo.png",
+      "sort": 3,
+      "title": "Weaved",
+      "url_slug": "weaved",
+    },
+  ],
+  "lastProjectHeight": 400,
+  "readyState": "WORK_FETCHED",
+}
+`;
+
+exports[`portfolio reducer WORK_FETCHING 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_FETCHING",
+}
+`;
+
+exports[`portfolio reducer WORK_LAST_PROJECT_HEIGHT 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 600,
+  "readyState": "WORK_INVALID",
+}
+`;
+
+exports[`portfolio reducer initial state is correct 1`] = `
+Object {
+  "DetailReadyState": "WORK_DETAIL_INVALID",
+  "item": null,
+  "items": null,
+  "lastProjectHeight": 400,
+  "readyState": "WORK_INVALID",
+}
+`;

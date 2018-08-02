@@ -26,9 +26,13 @@ describe('LiveChat Actions', () => {
             },
         ];
 
-        store.dispatch(liveChatActions.toggleChat(true));
+        // test default bool = true
+        store.dispatch(liveChatActions.toggleChat());
         expect(store.getActions()).toEqual(expectedActions);
-        expect(mockReactGA).toBeCalledTimes(1);
+        expect(mockReactGA.mock.calls[0][0].action).toEqual('Opened Live Chat');
+
+        store.dispatch(liveChatActions.toggleChat(false));
+        expect(mockReactGA.mock.calls[1][0].action).toEqual('Closed Live Chat');
     });
 
     test('chatSetServerStatus()', () => {

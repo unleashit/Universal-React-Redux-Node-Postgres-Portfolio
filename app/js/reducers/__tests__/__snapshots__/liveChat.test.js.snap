@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`liveChat reducer CHAT_ADMIN_ACTIVE 1`] = `
+Object {
+  "adminActive": true,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_CONTACT_SENT 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": true,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_CREATE_MESSAGE 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "bla bla",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_ISTYPING 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": true,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_NEW_USER 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "fred@fred.com",
+  "localName": "fred",
+  "message": "",
+  "messages": Array [],
+  "registered": true,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "asfd2323fafkjlkj2lj324asf",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_ONCHANGE 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "bla bla",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_RECEIVE_MESSAGE 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [
+    "1st message",
+    "2nd message",
+  ],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_SET_REMOTE_ID 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": 1,
+  "remoteName": "fred",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer CHAT_SET_SERVER_STATUS 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": true,
+}
+`;
+
+exports[`liveChat reducer TOGGLE_CHAT 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": true,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;
+
+exports[`liveChat reducer initial state is correct 1`] = `
+Object {
+  "adminActive": false,
+  "chatOpen": false,
+  "contactSent": false,
+  "isTyping": false,
+  "localEmail": "",
+  "localName": "",
+  "message": "",
+  "messages": Array [],
+  "registered": false,
+  "remoteId": "",
+  "remoteName": "",
+  "room": "",
+  "serverStatus": false,
+}
+`;

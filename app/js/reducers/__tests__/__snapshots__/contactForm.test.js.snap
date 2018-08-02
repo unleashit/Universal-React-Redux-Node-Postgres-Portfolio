@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`contactForm reducer SUBMIT_CONTACT_FAILED 1`] = `
+Object {
+  "error": "big bad error",
+  "readyState": "SUBMIT_CONTACT_FAILED",
+  "result": null,
+}
+`;
+
+exports[`contactForm reducer SUBMIT_CONTACT_SENDING 1`] = `
+Object {
+  "readyState": "SUBMIT_CONTACT_SENDING",
+  "result": null,
+}
+`;
+
+exports[`contactForm reducer SUBMIT_CONTACT_SUCCESS 1`] = `
+Object {
+  "readyState": "SUBMIT_CONTACT_SUCCESS",
+  "result": "it worked!",
+}
+`;
+
+exports[`contactForm reducer initial state is correct 1`] = `
+Object {
+  "readyState": "SUBMIT_CONTACT_INVALID",
+  "result": null,
+}
+`;
