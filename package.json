@@ -129,6 +129,7 @@
     "setupFiles": [
       "<rootDir>/setupTests.js"
     ],
+    "coverageDirectory": "<rootDir>/coverage",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
