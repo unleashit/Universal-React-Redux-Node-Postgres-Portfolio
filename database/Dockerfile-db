@@ -3,7 +3,7 @@ FROM postgres
 ENV POSTGRES_DB ${JG_DATABASE_DATABASE}
 ENV POSTGRES_USER ${JG_DATABASE_USERNAME}
 ENV POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
+VOLUME jg_data
 
-# run create.sql on init
-COPY ./pgData /var/lib/postgresql/data/
+# run sessions.sql on init
 COPY ./sessions.sql /docker-entrypoint-initdb.d

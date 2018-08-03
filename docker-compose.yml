@@ -3,7 +3,6 @@ version: '3.4'
 services:
   db:
     container_name: db
-    image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db
     ports:
       - '5433:5432'
     environment:

@@ -2,11 +2,8 @@ version: '3.4'
 
 services:
   db:
-#    build:
-#      context: ./database
-#      dockerfile: Dockerfile-db
+    image: jasongallagher_db
     restart: "no"
-
   app:
     image: jasongallagher:dev
     command: ["npm", "start"]

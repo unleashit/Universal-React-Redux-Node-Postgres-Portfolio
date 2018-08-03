@@ -11,11 +11,11 @@ Copy `sample.env` to `.env` and make changes as desired.
 
 The app will run with the defaults but certain features won't work. Email and SMTP info are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. SMS options if configured will send a text notification when a user initiates a new chat.
 
-A few misc settings that aren't important for running the app can also be found in `/config/APPconfig.sample.js`.
+A few misc settings that aren't important for running the app can also be found in `/config/APPconfig.js`.
 
 ### Running
 
-After you clone the project and add the config and secrets files, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
+After you clone the project and configure the secrets, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
 
 Next run `npm run build:docker` to build the images and install dependencies. Once that's done, if you want to add sample content you can seed the database with `npm run seed`. Because user submitted content (images in this case) are gitignored, next copy or move the images from /app/images/sample_portfolio into /public/images/portfolio so they can display.
 
