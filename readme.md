@@ -1,5 +1,5 @@
 # jasongallagher.org
-Personal site and portfolio of Jason Gallagher. A nice mix of react, redux, node.js, websockets, postgreSql, docker and the color green.
+My personal site and portfolio. A nice mix of react, redux, node.js, websockets, postgreSql, docker and the color green.
 
 `Important Note: this code is NOT an open source. You have a right to view, or install a local copy for personal viewing only. You are not granted the right to use this in any other way, either for commercial or non-commercial reasons. You may not distribute this code. Please see the LICENSE.txt file for more details.`
 
@@ -13,13 +13,13 @@ The app will run with the defaults but certain features won't work. Email and SM
 
 A few misc settings that aren't important for running the app can also be found in `/config/APPconfig.js`.
 
-### Running
+### Building and Running
 
 After you clone the project and configure the secrets, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
 
-Next run `npm run build:docker` to build the images and install dependencies. Once that's done, if you want to add sample content you can seed the database with `npm run seed`. Because user submitted content (images in this case) are gitignored, next copy or move the images from /app/images/sample_portfolio into /public/images/portfolio so they can display.
+Next run `npm run build:docker` to build the images and install dependencies. Finally, run it with either `npm run dev` or `npm run prod`.
 
-After building the images and seeding, run it with `npm run dev` or `npm run prod`.
+If you want to add sample content, while the containers are running you can seed the database with `npm run seed`. Because user submitted content (images in this case) are gitignored, you must manually copy/move the images from /app/images/sample_portfolio into /public/images/portfolio so they can display.
 
 ### Npm commands
 
@@ -50,7 +50,7 @@ Note: if you don't have node installed, just copy and run the scripts from packa
 `npm run stats` analyzes dependencies and runs webpack-bundle-analyzer
 
 ### Administration and Login
-To access the admin to manage chats or the portfolio, you need to add a user and then elevate its access level. To create a user, just go to `/signup` and create it. To elevate the user, log into the DB with `npm run docker:attach:db` and change the `accesslevel` field of your new user to 3. Now you can login at `/login` with the user and have administrator access to the control panel.
+To access the admin to manage chats or the portfolio, you need to add a user and then elevate its access level. To create a user, just go to `/signup` and create it. To elevate the user, log into the DB with `npm run attach:db` and change the `accesslevel` field of your new user to 3. Now you can login at `/login` with the user and have administrator access to the control panel.
 
 
 `Reminder: this code/theme/site is NOT open source. You have DO NOT have permission to use it for any other purpose except for your own personal viewing. Please see LICENSE.txt file for further details.`
