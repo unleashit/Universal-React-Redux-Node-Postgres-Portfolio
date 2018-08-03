@@ -130,6 +130,7 @@
     "setupFiles": [
       "<rootDir>/setupTests.js"
     ],
+    "testURL": "http://localhost/",
     "coverageDirectory": "<rootDir>/coverage",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
