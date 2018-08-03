@@ -1,5 +1,5 @@
 # jasongallagher.org
-My personal site and portfolio. A nice mix of react, redux, node.js, websockets, postgreSql, docker and the color green.
+My personal site and portfolio. A nice mix of react, redux, node.js, websockets, postgreSql, docker and the color green. Features a custom control panel for managing the portfolio and the help desk.
 
 `Important Note: this code is NOT an open source. You have a right to view, or install a local copy for personal viewing only. You are not granted the right to use this in any other way, either for commercial or non-commercial reasons. You may not distribute this code. Please see the LICENSE.txt file for more details.`
 
