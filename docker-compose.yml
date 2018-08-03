@@ -7,9 +7,9 @@ services:
     ports:
       - '5433:5432'
     environment:
-      - POSTGRES_USER=${JG_DATABASE_USERNAME}
-      - POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
-      - POSTGRES_DB=${JG_DATABASE_DATABASE}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DATABASE}
     volumes:
       - 'jg_data:/var/lib/postgresql/data/'
     restart: always

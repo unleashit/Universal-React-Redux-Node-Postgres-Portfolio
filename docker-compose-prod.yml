@@ -4,3 +4,5 @@ services:
   app:
     image: jasongallagher:prod
     # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    environment:
+    - NODE_ENV=production
