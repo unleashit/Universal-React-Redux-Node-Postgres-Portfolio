@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -11,59 +12,56 @@ import { __GOOGLE_ANALYTICS__ } from '../../config/APPconfig';
 // import { loadChatState } from './libs/utils';
 
 const isClient = typeof document !== 'undefined';
+// require('smoothscroll-polyfill').polyfill();
+
+function hashLinkScroll() {
+    const { hash } = window.location;
+    const isIE = document.documentMode || /Edge/.test(navigator.userAgent);
+
+    if (hash !== '') {
+        // Push onto callback queue so it runs after the DOM is updated,
+        // this is required when navigating from a different page so that
+        // the element is rendered on the page before trying to getElementById.
+        setTimeout(() => {
+            const id = hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                if (id === 'home') {
+                    // temp fix: after recent browser updates (at least Chrome), no longer smooth scrolling to top
+                    // Firefox was fine but haven't tested in other browsers so changing globally for now
+                    history.pushState(
+                        '',
+                        document.title,
+                        window.location.pathname
+                    );
+                    window.scrollTo(0, 0);
+                } else {
+                    isIE
+                        ? element.scrollIntoView() // IE smooth scroll behavior weird so remove
+                        : element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            ReactGA.event({
+                category: 'Navigation',
+                action: 'Nav Link Clicked: ' + id
+            });
+        }, 0);
+    }
+}
+
+function logPageView() {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+}
+
+function handleRouteUpdates() {
+    hashLinkScroll();
+    logPageView();
+}
 
 if (isClient) {
-    // require('smoothscroll-polyfill').polyfill();
-
     const store = configureStore(window.__INITIAL_STATE__);
-
-    const ReactGA = require('react-ga');
     ReactGA.initialize(__GOOGLE_ANALYTICS__);
-
-    function hashLinkScroll() {
-        const { hash } = window.location;
-        const isIE = document.documentMode || /Edge/.test(navigator.userAgent);
-
-        if (hash !== '') {
-            // Push onto callback queue so it runs after the DOM is updated,
-            // this is required when navigating from a different page so that
-            // the element is rendered on the page before trying to getElementById.
-            setTimeout(() => {
-                const id = hash.replace('#', '');
-                const element = document.getElementById(id);
-                if (element) {
-                    if (id === 'home') {
-                        // temp fix: after recent browser updates (at least Chrome), no longer smooth scrolling to top
-                        // Firefox was fine but haven't tested in other browsers so changing globally for now
-                        history.pushState(
-                            '',
-                            document.title,
-                            window.location.pathname
-                        );
-                        window.scrollTo(0, 0);
-                    } else {
-                        isIE
-                            ? element.scrollIntoView() // IE smooth scroll behavior weird so remove
-                            : element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-                ReactGA.event({
-                    category: 'Navigation',
-                    action: 'Nav Link Clicked: ' + id
-                });
-            }, 0);
-        }
-    }
-
-    function logPageView() {
-        ReactGA.set({ page: window.location.pathname });
-        ReactGA.pageview(window.location.pathname);
-    }
-
-    function handleRouteUpdates() {
-        hashLinkScroll();
-        logPageView();
-    }
 
     ReactDOM.render(
         <Provider store={store}>
@@ -136,7 +134,6 @@ export function serverMiddleware(req, res, next) {
             } else if (renderProps) {
                 handleRoute(res, renderProps);
             } else {
-                //res.sendStatus(404);
                 next();
             }
         }
