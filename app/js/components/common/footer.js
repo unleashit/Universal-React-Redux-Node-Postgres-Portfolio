@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import ContactForm from './contactForm';
+import ContactForm from '../contactForm/contactForm';
 import OpenChat from '../live-chat/openChat';
 import { ReactGA } from '../../libs/utils';
 import {animation} from '../../libs/utils';
@@ -8,10 +8,6 @@ import {animation} from '../../libs/utils';
 class Footer extends React.Component {
 
     render() {
-        const renderContactForm = this.props.contactForm.readyState === 'SUBMIT_CONTACT_SUCCESS' ?
-            <p className="thanks">Thanks for your email!</p> :
-            <ContactForm {...this.props} />;
-
         const footerID = this.props.slug ? 'footer-interior' : '';
 
         const analytics = (type) => {
@@ -46,7 +42,7 @@ class Footer extends React.Component {
                                     for yet another <span>HIPSTER BUZZWORD</span>, this is really great for performance,
                                     accessibility and SEO!</p>
                             </div>
-                            {renderContactForm}
+                            <ContactForm />
                         </div>
                     </div>
                 </div>

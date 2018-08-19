@@ -7,6 +7,7 @@ import combineReducers from './app/js/reducers';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import configureStore from 'redux-mock-store';
+import combinedReducers from './app/js/reducers';
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
@@ -22,18 +23,33 @@ global.fetchMock = fetchMock;
 window.alert = global.alert = jest.fn(msg => console.log(msg));
 
 // redux helpers
-const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
-export const store = createStoreWithMiddleware(combineReducers, {});
 
-export function wrapActualStore(Component, props = {}) {
-    return <Component store={store} {...props} />;
+export function wrapActualStore(
+    Component,
+    props = {},
+    reducers = combinedReducers
+) {
+    const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(
+        createStore
+    );
+    const store = createStoreWithMiddleware(reducers, {});
+
+    return (
+        <Provider store={store}>
+            <Component {...props} />
+        </Provider>
+    );
 }
 
 export function wrapMockStore(Component, initialState = {}, props = {}) {
     const mockStore = configureStore([thunkMiddleware]);
     const mockedStore = mockStore(initialState);
 
-    return <Component store={mockedStore} {...props} />;
+    return (
+        <Provider store={mockedStore}>
+            <Component {...props} />
+        </Provider>
+    );
 }
 
 export function createMockStore(initialState = {}) {

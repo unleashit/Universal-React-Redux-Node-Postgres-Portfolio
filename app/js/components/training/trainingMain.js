@@ -1,6 +1,6 @@
 import React from 'react';
 import FAQs from './faq';
-import AccordionPane from '../common/accordionPane';
+import AccordionPane from '../accordionPane/accordionPane';
 
 const trainingImg = (typeof window !== 'undefined') ? require('../../../images/training/frontend-dev-ad.png') : '';
 

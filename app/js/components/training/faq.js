@@ -1,5 +1,5 @@
 import React from 'react';
-import AccordionPane from '../common/accordionPane';
+import AccordionPane from '../accordionPane/accordionPane';
 
 const FAQs = (props) => {
     return (

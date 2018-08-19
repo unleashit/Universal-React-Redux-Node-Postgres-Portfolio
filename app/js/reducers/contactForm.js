@@ -2,7 +2,8 @@ import {
     SUBMIT_CONTACT_INVALID,
     SUBMIT_CONTACT_SENDING,
     SUBMIT_CONTACT_SUCCESS,
-    SUBMIT_CONTACT_FAILED
+    SUBMIT_CONTACT_FAILED,
+    SUBMIT_CONTACT_RESET,
 } from '../actions/contact';
 
 export default function contactForm(
@@ -26,6 +27,11 @@ export default function contactForm(
             return Object.assign({}, state, {
                 readyState: SUBMIT_CONTACT_SUCCESS,
                 result: action.result
+            });
+        case SUBMIT_CONTACT_RESET:
+            return Object.assign({}, state, {
+                readyState: SUBMIT_CONTACT_INVALID,
+                result: null
             });
         default:
             return state;

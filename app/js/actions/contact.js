@@ -6,6 +6,7 @@ export const SUBMIT_CONTACT_INVALID = 'SUBMIT_CONTACT_INVALID';
 export const SUBMIT_CONTACT_SENDING = 'SUBMIT_CONTACT_SENDING';
 export const SUBMIT_CONTACT_SUCCESS = 'SUBMIT_CONTACT_SUCCESS';
 export const SUBMIT_CONTACT_FAILED = 'SUBMIT_CONTACT_FAILED';
+export const SUBMIT_CONTACT_RESET = 'SUBMIT_CONTACT_RESET';
 
 export function submitContact(contactData) {
     return dispatch => {
@@ -51,4 +52,10 @@ export function submitContact(contactData) {
                 }
             );
     };
+}
+
+export function submitContactReset() {
+    return dispatch => {
+        dispatch({ type: SUBMIT_CONTACT_RESET });
+    }
 }

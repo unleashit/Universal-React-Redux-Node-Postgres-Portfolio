@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Loader = (props) => {
+const Loader = props => {
     return (
-        <div className="portfolio-detail-loading" style={{height: props.height + 'px'}}>
-            <i className="fa fa-refresh fa-spin fa-5x fa-fw"></i>
+        <div
+            className="portfolio-detail-loading"
+            style={{
+                height: props.height + 'px',
+                ...{...props.style}
+            }}
+        >
+            <i className="fa fa-refresh fa-spin fa-5x fa-fw" />
             <div className="caption">Stay tuned...</div>
         </div>
     );
