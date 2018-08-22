@@ -2,9 +2,9 @@ import React from 'react';
 import FAQs from './faq';
 import AccordionPane from '../accordionPane/accordionPane';
 
-const trainingImg = (typeof window !== 'undefined') ? require('../../../images/training/frontend-dev-ad.png') : '';
+import trainingImg from '../../../images/training/frontend-dev-ad.png';
 
-const TrainingMain = (props) => {
+const TrainingMain = () => {
     return (
         <div className="training-main container-fluid">
             <h2>Front End/Full Stack Development Bootcamp</h2>

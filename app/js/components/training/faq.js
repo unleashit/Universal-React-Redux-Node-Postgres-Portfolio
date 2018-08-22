@@ -1,7 +1,7 @@
 import React from 'react';
 import AccordionPane from '../accordionPane/accordionPane';
 
-const FAQs = (props) => {
+const FAQs = () => {
     return (
         <div className="faqs">
             <h3>Frequently Asked Questions</h3>

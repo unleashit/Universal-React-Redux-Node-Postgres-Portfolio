@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Training /> snapshot matches 1`] = `
+<div
+  id="interior-page"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+    htmlAttributes={Object {}}
+    link={
+      Array [
+        Object {
+          "href": "https://jasongallagher.org/training",
+          "rel": "canonical",
+        },
+      ]
+    }
+    meta={
+      Array [
+        Object {
+          "content": "Full Stack Training in Javascript, Html, CSS, React, Node.js, Mysql, Linux and more",
+          "name": "description",
+        },
+      ]
+    }
+    title="Front End Development Bootcamp"
+  />
+  <StickyHeader
+    dispatch={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    openBurger={[Function]}
+    remoteId="admin"
+    visible={true}
+  />
+  <ResponsiveMenu
+    closeBurger={[Function]}
+    menuVisible={false}
+  />
+  <TrainingMain />
+</div>
+`;

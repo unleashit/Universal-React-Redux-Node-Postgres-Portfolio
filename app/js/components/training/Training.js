@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../stickyHeader/stickyHeader';
@@ -9,7 +10,7 @@ import * as globalActions from '../../actions/global';
 if (typeof document !== 'undefined')
     require('../../../scss/training/training.scss');
 
-class Training extends Component {
+export class Training extends Component {
     static readyOnActions(dispatch, params, bypassCheck = false) {
         return Promise.all([dispatch(globalActions.animateOff())]);
     }
@@ -28,6 +29,15 @@ class Training extends Component {
         this.props.dispatch(globalActions.closeHamburger());
     }
 
+    // hide header on small devices when chat is open
+    headerVisible() {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth <= 768
+                ? !this.props.liveChat.chatOpen
+                : true;
+        } else return true;
+    };
+
     render() {
         const { hamburgerState, htmlClass } = this.props.global;
         const htmlClassCheck = htmlClass ? { class: htmlClass } : {};
@@ -35,15 +45,6 @@ class Training extends Component {
         const title = 'Front End Development Bootcamp';
         const metadesc =
             'Full Stack Training in Javascript, Html, CSS, React, Node.js, Mysql, Linux and more';
-
-        // hide header on small devices when chat is open
-        const headerVisible = () => {
-            if (typeof window !== 'undefined') {
-                return window.innerWidth <= 768
-                    ? !this.props.liveChat.chatOpen
-                    : true;
-            } else return true;
-        };
 
         return (
             <div id="interior-page">
@@ -59,7 +60,7 @@ class Training extends Component {
                     ]}
                 />
                 <StickyHeader
-                    visible={headerVisible()}
+                    visible={this.headerVisible()}
                     openBurger={this.openBurger.bind(this)}
                     remoteId={this.props.liveChat.remoteId}
                     dispatch={this.props.dispatch}
@@ -92,3 +93,15 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Training);
+
+Training.propTypes = {
+    global: PropTypes.shape({
+        hamburgerState: PropTypes.bool.isRequired,
+        htmlClass: PropTypes.string
+    }),
+    liveChat: PropTypes.shape({
+        remoteId: PropTypes.string,
+        chatOpen: PropTypes.bool
+    }),
+    dispatch: PropTypes.func
+};
