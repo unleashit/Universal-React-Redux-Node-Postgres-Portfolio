@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> snapshot matches 1`] = `
+<footer
+  className="footer"
+  id="footer-interior"
+>
+  <div
+    className="footer-border"
+  />
+  <div
+    className="footer-wrap"
+    id="contact-area"
+  >
+    <div
+      className="animated fadeInUp container-fluid"
+    >
+      <div
+        className="contact row"
+        id="contact"
+      >
+        <div
+          className="col-lg-4"
+        >
+          <h4>
+            CONTACT
+          </h4>
+          <p
+            className="contact-method"
+          >
+            <i
+              className="fa fa-phone"
+            />
+              (707) 280-3629
+          </p>
+          <p
+            className="contact-method chat"
+          >
+            <i
+              className="fa fa-comments"
+            />
+              
+            <Connect(OpenChat)>
+              <a
+                href="#"
+              >
+                Live Chat
+              </a>
+            </Connect(OpenChat)>
+          </p>
+          <p
+            className="contact-method"
+          >
+            <i
+              className="fa fa-envelope"
+            />
+              
+            <a
+              href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services"
+              onClick={[Function]}
+              target="_top"
+            >
+              Email
+            </a>
+          </p>
+          <h4
+            className="about-this-site"
+          >
+            ABOUT THE SITE
+          </h4>
+          <p
+            className="about-this-site-text"
+          >
+            This site is 100% 
+            <span>
+              HANDCRAFTED
+            </span>
+             with React, Redux, Node, PostgreSQL, and 
+            <span>
+              OF COURSE
+            </span>
+            , Html and CSS. It is 
+            <span>
+              UNIVERSAL
+            </span>
+            , or rather a single page app that is first rendered on the server. Not to be mistaken for yet another 
+            <span>
+              HIPSTER BUZZWORD
+            </span>
+            , this is really great for performance, accessibility and SEO!
+          </p>
+        </div>
+        <Connect(ReduxForm) />
+      </div>
+    </div>
+  </div>
+</footer>
+`;

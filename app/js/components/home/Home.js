@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../common/stickyHeader';
-import ResponsiveMenu from '../common/responsiveMenu';
+import StickyHeader from '../stickyHeader/stickyHeader';
+import ResponsiveMenu from '../navigation/responsiveMenu';
 import Header from './header';
 import WhoWhatWhere from './whoWhatWhere';
 import About from './about';
@@ -126,9 +126,9 @@ export class Home extends Component {
                 />
                 <StickyHeader
                     visible={headerState}
-                    displayHamburger={false}
                     remoteId={this.props.liveChat.remoteId}
                     dispatch={this.props.dispatch}
+                    openBurger={this.openBurger.bind(this)}
                 />
                 <ResponsiveMenu
                     closeBurger={this.closeBurger.bind(this)}

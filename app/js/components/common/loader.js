@@ -16,7 +16,13 @@ const Loader = props => {
     );
 };
 
-Loader.propTypes = {};
-Loader.defaultProps = {};
+Loader.propTypes = {
+    height: PropTypes.number,
+    style: PropTypes.object
+};
+Loader.defaultProps = {
+    height: null,
+    style: {}
+};
 
 export default Loader;

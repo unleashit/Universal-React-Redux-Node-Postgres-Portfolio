@@ -1,0 +1,299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo /> snapshot matches 1`] = `
+<li>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/#home"
+  >
+    <img
+      alt="Jason Gallagher"
+      className="jg-logo"
+      height="42"
+      src="test-file-stub"
+      width="42"
+    />
+  </Link>
+</li>
+`;
+
+exports[`<Navigation /> home link renders if it should 1`] = `
+<nav>
+  <ul>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#home"
+      >
+        Home
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#about"
+      >
+        About
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#skills"
+      >
+        Skills
+      </Link>
+    </li>
+    <Logo />
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#work"
+      >
+        Work
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/training"
+      >
+        Training
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#contact"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<Navigation /> logo renders in correct position 1`] = `
+<nav>
+  <ul>
+    <Logo />
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#about"
+      >
+        About
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#skills"
+      >
+        Skills
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#work"
+      >
+        Work
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#contact"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<Navigation /> logo renders in correct position 2`] = `
+<nav>
+  <ul>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#about"
+      >
+        About
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#skills"
+      >
+        Skills
+      </Link>
+    </li>
+    <Logo />
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#work"
+      >
+        Work
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#contact"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<Navigation /> snapshot matches 1`] = `
+<nav>
+  <ul>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#about"
+      >
+        About
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#skills"
+      >
+        Skills
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#work"
+      >
+        Work
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#contact"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<Navigation /> snapshot matches 2`] = `
+<nav>
+  <ul>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#about"
+      >
+        About
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#skills"
+      >
+        Skills
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#work"
+      >
+        Work
+      </Link>
+    </li>
+    <li
+      className="hidden-xs-down"
+    >
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/#contact"
+      >
+        Contact
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;

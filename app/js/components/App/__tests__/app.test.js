@@ -1,6 +1,6 @@
 import { App } from '../App';
 import Helmet from 'react-helmet';
-import Footer from '../../common/footer';
+import Footer from '../../footer/footer';
 import LiveChatContainer from '../../live-chat/liveChatContainer';
 import LiveChatLauncher from '../../live-chat/chatLauncher';
 import { wrapActualStore } from '../../../../../setupTests';

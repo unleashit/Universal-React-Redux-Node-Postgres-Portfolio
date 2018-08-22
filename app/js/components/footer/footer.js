@@ -5,17 +5,16 @@ import OpenChat from '../live-chat/openChat';
 import { ReactGA } from '../../libs/utils';
 import {animation} from '../../libs/utils';
 
-class Footer extends React.Component {
+export class Footer extends React.Component {
+    analytics(type) {
+        ReactGA.event({
+            category: 'button click',
+            action: type
+        });
+    };
 
     render() {
         const footerID = this.props.slug ? 'footer-interior' : '';
-
-        const analytics = (type) => {
-            ReactGA.event({
-                category: 'button click',
-                action: type
-            });
-        };
 
         return (
             <footer className="footer" id={footerID}>
@@ -32,7 +31,7 @@ class Footer extends React.Component {
                                 </p>
                                 <p className="contact-method"><i className="fa fa-envelope"></i> &nbsp;
                                     <a href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services"
-                                        target="_top" onClick={analytics.bind(this, 'email in footer')}>Email
+                                        target="_top" onClick={() => this.analytics('email in footer')}>Email
                                     </a>
                                 </p>
                                 <h4 className="about-this-site">ABOUT THE SITE</h4>

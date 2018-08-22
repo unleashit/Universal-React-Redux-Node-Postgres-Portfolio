@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ResponsiveMenu /> shows on or off class depending on menuVisible state 1`] = `
+<div
+  className="resp-menu hidden-md-up on"
+>
+  <div
+    className="close-menu"
+    onClick={[MockFunction]}
+  >
+    <i
+      className="fa fa-close"
+    />
+     CLOSE
+  </div>
+  <h3
+    className="name"
+  >
+    Jason Gallagher
+  </h3>
+  <h3
+    className="title"
+  >
+    Front End Engineer
+  </h3>
+  <nav>
+    <ul
+      className="responsive-nav"
+    >
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#home"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#about"
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#skills"
+        >
+          Skills
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#work"
+        >
+          Work
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/training"
+        >
+          Training
+        </Link>
+      </li>
+      <li>
+        <a
+          href="/#contact"
+          onClick={[MockFunction]}
+        >
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <img
+    alt="Jason Gallagher"
+    className="jg-logo-menu"
+    height="100"
+    src="test-file-stub"
+    width="100"
+  />
+</div>
+`;
+
+exports[`<ResponsiveMenu /> shows on/off classes depending on menuVisible state 1`] = `
+<div
+  className="resp-menu hidden-md-up on"
+>
+  <div
+    className="close-menu"
+    onClick={[MockFunction]}
+  >
+    <i
+      className="fa fa-close"
+    />
+     CLOSE
+  </div>
+  <h3
+    className="name"
+  >
+    Jason Gallagher
+  </h3>
+  <h3
+    className="title"
+  >
+    Front End Engineer
+  </h3>
+  <nav>
+    <ul
+      className="responsive-nav"
+    >
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#home"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#about"
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#skills"
+        >
+          Skills
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#work"
+        >
+          Work
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/training"
+        >
+          Training
+        </Link>
+      </li>
+      <li>
+        <a
+          href="/#contact"
+          onClick={[MockFunction]}
+        >
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <img
+    alt="Jason Gallagher"
+    className="jg-logo-menu"
+    height="100"
+    src="test-file-stub"
+    width="100"
+  />
+</div>
+`;
+
+exports[`<ResponsiveMenu /> snapshot matches 1`] = `
+<div
+  className="resp-menu hidden-md-up off"
+>
+  <div
+    className="close-menu"
+    onClick={[MockFunction]}
+  >
+    <i
+      className="fa fa-close"
+    />
+     CLOSE
+  </div>
+  <h3
+    className="name"
+  >
+    Jason Gallagher
+  </h3>
+  <h3
+    className="title"
+  >
+    Front End Engineer
+  </h3>
+  <nav>
+    <ul
+      className="responsive-nav"
+    >
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#home"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#about"
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#skills"
+        >
+          Skills
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/#work"
+        >
+          Work
+        </Link>
+      </li>
+      <li>
+        <Link
+          onClick={[MockFunction]}
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/training"
+        >
+          Training
+        </Link>
+      </li>
+      <li>
+        <a
+          href="/#contact"
+          onClick={[MockFunction]}
+        >
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <img
+    alt="Jason Gallagher"
+    className="jg-logo-menu"
+    height="100"
+    src="test-file-stub"
+    width="100"
+  />
+</div>
+`;

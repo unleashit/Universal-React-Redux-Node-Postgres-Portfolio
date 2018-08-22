@@ -8,6 +8,13 @@ Object {
 }
 `;
 
+exports[`contactForm reducer SUBMIT_CONTACT_RESET 1`] = `
+Object {
+  "readyState": "SUBMIT_CONTACT_INVALID",
+  "result": null,
+}
+`;
+
 exports[`contactForm reducer SUBMIT_CONTACT_SENDING 1`] = `
 Object {
   "readyState": "SUBMIT_CONTACT_SENDING",

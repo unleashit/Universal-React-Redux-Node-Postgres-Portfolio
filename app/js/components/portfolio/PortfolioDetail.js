@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../common/stickyHeader';
+import StickyHeader from '../stickyHeader/stickyHeader';
 import Loader from '../common/loader';
-import ResponsiveMenu from '../common/responsiveMenu';
+import ResponsiveMenu from '../navigation/responsiveMenu';
 import * as portfolioActions from '../../actions/portfolio';
 import * as globalActions from '../../actions/global';
 
@@ -138,7 +138,6 @@ class PortfolioDetail extends Component {
                 />
                 <StickyHeader
                     visible={headerVisible()}
-                    displayHamburger={true}
                     openBurger={this.openBurger.bind(this)}
                     remoteId={this.props.liveChat.remoteId}
                     dispatch={this.props.dispatch}

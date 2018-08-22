@@ -95,7 +95,20 @@ html.sticky-menu-open body {
   .sticky-header .jg-logo {
     margin-right: 8px;
   }
-  .sticky-nav a {
-    padding: 0 14px;
+  .sticky-nav {
+    a {
+      padding: 0 14px;
+    }
+    li:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, lg)) {
+  .sticky-nav {
+    a {
+      padding: 0 12px;
+    }
   }
 }

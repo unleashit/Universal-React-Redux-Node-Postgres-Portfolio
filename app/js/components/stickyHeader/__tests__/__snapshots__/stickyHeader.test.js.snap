@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StickyHeader /> snapshot matches 1`] = `
+<div
+  className="sticky-header hidden-xs-down off"
+>
+  <div
+    className="container-fluid"
+  >
+    <Navigation
+      home={true}
+      logo="1"
+      ulClass="sticky-nav"
+    />
+    <div
+      className="hamburger-alt hidden-md-up pull-right"
+      onClick={[MockFunction]}
+    >
+      <i
+        className="fa fa-bars"
+      />
+        MENU
+    </div>
+    <div
+      className="contact-info pull-right hidden-xs-down"
+    >
+      <div>
+        <span
+          className="phone"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-phone"
+          />
+           (707) 280-3629
+        </span>
+        <span
+          className="chat-status"
+          onClick={[Function]}
+        >
+          <Connect(OpenChat)>
+            <liveChatStatus
+              remoteId="admin"
+            />
+          </Connect(OpenChat)>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

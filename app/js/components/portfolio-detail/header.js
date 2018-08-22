@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from '../common/navigation';
+import Navigation from '../navigation/navigation';
 import PropTypes from 'prop-types';
 
 const Header = (props) => {

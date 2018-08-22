@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import StickyHeader from '../common/stickyHeader';
-import ResponsiveMenu from '../common/responsiveMenu';
+import StickyHeader from '../stickyHeader/stickyHeader';
+import ResponsiveMenu from '../navigation/responsiveMenu';
 import TrainingMain from './trainingMain';
 import * as globalActions from '../../actions/global';
 
@@ -60,7 +60,6 @@ class Training extends Component {
                 />
                 <StickyHeader
                     visible={headerVisible()}
-                    displayHamburger={true}
                     openBurger={this.openBurger.bind(this)}
                     remoteId={this.props.liveChat.remoteId}
                     dispatch={this.props.dispatch}
