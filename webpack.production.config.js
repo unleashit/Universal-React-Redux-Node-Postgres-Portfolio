@@ -7,7 +7,7 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var Purify = require("purifycss-webpack-plugin");
 // var CopyWebpackPlugin = require('copy-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var IsomorphicLoaderPlugin = require("isomorphic-loader/lib/webpack-plugin");
+var IsomorphicLoaderPlugin = require('isomorphic-loader/lib/webpack-plugin');
 
 module.exports = {
     entry: {
@@ -22,7 +22,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+                NODE_ENV: JSON.stringify('production')
             }
         }),
         new ExtractTextPlugin('./css/[name].min.css'),
@@ -43,19 +43,18 @@ module.exports = {
         // }),
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
-            cssProcessorOptions: {discardComments: {removeAll: true, autoprefixer: false}},
+            cssProcessorOptions: {
+                discardComments: { removeAll: true, autoprefixer: false }
+            },
             canPrint: true
         }),
-        // new CopyWebpackPlugin([
-        //     {context: './app/images', from: '**/**', to: 'images'},
-        // ]),
         new UglifyJsPlugin({
             cache: true,
             parallel: true
         }),
         // ignore locales in moment.js
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new IsomorphicLoaderPlugin(),
+        new IsomorphicLoaderPlugin()
     ],
     module: {
         rules: [
@@ -63,7 +62,7 @@ module.exports = {
                 test: /\.js?$/,
                 loader: 'babel-loader',
                 // include: path.join(__dirname, 'app'),
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
@@ -71,7 +70,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [
                         {
-                            loader: 'css-loader',
+                            loader: 'css-loader'
                             // options: {
                             //     modules: true,
                             //     sourceMap: false,
@@ -79,20 +78,19 @@ module.exports = {
                             //     localIdentName: '[name]__[local]___[hash:base64:5]',
                             // },
                         },
-                        'postcss-loader',
-                    ],
+                        'postcss-loader'
+                    ]
                 })
             },
             {
                 test: /\.scss$/,
-                include: [path.resolve(__dirname, "./app/scss"), path.resolve(__dirname, "./app/js/reactHelpDeskAdmin/scss")],
+                include: [
+                    path.resolve(__dirname, './app/scss'),
+                    path.resolve(__dirname, './app/js/components/ReactHelpDesk/admin/scss')
+                ],
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: [
-                        'css-loader',
-                        'postcss-loader',
-                        'sass-loader',
-                    ]
+                    use: ['css-loader', 'postcss-loader', 'sass-loader']
                 })
             },
             {
@@ -102,11 +100,11 @@ module.exports = {
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            bypassOnDebug: true,
-                        },
+                            bypassOnDebug: true
+                        }
                     },
                     'isomorphic-loader'
-                ],
+                ]
             },
             {
                 test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
