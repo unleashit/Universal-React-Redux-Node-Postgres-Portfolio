@@ -1,4 +1,4 @@
-import liveChatReducer from '../liveChat';
+import liveChatReducer from '../../components/ReactHelpDesk/client/reducers/liveChat';
 import {
     TOGGLE_CHAT,
     CHAT_CREATE_MESSAGE,
@@ -10,7 +10,7 @@ import {
     CHAT_SET_SERVER_STATUS,
     CHAT_CONTACT_SENT,
     CHAT_ADMIN_ACTIVE
-} from '../../actions/liveChat';
+} from '../../components/ReactHelpDesk/client/actions/liveChat';
 import globalReducer from '../global';
 
 

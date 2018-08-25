@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ContactForm from '../contactForm/contactForm';
-import OpenChat from '../live-chat/openChat';
+import OpenChat from '../ReactHelpDesk/client/openChat';
 import { ReactGA } from '../../libs/utils';
 import {animation} from '../../libs/utils';
 

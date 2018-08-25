@@ -12,7 +12,7 @@ var IsomorphicLoaderPlugin = require("isomorphic-loader/lib/webpack-plugin");
 module.exports = {
     entry: {
         global: ['babel-polyfill', './app/js/index.js'],
-        admin: './app/js/reactHelpDeskAdmin/admin.js'
+        admin: './app/js/components/ReactHelpDesk/admin/admin.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),

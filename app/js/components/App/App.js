@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import Footer from '../footer/footer';
-import LiveChatContainer from '../live-chat/liveChatContainer';
-import LiveChatLauncher from '../live-chat/chatLauncher';
-import { toggleChat } from '../../actions/liveChat';
+import LiveChatContainer from '../ReactHelpDesk/client/liveChatContainer';
+import LiveChatLauncher from '../ReactHelpDesk/client/chatLauncher';
+import { toggleChat } from '../ReactHelpDesk/client/actions/liveChat';
 import { connect } from 'react-redux';
 
 if (typeof document !== 'undefined') require('../../../scss/global.scss');

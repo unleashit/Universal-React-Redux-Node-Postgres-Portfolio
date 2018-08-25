@@ -26,7 +26,7 @@ module.exports = {
     devtool: '#source-map',
     entry: {
         "global": ['webpack-hot-middleware/client', './app/js/index.js'],
-        "admin.min": './app/js/reactHelpDeskAdmin/admin.js'
+        "admin.min": './app/js/components/ReactHelpDesk/admin/admin.js'
     },
     output: {
         path: __dirname + '/dist/',

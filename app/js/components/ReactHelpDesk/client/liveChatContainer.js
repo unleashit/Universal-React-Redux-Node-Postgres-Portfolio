@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LiveChat from './liveChat';
-import * as chatActions from '../../actions/liveChat';
+import * as chatActions from './actions/liveChat';
 import io from 'socket.io-client';
-import { ionSound } from '../../libs/ion-sound';
-import { __API_URL__, __SOCKET_IO_URL__ } from '../../../../config/APPconfig';
+import { ionSound } from '../../../libs/ion-sound';
+import { __API_URL__, __SOCKET_IO_URL__ } from '../../../../../config/APPconfig';
 
 export class LiveChatContainer extends Component {
     constructor(props) {

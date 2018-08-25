@@ -1,6 +1,6 @@
 import * as render from './helpDeskRender';
-import config from '../../../config/APPconfig';
-var ionSound = require('../libs/ion-sound').ionSound();
+import config from '../../../../../config/APPconfig';
+var ionSound = require('../../../libs/ion-sound').ionSound();
 import {
     socket,
     messageList,
@@ -157,7 +157,7 @@ export function handleSubmit(e) {
 
         const message = {
             id: adminId,
-            name: config.liveChat.adminName,
+            name: window.__LIVE_CHAT_ADMIN_NAME__,
             room: currentUser,
             message: val,
             date: Date.now()

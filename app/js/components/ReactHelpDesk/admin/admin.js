@@ -2,7 +2,7 @@ import * as controller from './helpDeskController';
 import * as render from './helpDeskRender';
 import io from 'socket.io-client';
 import filePicker from './adminPortfolio';
-import config from '../../../config/APPconfig';
+import config from '../../../../../config/APPconfig';
 
 import './scss/admin.scss';
 

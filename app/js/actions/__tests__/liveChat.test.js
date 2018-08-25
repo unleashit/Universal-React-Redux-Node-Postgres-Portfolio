@@ -1,4 +1,4 @@
-import * as liveChatActions from '../liveChat';
+import * as liveChatActions from '../../components/ReactHelpDesk/client/actions/liveChat';
 import { createMockStore } from '../../../../setupTests';
 import { ReactGA } from '../../libs/utils';
 

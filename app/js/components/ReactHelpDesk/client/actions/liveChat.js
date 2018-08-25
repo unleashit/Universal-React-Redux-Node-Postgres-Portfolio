@@ -1,4 +1,4 @@
-import { ReactGA } from '../libs/utils';
+import { ReactGA } from '../../../../libs/utils';
 
 export const TOGGLE_CHAT = 'TOGGLE_CHAT';
 export const CHAT_SET_REMOTE_ID = 'CHAT_SET_REMOTE_ID';
