@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ReactGA } from '../../libs/utils';
 import meImage from '../../../images/home/me.png'
 
 export default class About extends React.Component {
+    analytics(type) {
+        ReactGA.event({
+            category: 'button click',
+            action: type
+        });
+    };
     render() {
 
         let i = 0;
@@ -18,13 +25,6 @@ export default class About extends React.Component {
             }
         };
         
-        const analytics = (type) => {
-            ReactGA.event({
-                category: 'button click',
-                action: type
-            });
-        };
-
         return (
             <section className={this.props.animation() + "about container-fluid"} id="about">
                 <div className="row">
@@ -44,8 +44,8 @@ export default class About extends React.Component {
                         <p>While my roots are in design and the user experience, I made a major transition over the years to focus on development. For a while this translated to simply being good at html, css and knowing enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a deeper dive into engineering. </p>
                     <p>In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the start-up level. I would love to speak with you about your needs and see how we can work together.</p>
                         <div className="about-buttons">
-                            <a href="https://jasongallagher.org/images/JasonGallagherResPub.doc" className="button button-smaller resume" onClick={analytics.bind(this, 'resume download')}><i className="fa fa-file-text"></i>Download Resume</a>
-                            <a href="https://github.com/unleashit?tab=repositories" className="button button-smaller github" onClick={analytics.bind(this, 'github')}><i className="fa fa-github"></i>View Github</a>
+                            <a href="https://jasongallagher.org/images/JasonGallagherResPub.doc" className="button button-smaller resume" onClick={() => this.analytics('resume download')}><i className="fa fa-file-text"></i>Download Resume</a>
+                            <a href="https://github.com/unleashit?tab=repositories" className="button button-smaller github" onClick={() => this.analytics('github')}><i className="fa fa-github"></i>View Github</a>
                         </div>
                     </div>
                     <div className="skills col-lg-4 clearfix" id="skills">
@@ -74,3 +74,7 @@ export default class About extends React.Component {
         );
     }
 }
+
+About.propTypes = {
+    animation: PropTypes.func.isRequired
+};

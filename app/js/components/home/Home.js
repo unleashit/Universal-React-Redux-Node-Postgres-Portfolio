@@ -22,29 +22,25 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.boundHandleScroll = throttle(
-            this.handleScroll.bind(this, props.dispatch),
+            this.handleScroll.bind(this),
             150
         );
     }
 
     componentDidMount() {
         Home.readyOnActions(this.props.dispatch).then(() => {
-            if (
-                getEnvironment('client') &&
-                (window.pageYOffset > 10 || window.location.hash)
-            ) {
+            if (window.pageYOffset > 10 || window.location.hash) {
                 this.props.dispatch(globalActions.animateOff());
             }
-            // getEnvironment('client') &&
-                window.addEventListener('scroll', this.boundHandleScroll);
+            window.addEventListener('scroll', this.boundHandleScroll);
         });
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.boundHandleScroll);
         document.documentElement.className = '';
-        const { dispatch, global } = this.props;
-        if (global.headerState) dispatch(globalActions.setHeader(false));
+        // const { dispatch, global } = this.props;
+        // if (global.headerState) dispatch(globalActions.setHeader(false));
     }
 
     componentDidUpdate() {
@@ -59,41 +55,32 @@ export class Home extends Component {
         }
     }
 
-    handleScroll(dispatch) {
-        const scrl = window.pageYOffset;
+    // elem = css id of element to animate, action = action to dispatch
+    triggerAnimation([elem, action]) {
+        const viewportHeight =
+            Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight
+            ) || 0;
 
-        // handle sticky header
-        if (scrl >= 250 && this.props.global.headerState === false) {
-            document.documentElement.className = 'sticky-menu-open';
-            dispatch(globalActions.setHeader(true));
-        } else if (scrl < 250 && this.props.global.headerState === true) {
-            document.documentElement.className = '';
-            dispatch(globalActions.setHeader(false));
+        if (
+            // only trigger if not previously triggered
+            !this.props.global[action] &&
+            // trigger when element is < 90% of the viewport height
+            document.getElementById(elem)
+                .getBoundingClientRect()
+                .top < viewportHeight * 0.9
+        ) {
+            this.props.dispatch(globalActions[action](true));
         }
+    }
 
-        // handle scroll animations
-        // elem = id of element to animate, action = action to dispatch
-        function setupAnimation(elem, action, props) {
-            const viewportHeight =
-                Math.max(
-                    document.documentElement.clientHeight,
-                    window.innerHeight
-                ) || 0;
-
-            if (
-                !props.global[action] &&
-                document.getElementById(elem).getBoundingClientRect().top <
-                    viewportHeight * 0.9
-            ) {
-                dispatch(globalActions[action](true));
-            }
-        }
-
+    handleScroll() {
         [
-            ['about', 'animateAbout', this.props],
-            ['work', 'animatePortfolio', this.props],
-            ['contact-area', 'animateContact', this.props]
-        ].forEach(animation => setupAnimation.apply(this, animation));
+            ['about', 'animateAbout'],
+            ['work', 'animatePortfolio'],
+            ['contact-area', 'animateContact']
+        ].forEach(animation => this.triggerAnimation(animation));
     }
 
     openBurger() {
@@ -106,7 +93,6 @@ export class Home extends Component {
 
     render() {
         const {
-            headerState,
             hamburgerState,
             htmlClass,
             animateOff,
@@ -125,9 +111,7 @@ export class Home extends Component {
                     ]}
                 />
                 <StickyHeader
-                    visible={headerState}
                     remoteId={this.props.liveChat.remoteId}
-                    dispatch={this.props.dispatch}
                     openBurger={this.openBurger.bind(this)}
                 />
                 <ResponsiveMenu
@@ -151,6 +135,7 @@ export class Home extends Component {
     }
 }
 
+/* istanbul ignore next */
 function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
@@ -158,6 +143,7 @@ function mapStateToProps(state) {
         liveChat: state.liveChat
     };
 }
+/* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch

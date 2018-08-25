@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> snapshot matches 1`] = `
+<header
+  className="main-header"
+>
+  <Hamburger />
+  <Navigation
+    home={false}
+    logo="2"
+    ulClass="main-nav"
+  />
+  <div
+    className="title-tagline-wrapper"
+  >
+    <h1>
+      FRONT END ENGINEER
+    </h1>
+    <h2>
+      18 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!
+    </h2>
+  </div>
+  <div
+    className="button-wrapper"
+  >
+    <Link
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/#work"
+    >
+      <button
+        className="button button-green"
+        onClick={[Function]}
+      >
+        See my work
+      </button>
+    </Link>
+  </div>
+</header>
+`;

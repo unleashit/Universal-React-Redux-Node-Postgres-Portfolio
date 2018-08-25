@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-export default class PortfolioItem extends React.Component {
+export default class PortfolioItem extends React.PureComponent {
 
     render() {
 
@@ -30,3 +31,7 @@ export default class PortfolioItem extends React.Component {
         );
     }
 }
+
+PortfolioItem.proptypes = {
+    item: PropTypes.object.isRequired
+};

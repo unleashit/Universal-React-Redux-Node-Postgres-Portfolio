@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PortfolioItem /> snapshot matches 1`] = `
+<div
+  className="portfolio-item"
+>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/portfolio/test"
+  >
+    <div
+      className="view-details"
+    >
+      <span>
+        Learn More
+      </span>
+    </div>
+    <div>
+      <img
+        alt="title"
+        src="/images/portfolio/test.jpg"
+      />
+      <div
+        className="portfolio-caption"
+      >
+        <p />
+      </div>
+    </div>
+  </Link>
+</div>
+`;

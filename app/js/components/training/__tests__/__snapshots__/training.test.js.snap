@@ -26,7 +26,7 @@ exports[`<Training /> snapshot matches 1`] = `
     }
     title="Front End Development Bootcamp"
   />
-  <StickyHeader
+  <Connect(StickyHeader)
     dispatch={
       [MockFunction] {
         "calls": Array [

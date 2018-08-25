@@ -76,6 +76,7 @@ export class Training extends Component {
     }
 }
 
+/* istanbul ignore next */
 function mapStateToProps(state) {
     return {
         global: state.global,
@@ -83,6 +84,7 @@ function mapStateToProps(state) {
         liveChat: state.liveChat
     };
 }
+/* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch

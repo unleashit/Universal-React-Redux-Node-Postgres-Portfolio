@@ -4,17 +4,15 @@ import Navigation from '../navigation/navigation';
 import Hamburger from '../common/hamburger';
 import { ReactGA } from '../../libs/utils';
 
-export default class Header extends React.Component {
+export default class Header extends React.PureComponent {
+    analytics(type) {
+        ReactGA.event({
+            category: 'button click',
+            action: type
+        });
+    };
 
     render() {
-
-        const analytics = (type) => {
-            ReactGA.event({
-                category: 'button click',
-                action: type
-            });
-        };
-
         return (
             <header className="main-header">
                 <Hamburger openBurger={this.props.openBurger} />
@@ -26,7 +24,7 @@ export default class Header extends React.Component {
                 <div className="button-wrapper">
                     <Link to="/#work">
                         <button className="button button-green"
-                                onClick={analytics.bind(this, 'See my work')}>
+                                onClick={() => this.analytics('See my work')}>
                             See my work
                         </button>
                     </Link>

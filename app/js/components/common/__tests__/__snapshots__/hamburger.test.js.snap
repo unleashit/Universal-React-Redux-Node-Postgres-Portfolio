@@ -1,16 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CloseButton /> snapshot matches 1`] = `
-<div
-  className="close-button"
-  onClick={[MockFunction]}
->
-  <i
-    className="fa fa-close fa-2x"
-  />
-</div>
-`;
-
 exports[`<Hamburger /> snapshot matches 1`] = `
 <div
   className="hamburger hidden-md-up container-fluid"

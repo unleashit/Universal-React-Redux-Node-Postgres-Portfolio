@@ -1,20 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Hamburger /> snapshot matches 1`] = `
-<div
-  className="hamburger hidden-md-up container-fluid"
->
-  <div
-    onClick={[Function]}
-  >
-    <i
-      className="fa fa-bars"
-    />
-     MENU
-  </div>
-</div>
-`;
-
 exports[`<Loader /> snapshot matches 1`] = `
 <div
   className="portfolio-detail-loading"

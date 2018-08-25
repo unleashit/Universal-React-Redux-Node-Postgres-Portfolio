@@ -50,12 +50,14 @@ export class Footer extends React.Component {
     }
 }
 
+/* istanbul ignore next */
 function mapStateToProps(state) {
     return {
         contactForm: state.contactForm,
         global: state.global
     };
 }
+/* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch

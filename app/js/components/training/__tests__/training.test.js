@@ -1,5 +1,5 @@
 import { Training } from '../Training';
-import Portfolio from '../../portfolio/Portfolio';
+import StickyHeader from '../../stickyHeader/stickyHeader';
 
 window.scrollTo = jest.fn();
 
@@ -28,7 +28,7 @@ describe('<Training />', () => {
             expect(wrapper.find('HelmetWrapper')).toHaveLength(1);
         });
         it('renders <StickyHeader />', () => {
-            expect(wrapper.find('StickyHeader')).toHaveLength(1);
+            expect(wrapper.find(StickyHeader)).toHaveLength(1);
         });
         it('renders <ResponsiveMenu />', () => {
             expect(wrapper.find('ResponsiveMenu')).toHaveLength(1);

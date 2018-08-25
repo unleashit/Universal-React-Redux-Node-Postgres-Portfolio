@@ -10,13 +10,16 @@ describe('<App />', () => {
     const props = {
         liveChat: {
             chatOpen: false
-        }
+        },
+        toggleChat: jest.fn()
     };
 
-    // make it output the production JS
+    // make it output the production JS because js/css
+    // filename changes in helmet
     process.env.NODE_ENV = 'production';
 
     beforeEach(() => {
+        props.toggleChat.mockReset();
         wrapper = shallow(<App { ...props } />);
     });
 
@@ -26,6 +29,10 @@ describe('<App />', () => {
 
     it('Renders', () => {
         expect(wrapper.find('.page-wrapper')).toHaveLength(1);
+    });
+
+    it('matches snapshot (without footer)', () => {
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('Renders a route', () => {
@@ -39,13 +46,11 @@ describe('<App />', () => {
     });
 
     describe('Renders global components', () => {
-        it('renders <LiveChatContainer />', () => {
-            // console.log(wrapper.dive().debug());
-            // console.log(wrapper.dive().debug());
+        it('<LiveChatContainer />', () => {
             expect(wrapper.find(LiveChatContainer)).toHaveLength(1);
         });
 
-        it('renders <LiveChatLauncher />', () => {
+        it('<LiveChatLauncher />', () => {
             expect(wrapper.find(LiveChatLauncher)).toHaveLength(1);
         });
 
@@ -66,10 +71,19 @@ describe('<App />', () => {
             children.props.route.path = undefined;
             wrapper = shallow(<App { ...props } children={children} />);
             expect(wrapper.find(Footer)).toHaveLength(0);
+
+            children.props.route.path = '*';
+            wrapper = shallow(<App { ...props } children={children} />);
+            expect(wrapper.find(Footer)).toHaveLength(0);
         });
     });
 
-    it('matches snapshot (without footer)', () => {
-        expect(wrapper).toMatchSnapshot();
-    });
+    it('toggleChatHandler() closes chat if open', () => {
+        jest.spyOn(App.prototype, 'toggleChatHandler');
+        props.liveChat.chatOpen = true;
+        wrapper = shallow(<App { ...props } />);
+        wrapper.instance().toggleChatHandler();
+        expect(props.toggleChat).toHaveBeenCalledTimes(1);
+    })
+
 });

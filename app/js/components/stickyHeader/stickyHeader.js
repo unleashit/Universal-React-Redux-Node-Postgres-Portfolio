@@ -1,20 +1,63 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Navigation from '../navigation/navigation';
 import OpenChat from '../live-chat/openChat';
 import LiveChatStatus from '../live-chat/liveChatStatus';
 import { ReactGA } from '../../libs/utils';
+import * as globalActions from '../../actions/global';
+import throttle from 'lodash/throttle';
 
-export default class StickyHeader extends React.Component {
+export class StickyHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.boundHandleScroll = throttle(
+            this.handleScroll.bind(this, props.dispatch),
+            150
+        );
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.boundHandleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.boundHandleScroll);
+        document.documentElement.className = '';
+        const { dispatch, global } = this.props;
+        if (global.headerState) dispatch(globalActions.setHeader(false));
+    }
+
     analytics(type) {
         ReactGA.event({
             category: 'button click',
             action: type
         });
-    };
+    }
+
+    handleScroll() {
+        const { dispatch } = this.props;
+        const scrl = window.pageYOffset;
+
+        // handle sticky header
+        if (scrl >= 250 && this.props.global.headerState === false) {
+            document.documentElement.className = 'sticky-menu-open';
+            dispatch(globalActions.setHeader(true));
+        } else if (scrl < 250 && this.props.global.headerState === true) {
+            document.documentElement.className = '';
+            dispatch(globalActions.setHeader(false));
+        }
+    }
 
     render() {
-        let classes = `sticky-header hidden-xs-down${this.props.visible ? ' on' : ' off'}`;
+        const {
+            visible,
+            global: { headerState }
+        } = this.props;
+
+        const classes = `sticky-header hidden-xs-down${
+            visible || headerState ? ' on' : ' off'
+        }`;
 
         return (
             <div className={classes}>
@@ -30,9 +73,9 @@ export default class StickyHeader extends React.Component {
                         <div>
                             <span
                                 className="phone"
-                                onClick={() => this.analytics(
-                                    'phone number in header'
-                                )}
+                                onClick={() =>
+                                    this.analytics('phone number in header')
+                                }
                             >
                                 <i className="fa fa-phone" /> (707) 280-3629
                             </span>
@@ -55,7 +98,25 @@ export default class StickyHeader extends React.Component {
 }
 
 StickyHeader.propTypes = {
-    visible: PropTypes.bool.isRequired,
+    visible: PropTypes.bool,
     openBurger: PropTypes.func.isRequired,
     remoteId: PropTypes.string.isRequired
 };
+
+/* istanbul ignore next */
+function mapStateToProps(state) {
+    return {
+        global: state.global
+    };
+}
+/* istanbul ignore next */
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch: dispatch
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(StickyHeader);

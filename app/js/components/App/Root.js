@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Root extends Component {
     renderInitialState() {
-        if (this.props.initialStateinitialState) {
+        if (this.props.initialState) {
             const innerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(
                 this.props.initialState
             )}`;
@@ -30,7 +30,7 @@ class Root extends Component {
 
     lazyLoadScript(scrpt) {
         if (process.env.NODE_ENV !== 'production' && scrpt.global) {
-            return <script src={'/js/global.js'} />;
+            return <script src={scrpt.devSrc} />;
         } else {
             const innerHtml = `
                 window.addEventListener('load', lazyLoadScript.bind(null, '${
@@ -108,6 +108,7 @@ class Root extends Component {
                     {head.script.toComponent()}
                     {this.lazyLoadScript({
                         src: '/js/global.min.js',
+                        devSrc: '/js/global.js',
                         global: true
                     })}
                     {this.lazyLoadScript({

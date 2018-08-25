@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<About /> snapshot matches 1`] = `
+<section
+  className="about container-fluid"
+  id="about"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-8"
+    >
+      <h3>
+        About Me
+      </h3>
+    </div>
+    <div
+      className="col-md-4 hidden-md-down"
+    >
+      <h3>
+        Skills
+      </h3>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-3 col-lg-2"
+    >
+      <img
+        alt="Jason Gallagher"
+        className="jg-image"
+        src="test-file-stub"
+      />
+    </div>
+    <div
+      className="col-sm-9 col-lg-6"
+    >
+      <p>
+        I have more than 18 years of desktop and mobile web development experience involving a wide variety of applications and industries.
+      </p>
+      <p>
+        While my roots are in design and the user experience, I made a major transition over the years to focus on development. For a while this translated to simply being good at html, css and knowing enough jquery to be dangerous. But once the Single Page App craze hit with so many interesting new possibilities on the front end, I found that it was time to take a deeper dive into engineering. 
+      </p>
+      <p>
+        In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the start-up level. I would love to speak with you about your needs and see how we can work together.
+      </p>
+      <div
+        className="about-buttons"
+      >
+        <a
+          className="button button-smaller resume"
+          href="https://jasongallagher.org/images/JasonGallagherResPub.doc"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-file-text"
+          />
+          Download Resume
+        </a>
+        <a
+          className="button button-smaller github"
+          href="https://github.com/unleashit?tab=repositories"
+          onClick={[Function]}
+        >
+          <i
+            className="fa fa-github"
+          />
+          View Github
+        </a>
+      </div>
+    </div>
+    <div
+      className="skills col-lg-4 clearfix"
+      id="skills"
+    >
+      <h3
+        className="hidden-lg-up"
+      >
+        Skills
+      </h3>
+      <div
+        className="skill full"
+        style={
+          Object {
+            "borderLeft": "4px solid #8781bd",
+          }
+        }
+      >
+        Javascript ES6+
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd8181",
+          }
+        }
+      >
+        React/Redux
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #84bd81",
+          }
+        }
+      >
+        AngularJs
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #81afbd",
+          }
+        }
+      >
+        NodeJs
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd9981",
+          }
+        }
+      >
+        React Native
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bdba81",
+          }
+        }
+      >
+        Webpack
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #8781bd",
+          }
+        }
+      >
+        Typescript
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd8181",
+          }
+        }
+      >
+        Php
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #84bd81",
+          }
+        }
+      >
+        MySql
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #81afbd",
+          }
+        }
+      >
+        Postgres
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd9981",
+          }
+        }
+      >
+        Mongo
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bdba81",
+          }
+        }
+      >
+        Docker
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #8781bd",
+          }
+        }
+      >
+        Nginx/Apache
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd8181",
+          }
+        }
+      >
+        Linux
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #84bd81",
+          }
+        }
+      >
+        AWS
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #81afbd",
+          }
+        }
+      >
+        Drupal
+      </div>
+      <div
+        className="skill half"
+        style={
+          Object {
+            "borderLeft": "4px solid #bd9981",
+          }
+        }
+      >
+        Wordpress
+      </div>
+      <div
+        className="skill full"
+        style={
+          Object {
+            "borderLeft": "4px solid #bdba81",
+          }
+        }
+      >
+        Html5, CSS3
+      </div>
+    </div>
+  </div>
+</section>
+`;

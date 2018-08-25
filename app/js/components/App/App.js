@@ -85,6 +85,7 @@ export class App extends Component {
     }
 }
 
+/* istanbul ignore next */
 function mapStateToProps(state) {
     return {
         liveChat: state.liveChat
