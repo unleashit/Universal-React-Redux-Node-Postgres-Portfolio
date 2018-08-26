@@ -2,10 +2,12 @@ version: '3.4'
 
 services:
   db:
-    image: jasongallagher_db
+    # image: jasongallagher_db
     # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/db
+    image: registry.gitlab.com/unleashit/jasongallagher.org/db
   app:
-    image: jasongallagher:prod
+    # image: jasongallagher:prod
     # image: gitlab.jasongallagher.org:4431/root/jasongallagher.org/app
+    image: registry.gitlab.com/unleashit/jasongallagher.org/app
     environment:
     - NODE_ENV=production
