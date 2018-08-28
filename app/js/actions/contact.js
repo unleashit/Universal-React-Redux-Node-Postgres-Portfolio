@@ -26,36 +26,33 @@ export function submitContact(contactData) {
             .then(response => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
-                }
-                else {
-                    throw new Error('Received wrong status code, contact cannot be sent.');
+                } else {
+                    throw new Error(
+                        'Received wrong status code, contact cannot be sent.'
+                    );
                 }
             })
-            .then(
-                result => {
-                    ReactGA.event({
-                        category: 'Forms',
-                        action: 'Contact Submitted OK'
-                    });
-                    dispatch({ type: SUBMIT_CONTACT_SUCCESS, result });
-                    dispatch(reset('contactForm'));
-                }
-            )
-            .catch(
-                error => {
-                    ReactGA.event({
-                        category: 'Forms',
-                        action: 'Contact Failed'
-                    });
-                    dispatch({ type: SUBMIT_CONTACT_FAILED, error: error.message });
-                    console.log(error);
-                }
-            );
+            .then(result => {
+                ReactGA.event({
+                    category: 'Forms',
+                    action: 'Contact Submitted OK'
+                });
+                dispatch({ type: SUBMIT_CONTACT_SUCCESS, result });
+                dispatch(reset('contactForm'));
+            })
+            .catch(error => {
+                ReactGA.event({
+                    category: 'Forms',
+                    action: 'Contact Failed'
+                });
+                dispatch({ type: SUBMIT_CONTACT_FAILED, error: error.message });
+                console.log(error);
+            });
     };
 }
 
 export function submitContactReset() {
     return dispatch => {
         dispatch({ type: SUBMIT_CONTACT_RESET });
-    }
+    };
 }

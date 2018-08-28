@@ -43,7 +43,7 @@ const renderTextarea = field => (
 
 export class ContactForm extends Component {
     static submit(data, dispatch) {
-        const {name, email, phone, message} = data;
+        const { name, email, phone, message } = data;
         const contactData = {
             name: name,
             email: email,
@@ -52,13 +52,13 @@ export class ContactForm extends Component {
         };
 
         dispatch(contactActions.submitContact(contactData));
-    };
+    }
 
     resetContactFormAfterDelay() {
         setTimeout(() => {
             this.props.dispatch(contactActions.submitContactReset());
-        }, 5000)
-    };
+        }, 5000);
+    }
 
     render() {
         const {
@@ -73,18 +73,18 @@ export class ContactForm extends Component {
         if (contactForm.readyState === 'SUBMIT_CONTACT_SENDING') {
             return (
                 <div className="col-lg-8">
-                    <Loader style={{ height: 'auto', width: 'auto'}} />
+                    <Loader style={{ height: 'auto', width: 'auto' }} />
                 </div>
             );
         }
 
         if (contactForm.readyState === 'SUBMIT_CONTACT_SUCCESS') {
-           return (
-               <div className="col-lg-8">
-                   <p className="thanks">Thanks for your email!</p>
-                   { this.resetContactFormAfterDelay() }
-               </div>
-           );
+            return (
+                <div className="col-lg-8">
+                    <p className="thanks">Thanks for your email!</p>
+                    {this.resetContactFormAfterDelay()}
+                </div>
+            );
         }
 
         return (
@@ -137,8 +137,11 @@ const withForm = reduxForm({
 
 function mapStateToProps(state) {
     return {
-        contactForm: state.contactForm,
+        contactForm: state.contactForm
     };
 }
 
-export default connect(mapStateToProps, null)(withForm);
+export default connect(
+    mapStateToProps,
+    null
+)(withForm);

@@ -29,7 +29,7 @@ describe('contactForm reducer', () => {
         const action = { type: SUBMIT_CONTACT_SENDING };
         const newState = {
             ...initialState,
-            readyState: SUBMIT_CONTACT_SENDING,
+            readyState: SUBMIT_CONTACT_SENDING
         };
 
         runExpecs(action, newState);

@@ -34,7 +34,10 @@ describe('<StickyHeader />', () => {
             const mockAddEvent = jest.spyOn(window, 'addEventListener');
             await wrapper.instance().componentDidMount();
 
-            expect(mockAddEvent).toHaveBeenCalledWith('scroll', expect.any(Function));
+            expect(mockAddEvent).toHaveBeenCalledWith(
+                'scroll',
+                expect.any(Function)
+            );
         });
 
         test('componentWillUnmount()', () => {
@@ -45,13 +48,16 @@ describe('<StickyHeader />', () => {
             props.dispatch.mockReset();
             wrapper.instance().componentWillUnmount();
 
-            expect(mockRemoveEvent).toHaveBeenCalledWith('scroll', expect.any(Function));
+            expect(mockRemoveEvent).toHaveBeenCalledWith(
+                'scroll',
+                expect.any(Function)
+            );
             expect(document.documentElement.className).toEqual('');
             expect(props.dispatch).toHaveBeenCalledTimes(1);
         });
     });
 
-    test('displays \`on\` or \`off\` class depending on \`visible\` prop ', () => {
+    test('displays `on` or `off` class depending on `visible` prop ', () => {
         expect(wrapper.find('.sticky-header.off')).toHaveLength(1);
         expect(wrapper.find('.sticky-header.on')).toHaveLength(0);
         wrapper.setProps({ visible: true });
@@ -60,7 +66,7 @@ describe('<StickyHeader />', () => {
     });
 
     describe('handleScroll()', () => {
-         test('sets sticky header state to \`off\` when page is not scrolled', () => {
+        test('sets sticky header state to `off` when page is not scrolled', () => {
             props.global.headerState = true;
             wrapper = shallow(<StickyHeader {...props} />);
             props.dispatch.mockReset();
@@ -72,30 +78,37 @@ describe('<StickyHeader />', () => {
             expect(document.documentElement.className).toEqual('');
         });
 
-        test('sets sticky header state to \`on\` when page is scrolled', () => {
+        test('sets sticky header state to `on` when page is scrolled', () => {
             props.dispatch.mockReset();
             window.pageYOffset = 251;
             wrapper.instance().handleScroll();
 
             expect(props.dispatch).toHaveBeenCalledTimes(1);
-            expect(document.documentElement.className).toEqual('sticky-menu-open');
+            expect(document.documentElement.className).toEqual(
+                'sticky-menu-open'
+            );
         });
     });
 
     test('analytics hooks are called', () => {
-        jest.spyOn(StickyHeader.prototype, "analytics");
-        const mockReactGA = jest.spyOn(ReactGA, "event")
+        jest.spyOn(StickyHeader.prototype, 'analytics');
+        const mockReactGA = jest
+            .spyOn(ReactGA, 'event')
             .mockImplementation(() => {});
 
-        wrapper = shallow(<StickyHeader { ...props } />);
+        wrapper = shallow(<StickyHeader {...props} />);
 
         const phone = wrapper.find('.phone');
         phone.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith('phone number in header');
+        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
+            'phone number in header'
+        );
 
         const chatStatus = wrapper.find('.chat-status');
         chatStatus.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith('chat in header');
+        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
+            'chat in header'
+        );
 
         expect(mockReactGA).toHaveBeenCalledTimes(2);
     });

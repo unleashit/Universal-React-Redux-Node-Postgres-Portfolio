@@ -49,35 +49,33 @@ describe('<Root />', () => {
     });
 
     test('renderInitialState()', () => {
-        props.initialState = {test: 'test'};
+        props.initialState = { test: 'test' };
         wrapper = shallow(<Root {...props} />);
         const results = wrapper.instance().renderInitialState();
-        expect(results.props.dangerouslySetInnerHTML)
-            .toEqual({ __html: 'window.__INITIAL_STATE__ = {"test":"test"}' });
+        expect(results.props.dangerouslySetInnerHTML).toEqual({
+            __html: 'window.__INITIAL_STATE__ = {"test":"test"}'
+        });
     });
 
     test('lazyLoadScript() returns script with right attrs', () => {
         process.env.NODE_ENV = 'development';
         let results;
 
-        results = wrapper.instance()
-            .lazyLoadScript({
-                src: '/js/global.min.js',
-                devSrc: '/js/global.js',
-                global: true
-            });
+        results = wrapper.instance().lazyLoadScript({
+            src: '/js/global.min.js',
+            devSrc: '/js/global.js',
+            global: true
+        });
         expect(results.props.src).toEqual('/js/global.js');
 
         process.env.NODE_ENV = 'production';
-        results = wrapper.instance()
-            .lazyLoadScript({
-                src: '/js/global.min.js',
-                devSrc: '/js/global.js',
-                global: true
-            });
-        expect(results.props.dangerouslySetInnerHTML.__html)
-            .toContain(
-                "window.addEventListener('load', lazyLoadScript.bind(null, '/js/global.min.js'), false);"
-            );
+        results = wrapper.instance().lazyLoadScript({
+            src: '/js/global.min.js',
+            devSrc: '/js/global.js',
+            global: true
+        });
+        expect(results.props.dangerouslySetInnerHTML.__html).toContain(
+            "window.addEventListener('load', lazyLoadScript.bind(null, '/js/global.min.js'), false);"
+        );
     });
 });

@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as chatActions from './actions/liveChat';
 import * as globalActions from '../../../actions/global';
 
 class OpenChat extends Component {
-
     openChat() {
-        const {dispatch, liveChat} = this.props;
+        const { dispatch, liveChat } = this.props;
         if (liveChat.serverStatus) {
             dispatch(chatActions.toggleChat(!liveChat.chatOpen));
             dispatch(globalActions.setHeader(false));
             document.documentElement.className = '';
-
         } else {
-            alert('Chat is temporarily down for maintenance. Sorry for the inconvenience. ' +
-                'Please send an email or check back again soon!');
+            alert(
+                'Chat is temporarily down for maintenance. Sorry for the inconvenience. ' +
+                    'Please send an email or check back again soon!'
+            );
         }
     }
 
@@ -37,7 +37,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         dispatch: dispatch
-    }
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OpenChat);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OpenChat);

@@ -15,5 +15,4 @@ describe('<FAQs />', () => {
     test('snapshot matches', () => {
         expect(wrapper).toMatchSnapshot();
     });
-
 });

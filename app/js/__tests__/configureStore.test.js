@@ -9,4 +9,3 @@ describe('configureStore.js', () => {
         expect(store).toMatchSnapshot();
     });
 });
-

@@ -20,11 +20,11 @@ function _formatUsers(users) {
             connected: users[u].connected,
             messages: JSON.stringify(users[u].messages),
             date: users[u].date
-        }
-    })
+        };
+    });
 }
 
-exports.filterOld = function (users, chat) {
+exports.filterOld = function(users, chat) {
     let now = Date.now(),
         purged = [];
 
@@ -40,7 +40,7 @@ exports.filterOld = function (users, chat) {
     });
 
     if (purged.length) {
-        console.log("Users purged from RAM:");
+        console.log('Users purged from RAM:');
         console.dir(purged);
     }
 
@@ -51,44 +51,45 @@ exports.save = function(users) {
     return _insertChatRecords(_formatUsers(users));
 };
 
-exports.queryUser = function (id) {
+exports.queryUser = function(id) {
     return models.LiveChat.findOne({
-        where: {socketId: id}
+        where: { socketId: id }
     })
-    .then(data => {
-        if (data) {
-            return {
-                id: data.socketId,
-                name: data.name,
-                email: data.email,
-                connected: true,
-                messages: JSON.parse(data.messages),
-                date: Date.now()
-            };
-        } else return null;
-    })
-    .catch(err => {
-        console.log('problem with user query');
-        throw new Error(err);
-    })
+        .then(data => {
+            if (data) {
+                return {
+                    id: data.socketId,
+                    name: data.name,
+                    email: data.email,
+                    connected: true,
+                    messages: JSON.parse(data.messages),
+                    date: Date.now()
+                };
+            } else return null;
+        })
+        .catch(err => {
+            console.log('problem with user query');
+            throw new Error(err);
+        });
 };
 
-exports.queryUsers = function (users, offset) {
+exports.queryUsers = function(users, offset) {
     return models.LiveChat.findAndCountAll({
         where: {
             socketId: {
-                [Op.notIn]: Object.keys(users).length ? Object.keys(users) : ['']
+                [Op.notIn]: Object.keys(users).length
+                    ? Object.keys(users)
+                    : ['']
             }
         },
         limit: config.liveChat.adminPerPage || 10,
         offset: offset,
         order: [['updatedAt', 'DESC']]
     })
-    .then(result => {
-        let users = {};
+        .then(result => {
+            let users = {};
 
-        result.rows.map(u => u.dataValues)
-            .forEach(u => {
+            result.rows.map(u => u.dataValues).forEach(u => {
                 u = {
                     id: u.socketId,
                     name: u.name,
@@ -99,18 +100,16 @@ exports.queryUsers = function (users, offset) {
                 };
                 users[u.id] = u;
             });
-        console.log('TOTAL NUMBER of users: ', result.count);
-        return { users, count: result.count };
-    })
-    .catch(err => {
-        throw new Error(err);
+            console.log('TOTAL NUMBER of users: ', result.count);
+            return { users, count: result.count };
+        })
+        .catch(err => {
+            throw new Error(err);
+        });
+};
+
+exports.deleteUser = function(id) {
+    return models.LiveChat.destroy({
+        where: { socketId: id }
     });
 };
-
-exports.deleteUser = function (id) {
-    return models.LiveChat.destroy({
-        where: {socketId: id}
-    })
-};
-
-

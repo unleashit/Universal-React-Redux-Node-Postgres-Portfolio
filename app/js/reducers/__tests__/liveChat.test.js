@@ -13,7 +13,6 @@ import {
 } from '../../components/ReactHelpDesk/client/actions/liveChat';
 import globalReducer from '../global';
 
-
 describe('liveChat reducer', () => {
     const initialState = {
         chatOpen: false,
@@ -47,7 +46,7 @@ describe('liveChat reducer', () => {
         const action = { type: TOGGLE_CHAT, bool: true };
         const newState = {
             ...initialState,
-            chatOpen: action.bool,
+            chatOpen: action.bool
         };
 
         runExpecs(action, newState);
@@ -57,7 +56,7 @@ describe('liveChat reducer', () => {
         const action = { type: CHAT_SET_SERVER_STATUS, bool: true };
         const newState = {
             ...initialState,
-            serverStatus: action.bool,
+            serverStatus: action.bool
         };
 
         runExpecs(action, newState);
@@ -68,44 +67,44 @@ describe('liveChat reducer', () => {
         const newState = {
             ...initialState,
             remoteId: action.id,
-            remoteName: action.name,
+            remoteName: action.name
         };
 
         runExpecs(action, newState);
     });
 
     test('CHAT_CREATE_MESSAGE', () => {
-        const action = { type: CHAT_CREATE_MESSAGE, message: 'bla bla'};
+        const action = { type: CHAT_CREATE_MESSAGE, message: 'bla bla' };
         const newState = {
             ...initialState,
-            message: action.message,
+            message: action.message
         };
 
         runExpecs(action, newState);
     });
 
     test('CHAT_RECEIVE_MESSAGE', () => {
-        const action = { type: CHAT_RECEIVE_MESSAGE, message: '1st message'};
+        const action = { type: CHAT_RECEIVE_MESSAGE, message: '1st message' };
         const newState = {
             ...initialState,
-            messages: [...initialState.messages, action.message],
+            messages: [...initialState.messages, action.message]
         };
         expect(liveChatReducer(undefined, action)).toEqual(newState);
 
         action.message = '2nd message';
         const newState2 = {
             ...newState,
-            messages: [...newState.messages, '2nd message'],
+            messages: [...newState.messages, '2nd message']
         };
         expect(liveChatReducer(newState, action)).toEqual(newState2);
         expect(liveChatReducer(newState, action)).toMatchSnapshot();
     });
 
     test('CHAT_ONCHANGE', () => {
-        const action = { type: CHAT_ONCHANGE, message: 'bla bla'};
+        const action = { type: CHAT_ONCHANGE, message: 'bla bla' };
         const newState = {
             ...initialState,
-            message: action.message,
+            message: action.message
         };
 
         runExpecs(action, newState);
@@ -133,30 +132,30 @@ describe('liveChat reducer', () => {
     });
 
     test('CHAT_ISTYPING', () => {
-        const action = { type: CHAT_ISTYPING, bool: true};
+        const action = { type: CHAT_ISTYPING, bool: true };
         const newState = {
             ...initialState,
-            isTyping: action.bool,
+            isTyping: action.bool
         };
 
         runExpecs(action, newState);
     });
 
     test('CHAT_CONTACT_SENT', () => {
-        const action = { type: CHAT_CONTACT_SENT, bool: true};
+        const action = { type: CHAT_CONTACT_SENT, bool: true };
         const newState = {
             ...initialState,
-            contactSent: action.bool,
+            contactSent: action.bool
         };
 
         runExpecs(action, newState);
     });
 
     test('CHAT_ADMIN_ACTIVE', () => {
-        const action = { type: CHAT_ADMIN_ACTIVE, bool: true};
+        const action = { type: CHAT_ADMIN_ACTIVE, bool: true };
         const newState = {
             ...initialState,
-            adminActive: action.bool,
+            adminActive: action.bool
         };
 
         runExpecs(action, newState);

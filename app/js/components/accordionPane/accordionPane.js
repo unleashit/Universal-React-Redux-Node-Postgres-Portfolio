@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class AccordionPane extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -11,12 +10,17 @@ class AccordionPane extends Component {
     }
 
     handleToggle() {
-        this.setState({toggleStatus: this.state.toggleStatus === 'open' ? 'closed' : 'open'});
+        this.setState({
+            toggleStatus: this.state.toggleStatus === 'open' ? 'closed' : 'open'
+        });
     }
 
     render() {
         return (
-            <div onClick={this.handleToggle} className={"accordion " + this.state.toggleStatus}>
+            <div
+                onClick={this.handleToggle}
+                className={'accordion ' + this.state.toggleStatus}
+            >
                 {this.props.children}
             </div>
         );

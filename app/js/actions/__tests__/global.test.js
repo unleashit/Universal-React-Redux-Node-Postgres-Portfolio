@@ -6,7 +6,8 @@ describe('Global Actions', () => {
     const initialState = {};
     const store = createMockStore(initialState);
 
-    const mockReactGA = jest.spyOn(ReactGA, "event")
+    const mockReactGA = jest
+        .spyOn(ReactGA, 'event')
         .mockImplementation(() => {});
 
     beforeEach(() => {
@@ -19,7 +20,7 @@ describe('Global Actions', () => {
             {
                 type: 'SET_HEADER',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(globalActions.setHeader(true));
@@ -31,7 +32,7 @@ describe('Global Actions', () => {
             {
                 type: 'ANIMATE_ABOUT',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(globalActions.animateAbout(true));
@@ -43,7 +44,7 @@ describe('Global Actions', () => {
             {
                 type: 'ANIMATE_PORTFOLIO',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(globalActions.animatePortfolio(true));
@@ -55,7 +56,7 @@ describe('Global Actions', () => {
             {
                 type: 'ANIMATE_CONTACT',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(globalActions.animateContact(true));
@@ -67,7 +68,7 @@ describe('Global Actions', () => {
             {
                 type: 'ANIMATE_OFF',
                 bool: true
-            },
+            }
         ];
 
         // default bool should = true
@@ -79,7 +80,7 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'TOGGLE_HAMBURGER'
-            },
+            }
         ];
 
         store.dispatch(globalActions.toggleHamburger());
@@ -90,7 +91,7 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'OPEN_HAMBURGER'
-            },
+            }
         ];
 
         store.dispatch(globalActions.openHamburger());
@@ -102,7 +103,7 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'CLOSE_HAMBURGER'
-            },
+            }
         ];
 
         store.dispatch(globalActions.closeHamburger());

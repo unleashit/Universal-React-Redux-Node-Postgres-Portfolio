@@ -27,17 +27,13 @@ export default class Navigation extends React.PureComponent {
             <li className="hidden-xs-down">
                 <Link to="/#home">Home</Link>
             </li>
-        ) : (
-            null
-        );
+        ) : null;
 
         const trainingLink = this.props.home ? (
             <li className="hidden-xs-down">
                 <Link to="/training">Training</Link>
             </li>
-        ) : (
-            null
-        );
+        ) : null;
 
         return (
             <nav>

@@ -21,10 +21,7 @@ export class Home extends Component {
 
     constructor(props) {
         super(props);
-        this.boundHandleScroll = throttle(
-            this.handleScroll.bind(this),
-            150
-        );
+        this.boundHandleScroll = throttle(this.handleScroll.bind(this), 150);
     }
 
     componentDidMount() {
@@ -67,9 +64,8 @@ export class Home extends Component {
             // only trigger if not previously triggered
             !this.props.global[action] &&
             // trigger when element is < 90% of the viewport height
-            document.getElementById(elem)
-                .getBoundingClientRect()
-                .top < viewportHeight * 0.9
+            document.getElementById(elem).getBoundingClientRect().top <
+                viewportHeight * 0.9
         ) {
             this.props.dispatch(globalActions[action](true));
         }

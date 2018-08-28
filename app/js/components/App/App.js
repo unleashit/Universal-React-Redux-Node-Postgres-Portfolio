@@ -39,14 +39,15 @@ export class App extends Component {
         // Don't display the footer on 404 pages
         // TODO: better solution
         const { children } = this.props;
-        const footer = this.props.children &&
+        const footer =
+            this.props.children &&
             children.props &&
             children.props.route &&
-            children.props.route.path
-                ? children.props.route.path === '*'
-                    ? null
-                    : (<Footer slug={children.props.route.path.slice(1)} />)
-                : null;
+            children.props.route.path ? (
+                children.props.route.path === '*' ? null : (
+                    <Footer slug={children.props.route.path.slice(1)} />
+                )
+            ) : null;
 
         return (
             <div className="page-wrapper">
@@ -94,5 +95,5 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    {toggleChat}
+    { toggleChat }
 )(App);

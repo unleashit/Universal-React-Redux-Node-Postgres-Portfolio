@@ -3,7 +3,7 @@ import {
     SUBMIT_CONTACT_SENDING,
     SUBMIT_CONTACT_SUCCESS,
     SUBMIT_CONTACT_FAILED,
-    SUBMIT_CONTACT_RESET,
+    SUBMIT_CONTACT_RESET
 } from '../actions/contact';
 
 export default function contactForm(

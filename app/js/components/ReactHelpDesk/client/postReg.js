@@ -4,15 +4,17 @@ import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class PostReg extends Component {
-
     componentDidMount() {
         this.updateTime = setInterval(() => {
             this.forceUpdate();
-        }, 3000)
+        }, 3000);
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.messages.length !== this.props.messages.length || this.props.isTyping) {
+        if (
+            prevProps.messages.length !== this.props.messages.length ||
+            this.props.isTyping
+        ) {
             this.refs.div.scrollToBottom();
         }
     }
@@ -22,17 +24,20 @@ class PostReg extends Component {
     }
 
     render() {
-
         const chatStatus = () => {
-            return (this.props.remoteId) ?
-                `You are chatting with ${this.props.remoteName}` :
-                'Feel free to leave a message';
+            return this.props.remoteId
+                ? `You are chatting with ${this.props.remoteName}`
+                : 'Feel free to leave a message';
         };
 
         const isTyping = () => {
-            const { isTyping, remoteName} = this.props;
+            const { isTyping, remoteName } = this.props;
             if (isTyping) {
-                return <div className="is-typing animated flash infinite"><strong>{remoteName}</strong> is typing something...</div>
+                return (
+                    <div className="is-typing animated flash infinite">
+                        <strong>{remoteName}</strong> is typing something...
+                    </div>
+                );
             }
         };
 
@@ -41,32 +46,46 @@ class PostReg extends Component {
                 <div className="chat-status">{chatStatus()}</div>
                 <div className="form-group message-area">
                     <Scrollbars ref="div">
-                    <ul className="message-list">
-                        {
-                            this.props.messages.map((m, i) => {
+                        <ul className="message-list">
+                            {this.props.messages.map((m, i) => {
                                 return (
                                     <li key={i} className="posting">
                                         <div className="name-date-line">
-                                            <span className="name">{m.name}</span>&nbsp;
-                                            <span className="date">{moment(m.date).fromNow()}</span>
+                                            <span className="name">
+                                                {m.name}
+                                            </span>
+                                            &nbsp;
+                                            <span className="date">
+                                                {moment(m.date).fromNow()}
+                                            </span>
                                         </div>
-                                        <div className="message">{m.message}</div>
+                                        <div className="message">
+                                            {m.message}
+                                        </div>
                                     </li>
-                                )
-                            })
-                        }
-                    </ul>
-                    {isTyping()}
+                                );
+                            })}
+                        </ul>
+                        {isTyping()}
                     </Scrollbars>
                 </div>
                 <div className="live-chat-send-group">
                     <div className="form-group">
-                        <input type="text" className="form-control"
-                               name="message" placeholder="Your message..."
-                               value={this.props.message}
-                               onChange={this.props.onChange} />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="message"
+                            placeholder="Your message..."
+                            value={this.props.message}
+                            onChange={this.props.onChange}
+                        />
                     </div>
-                    <button type="submit" className="button button-green button-smaller button-block">Send</button>
+                    <button
+                        type="submit"
+                        className="button button-green button-smaller button-block"
+                    >
+                        Send
+                    </button>
                 </div>
             </form>
         );
@@ -76,7 +95,7 @@ class PostReg extends Component {
 PostReg.propTypes = {
     onChange: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
-    messages: PropTypes.array.isRequired,
+    messages: PropTypes.array.isRequired
 };
 PostReg.defaultProps = {};
 

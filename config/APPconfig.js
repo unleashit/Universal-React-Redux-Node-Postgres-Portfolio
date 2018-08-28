@@ -22,13 +22,12 @@ const isClient = typeof window !== 'undefined';
 
 // select env variables (with double underscore) are added
 // to the window object via script tag in root.js
-const crossEnvVar = (envVar) =>
-  typeof window !== 'undefined'
-    ? window[`__${envVar}__`]
-    : process.env[envVar];
+const crossEnvVar = envVar =>
+    typeof window !== 'undefined'
+        ? window[`__${envVar}__`]
+        : process.env[envVar];
 
 module.exports = {
-
     __API_URL__: isClient ? `/api` : `${API_BASE}/api`,
     __SOCKET_IO_URL__: isClient ? `/live-chat` : `${API_BASE}/live-chat`,
     __SESSION_SECRET__: SESSION_SECRET,
@@ -38,8 +37,8 @@ module.exports = {
     liveChat: {
         adminName: crossEnvVar('LIVE_CHAT_ADMIN_NAME'),
         adminPerPage: 10, // how many archived chats to load per page in control panel
-        saveInterval: 10*60*1000, // once per 15 mins
-        purgeInterval: 20*60*1000, // min time to persist in ram (1 hr)
+        saveInterval: 10 * 60 * 1000, // once per 15 mins
+        purgeInterval: 20 * 60 * 1000, // min time to persist in ram (1 hr)
         sendSMS: SMS_ACTIVE || false // send SMS on new user registrations
     },
 
@@ -63,6 +62,5 @@ module.exports = {
             user: SMTP_AUTH_USERNAME,
             pass: SMTP_AUTH_PASSWORD
         }
-    },
-
+    }
 };

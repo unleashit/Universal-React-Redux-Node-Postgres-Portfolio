@@ -12,7 +12,6 @@ import {
     WORK_LAST_PROJECT_HEIGHT
 } from '../../actions/portfolio';
 
-
 describe('portfolio reducer', () => {
     const initialState = {
         readyState: WORK_INVALID,
@@ -38,7 +37,7 @@ describe('portfolio reducer', () => {
         const action = { type: WORK_FETCHING };
         const newState = {
             ...initialState,
-            readyState: WORK_FETCHING,
+            readyState: WORK_FETCHING
         };
 
         runExpecs(action, newState);
@@ -52,18 +51,18 @@ describe('portfolio reducer', () => {
             error: action.error
         };
 
-        runExpecs(action, newState)
+        runExpecs(action, newState);
     });
 
     test('WORK_FETCHED', () => {
         const items = [
             {
-                "id": 41,
-                "title": "Weaved",
-                "description_short": "Internet of Things (IoT) App",
-                "main_image": "WeavedLogo.png",
-                "url_slug": "weaved",
-                "sort": 3,
+                id: 41,
+                title: 'Weaved',
+                description_short: 'Internet of Things (IoT) App',
+                main_image: 'WeavedLogo.png',
+                url_slug: 'weaved',
+                sort: 3
             }
         ];
 
@@ -81,14 +80,17 @@ describe('portfolio reducer', () => {
         const action = { type: WORK_DETAIL_FETCHING };
         const newState = {
             ...initialState,
-            DetailReadyState: WORK_DETAIL_FETCHING,
+            DetailReadyState: WORK_DETAIL_FETCHING
         };
 
         runExpecs(action, newState);
     });
 
     test('WORK_DETAIL_FETCH_FAILED', () => {
-        const action = { type: WORK_DETAIL_FETCH_FAILED, error: 'Big fat error' };
+        const action = {
+            type: WORK_DETAIL_FETCH_FAILED,
+            error: 'Big fat error'
+        };
         const newState = {
             ...initialState,
             DetailReadyState: WORK_DETAIL_FETCH_FAILED,
@@ -100,19 +102,21 @@ describe('portfolio reducer', () => {
 
     test('WORK_DETAIL_FETCHED', () => {
         const item = {
-            "id": 41,
-            "title": "Weaved",
-            "description": "Weaved is an IoT company in Palo Alto, CA that offers cloud services as well as hardware. Over a period of time, I redeveloped and helped redesign a user portal that allows users to connect to their IOT devices. Also performed miscellaneous development work for several online properties as needed.",
-            "description_short": "Internet of Things (IoT) App",
-            "tags": "jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP",
-            "main_image": "WeavedLogo.png",
-            "image_mobile": "WeavedMobile.png",
-            "gallery": "WeavedGallery.png",
-            "link": "https://www.weaved.com",
-            "url_slug": "weaved",
-            "sort": 3,
-            "next": "terra-global-capital",
-            "prev": "relola"
+            id: 41,
+            title: 'Weaved',
+            description:
+                'Weaved is an IoT company in Palo Alto, CA that offers cloud services as well as hardware. Over a period of time, I redeveloped and helped redesign a user portal that allows users to connect to their IOT devices. Also performed miscellaneous development work for several online properties as needed.',
+            description_short: 'Internet of Things (IoT) App',
+            tags:
+                'jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP',
+            main_image: 'WeavedLogo.png',
+            image_mobile: 'WeavedMobile.png',
+            gallery: 'WeavedGallery.png',
+            link: 'https://www.weaved.com',
+            url_slug: 'weaved',
+            sort: 3,
+            next: 'terra-global-capital',
+            prev: 'relola'
         };
 
         const action = { type: WORK_DETAIL_FETCHED, result: item };

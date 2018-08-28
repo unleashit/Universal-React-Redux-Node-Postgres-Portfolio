@@ -7,7 +7,7 @@ const Loader = props => {
             className="portfolio-detail-loading"
             style={{
                 height: props.height + 'px',
-                ...{...props.style}
+                ...{ ...props.style }
             }}
         >
             <i className="fa fa-refresh fa-spin fa-5x fa-fw" />

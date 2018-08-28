@@ -7,7 +7,7 @@ function validateEmail(email) {
 }
 
 module.exports.show = function(req, res) {
-    res.render('/signup')
+    res.render('/signup');
 };
 
 module.exports.signup = function(req, res) {
@@ -16,17 +16,17 @@ module.exports.signup = function(req, res) {
     var password2 = req.body.password2;
 
     if (!email || !password || !password2) {
-        req.flash('error', "Please, fill in all the fields.");
+        req.flash('error', 'Please, fill in all the fields.');
         return res.redirect('/signup');
     }
 
     if (!validateEmail(email)) {
-        req.flash('error', "Please, enter a valid email.");
+        req.flash('error', 'Please, enter a valid email.');
         return res.redirect('/signup');
     }
 
     if (password !== password2) {
-        req.flash('error', "Please, enter the same password twice.");
+        req.flash('error', 'Please, enter the same password twice.');
         return res.redirect('/signup');
     }
 
@@ -44,7 +44,7 @@ module.exports.signup = function(req, res) {
             res.redirect('/');
         })
         .catch(function(error) {
-        req.flash('error', "That email already exists in the system");
-        return res.redirect('/signup');
-        })
+            req.flash('error', 'That email already exists in the system');
+            return res.redirect('/signup');
+        });
 };

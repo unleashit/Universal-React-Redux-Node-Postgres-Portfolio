@@ -1,7 +1,7 @@
 'use strict';
 
-var express = require("express");
-var _ = require("lodash");
+var express = require('express');
+var _ = require('lodash');
 var bodyParser = require('body-parser');
 
 var portfolio = require('../controllers/portfolioAPI.js');

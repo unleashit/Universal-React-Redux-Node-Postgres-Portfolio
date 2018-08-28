@@ -10,7 +10,7 @@ export default class Header extends React.PureComponent {
             category: 'button click',
             action: type
         });
-    };
+    }
 
     render() {
         return (
@@ -19,12 +19,18 @@ export default class Header extends React.PureComponent {
                 <Navigation home={false} ulClass="main-nav" logo="2" />
                 <div className="title-tagline-wrapper">
                     <h1>FRONT END ENGINEER</h1>
-                    <h2>18 years of passion for creating modern, engaging full stack user experiences on desktop and mobile. At your service!</h2>
+                    <h2>
+                        18 years of passion for creating modern, engaging full
+                        stack user experiences on desktop and mobile. At your
+                        service!
+                    </h2>
                 </div>
                 <div className="button-wrapper">
                     <Link to="/#work">
-                        <button className="button button-green"
-                                onClick={() => this.analytics('See my work')}>
+                        <button
+                            className="button button-green"
+                            onClick={() => this.analytics('See my work')}
+                        >
                             See my work
                         </button>
                     </Link>

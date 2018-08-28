@@ -21,28 +21,26 @@ function fetchPortfolio() {
             .then(response => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
-                }
-                else throw new Error('Received wrong status code, work not retrieved');
+                } else
+                    throw new Error(
+                        'Received wrong status code, work not retrieved'
+                    );
             })
-            .then(
-                result => {
-                    ReactGA.event({
-                        category: 'Work',
-                        action: 'Work List Fetched via Ajax'
-                    });
-                    dispatch({ type: WORK_FETCHED, result });
-                }
-            )
-            .catch(
-                error => {
-                    ReactGA.event({
-                        category: 'Work',
-                        action: 'Work List Fetch Failed'
-                    });
-                    dispatch({ type: WORK_FETCH_FAILED, error: error.message });
-                    console.error(error);
-                }
-            )
+            .then(result => {
+                ReactGA.event({
+                    category: 'Work',
+                    action: 'Work List Fetched via Ajax'
+                });
+                dispatch({ type: WORK_FETCHED, result });
+            })
+            .catch(error => {
+                ReactGA.event({
+                    category: 'Work',
+                    action: 'Work List Fetch Failed'
+                });
+                dispatch({ type: WORK_FETCH_FAILED, error: error.message });
+                console.error(error);
+            });
     };
 }
 
@@ -54,8 +52,10 @@ function fetchPortfolioDetail(slug) {
             .then(response => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
-                }
-                else throw new Error('Received wrong status code, work not retrieved');
+                } else
+                    throw new Error(
+                        'Received wrong status code, work not retrieved'
+                    );
             })
             .then(result => {
                 ReactGA.event({
@@ -69,7 +69,10 @@ function fetchPortfolioDetail(slug) {
                     category: 'Work',
                     action: 'Work Fetch Failed via Ajax: ' + slug
                 });
-                dispatch({ type: WORK_DETAIL_FETCH_FAILED, error: err.message });
+                dispatch({
+                    type: WORK_DETAIL_FETCH_FAILED,
+                    error: err.message
+                });
                 console.error(err.message);
             });
     };
@@ -78,9 +81,11 @@ function fetchPortfolioDetail(slug) {
 function shouldFetchPortfolio(state) {
     const portfolio = state.portfolio;
 
-    return portfolio.items === null ||
+    return (
+        portfolio.items === null ||
         portfolio.readyState === WORK_FETCH_FAILED ||
         portfolio.readyState === WORK_INVALID
+    );
 }
 
 function shouldFetchPortfolioDetail(state) {

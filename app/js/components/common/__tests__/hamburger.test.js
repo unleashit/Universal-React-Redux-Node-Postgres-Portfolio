@@ -8,7 +8,7 @@ describe('<Hamburger />', () => {
 
     beforeEach(() => {
         props.openBurger.mockReset();
-        wrapper = shallow(<Hamburger { ...props } />);
+        wrapper = shallow(<Hamburger {...props} />);
     });
 
     test('renders without crashing', () => {

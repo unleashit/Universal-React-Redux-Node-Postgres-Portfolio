@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PreReg from './preReg';
 import PostReg from './postReg';
@@ -7,14 +7,15 @@ import LiveChatStatus from './liveChatStatus';
 import * as chatActions from './actions/liveChat';
 
 class LiveChat extends Component {
-
     render() {
-        let showForm = !this.props.registered ?
-            <PreReg { ...this.props }/> :
-            <PostReg { ...this.props } />;
+        let showForm = !this.props.registered ? (
+            <PreReg {...this.props} />
+        ) : (
+            <PostReg {...this.props} />
+        );
 
         if (this.props.contactSent) {
-            showForm = <p>Thank's for your note. I'll soon be in touch.</p>
+            showForm = <p>Thank's for your note. I'll soon be in touch.</p>;
         }
 
         const close = () => {
@@ -24,10 +25,18 @@ class LiveChat extends Component {
         const { chatOpen, remoteId } = this.props;
 
         return (
-            <div className={chatOpen ? "live-chat-wrapper live-chat-open" : "live-chat-wrapper"}>
+            <div
+                className={
+                    chatOpen
+                        ? 'live-chat-wrapper live-chat-open'
+                        : 'live-chat-wrapper'
+                }
+            >
                 <div className="inner-wrap">
                     <CloseButton callback={close.bind(this)} />
-                    <h3>LIVE CHAT <LiveChatStatus remoteId={remoteId} /></h3>
+                    <h3>
+                        LIVE CHAT <LiveChatStatus remoteId={remoteId} />
+                    </h3>
                     {showForm}
                 </div>
             </div>

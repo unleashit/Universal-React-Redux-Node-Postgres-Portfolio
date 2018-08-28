@@ -8,7 +8,7 @@ describe('<CloseButton />', () => {
 
     beforeEach(() => {
         props.callback.mockReset();
-        wrapper = shallow(<CloseButton { ...props } />);
+        wrapper = shallow(<CloseButton {...props} />);
     });
 
     test('renders without crashing', () => {

@@ -17,7 +17,7 @@ exports[`<FAQs /> snapshot matches 1`] = `
       className="faq-body"
     >
       <p>
-        Each lecture is $60 /hr. with a two hour minimum per session.  Usually we'll meet twice a week for two hours, but once per week is fine if you are in less of a hurry or have a busy schedule.
+        Each lecture is $60 /hr. with a two hour minimum per session. Usually we'll meet twice a week for two hours, but once per week is fine if you are in less of a hurry or have a busy schedule.
       </p>
     </div>
   </AccordionPane>
@@ -90,7 +90,8 @@ exports[`<FAQs /> snapshot matches 1`] = `
       className="faq-body"
     >
       <p>
-        Important events and emergencies come up for everyone, but please provide as much notice as possible if you need to make a change.  As a private teacher rescheduling/canceling, especially at the last minute, make it difficult to maintain a full schedule. So it's very important that you make a firm commitment when scheduling. If you must cancel/reschedule within 5 days of our appointment, you may be billed a 50% late change fee. 
+        Important events and emergencies come up for everyone, but please provide as much notice as possible if you need to make a change.  As a private teacher rescheduling/canceling, especially at the last minute, make it difficult to maintain a full schedule. So it's very important that you make a firm commitment when scheduling. If you must cancel/reschedule within 5 days of our appointment, you may be billed a 50% late change fee.
+         
         <strong>
           Any and all non-emergency changes made with 24 hours of our appointment are subject to full charge.
         </strong>

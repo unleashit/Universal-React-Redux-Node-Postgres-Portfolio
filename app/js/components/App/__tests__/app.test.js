@@ -20,7 +20,7 @@ describe('<App />', () => {
 
     beforeEach(() => {
         props.toggleChat.mockReset();
-        wrapper = shallow(<App { ...props } />);
+        wrapper = shallow(<App {...props} />);
     });
 
     afterAll(() => {
@@ -36,8 +36,8 @@ describe('<App />', () => {
     });
 
     it('Renders a route', () => {
-        const children = <div className="dummy-route"></div>;
-        wrapper = shallow(<App { ...props } children={children} />);
+        const children = <div className="dummy-route" />;
+        wrapper = shallow(<App {...props} children={children} />);
         expect(wrapper.find('.dummy-route')).toHaveLength(1);
     });
 
@@ -64,16 +64,16 @@ describe('<App />', () => {
             };
 
             // footer is expected
-            wrapper = shallow(<App { ...props } children={children} />);
+            wrapper = shallow(<App {...props} children={children} />);
             expect(wrapper.find(Footer)).toHaveLength(1);
 
             // footer is not expected
             children.props.route.path = undefined;
-            wrapper = shallow(<App { ...props } children={children} />);
+            wrapper = shallow(<App {...props} children={children} />);
             expect(wrapper.find(Footer)).toHaveLength(0);
 
             children.props.route.path = '*';
-            wrapper = shallow(<App { ...props } children={children} />);
+            wrapper = shallow(<App {...props} children={children} />);
             expect(wrapper.find(Footer)).toHaveLength(0);
         });
     });
@@ -81,9 +81,8 @@ describe('<App />', () => {
     it('toggleChatHandler() closes chat if open', () => {
         jest.spyOn(App.prototype, 'toggleChatHandler');
         props.liveChat.chatOpen = true;
-        wrapper = shallow(<App { ...props } />);
+        wrapper = shallow(<App {...props} />);
         wrapper.instance().toggleChatHandler();
         expect(props.toggleChat).toHaveBeenCalledTimes(1);
-    })
-
+    });
 });

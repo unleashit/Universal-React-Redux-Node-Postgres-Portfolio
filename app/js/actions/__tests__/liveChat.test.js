@@ -6,7 +6,8 @@ describe('LiveChat Actions', () => {
     let initialState = {};
     let store;
 
-    const mockReactGA = jest.spyOn(ReactGA, "event")
+    const mockReactGA = jest
+        .spyOn(ReactGA, 'event')
         .mockImplementation(() => {});
 
     beforeEach(() => {
@@ -23,7 +24,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'TOGGLE_CHAT',
                 bool: true
-            },
+            }
         ];
 
         // test default bool = true
@@ -40,7 +41,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_SET_SERVER_STATUS',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatSetServerStatus(true));
@@ -53,7 +54,7 @@ describe('LiveChat Actions', () => {
                 type: 'CHAT_SET_REMOTE_ID',
                 id: 1,
                 name: 'fred'
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatSetRemoteId(1, 'fred'));
@@ -65,7 +66,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_CREATE_MESSAGE',
                 message: 'bla bla'
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatCreateMesssage('bla bla'));
@@ -77,7 +78,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_RECEIVE_MESSAGE',
                 message: 'bla bla'
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatReceiveMesssage('bla bla'));
@@ -89,7 +90,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_ONCHANGE',
                 message: 'bla bla'
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatOnChange('bla bla'));
@@ -107,7 +108,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_NEW_USER',
                 user: user
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatNewUser(user));
@@ -120,7 +121,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_ISTYPING',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.chatIsTyping(true));
@@ -132,7 +133,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_CONTACT_SENT',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.contactSent(true));
@@ -145,7 +146,7 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_ADMIN_ACTIVE',
                 bool: true
-            },
+            }
         ];
 
         store.dispatch(liveChatActions.adminActive(true));

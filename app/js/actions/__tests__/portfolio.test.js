@@ -7,7 +7,8 @@ describe('Portfolio Actions', () => {
     let initialState = {};
     let store;
 
-    const mockReactGA = jest.spyOn(ReactGA, "event")
+    const mockReactGA = jest
+        .spyOn(ReactGA, 'event')
         .mockImplementation(() => {});
 
     beforeEach(() => {
@@ -30,14 +31,16 @@ describe('Portfolio Actions', () => {
             };
             store = createMockStore(state);
 
-            const result = [{
-                description_short: 'React Ecommerce and Tattoo Builder App',
-                id: 1,
-                main_image: 'TatteasyLogo.svg',
-                sort: 1,
-                title: 'Tatteasy',
-                url_slug: 'tatteasy'
-            }];
+            const result = [
+                {
+                    description_short: 'React Ecommerce and Tattoo Builder App',
+                    id: 1,
+                    main_image: 'TatteasyLogo.svg',
+                    sort: 1,
+                    title: 'Tatteasy',
+                    url_slug: 'tatteasy'
+                }
+            ];
 
             const expectedActions = [
                 {
@@ -66,13 +69,15 @@ describe('Portfolio Actions', () => {
         test('Not fetched when cached version available', () => {
             const state = {
                 portfolio: {
-                    items: [{id: 1}],
-                    readyState: 'WORK_FETCHED',
+                    items: [{ id: 1 }],
+                    readyState: 'WORK_FETCHED'
                 }
             };
             store = createMockStore(state);
 
-            const fetchPortfolioIfNeeded = store.dispatch(portfolioActions.fetchPortfolioIfNeeded());
+            const fetchPortfolioIfNeeded = store.dispatch(
+                portfolioActions.fetchPortfolioIfNeeded()
+            );
             expect(store.getActions()).toHaveLength(0);
             expect(mockReactGA).not.toHaveBeenCalled();
             expect(fetchPortfolioIfNeeded).toBeUndefined();
@@ -88,8 +93,8 @@ describe('Portfolio Actions', () => {
             store = createMockStore(state);
 
             const result = {
-                'result': 'Error',
-                'info': '500'
+                result: 'Error',
+                info: '500'
             };
 
             const expectedActions = [
@@ -148,7 +153,9 @@ describe('Portfolio Actions', () => {
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            await store.dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(1));
+            await store.dispatch(
+                portfolioActions.fetchPortfolioDetailIfNeeded(1)
+            );
             expect(store.getActions()).toEqual(expectedActions);
             expect(store.getActions()[1].result).toMatchSnapshot();
             expect(mockReactGA).toBeCalledTimes(1);
@@ -157,13 +164,15 @@ describe('Portfolio Actions', () => {
         test('Not fetched when cached version available', () => {
             const state = {
                 portfolio: {
-                    items: {id: 1},
-                    readyState: 'WORK_DETAIL_FETCHED',
+                    items: { id: 1 },
+                    readyState: 'WORK_DETAIL_FETCHED'
                 }
             };
             store = createMockStore(state);
 
-            const fetchPortfolioDetailIfNeeded = store.dispatch(portfolioActions.fetchPortfolioDetailIfNeeded());
+            const fetchPortfolioDetailIfNeeded = store.dispatch(
+                portfolioActions.fetchPortfolioDetailIfNeeded()
+            );
             expect(store.getActions()).toHaveLength(0);
             expect(fetchPortfolioDetailIfNeeded).toBeUndefined();
             expect(mockReactGA).not.toBeCalled();
@@ -179,8 +188,8 @@ describe('Portfolio Actions', () => {
             store = createMockStore(state);
 
             const result = {
-                'result': 'Error',
-                'info': '500'
+                result: 'Error',
+                info: '500'
             };
 
             const expectedActions = [
@@ -199,7 +208,9 @@ describe('Portfolio Actions', () => {
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            await store.dispatch(portfolioActions.fetchPortfolioDetailIfNeeded(1));
+            await store.dispatch(
+                portfolioActions.fetchPortfolioDetailIfNeeded(1)
+            );
             expect(store.getActions()).toEqual(expectedActions);
             expect(mockReactGA).toBeCalledTimes(1);
         });
@@ -209,7 +220,7 @@ describe('Portfolio Actions', () => {
         const expectedActions = [
             {
                 type: 'WORK_DETAIL_RESET'
-            },
+            }
         ];
 
         store.dispatch(portfolioActions.resetPortfolioDetail());
@@ -221,7 +232,7 @@ describe('Portfolio Actions', () => {
             {
                 type: 'WORK_LAST_PROJECT_HEIGHT',
                 payload: 500
-            },
+            }
         ];
 
         store.dispatch(portfolioActions.lastProjectHeight(500));

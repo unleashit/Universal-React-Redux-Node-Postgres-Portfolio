@@ -15,5 +15,4 @@ describe('<TrainingMain />', () => {
     test('snapshot matches', () => {
         expect(wrapper).toMatchSnapshot();
     });
-
 });

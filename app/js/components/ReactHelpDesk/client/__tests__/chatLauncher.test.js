@@ -1,7 +1,8 @@
 import { LiveChatLauncher } from '../chatLauncher';
 import cloneDeep from 'lodash/cloneDeep';
 
-const openChatSpy = jest.spyOn(LiveChatLauncher.prototype, 'openChat')
+const openChatSpy = jest
+    .spyOn(LiveChatLauncher.prototype, 'openChat')
     .mockImplementation(() => {});
 const alertSpy = jest.spyOn(window, 'alert');
 
@@ -58,5 +59,5 @@ describe('<LiveChatLauncher />', () => {
 
     test('it matches snapshot', () => {
         expect(wrapper).toMatchSnapshot();
-    })
+    });
 });

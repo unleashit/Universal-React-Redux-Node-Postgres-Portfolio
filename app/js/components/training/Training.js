@@ -36,7 +36,7 @@ export class Training extends Component {
                 ? !this.props.liveChat.chatOpen
                 : true;
         } else return true;
-    };
+    }
 
     render() {
         const { hamburgerState, htmlClass } = this.props.global;

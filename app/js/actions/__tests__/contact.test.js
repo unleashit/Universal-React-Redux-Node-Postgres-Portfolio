@@ -7,7 +7,8 @@ describe('Contact Actions', () => {
     const initialState = {};
     const store = createMockStore(initialState);
 
-    const mockReactGA = jest.spyOn(ReactGA, "event")
+    const mockReactGA = jest
+        .spyOn(ReactGA, 'event')
         .mockImplementation(() => {});
 
     const contactData = {
@@ -29,8 +30,8 @@ describe('Contact Actions', () => {
     describe('submitContact()', () => {
         test('Dispatches the correct actions and payload', async () => {
             const response = {
-                'result': 'Success',
-                'info': '250 Message received'
+                result: 'Success',
+                info: '250 Message received'
             };
 
             const expectedActions = [
@@ -43,7 +44,7 @@ describe('Contact Actions', () => {
                 },
                 {
                     type: '@@redux-form/RESET',
-                    meta: {"form": "contactForm"}
+                    meta: { form: 'contactForm' }
                 }
             ];
 
@@ -58,8 +59,8 @@ describe('Contact Actions', () => {
 
         test('Correct Error is returned', async () => {
             const response = {
-                'result': 'Error',
-                'info': '500'
+                result: 'Error',
+                info: '500'
             };
 
             const expectedActions = [
@@ -84,8 +85,8 @@ describe('Contact Actions', () => {
 
         test('ReactGA is called the right number of times', async () => {
             const response = {
-                'result': 'Success',
-                'info': '250 Message received'
+                result: 'Success',
+                info: '250 Message received'
             };
             fetchMock.post(`${__API_URL__}/contact`, {
                 body: response,
@@ -101,7 +102,7 @@ describe('Contact Actions', () => {
         const expectedActions = [
             {
                 type: 'SUBMIT_CONTACT_RESET'
-            },
+            }
         ];
 
         store.dispatch(contactActions.submitContactReset());

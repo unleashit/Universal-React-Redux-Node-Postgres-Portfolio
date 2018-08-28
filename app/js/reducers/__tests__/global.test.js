@@ -11,7 +11,6 @@ import {
 } from '../../actions/global';
 import contactFormReducer from '../contactForm';
 
-
 describe('global reducer', () => {
     const initialState = {
         headerState: false,
@@ -80,7 +79,7 @@ describe('global reducer', () => {
         const action = { type: ANIMATE_ABOUT, bool: true };
         const newState = {
             ...initialState,
-            animateAbout: action.bool,
+            animateAbout: action.bool
         };
 
         runExpecs(action, newState);

@@ -10,11 +10,10 @@ describe('<Footer />', () => {
             animateContact: true,
             animateOff: false
         }
-
     };
 
     beforeEach(() => {
-        wrapper = shallow(<Footer { ...props } />);
+        wrapper = shallow(<Footer {...props} />);
     });
 
     test('renders without crashing', () => {
@@ -31,30 +30,31 @@ describe('<Footer />', () => {
 
     test('footer ID is blank on non-RR routes', () => {
         props.slug = '';
-        wrapper = shallow(<Footer { ...props } />);
+        wrapper = shallow(<Footer {...props} />);
 
         expect(wrapper.find('footer').prop('id')).toBeFalsy();
     });
 
-    test('includes \`animated\` class when appropriate', () => {
+    test('includes `animated` class when appropriate', () => {
         expect(wrapper.find('.animated')).toHaveLength(1);
 
         props.global.animateContact = false;
-        wrapper = shallow(<Footer { ...props } />);
+        wrapper = shallow(<Footer {...props} />);
         expect(wrapper.find('.animated')).toHaveLength(0);
 
         props.global.animateContact = true;
         props.global.animateOff = true;
-        wrapper = shallow(<Footer { ...props } />);
+        wrapper = shallow(<Footer {...props} />);
         expect(wrapper.find('.animated')).toHaveLength(0);
     });
 
     test('analytics hooks are called', () => {
-        jest.spyOn(Footer.prototype, "analytics");
-        const mockReactGA = jest.spyOn(ReactGA, "event")
+        jest.spyOn(Footer.prototype, 'analytics');
+        const mockReactGA = jest
+            .spyOn(ReactGA, 'event')
             .mockImplementation(() => {});
 
-        wrapper = shallow(<Footer { ...props } />);
+        wrapper = shallow(<Footer {...props} />);
 
         const emailLink = wrapper.find('.contact-method > a').first();
         emailLink.simulate('click');

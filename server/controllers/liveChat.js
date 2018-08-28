@@ -8,13 +8,12 @@ var admin = null;
 var isAuthorized = false;
 
 function _sendSMS(user) {
-
     config.smsMailOptions.text = `A new user has logged onto live chat on jasongallagher.org: ${user}`;
 
     var transporter = nodemailer.createTransport(config.smtpConfig);
 
     transporter.sendMail(config.smsMailOptions, function(error, info) {
-        if (error){
+        if (error) {
             console.log('error from sendMail method: ', error);
         } else {
             console.log(`SMS sent`);
@@ -23,46 +22,47 @@ function _sendSMS(user) {
 }
 
 function _handleQueryUser(socket, chat, message) {
-    liveChatData.queryUser(message.room)
-        .then((user) => {
-            if (user) {
-                users[user.id] = user;
-                console.log("User restored from DB: ", user);
+    liveChatData.queryUser(message.room).then(user => {
+        if (user) {
+            users[user.id] = user;
+            console.log('User restored from DB: ', user);
 
-                // add the user back to the room and restore to admin
-                socket.join(message.room);
-                if (admin) {
-                    admin.join(message.room);
-                    socket.broadcast.to(admin.id).emit('admin userInit', users);
-                    console.log('Restored user sent to admin: ', user);
-                }
-
-                // add the new message and broadcast
-                users[user.id].messages.push(message);
-                if (admin) _handleQueryUsers(socket, users, 0);
-                chat.in(message.room).emit('chatMessage', message);
-
-            } else {
-                console.log('Message from unregistered socket: %s', socket.id);
+            // add the user back to the room and restore to admin
+            socket.join(message.room);
+            if (admin) {
+                admin.join(message.room);
+                socket.broadcast.to(admin.id).emit('admin userInit', users);
+                console.log('Restored user sent to admin: ', user);
             }
-        });
+
+            // add the new message and broadcast
+            users[user.id].messages.push(message);
+            if (admin) _handleQueryUsers(socket, users, 0);
+            chat.in(message.room).emit('chatMessage', message);
+        } else {
+            console.log('Message from unregistered socket: %s', socket.id);
+        }
+    });
 }
 
 function _handleQueryUsers(socket, users, offset) {
     socket.emit('admin userInit', users);
-    liveChatData.queryUsers(users, offset)
-        .then(archivedUsers => {
-            socket.emit('admin archivedUserUpdate', archivedUsers);
-            console.log("%s archived users sent to admin", archivedUsers.users.length);
-        });
+    liveChatData.queryUsers(users, offset).then(archivedUsers => {
+        socket.emit('admin archivedUserUpdate', archivedUsers);
+        console.log(
+            '%s archived users sent to admin',
+            archivedUsers.users.length
+        );
+    });
 }
 
 exports.initSaveChatData = function(chat) {
     setInterval(() => {
         if (!Object.keys(users).length) return;
-        liveChatData.save(users)
+        liveChatData
+            .save(users)
             .then(() => {
-                console.log("users were saved to the DB");
+                console.log('users were saved to the DB');
                 users = liveChatData.filterOld(users, chat);
             })
             .catch(err => {
@@ -82,19 +82,17 @@ exports.onAuthorizeFail = function(data, message, error, accept) {
     accept(); // normal users should pass through
 };
 
-exports.chatConnected = function (socket, chat, message, callback) {
-
+exports.chatConnected = function(socket, chat, message, callback) {
     // if admin is logged in, inform client of status
     if (admin) {
         // var payload = {id: admin.id, name: admin.name};
-        callback({id: admin.id, name: admin.name});
+        callback({ id: admin.id, name: admin.name });
     } else {
         callback(null);
     }
 };
 
 exports.newUser = function(socket, chat, user, callback) {
-
     users[socket.id] = {
         id: socket.id,
         name: user.name,
@@ -115,10 +113,11 @@ exports.newUser = function(socket, chat, user, callback) {
             id: null,
             room: socket.id,
             name: config.liveChat.adminName,
-            message: 'I\'m currently away, but I will receive your messages and get back to you very soon!',
+            message:
+                "I'm currently away, but I will receive your messages and get back to you very soon!",
             date: Date.now()
         };
-        socket.emit('chatMessage', message)
+        socket.emit('chatMessage', message);
     }
 
     // callback sends namespaced room id back to client
@@ -128,11 +127,10 @@ exports.newUser = function(socket, chat, user, callback) {
     if (config.liveChat.sendSMS) {
         try {
             _sendSMS(user.name);
-        } catch(err) {
+        } catch (err) {
             throw new Error(err);
         }
     }
-
 };
 
 exports.chatMessage = function(socket, chat, message) {
@@ -141,20 +139,19 @@ exports.chatMessage = function(socket, chat, message) {
         chat.in(message.room).emit('chatMessage', message);
         console.log('User:', JSON.stringify(users[message.room], null, 2));
     } else {
-
         _handleQueryUser(socket, chat, message);
     }
 };
 
-exports.typing = function (socket, chat, id) {
-    console.log("typing: " + id);
-    chat.in(id).emit("typing", socket.id);
+exports.typing = function(socket, chat, id) {
+    console.log('typing: ' + id);
+    chat.in(id).emit('typing', socket.id);
 };
 
 exports.disconnect = function(socket, chat) {
     if (socket.id in users) {
         users[socket.id].connected = false;
-        console.log("Client disconnected");
+        console.log('Client disconnected');
         // console.log(id, users[id]);
     } else if (admin && socket.id === admin.id) {
         console.log('Admin disconnected');
@@ -176,28 +173,29 @@ exports.adminLogin = function(socket, chat, message, callback) {
             admin.join(users[u].id);
         });
 
-        socket.broadcast.emit('chatConnected', {id: admin.id, name: admin.name});
-        console.log("admin logged in");
+        socket.broadcast.emit('chatConnected', {
+            id: admin.id,
+            name: admin.name
+        });
+        console.log('admin logged in');
 
         // send namespaced id back to client
         callback(socket.id);
 
         // get archived users from DB and send to admin
         _handleQueryUsers(socket, users, 0);
-
     } else {
         admin = null;
         console.log('Admin has incorrect credentials!');
     }
 };
 
-exports.adminGetUsers = function (socket, chat, offset) {
+exports.adminGetUsers = function(socket, chat, offset) {
     _handleQueryUsers(socket, users, offset);
 };
 
-exports.adminRemoveUser = function (socket, chat, user){
+exports.adminRemoveUser = function(socket, chat, user) {
     if (admin && isAuthorized) {
-
         if (chat.connected[user]) {
             chat.connected[user].disconnect();
             console.log('%s was deleted and disconnected by admin.', user);
@@ -206,12 +204,13 @@ exports.adminRemoveUser = function (socket, chat, user){
         if (user in users) {
             users[user].connected = false;
 
-            liveChatData.save(users)
+            liveChatData
+                .save(users)
                 .then(() => {
-                    console.log("users were saved to the DB");
+                    console.log('users were saved to the DB');
                     delete users[user];
                     // console.log(admin);
-                    _handleQueryUsers(socket, users, 0)
+                    _handleQueryUsers(socket, users, 0);
                 })
                 .catch(err => {
                     throw new Error(err);
@@ -220,17 +219,17 @@ exports.adminRemoveUser = function (socket, chat, user){
     }
 };
 
-exports.adminDeleteUser = function (socket, chat, user) {
+exports.adminDeleteUser = function(socket, chat, user) {
     if (admin && isAuthorized) {
-
         if (user in users) {
             chat.connected[user].disconnect();
             delete users[user];
         }
 
-        liveChatData.deleteUser(user)
+        liveChatData
+            .deleteUser(user)
             .then(() => {
-                console.log("%s was deleted from DB", user);
+                console.log('%s was deleted from DB', user);
 
                 // send new archived user list to admin
                 _handleQueryUsers(socket, users, 0);
@@ -245,11 +244,9 @@ exports.adminDeleteUser = function (socket, chat, user) {
 
 // /admin/live-chat-manager standard route
 exports.chatManager = function(req, res) {
-
-    res.render("live-chat-manager", {
-        title: "Manage React Help Desk",
+    res.render('live-chat-manager', {
+        title: 'Manage React Help Desk',
         activeClass: 'manage-live-chat',
         auth: req.isAuthenticated()
     });
 };
-

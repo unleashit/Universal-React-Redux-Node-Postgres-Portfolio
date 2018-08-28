@@ -1,8 +1,12 @@
-import { reducer as formReducer} from 'redux-form';
+import { reducer as formReducer } from 'redux-form';
 import { Provider } from 'react-redux';
 import ConnectedContactForm, { ContactForm } from '../contactForm';
-import { createMockStore, wrapActualStore, wrapMockStore } from '../../../../../setupTests';
-import { combineReducers } from "redux";
+import {
+    createMockStore,
+    wrapActualStore,
+    wrapMockStore
+} from '../../../../../setupTests';
+import { combineReducers } from 'redux';
 import React from 'react';
 import { ReactGA } from '../../../libs/utils';
 import { __API_URL__ } from '../../../../../config/APPconfig';
@@ -52,13 +56,10 @@ describe('<ContactForm /> integration tests', () => {
         mockHandleSubmit = jest.fn();
 
         props = {
-            handleSubmit: jest.fn(() => mockHandleSubmit),
+            handleSubmit: jest.fn(() => mockHandleSubmit)
         };
 
-        const wrapped = wrapActualStore(
-            ConnectedContactForm,
-            props
-        );
+        const wrapped = wrapActualStore(ConnectedContactForm, props);
 
         wrapper = mount(wrapped);
     };
@@ -72,7 +73,7 @@ describe('<ContactForm /> integration tests', () => {
         expect(mockHandleSubmit).toBeCalledTimes(1);
     });
 
-    test("name field displays correct error when invalid", () => {
+    test('name field displays correct error when invalid', () => {
         const input = wrapper.find('input[name="name"]');
         input.simulate('blur');
         const error = wrapper.find('.error').first();
@@ -80,12 +81,12 @@ describe('<ContactForm /> integration tests', () => {
         expect(error).toHaveLength(1);
         expect(error.text()).toEqual('Please enter your name');
 
-        input.simulate('change', { target: { value: 'a'.repeat(26) }});
+        input.simulate('change', { target: { value: 'a'.repeat(26) } });
         expect(wrapper.find('.error').first()).toHaveLength(1);
         expect(error.text()).toEqual('Name should be less than 25 characters');
     });
 
-    test("email field displays correct error when invalid", () => {
+    test('email field displays correct error when invalid', () => {
         const input = wrapper.find('input[name="email"]');
         input.simulate('blur');
         const error = wrapper.find('.error').first();
@@ -93,14 +94,14 @@ describe('<ContactForm /> integration tests', () => {
         expect(error).toHaveLength(1);
         expect(error.text()).toEqual('Please enter a valid email');
 
-        input.simulate('change', { target: { value: 'test@test.com' }});
+        input.simulate('change', { target: { value: 'test@test.com' } });
         expect(wrapper.find('.error').first()).toHaveLength(0);
 
-        input.simulate('change', { target: { value: 'bunk@email' }});
+        input.simulate('change', { target: { value: 'bunk@email' } });
         expect(wrapper.find('.error').first()).toHaveLength(1);
     });
 
-    test("phone field does not display an error", () => {
+    test('phone field does not display an error', () => {
         const input = wrapper.find('input[name="phone"]');
         input.simulate('blur');
         const error = wrapper.find('.error').first();
@@ -108,7 +109,7 @@ describe('<ContactForm /> integration tests', () => {
         expect(error).toHaveLength(0);
     });
 
-    test("message field displays correct error when invalid", () => {
+    test('message field displays correct error when invalid', () => {
         let textarea = wrapper.find('textarea[name="message"]');
 
         textarea.simulate('blur');
@@ -124,42 +125,41 @@ describe('<ContactForm /> integration tests', () => {
         // expect(wrapper.find('.error').first().text()).toEqual('Message should be less than 3000 characters');
     });
 
-    test("form submits and shows loader when all data is valid", () => {
+    test('form submits and shows loader when all data is valid', () => {
         const response = {
-            'result': 'Success',
-            'info': '250 Message received'
+            result: 'Success',
+            info: '250 Message received'
         };
         fetchMock.post(`${__API_URL__}/contact`, {
             body: response,
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const mockReactGA = jest.spyOn(ReactGA, "event")
+        const mockReactGA = jest
+            .spyOn(ReactGA, 'event')
             .mockImplementation(() => {});
 
-        const wrapped = wrapActualStore(
-            ConnectedContactForm
-        );
+        const wrapped = wrapActualStore(ConnectedContactForm);
 
         wrapper = mount(wrapped);
 
         const form = wrapper.find('.contact-form form');
 
         const name = wrapper.find('input[name="name"]');
-        name.simulate('change', { target: { value: 'tester' }});
+        name.simulate('change', { target: { value: 'tester' } });
 
         const email = wrapper.find('input[name="email"]');
-        email.simulate('change', { target: { value: 'joe@blow.com' }});
+        email.simulate('change', { target: { value: 'joe@blow.com' } });
 
         const message = wrapper.find('textarea[name="message"]');
-        message.simulate('change', { target: { value: 'test msg' }});
+        message.simulate('change', { target: { value: 'test msg' } });
 
         form.simulate('submit');
 
         expect(wrapper.find('Loader')).toHaveLength(1);
     });
 
-    test("after submission, contact form resets after delay", () => {
+    test('after submission, contact form resets after delay', () => {
         jest.useFakeTimers();
 
         const mockDispatch = jest.fn();

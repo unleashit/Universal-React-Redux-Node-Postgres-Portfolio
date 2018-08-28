@@ -5,7 +5,10 @@ import LiveChat from './liveChat';
 import * as chatActions from './actions/liveChat';
 import io from 'socket.io-client';
 import { ionSound } from '../../../libs/ion-sound';
-import { __API_URL__, __SOCKET_IO_URL__ } from '../../../../../config/APPconfig';
+import {
+    __API_URL__,
+    __SOCKET_IO_URL__
+} from '../../../../../config/APPconfig';
 
 export class LiveChatContainer extends Component {
     constructor(props) {

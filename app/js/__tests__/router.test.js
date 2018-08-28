@@ -12,7 +12,6 @@
 // const mockReactGAInitialize = jest.spyOn(ReactGA, "initialize")
 //     .mockImplementation(jest.fn());
 
-
 describe('router.js', () => {
     // const req = {
     //     url: '/',
@@ -27,4 +26,3 @@ describe('router.js', () => {
         expect(true).toBe(true);
     });
 });
-

@@ -13,14 +13,16 @@ exports[`<TrainingMain /> snapshot matches 1`] = `
     src="test-file-stub"
   />
   <p>
-    Over the years I have helped hundreds of students from many backgrounds, interests and levels of experience unravel the mysteries of web development. Whether you are a brand new developer or just need to learn the front end, I can teach you best practices and help you get off to a proper and 
+    Over the years I have helped hundreds of students from many backgrounds, interests and levels of experience unravel the mysteries of web development. Whether you are a brand new developer or just need to learn the front end, I can teach you best practices and help you get off to a proper and
+     
     <strong>
       current
     </strong>
      start.
   </p>
   <p>
-    This program focuses on gaining an understanding of the 
+    This program focuses on gaining an understanding of the
+     
     <strong>
       fundamentals
     </strong>
@@ -43,7 +45,8 @@ exports[`<TrainingMain /> snapshot matches 1`] = `
       <strong>
         Homework Time:
       </strong>
-       3-6 hours /week | 
+       3-6 hours /week |
+       
       <strong>
         Prerequisite:
       </strong>
@@ -131,7 +134,8 @@ exports[`<TrainingMain /> snapshot matches 1`] = `
       <strong>
         Homework Time:
       </strong>
-       3-6 hours /week | 
+       3-6 hours /week |
+       
       <strong>
         Prerequisites:
       </strong>
@@ -211,7 +215,8 @@ exports[`<TrainingMain /> snapshot matches 1`] = `
             Recommended: Redux for managing state
           </li>
           <li>
-            Recommended: More advanced React patterns and/or addons like React Router, Redux Form, UI toolkits, etc. 
+            Recommended: More advanced React patterns and/or addons like React Router, Redux Form, UI toolkits, etc.
+             
           </li>
           <li>
             Optional: Introduction to jQuery. jQuery is less important nowadays, but since it's still common it can be a good idea to at least learn the basics

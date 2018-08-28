@@ -18,15 +18,18 @@ describe('<Header />', () => {
     });
 
     test('analytics hooks are called', () => {
-        jest.spyOn(Header.prototype, "analytics");
-        const mockReactGA = jest.spyOn(ReactGA, "event")
+        jest.spyOn(Header.prototype, 'analytics');
+        const mockReactGA = jest
+            .spyOn(ReactGA, 'event')
             .mockImplementation(() => {});
 
-        wrapper = shallow(<Header { ...props } />);
+        wrapper = shallow(<Header {...props} />);
 
         const button = wrapper.find('button').first();
         button.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith('See my work');
+        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
+            'See my work'
+        );
 
         expect(mockReactGA).toHaveBeenCalledTimes(1);
     });

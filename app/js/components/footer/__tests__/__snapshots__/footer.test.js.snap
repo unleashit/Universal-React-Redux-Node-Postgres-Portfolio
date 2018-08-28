@@ -75,15 +75,19 @@ exports[`<Footer /> snapshot matches 1`] = `
             <span>
               HANDCRAFTED
             </span>
-             with React, Redux, Node, PostgreSQL, and 
+             
+            with React, Redux, Node, PostgreSQL, and
+             
             <span>
               OF COURSE
             </span>
-            , Html and CSS. It is 
+            , Html and CSS. It is
+             
             <span>
               UNIVERSAL
             </span>
-            , or rather a single page app that is first rendered on the server. Not to be mistaken for yet another 
+            , or rather a single page app that is first rendered on the server. Not to be mistaken for yet another
+             
             <span>
               HIPSTER BUZZWORD
             </span>

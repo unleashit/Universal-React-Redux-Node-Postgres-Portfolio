@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-module.exports = function (sequelize, DataTypes) {
-    return sequelize.define("LiveChat", {
+module.exports = function(sequelize, DataTypes) {
+    return sequelize.define('LiveChat', {
         socketId: {
             type: DataTypes.STRING,
             primaryKey: true,

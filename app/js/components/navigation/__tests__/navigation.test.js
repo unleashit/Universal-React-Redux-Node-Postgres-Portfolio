@@ -21,19 +21,34 @@ describe('<Navigation />', () => {
     test('logo renders in correct position', () => {
         props.logo = '1';
         wrapper = shallow(<Navigation {...props} />);
-        expect (wrapper.find('ul').childAt(0).name()).toEqual('Logo');
+        expect(
+            wrapper
+                .find('ul')
+                .childAt(0)
+                .name()
+        ).toEqual('Logo');
         expect(wrapper).toMatchSnapshot();
 
         props.logo = '2';
         wrapper = shallow(<Navigation {...props} />);
-        expect (wrapper.find('ul').childAt(2).name()).toEqual('Logo');
+        expect(
+            wrapper
+                .find('ul')
+                .childAt(2)
+                .name()
+        ).toEqual('Logo');
         expect(wrapper).toMatchSnapshot();
     });
 
     test('home link renders if it should', () => {
         props.home = true;
         wrapper = shallow(<Navigation {...props} />);
-        expect (wrapper.find('Link').first().prop('to')).toEqual('/#home');
+        expect(
+            wrapper
+                .find('Link')
+                .first()
+                .prop('to')
+        ).toEqual('/#home');
     });
 });
 

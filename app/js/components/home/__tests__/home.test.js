@@ -1,6 +1,6 @@
 import { Home } from '../Home';
 import Portfolio from '../../portfolio/Portfolio';
-import { wrapActualStore } from "../../../../../setupTests";
+import { wrapActualStore } from '../../../../../setupTests';
 import { Training } from '../../training/Training';
 import StickyHeader from '../../stickyHeader/stickyHeader';
 import * as utils from '../../../libs/utils';
@@ -64,7 +64,6 @@ describe('Home container', () => {
                 await Home.readyOnActions(dispatch);
 
                 expect(dispatch).toHaveBeenCalledTimes(1);
-
             });
 
             test('componentDidMount()', async () => {
@@ -79,7 +78,10 @@ describe('Home container', () => {
                 window.pageYOffset = 20;
                 await wrapper.instance().componentDidMount();
 
-                expect(mockAddEvent).toHaveBeenCalledWith('scroll', expect.any(Function));
+                expect(mockAddEvent).toHaveBeenCalledWith(
+                    'scroll',
+                    expect.any(Function)
+                );
                 expect(props.dispatch).toHaveBeenCalledTimes(2);
             });
 
@@ -87,12 +89,18 @@ describe('Home container', () => {
                 props.global.headerState = true;
                 wrapper = shallow(<Home {...props} />);
 
-                const mockRemoveEvent = jest.spyOn(window, 'removeEventListener');
+                const mockRemoveEvent = jest.spyOn(
+                    window,
+                    'removeEventListener'
+                );
                 props.dispatch.mockReset();
                 wrapper.instance().componentWillUnmount();
 
                 expect(document.documentElement.className).toEqual('');
-                expect(mockRemoveEvent).toHaveBeenCalledWith('scroll', expect.any(Function));
+                expect(mockRemoveEvent).toHaveBeenCalledWith(
+                    'scroll',
+                    expect.any(Function)
+                );
             });
 
             test('componentDidUpdate()', () => {
@@ -100,8 +108,9 @@ describe('Home container', () => {
 
                 // animateOff should not be dispatched
                 const x = 'client';
-                jest.spyOn(utils, 'getEnvironment')
-                    .mockImplementation((x) => false);
+                jest.spyOn(utils, 'getEnvironment').mockImplementation(
+                    x => false
+                );
                 props.dispatch.mockReset();
                 wrapper.instance().componentDidUpdate();
                 jest.runAllTimers();
@@ -109,10 +118,11 @@ describe('Home container', () => {
                 expect(props.dispatch).toHaveBeenCalledTimes(0);
 
                 // animateOff should be dispatched
-                jest.spyOn(utils, 'getEnvironment')
-                    .mockImplementation(() => true);
+                jest.spyOn(utils, 'getEnvironment').mockImplementation(
+                    () => true
+                );
                 props.global.animateOff = false;
-                window.location.hash = "test";
+                window.location.hash = 'test';
 
                 wrapper = shallow(<Home {...props} />);
 
@@ -126,17 +136,17 @@ describe('Home container', () => {
 
         describe('scroll events', () => {
             test('handleScroll() calls scroll events', () => {
-                const triggerMock = jest.spyOn(Home.prototype, 'triggerAnimation')
+                const triggerMock = jest
+                    .spyOn(Home.prototype, 'triggerAnimation')
                     .mockImplementation(() => {});
                 wrapper.instance().handleScroll();
 
                 expect(triggerMock).toHaveBeenCalledTimes(3);
-                expect(triggerMock.mock.calls)
-                    .toEqual([
-                        [['about', 'animateAbout']],
-                        [['work', 'animatePortfolio']],
-                        [['contact-area', 'animateContact']]
-                    ]);
+                expect(triggerMock.mock.calls).toEqual([
+                    [['about', 'animateAbout']],
+                    [['work', 'animatePortfolio']],
+                    [['contact-area', 'animateContact']]
+                ]);
                 triggerMock.mockRestore();
             });
 
@@ -152,21 +162,25 @@ describe('Home container', () => {
                             top: 0
                         }))
                     }));
-                    wrapper.instance().triggerAnimation(['about', 'animateAbout']);
+                    wrapper
+                        .instance()
+                        .triggerAnimation(['about', 'animateAbout']);
                     expect(props.dispatch).toHaveBeenCalledTimes(1);
                 });
-                test('don\'t trigger when element\'s top is too high', () => {
+                test("don't trigger when element's top is too high", () => {
                     props.dispatch.mockReset();
                     document.getElementById = jest.fn(() => ({
                         getBoundingClientRect: jest.fn(() => ({
                             top: 1001
                         }))
                     }));
-                    wrapper.instance().triggerAnimation(['about', 'animateAbout']);
+                    wrapper
+                        .instance()
+                        .triggerAnimation(['about', 'animateAbout']);
                     expect(props.dispatch).toHaveBeenCalledTimes(0);
                 });
 
-                test('don\'t trigger if the animation was previously triggered', () => {
+                test("don't trigger if the animation was previously triggered", () => {
                     props.global.animateAbout = true;
                     document.getElementById = jest.fn(() => ({
                         getBoundingClientRect: jest.fn(() => ({
@@ -175,7 +189,9 @@ describe('Home container', () => {
                     }));
                     wrapper = shallow(<Home {...props} />);
                     props.dispatch.mockReset();
-                    wrapper.instance().triggerAnimation(['about', 'animateAbout']);
+                    wrapper
+                        .instance()
+                        .triggerAnimation(['about', 'animateAbout']);
                     expect(props.dispatch).toHaveBeenCalledTimes(0);
                 });
             });

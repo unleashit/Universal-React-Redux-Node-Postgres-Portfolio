@@ -20,15 +20,18 @@ describe('<About />', () => {
     });
 
     test('analytics hooks are called', () => {
-        jest.spyOn(About.prototype, "analytics");
-        const mockReactGA = jest.spyOn(ReactGA, "event")
+        jest.spyOn(About.prototype, 'analytics');
+        const mockReactGA = jest
+            .spyOn(ReactGA, 'event')
             .mockImplementation(() => {});
 
-        wrapper = shallow(<About { ...props } />);
+        wrapper = shallow(<About {...props} />);
 
         const resume = wrapper.find('.resume');
         resume.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith('resume download');
+        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
+            'resume download'
+        );
 
         const github = wrapper.find('.github');
         github.simulate('click');

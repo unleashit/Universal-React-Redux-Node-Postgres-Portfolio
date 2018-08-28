@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 export default class PortfolioItem extends React.PureComponent {
-
     render() {
-
-        const {item, index} = this.props;
+        const { item, index } = this.props;
         const color = {
             backgroundColor: this.props.color
         };
@@ -18,10 +16,11 @@ export default class PortfolioItem extends React.PureComponent {
                         <span>Learn More</span>
                     </div>
                     <div>
-                    
-                        <img src={'/images/portfolio/' + item.main_image}
-                             alt={item.title} />
-        
+                        <img
+                            src={'/images/portfolio/' + item.main_image}
+                            alt={item.title}
+                        />
+
                         <div className="portfolio-caption">
                             <p>{item.description_short}</p>
                         </div>
