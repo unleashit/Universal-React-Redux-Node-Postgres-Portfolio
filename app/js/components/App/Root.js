@@ -95,6 +95,7 @@ class Root extends Component {
                         content="/images/favicons/browserconfig.xml"
                     />
                     <meta name="theme-color" content="#ffffff" />
+                    <meta name="referrer" content="no-referrer" />
                     {head.link.toComponent()}
                     {this.renderEnvironment()}
                     {this.lazyLoadScripts()}

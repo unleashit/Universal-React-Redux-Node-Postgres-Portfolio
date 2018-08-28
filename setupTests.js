@@ -9,6 +9,8 @@ import thunkMiddleware from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import combinedReducers from './app/js/reducers';
 
+//jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
 

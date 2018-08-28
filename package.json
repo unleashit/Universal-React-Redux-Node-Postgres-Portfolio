@@ -127,9 +127,8 @@
     "webpack-hot-middleware": "^2.22.2"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/setupTests.js"
-    ],
+    "cacheDirectory": "<rootDir>/jestCache",
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
     "testURL": "http://localhost/",
     "coverageDirectory": "<rootDir>/coverage",
     "snapshotSerializers": [

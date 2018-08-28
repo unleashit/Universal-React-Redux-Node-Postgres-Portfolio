@@ -13,4 +13,4 @@ pgData
 database/pgData
 stats.json
 coverage
-jest_cache
+jestCache

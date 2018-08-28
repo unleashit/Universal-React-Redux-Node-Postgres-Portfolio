@@ -55,6 +55,10 @@ exports[`<Root /> Matches snapshot 1`] = `
       content="#ffffff"
       name="theme-color"
     />
+    <meta
+      content="no-referrer"
+      name="referrer"
+    />
     <script
       dangerouslySetInnerHTML={
         Object {
