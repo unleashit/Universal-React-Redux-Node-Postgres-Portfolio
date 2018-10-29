@@ -1,18 +1,19 @@
-var session = require('express-session');
-var config = require('./APPconfig');
+const session = require('express-session');
 
-var options = {
+const options = {
     user: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_DATABASE,
     dialect: process.env.DATABASE_DIALECT,
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,
+    sessionKey: process.env.SESSION_KEY,
+    sessionSecret: process.env.SESSION_SECRET,
     checkExpirationInterval: 3600000,
     expiration: 432000000
 };
 
-var sessionStore;
+let sessionStore;
 
 module.exports = function(app) {
     if (options.dialect === 'mysql') {
@@ -45,8 +46,8 @@ module.exports = function(app) {
     app.use(
         session({
             store: sessionStore,
-            key: config.__SESSION_KEY__,
-            secret: config.__SESSION_SECRET__,
+            key: options.sessionKey,
+            secret: options.sessionSecret,
             resave: false,
             saveUninitialized: true,
             cookie: { maxAge: 5 * 24 * 60 * 60 * 1000 } // 5 days

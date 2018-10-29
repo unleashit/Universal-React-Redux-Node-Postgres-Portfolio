@@ -7,13 +7,11 @@ extendRequire()
     .then(function() {
         var express = require('express');
         var app = express();
-        var session = require('express-session');
         var http = require('http').Server(app);
         var path = require('path');
         var flash = require('connect-flash');
         var bodyParser = require('body-parser');
         var passport = require('passport');
-        var APPconfig = require('../config/APPconfig');
         var compression = require('compression');
 
         var models = require('./models');
@@ -79,15 +77,6 @@ extendRequire()
 
         // Sessions and auth
         const sessionStore = require('../config/sessions-config')(app);
-        app.use(
-            session({
-                key: APPconfig.__SESSION_KEY__,
-                secret: APPconfig.__SESSION_SECRET__,
-                store: sessionStore,
-                resave: true,
-                saveUninitialized: true
-            })
-        );
 
         require('../config/passport-config');
         app.use(flash());
