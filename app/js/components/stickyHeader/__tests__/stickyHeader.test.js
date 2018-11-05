@@ -98,18 +98,12 @@ describe('<StickyHeader />', () => {
 
         wrapper = shallow(<StickyHeader {...props} />);
 
-        const phone = wrapper.find('.phone');
-        phone.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
-            'phone number in header'
-        );
-
         const chatStatus = wrapper.find('.chat-status');
         chatStatus.simulate('click');
         expect(wrapper.instance().analytics).toHaveBeenCalledWith(
             'chat in header'
         );
 
-        expect(mockReactGA).toHaveBeenCalledTimes(2);
+        expect(mockReactGA).toHaveBeenCalledTimes(1);
     });
 });

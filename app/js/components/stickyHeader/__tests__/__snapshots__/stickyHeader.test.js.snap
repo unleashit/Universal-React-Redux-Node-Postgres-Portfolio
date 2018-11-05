@@ -26,15 +26,6 @@ exports[`<StickyHeader /> snapshot matches 1`] = `
     >
       <div>
         <span
-          className="phone"
-          onClick={[Function]}
-        >
-          <i
-            className="fa fa-phone"
-          />
-           (707) 280-3629
-        </span>
-        <span
           className="chat-status"
           onClick={[Function]}
         >

@@ -72,14 +72,6 @@ export class StickyHeader extends React.Component {
                     <div className="contact-info pull-right hidden-xs-down">
                         <div>
                             <span
-                                className="phone"
-                                onClick={() =>
-                                    this.analytics('phone number in header')
-                                }
-                            >
-                                <i className="fa fa-phone" /> (707) 280-3629
-                            </span>
-                            <span
                                 className="chat-status"
                                 onClick={() => this.analytics('chat in header')}
                             >

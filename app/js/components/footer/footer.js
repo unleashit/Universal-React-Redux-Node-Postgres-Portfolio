@@ -31,10 +31,6 @@ export class Footer extends React.Component {
                         <div className="contact row" id="contact">
                             <div className="col-lg-4">
                                 <h4>CONTACT</h4>
-                                <p className="contact-method">
-                                    <i className="fa fa-phone" /> &nbsp;(707)
-                                    280-3629
-                                </p>
                                 <p className="contact-method chat">
                                     <i className="fa fa-comments" /> &nbsp;
                                     <OpenChat>

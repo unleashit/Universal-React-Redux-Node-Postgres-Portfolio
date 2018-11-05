@@ -26,14 +26,6 @@ exports[`<Footer /> snapshot matches 1`] = `
             CONTACT
           </h4>
           <p
-            className="contact-method"
-          >
-            <i
-              className="fa fa-phone"
-            />
-              (707) 280-3629
-          </p>
-          <p
             className="contact-method chat"
           >
             <i

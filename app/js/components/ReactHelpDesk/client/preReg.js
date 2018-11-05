@@ -24,10 +24,6 @@ class PreReg extends Component {
             <p>
                 I'm not available right now, but feel free to leave your name,
                 email and message and I'll get back to you shortly.
-                <br />
-                <br />
-                You can also reach me at <br />
-                (707) 280-3629.
             </p>
         );
 
