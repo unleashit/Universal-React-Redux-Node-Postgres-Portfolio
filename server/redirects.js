@@ -11,12 +11,12 @@ router.redirect('/web-design.html', '/', 301);
 router.redirect('/portfolio/web-design.html', '/', 301);
 router.redirect(
     '/graphic-design.html',
-    'http://training.jasongallagher.org/portfolio/graphic-design',
+    'http://archive.jasongallagher.org/portfolio/graphic-design',
     301
 );
 router.redirect(
     '/portfolio/graphic-design.html',
-    'http://training.jasongallagher.org/portfolio/graphic-design',
+    'http://archive.jasongallagher.org/portfolio/graphic-design',
     301
 );
 router.redirect('/services/web-design-services.html', '/', 301);
@@ -31,7 +31,7 @@ router.redirect(
 );
 router.redirect(
     '/services/lessons-and-training/drupal-training.html',
-    'http://training.jasongallagher.org/services/lessons-and-training/drupal-training.html',
+    'http://archive.jasongallagher.org/services/lessons-and-training/drupal-training.html',
     301
 );
 router.redirect(
@@ -41,17 +41,17 @@ router.redirect(
 );
 router.redirect(
     '/services/lessons-and-training/photoshop-training.html',
-    'http://training.jasongallagher.org/services/lessons-and-training/photoshop-training.html',
+    'http://archive.jasongallagher.org/services/lessons-and-training/photoshop-training.html',
     301
 );
 router.redirect(
     '/services/lessons-and-training/indesign-training.html',
-    'http://training.jasongallagher.org/services/lessons-and-training/indesign-training.html',
+    'http://archive.jasongallagher.org/services/lessons-and-training/indesign-training.html',
     301
 );
 router.redirect(
     '/services/lessons-and-training/illustrator-training.html',
-    'http://training.jasongallagher.org/services/lessons-and-training/illustrator-training.html',
+    'http://archive.jasongallagher.org/services/lessons-and-training/illustrator-training.html',
     301
 );
 
