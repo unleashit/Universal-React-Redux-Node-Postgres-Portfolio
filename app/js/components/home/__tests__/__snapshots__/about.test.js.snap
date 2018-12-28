@@ -53,7 +53,7 @@ exports[`<About /> snapshot matches 1`] = `
       >
         <a
           className="button button-smaller resume"
-          href="https://jasongallagher.org/images/JasonGallagherResPub.doc"
+          href="https://jasongallagher.org/images/JasonGallagherResumePub.pdf"
           onClick={[Function]}
         >
           <i
