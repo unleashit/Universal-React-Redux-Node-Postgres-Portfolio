@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Skills from './skills';
 import { ReactGA } from '../../libs/utils';
 import meImage from '../../../images/home/me.png';
 
@@ -10,26 +11,27 @@ export default class About extends React.Component {
             action: type
         });
     }
-    render() {
-        let i = 0;
-        const getColor = () => {
-            const colors = [
-                '#bdba81',
-                '#8781bd',
-                '#bd8181',
-                '#84bd81',
-                '#81afbd',
-                '#bd9981'
-            ];
 
-            if (i === colors.length - 1) {
-                i = 0;
-            } else i++;
-            return {
+    * getColor() {
+        let i = 0;
+        const colors = [
+            '#bdba81',
+            '#8781bd',
+            '#bd8181',
+            '#84bd81',
+            '#81afbd',
+            '#bd9981'
+        ];
+
+        while (true) {
+            yield {
                 borderLeft: '4px solid ' + colors[i]
             };
-        };
+            i = (i + 1) % colors.length;
+        }
+    };
 
+    render() {
         return (
             <section
                 className={this.props.animation() + 'about container-fluid'}
@@ -70,7 +72,7 @@ export default class About extends React.Component {
                         <p>
                             In the time since the dust has settled, I’ve had a
                             chance to work on some great projects on both the
-                            enterprise and the start-up level. I would love to
+                            enterprise and the startup level. I would love to
                             speak with you about your needs and see how we can
                             work together.
                         </p>
@@ -97,60 +99,7 @@ export default class About extends React.Component {
                     </div>
                     <div className="skills col-lg-4 clearfix" id="skills">
                         <h3 className="hidden-lg-up">Skills</h3>
-                        <div className="skill full" style={getColor()}>
-                            Javascript ES6+
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            React/Redux
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            AngularJs
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            NodeJs
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            React Native
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Webpack
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Typescript
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Php
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            MySql
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Postgres
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Mongo
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Docker
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Nginx/Apache
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Linux
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            AWS
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Drupal
-                        </div>
-                        <div className="skill half" style={getColor()}>
-                            Wordpress
-                        </div>
-                        <div className="skill full" style={getColor()}>
-                            Html5, CSS3
-                        </div>
+                        <Skills getColor={this.getColor} />
                     </div>
                 </div>
             </section>
