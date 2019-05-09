@@ -12,6 +12,7 @@ export default class About extends React.Component {
         });
     }
 
+    // TODO: fix issue with babel polyfill causing generators to break
     * getColor() {
         let i = 0;
         const colors = [
@@ -30,6 +31,27 @@ export default class About extends React.Component {
             i = (i + 1) % colors.length;
         }
     };
+
+    // // temp solution
+    // colors = [
+    //     '#bdba81',
+    //     '#8781bd',
+    //     '#bd8181',
+    //     '#84bd81',
+    //     '#81afbd',
+    //     '#bd9981'
+    // ];
+    //
+    // // temp solution
+    // currentColor = 0;
+    //
+    // // temp solution
+    // getColor = () => {
+    //     const style = { borderLeft: '4px solid ' + this.colors[this.currentColor] };
+    //     this.currentColor = (this.currentColor + 1) % this.colors.length;
+    //
+    //     return style;
+    // };
 
     render() {
         return (

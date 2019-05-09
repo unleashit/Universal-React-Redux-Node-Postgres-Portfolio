@@ -4,7 +4,7 @@
       "loose": true,
       "modules": false
     }],
-    "stage-3",
+    "stage-0",
     "react"
   ],
   "env": {
@@ -13,7 +13,7 @@
         ["env", {
             "modules": "commonjs"
         }],
-        "stage-3",
+        "stage-0",
         "react",
         "jest"
       ]
