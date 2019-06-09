@@ -1,4 +1,4 @@
-FROM node:9.11.2 AS build
+FROM node:11.15.0 AS build
 RUN mkdir /src
 WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
@@ -7,7 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build:script && git init
 
-FROM node:9.11.2-alpine AS production
+FROM node:11.15.0-alpine AS production
 WORKDIR /src
 ENV PATH /src/node_modules/.bin:$PATH
 COPY --from=build /src ./
