@@ -29,7 +29,7 @@ function Skill({ skill, size, color }) {
     );
 }
 
-export default function Skills({ getColor }) {
+export default function Skills({ skillColors }) {
     return (
         <React.Fragment>
         {
@@ -38,7 +38,7 @@ export default function Skills({ getColor }) {
                     key={skill}
                     skill={skill}
                     size={size}
-                    color={getColor.next().value}
+                    color={skillColors.next().value}
                 />
             ))
         }

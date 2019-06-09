@@ -5,6 +5,7 @@ import LiveChatContainer from '../ReactHelpDesk/client/liveChatContainer';
 import LiveChatLauncher from '../ReactHelpDesk/client/chatLauncher';
 import { toggleChat } from '../ReactHelpDesk/client/actions/liveChat';
 import { connect } from 'react-redux';
+import "regenerator-runtime/runtime";
 
 if (typeof document !== 'undefined') require('../../../scss/global.scss');
 
