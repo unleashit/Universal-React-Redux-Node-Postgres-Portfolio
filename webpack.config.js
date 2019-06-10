@@ -43,19 +43,6 @@ module.exports = {
             test: /\.js?$/,
             loader: 'babel-loader?cacheDirectory',
             include: path.join(__dirname, 'app'),
-            query: {
-                plugins: [
-                    ['react-transform', {
-                        'transforms': [{
-                            transform: 'react-transform-hmr',
-                            // If you use React Native, pass 'react-native' instead:
-                            imports: ['react'],
-                            // This is important for Webpack HMR:
-                            locals: ['module']
-                        }]
-                    }]
-                ]
-            }
             },
             // {test: /\.js$/, use: "eslint-loader", exclude: /node_modules/},
             {test: /\.css$/, use: ["style-loader", "css-loader?sourceMap"]},

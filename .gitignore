@@ -14,3 +14,4 @@ database/pgData
 stats.json
 coverage
 jestCache
+deploy.sh

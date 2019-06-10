@@ -5,12 +5,12 @@ module.exports = function(sequelize, DataTypes) {
         'Portfolio',
         {
             title: DataTypes.STRING,
-            description: DataTypes.TEXT('medium'),
+            description: DataTypes.TEXT,
             description_short: DataTypes.TEXT,
             tags: DataTypes.TEXT,
             main_image: DataTypes.STRING,
             image_mobile: DataTypes.STRING,
-            gallery: DataTypes.TEXT('medium'),
+            gallery: DataTypes.TEXT,
             link: DataTypes.STRING,
             url_slug: DataTypes.STRING,
             sort: {

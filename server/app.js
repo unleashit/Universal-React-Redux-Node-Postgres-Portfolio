@@ -1,5 +1,6 @@
-require('babel-register')({
-    presets: ['env', 'react']
+require('@babel/register')({
+    presets: ['@babel/preset-env', '@babel/preset-react'],
+    ignore: [/node_modules/]
 });
 var extendRequire = require('isomorphic-loader/lib/extend-require');
 
