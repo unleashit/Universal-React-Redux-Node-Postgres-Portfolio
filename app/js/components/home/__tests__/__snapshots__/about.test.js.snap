@@ -46,7 +46,7 @@ exports[`<About /> snapshot matches 1`] = `
          
       </p>
       <p>
-        In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the start-up level. I would love to speak with you about your needs and see how we can work together.
+        In the time since the dust has settled, I’ve had a chance to work on some great projects on both the enterprise and the startup level. I would love to speak with you about your needs and see how we can work together.
       </p>
       <div
         className="about-buttons"
@@ -82,186 +82,13 @@ exports[`<About /> snapshot matches 1`] = `
       >
         Skills
       </h3>
-      <div
-        className="skill full"
-        style={
-          Object {
-            "borderLeft": "4px solid #8781bd",
+      <Skills
+        skillColors={
+          GeneratorFunctionPrototype {
+            "_invoke": [Function],
           }
         }
-      >
-        Javascript ES6+
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd8181",
-          }
-        }
-      >
-        React/Redux
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #84bd81",
-          }
-        }
-      >
-        AngularJs
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #81afbd",
-          }
-        }
-      >
-        NodeJs
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd9981",
-          }
-        }
-      >
-        React Native
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bdba81",
-          }
-        }
-      >
-        Webpack
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #8781bd",
-          }
-        }
-      >
-        Typescript
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd8181",
-          }
-        }
-      >
-        Php
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #84bd81",
-          }
-        }
-      >
-        MySql
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #81afbd",
-          }
-        }
-      >
-        Postgres
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd9981",
-          }
-        }
-      >
-        Mongo
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bdba81",
-          }
-        }
-      >
-        Docker
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #8781bd",
-          }
-        }
-      >
-        Nginx/Apache
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd8181",
-          }
-        }
-      >
-        Linux
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #84bd81",
-          }
-        }
-      >
-        AWS
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #81afbd",
-          }
-        }
-      >
-        Drupal
-      </div>
-      <div
-        className="skill half"
-        style={
-          Object {
-            "borderLeft": "4px solid #bd9981",
-          }
-        }
-      >
-        Wordpress
-      </div>
-      <div
-        className="skill full"
-        style={
-          Object {
-            "borderLeft": "4px solid #bdba81",
-          }
-        }
-      >
-        Html5, CSS3
-      </div>
+      />
     </div>
   </div>
 </section>

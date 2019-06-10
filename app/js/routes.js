@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route } from '@unleashit/react-router-3';
 import App from './components/App/App';
 import Home from './components/home/Home';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
