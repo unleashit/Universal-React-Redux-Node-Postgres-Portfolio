@@ -5,7 +5,8 @@ services:
 stages:
   - build
   - test
-  - release
+  - publish
+  - deploy
 
 variables:
   APP_PRODUCTION_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app:$CI_COMMIT_SHA
@@ -15,7 +16,7 @@ variables:
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
-build-app:
+build:
   stage: build
   script:
     - docker build -t $APP_PRODUCTION_IMAGE -f Dockerfile-app .
@@ -23,17 +24,32 @@ build-app:
     - docker build --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
     - docker push $APP_TEST_IMAGE
 
-test1:
+test-app:
   stage: test
   script:
     - docker pull $APP_TEST_IMAGE
     - docker run -e NODE_ENV='test' $APP_TEST_IMAGE bash -c "jest"
 
-release-app:
-  stage: release
+publish:
+  stage: publish
   script:
     - docker pull $APP_PRODUCTION_IMAGE
     - docker tag $APP_PRODUCTION_IMAGE $APP_RELEASE_IMAGE
     - docker push $APP_RELEASE_IMAGE
+  only:
+    - master
+
+deploy_production:
+  stage: deploy
+  image: ubuntu:latest
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  script:
+    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
   only:
     - master
