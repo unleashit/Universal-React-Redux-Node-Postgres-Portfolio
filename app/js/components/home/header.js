@@ -20,7 +20,7 @@ export default class Header extends React.PureComponent {
                 <div className="title-tagline-wrapper">
                     <h1>FRONT END ENGINEER</h1>
                     <h2>
-                        20 years of passion for creating modern, engaging full
+                        18 years of passion for creating modern, engaging full
                         stack user experiences on desktop and mobile. At your
                         service!
                     </h2>
