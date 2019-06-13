@@ -70,8 +70,8 @@ deploy_staging:
     - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
   script:
     - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
   only:
