@@ -9,3 +9,8 @@ services:
     image: registry.gitlab.com/unleashit/jasongallagher.org/app
     environment:
     - NODE_ENV=production
+  staging:
+    # image: jasongallagher:staging
+    image: registry.gitlab.com/unleashit/jasongallagher.org/staging
+    environment:
+      - NODE_ENV=production

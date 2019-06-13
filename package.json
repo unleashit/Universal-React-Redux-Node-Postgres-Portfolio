@@ -16,6 +16,7 @@
     "build:script": "rm -rf dist && NODE_ENV=production webpack --mode production --config ./webpack.production.config.js",
     "build:docker": "npm run build:docker:app && npm run build:docker:db",
     "build:docker:app": "docker build -t jasongallagher:prod -f Dockerfile-app . && docker build --target build -t jasongallagher:dev -f Dockerfile-app .",
+    "build:docker:staging": "docker build -t jasongallagher:staging -f Dockerfile-app . && docker build --target build -t jasongallagher:dev -f Dockerfile-app .",
     "build:docker:db": "docker build -t jasongallagher_db -f ./database/Dockerfile-db ./database",
     "attach": "docker exec -it jasongallagher /bin/bash",
     "attach:db": "docker exec -it db bash -c 'psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
