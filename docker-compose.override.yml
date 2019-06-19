@@ -1,11 +1,9 @@
 version: '3.4'
 
 services:
-  db:
-    image: jasongallagher_db
-    restart: "no"
-  app:
-    image: jasongallagher:dev
+  app-development:
+    container_name: jasongallagher_app-dev
+    image: jasongallagher_app:dev
     command: ["npm", "start"]
     volumes:
       - './app:/src/app'
@@ -18,9 +16,16 @@ services:
       - './.babelrc:/src/.babelrc'
       - './.eslintrc:/src/.eslintrc'
       - './postcss.config.js:/src/postcss.config.js'
+      - './setupTests.js:/src/setupTests.js'
       - './public:/src/public'
       - './coverage:/src/coverage'
     ports:
-      - '3100:3100' # app
+      - '3200:3200' # app
       - '8888:8888' # webpack-bundle-analyzer
-    restart: "no"
+    env_file:
+      - ./secrets/.env.staging
+    environment:
+      - NODE_ENV=development
+    restart: 'always'
+    depends_on:
+      - db-staging

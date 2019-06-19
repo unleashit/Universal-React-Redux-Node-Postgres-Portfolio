@@ -1,8 +1,12 @@
-FROM postgres
+FROM postgres:11.3 as staging
 
-ENV POSTGRES_DB ${JG_DATABASE_DATABASE}
-ENV POSTGRES_USER ${JG_DATABASE_USERNAME}
-ENV POSTGRES_PASSWORD=${JG_DATABASE_PASSWORD}
+VOLUME jg_data_staging
+
+# run sessions.sql on init
+COPY ./sessions.sql /docker-entrypoint-initdb.d
+
+FROM postgres:11.3 as production
+
 VOLUME jg_data
 
 # run sessions.sql on init
