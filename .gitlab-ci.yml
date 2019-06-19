@@ -9,11 +9,15 @@ stages:
   - deploy
 
 variables:
-  APP_PRODUCTION_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app:$CI_COMMIT_SHA
-  APP_STAGING_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/staging:$CI_COMMIT_SHA
-  APP_TEST_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/dev:$CI_COMMIT_SHA
-  APP_RELEASE_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app
-  APP_RELEASE_IMAGE_STAGING: registry.gitlab.com/unleashit/jasongallagher.org/staging
+  APP_PRODUCTION_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app_prod:$CI_COMMIT_SHA
+  APP_STAGING_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app_staging:$CI_COMMIT_SHA
+  APP_TEST_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app_test:$CI_COMMIT_SHA
+  APP_RELEASE_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/app_prod
+  APP_RELEASE_IMAGE_STAGING: registry.gitlab.com/unleashit/jasongallagher.org/app_staging
+  DB_PRODUCTION_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/db_prod:$CI_COMMIT_SHA
+  DB_STAGING_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/db_staging:$CI_COMMIT_SHA
+  DB_RELEASE_IMAGE_PRODUCTION: registry.gitlab.com/unleashit/jasongallagher.org/db_prod
+  DB_RELEASE_IMAGE_STAGING: registry.gitlab.com/unleashit/jasongallagher.org/db_staging
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
@@ -25,6 +29,9 @@ build_staging:
     - docker push $APP_STAGING_IMAGE
     - docker build --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
     - docker push $APP_TEST_IMAGE
+    - docker build -t $DB_PRODUCTION_IMAGE -f ./database/Dockerfile-db ./database
+    - docker build --target staging -t $DB_STAGING_IMAGE -f ./database/Dockerfile-db ./database
+    - docker push $DB_STAGING_IMAGE
   only:
     - staging
 
@@ -35,6 +42,9 @@ build_production:
     - docker push $APP_PRODUCTION_IMAGE
     - docker build --target build -t $APP_TEST_IMAGE -f Dockerfile-app .
     - docker push $APP_TEST_IMAGE
+    - docker build -t $DB_PRODUCTION_IMAGE -f ./database/Dockerfile-db ./database
+    - docker build --target staging -t $DB_STAGING_IMAGE -f ./database/Dockerfile-db ./database
+    - docker push $DB_PRODUCTION_IMAGE
   only:
     - master
 
@@ -50,6 +60,9 @@ publish_staging:
     - docker pull $APP_STAGING_IMAGE
     - docker tag $APP_STAGING_IMAGE $APP_RELEASE_IMAGE_STAGING
     - docker push $APP_RELEASE_IMAGE_STAGING
+    - docker pull $DB_STAGING_IMAGE
+    - docker tag $DB_STAGING_IMAGE $DB_RELEASE_IMAGE_STAGING
+    - docker push $DB_RELEASE_IMAGE_STAGING
   only:
     - staging
 
@@ -59,6 +72,9 @@ publish_production:
     - docker pull $APP_PRODUCTION_IMAGE
     - docker tag $APP_PRODUCTION_IMAGE $APP_RELEASE_IMAGE
     - docker push $APP_RELEASE_IMAGE
+    - docker pull $DB_PRODUCTION_IMAGE
+    - docker tag $DB_PRODUCTION_IMAGE $DB_RELEASE_IMAGE_PRODUCTION
+    - docker push $DB_RELEASE_IMAGE_PRODUCTION
   only:
     - master
 
@@ -73,6 +89,7 @@ deploy_staging:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
+    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && git pull origin staging"
     - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
   only:
     - staging
@@ -88,6 +105,7 @@ deploy_production:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
+    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && git pull origin master"
     - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
   only:
     - master

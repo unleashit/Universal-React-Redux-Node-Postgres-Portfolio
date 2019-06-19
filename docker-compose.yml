@@ -1,46 +1,21 @@
 version: '3.4'
 
 services:
-  db:
-    container_name: db
+  db-staging:
+    container_name: jasongallagher_db-staging
+    image: jasongallagher_db:staging
     ports:
-      - '5433:5432'
-    environment:
-      - POSTGRES_USER=${DATABASE_USERNAME}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_DB=${DATABASE_DATABASE}
+      - '5434:5432'
+    env_file:
+      - ./secrets/.env.database-init.staging
     volumes:
-      - 'jg_data:/var/lib/postgresql/data/'
-    restart: always
+      - 'jg_data_staging:/var/lib/postgresql/data/'
+    restart: 'always'
     healthcheck:
       test: exit 0
-
-  app:
-    container_name: jasongallagher
-    volumes:
-      - './public:/src/public'
-    ports:
-      - '3100:3100'
-    env_file: ./.env
-    restart: always
-    depends_on:
-      - db
-
-  staging:
-    container_name: jasongallagher-staging
-    image: jasongallagher:staging
-    volumes:
-      - './public:/src/public'
-    ports:
-      - '3200:3200'
-    env_file: ./.env.staging
-    restart: always
-    depends_on:
-      - db
-
 networks:
   default:
     external:
       name: jg
 volumes:
-  jg_data:
+  jg_data_staging:

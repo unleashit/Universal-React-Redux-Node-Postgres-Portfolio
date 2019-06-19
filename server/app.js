@@ -176,7 +176,7 @@ extendRequire()
             });
         };
 
-        if (process.env.NODE_ENV !== 'production') {
+        if (process.env.DATABASE_SYNC === 'true') {
             models.sequelize
                 .sync({
                     // force: false,
