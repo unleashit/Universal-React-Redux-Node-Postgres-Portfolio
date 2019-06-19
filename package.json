@@ -16,7 +16,7 @@
     "build": "docker exec -it jasongallagher_app-dev npm run build:script",
     "build:script": "rm -rf dist && NODE_ENV=production webpack --mode production --config ./webpack.production.config.js",
     "build:docker": "npm run build:docker:prod && npm run build:docker:db",
-    "build:docker:prod": "docker build -t jasongallagher_app:prod -f Dockerfile-app . -f Dockerfile-app . && docker build --target build -t jasongallagher_app:dev -f Dockerfile-app .",
+    "build:docker:prod": "docker build -t jasongallagher_app:prod -f Dockerfile-app . && docker build --target build -t jasongallagher_app:dev -f Dockerfile-app .",
     "build:docker:staging": "docker build -t jasongallagher_app:staging -f Dockerfile-app . && docker build --target build -t jasongallagher_app:dev -f Dockerfile-app .",
     "build:docker:db": "docker build -t jasongallagher_db:prod -f ./database/Dockerfile-db ./database && docker build --target staging -t jasongallagher_db:staging -f ./database/Dockerfile-db ./database",
     "attach": "docker exec -it jasongallagher_app-dev /bin/bash",
