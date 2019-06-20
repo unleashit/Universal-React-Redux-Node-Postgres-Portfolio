@@ -8,8 +8,8 @@ Features a custom control panel for managing the portfolio and help desk.
 ### Prerequisites
 Docker and docker-compose.
 
-### App Secrets and Config
-Copy `sample.env` to `.env` and make changes as desired.
+### Secrets and Config
+Inside the config directory, copy `sample.env.staging` to `.env.staging` and `sample.env.database-init.staging` to `.env.database-init.staging` and make changes as desired. The former contains the app secrets and the latter is for the database container. 
 
 The app will run with the defaults but certain features won't work. Email and SMTP info are required for the contact form to submit. When configured, it will both send an email and add a new record in the DB. SMS options if configured will send a text notification when a user initiates a new chat.
 
@@ -19,37 +19,47 @@ A few misc settings that aren't important for running the app can also be found 
 
 After you clone the project and configure the secrets, add a new docker network called jg: `docker network create jg`. Alternatively, you can modify docker-compose.yml to change it to a standard network which will get created automatically. It's external because of my particular needs.
 
-Next run `npm run build:docker` to build the images and install dependencies. Finally, run it with either `npm run dev` or `npm run prod`.
+Next run `npm run build:docker` to build the images and install dependencies. Finally, run it with `npm run dev` to run in dev mode.
 
-If you want to add sample content, while the containers are running you can seed the database with `npm run seed`. Because user submitted content (images in this case) are gitignored, you must manually copy/move the images from /app/images/sample_portfolio into /public/images/portfolio so they can display.
+If you want to add sample content, while the containers are runnning you can seed the database with `npm run seed`. Because user submitted content (images in this case) are gitignored, you must manually copy the images from /app/images/sample_portfolio into /public/images/portfolio so they can display.
 
-### Npm commands
+### Production mode and environments
 
-Note: if you don't have node installed, just copy and run the scripts from package.json.
+You get both production and staging environments at the same time (two dbs and apps) by running `npm run prod`. To make it work you'll need to first add a production config and build the staging image or you'll get errors. To do this, create `config/.env.database-init.prod` and `config/.env.prod` (copy/change values from staging) and run `npm run build:docker:staging`.  
 
-`npm run dev` runs and streams the combined logs in dev mode with webpack and hot module replacement. To view in the browser, go to `http://localhost:3100`
+Note: for simplicity, dev mode shares the staging database.
 
-`npm run prod` same as above but in production mode.
+### Npm commands (partial)
+
+Note: node/npm not required. If you don't have them installed, just copy and run the scripts from package.json.
+
+`npm run dev` runs and streams the combined logs in dev mode with webpack and hot module replacement. To view in the browser, go to `http://localhost:3200`
 
 `npm run dev:detached` starts the app in detached mode (no logs)
 
-`npm run logs` streams the log if the app is running in the background
+`npm run prod` Launches both staging and prod environments at `http://localhost:3200` and `http://localhost:3100`
 
-`npm run test` runs tests (app must already be running in dev mode)
+`npm run logs` streams the app logs if it's running in the background
 
-`npm run build` runs webpack and rebuilds static assets within the image
+`npm run logs:prod` streams the combined logs in prod mode
 
-`npm run build:docker` runs `docker-compose build` to build/rebuild the docker images.
+`npm run test` runs tests. App must already be running in dev mode
 
-`npm run stop` and `npm run down` stops the app or stops plus deletes all containers respectively
+`npm run build` runs webpack and rebuilds static assets within the app container (dev mode)
 
-`npm run attach` attaches terminal to the app container
+`npm run build:docker` runs `docker-compose build` to build/rebuild the docker images for dev and prod environments.
 
-`npm run attach:db` attaches and logs into the database
+`npm run build:docker:staging` build/rebuild the staging environment.
 
-`npm run seed` runs `db:seed:all` via sequelize-cli to seed the database
+`npm run stop` and `npm run down` stops the app or stops plus deletes all containers respectively when in dev mode
 
-`npm run stats` analyzes dependencies and runs webpack-bundle-analyzer
+`npm run attach` attaches terminal to the app container when in dev mode
+
+`npm run attach:db` attaches and logs into the dev(staging) database
+
+`npm run seed` runs `db:seed:all` via sequelize-cli to seed the dev(staging) database
+
+`npm run stats` analyzes dependencies and runs webpack-bundle-analyzer in dev mode
 
 ### Administration and Login
 To access the admin to manage chats or the portfolio, you need to add a user and then elevate its access level. To create a user, just go to `/signup` and create it. To elevate the user, log into the DB with `npm run attach:db` and change the `accesslevel` field of your new user to 3. Now you can login at `/login` with the user and have administrator access to the control panel.
