@@ -18,6 +18,7 @@ variables:
   DB_STAGING_IMAGE: registry.gitlab.com/unleashit/jasongallagher.org/db_staging:$CI_COMMIT_SHA
   DB_RELEASE_IMAGE_PRODUCTION: registry.gitlab.com/unleashit/jasongallagher.org/db_prod
   DB_RELEASE_IMAGE_STAGING: registry.gitlab.com/unleashit/jasongallagher.org/db_staging
+  DOCKER_COMPOSE_PREFIX: docker-compose -f docker-compose.yml -f docker-compose-prod.yml -f docker-compose-registry.yml
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
@@ -89,8 +90,8 @@ deploy_staging:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && git pull origin staging"
-    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin staging"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - staging
 
@@ -105,7 +106,7 @@ deploy_production:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && git pull origin master"
-    - ssh -p2222 root@192.241.211.8 "cd /home/jasongallagher.org && docker login registry.gitlab.com && docker-compose -f docker-compose.yml -f docker-compose-prod.yml pull && docker-compose down && docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d && docker restart nginx-server"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin master"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - master

@@ -1,14 +1,9 @@
 version: '3.4'
 
 services:
-  db-staging:
-    # image: jasongallagher_db:staging
-    image: registry.gitlab.com/unleashit/jasongallagher.org/db_staging
-
   db-production:
     container_name: jasongallagher_db-prod
-    # image: jasongallagher_db:prod
-    image: registry.gitlab.com/unleashit/jasongallagher.org/db_prod
+    image: jasongallagher_db:prod
     ports:
       - '5433:5432'
     env_file:
@@ -21,8 +16,7 @@ services:
 
   app-production:
     container_name: jasongallagher_app-prod
-    # image: jasongallagher_app:prod
-    image: registry.gitlab.com/unleashit/jasongallagher.org/app_prod
+    image: jasongallagher_app:prod
     ports:
       - '3100:3100'
     volumes:
@@ -36,8 +30,7 @@ services:
 
   app-staging:
     container_name: jasongallagher_app-staging
-    # image: jasongallagher_app:staging
-    image: registry.gitlab.com/unleashit/jasongallagher.org/app_staging
+    image: jasongallagher_app:staging
     ports:
       - '3200:3200'
     volumes:

@@ -35,13 +35,11 @@ Note: node/npm not required. If you don't have them installed, just copy and run
 
 `npm run dev` runs and streams the combined logs in dev mode with webpack and hot module replacement. To view in the browser, go to `http://localhost:3200`
 
-`npm run dev:detached` starts the app in detached mode (no logs)
-
 `npm run prod` Launches both staging and prod environments at `http://localhost:3200` and `http://localhost:3100`
 
-`npm run logs` streams the app logs if it's running in the background
+`npm run logs` streams the combined logs. App must be running in dev mode
 
-`npm run logs:prod` streams the combined logs in prod mode
+`npm run logs:prod` streams the combined logs when in prod mode
 
 `npm run test` runs tests. App must already be running in dev mode
 
@@ -55,9 +53,9 @@ Note: node/npm not required. If you don't have them installed, just copy and run
 
 `npm run attach` attaches terminal to the app container when in dev mode
 
-`npm run attach:db` attaches and logs into the dev(staging) database
+`npm run attach:db` attaches and logs into the staging (same as dev) database
 
-`npm run seed` runs `db:seed:all` via sequelize-cli to seed the dev(staging) database
+`npm run seed` runs `db:seed:all` via sequelize-cli to seed the staging (same as dev) database
 
 `npm run stats` analyzes dependencies and runs webpack-bundle-analyzer in dev mode
 
