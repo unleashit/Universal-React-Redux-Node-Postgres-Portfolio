@@ -90,7 +90,7 @@ deploy_staging:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin staging"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin staging && cp ../gitignored/* ./"
     - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - staging
@@ -106,7 +106,7 @@ deploy_production:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin master"
+    - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && git pull origin master && cp ../gitignored/* ./"
     - ssh ${SSH_PORT} ${SSH_LOGIN} "cd /home/jasongallagher.org && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - master
