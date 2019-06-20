@@ -12,7 +12,7 @@ services:
     ports:
       - '5433:5432'
     env_file:
-      - ./secrets/.env.database-init.prod
+      - ./config/.env.database-init.prod
     volumes:
       - 'jg_data:/var/lib/postgresql/data/'
     restart: always
@@ -27,7 +27,7 @@ services:
       - '3100:3100'
     volumes:
       - './public:/src/public'
-    env_file: ./secrets/.env
+    env_file: ./config/.env.prod
     restart: 'always'
     depends_on:
       - db-production
@@ -42,7 +42,7 @@ services:
       - '3200:3200'
     volumes:
       - './public:/src/public'
-    env_file: ./secrets/.env.staging
+    env_file: ./config/.env.staging
     restart: 'always'
     depends_on:
       - db-staging
