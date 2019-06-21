@@ -56,7 +56,7 @@ exports[`<Root /> Matches snapshot 1`] = `
       name="theme-color"
     />
     <meta
-      content="no-referrer"
+      content="origin"
       name="referrer"
     />
     <script
