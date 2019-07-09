@@ -53,7 +53,7 @@ test-app:
   stage: test
   script:
     - docker pull $APP_TEST_IMAGE
-    - docker run -e NODE_ENV='test' $APP_TEST_IMAGE bash -c "jest"
+    - docker run -e NODE_ENV='test' $APP_TEST_IMAGE bash -c "jest --coverage"
 
 publish_staging:
   stage: publish
