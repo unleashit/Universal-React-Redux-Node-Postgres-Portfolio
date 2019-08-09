@@ -1,6 +1,6 @@
 # jasongallagher.org
 
-[![Build Status](https://gitlab.com/unleashit/jasongallagher.org/badges/master/pipeline.svg)](https://gitlab.com/unleashit/jasongallagher.org/commits/master) [![coverage report](https://gitlab.com/unleashit/jasongallagher.org/badges/master/coverage.svg)](https://gitlab.com/unleashit/jasongallagher.org/commits/master)
+[![Build Status](https://gitlab.com/unleashit/jasongallagher.org/badges/master/pipeline.svg)](https://gitlab.com/unleashit/jasongallagher.org/commits/master) 
 
 My personal site and portfolio. A nice mix of react, redux, node.js, websockets, postgreSql, docker and the color green.
 
