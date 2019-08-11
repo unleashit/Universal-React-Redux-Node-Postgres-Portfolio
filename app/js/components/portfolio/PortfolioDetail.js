@@ -45,7 +45,7 @@ class PortfolioDetail extends Component {
         dispatch(portfolioActions.resetPortfolioDetail());
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         const { DetailReadyState } = this.props.portfolio;
 
         if (
