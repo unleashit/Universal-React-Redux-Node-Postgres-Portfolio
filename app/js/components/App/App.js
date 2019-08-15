@@ -26,7 +26,7 @@ export class App extends Component {
         let stylesheets = [
             {
                 rel: 'stylesheet',
-                href: 'https://fonts.googleapis.com/css?family=Oswald|Sanchez',
+                href: 'https://fonts.googleapis.com/css?family=Oswald|Sanchez&display=block',
                 async: true
             }
         ];
