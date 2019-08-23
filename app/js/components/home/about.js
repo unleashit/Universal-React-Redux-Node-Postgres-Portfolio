@@ -84,7 +84,7 @@ export default class About extends React.Component {
                         </p>
                         <div className="about-buttons">
                             <a
-                                href="https://jasongallagher.org/images/JasonGallagherResumePub.pdf"
+                                href="/images/JasonGallagherResumePub.pdf"
                                 className="button button-smaller resume"
                                 onClick={() =>
                                     this.analytics('resume download')
