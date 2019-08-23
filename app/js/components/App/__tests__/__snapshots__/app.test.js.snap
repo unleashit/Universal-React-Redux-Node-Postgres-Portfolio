@@ -19,7 +19,7 @@ exports[`<App /> matches snapshot (without footer) 1`] = `
           },
           Object {
             "async": true,
-            "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez",
+            "href": "https://fonts.googleapis.com/css?family=Oswald|Sanchez&display=block",
             "rel": "stylesheet",
           },
         ]
