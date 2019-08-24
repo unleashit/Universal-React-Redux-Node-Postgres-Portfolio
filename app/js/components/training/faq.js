@@ -46,10 +46,8 @@ const FAQs = () => {
                         try. With the screen sharing and code pairing software
                         we'll use, I believe you'll quickly feel at home with it
                         and in many ways find it more effective. If you'd really
-                        rather meet in person, I can sometimes make exceptions
-                        although the cost will include a travel fee and you'll
-                        need to have a home or office in the Berkeley/Oakland
-                        area.
+                        rather meet in person, if we're local I can sometimes make exceptions
+                        although the cost will include a travel fee.
                     </p>
                 </div>
             </AccordionPane>

@@ -17,8 +17,8 @@ export default class WhoWhatWhere extends React.Component {
                             Someone who has a problem with stereotypes! I began
                             my career in 1999 as a graphic designer, but quickly
                             transitioned into web development and design.
-                            Currently, my focus is on Full Stack Javscript,
-                            React or CMS development.
+                            Currently, my focus is typically on Full Stack Javascript,
+                            React and Node.Js.
                         </p>
                         <img
                             src={whoAmIicon}
@@ -46,8 +46,7 @@ export default class WhoWhatWhere extends React.Component {
                     <div className="col-md-4">
                         <h3>Where I'm located</h3>
                         <p>
-                            I am a San Francisco native currently living in
-                            Berkeley, CA. Depending on your location and needs,
+                            I live in Portland, Oregon AKA Silicon Forest. Depending on your location and needs,
                             I am available to work with you in-house or
                             remotely. I enjoy both and have had plenty of
                             success in both situations.

@@ -45,7 +45,7 @@ exports[`<FAQs /> snapshot matches 1`] = `
       className="faq-body"
     >
       <p>
-        Training is held online via web conferencing software. If you're thinking, "I'm traditional" and feel concerned about working remotely, I suggest at least giving it a try. With the screen sharing and code pairing software we'll use, I believe you'll quickly feel at home with it and in many ways find it more effective. If you'd really rather meet in person, I can sometimes make exceptions although the cost will include a travel fee and you'll need to have a home or office in the Berkeley/Oakland area.
+        Training is held online via web conferencing software. If you're thinking, "I'm traditional" and feel concerned about working remotely, I suggest at least giving it a try. With the screen sharing and code pairing software we'll use, I believe you'll quickly feel at home with it and in many ways find it more effective. If you'd really rather meet in person, if we're local I can sometimes make exceptions although the cost will include a travel fee.
       </p>
     </div>
   </AccordionPane>
