@@ -2,12 +2,12 @@ FROM postgres:11.3 as staging
 
 VOLUME jg_data_staging
 
-# run sessions.sql on init
-COPY ./sessions.sql /docker-entrypoint-initdb.d
+# restore database on init
+COPY init.sh ./jg_db_dump_staging*.sql /docker-entrypoint-initdb.d/
 
 FROM postgres:11.3 as production
 
 VOLUME jg_data
 
-# run sessions.sql on init
-COPY ./sessions.sql /docker-entrypoint-initdb.d
+# optional restore database on init
+COPY init.sh ./jg_db_dump_prod*.sql /docker-entrypoint-initdb.d/

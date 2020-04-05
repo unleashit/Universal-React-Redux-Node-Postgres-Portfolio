@@ -11,3 +11,4 @@ coverage
 jestCache
 deploy.sh
 docker-compose-registry.yml
+jg_db_dump*.sql
