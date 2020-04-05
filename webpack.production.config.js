@@ -48,10 +48,10 @@ module.exports = {
             },
             canPrint: true
         }),
-        new UglifyJsPlugin({
-            cache: true,
-            parallel: true
-        }),
+        // new UglifyJsPlugin({
+        //     cache: true,
+        //     parallel: true
+        // }),
         // ignore locales in moment.js
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new IsomorphicLoaderPlugin()

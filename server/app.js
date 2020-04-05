@@ -14,6 +14,7 @@ extendRequire()
         var bodyParser = require('body-parser');
         var passport = require('passport');
         var compression = require('compression');
+        var addSessionTable = require('./sessions');
 
         var models = require('./models');
 
@@ -184,6 +185,7 @@ extendRequire()
                         console.log(str);
                     }
                 })
+                .then(addSessionTable)
                 .then(startServer);
         } else startServer();
     })
