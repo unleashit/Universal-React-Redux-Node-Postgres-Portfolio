@@ -90,8 +90,8 @@ deploy_staging:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh ${SSH_LOGIN} "cd /var/www/html/staging.jasongallagher.org && git pull origin staging"
-    - ssh ${SSH_LOGIN} "cd /var/www/html/staging.jasongallagher.org && git checkout staging && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
+    - ssh ${SSH_LOGIN} "cd /var/www/html/staging.jasongallagher.org && git checkout staging && git pull origin staging"
+    - ssh ${SSH_LOGIN} "cd /var/www/html/jasongallagher.org && docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - staging
 
@@ -106,7 +106,7 @@ deploy_production:
     - echo "${SSH_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh ${SSH_LOGIN} "cd /var/www/html/jasongallagher.org && git pull origin master"
-    - ssh ${SSH_LOGIN} "cd /var/www/html/jasongallagher.org && docker login registry.gitlab.com && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
+    - ssh ${SSH_LOGIN} "cd /var/www/html/jasongallagher.org && git checkout master && git pull origin master"
+    - ssh ${SSH_LOGIN} "cd /var/www/html/jasongallagher.org && docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD && ${DOCKER_COMPOSE_PREFIX} pull && ${DOCKER_COMPOSE_PREFIX} down && ${DOCKER_COMPOSE_PREFIX} up -d && docker restart nginx-server"
   only:
     - master
