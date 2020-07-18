@@ -13,14 +13,6 @@ const options = {
     expiration: 432000000
 };
 
-const isRealProd = () => {
-    const apiBase = process.env.API_BASE || 'http://localhost';
-
-    // only use secure cookie in production and when ssl is turned on
-    return process.env.NODE_ENV === 'production' &&
-        new URL(apiBase).protocol === 'https:';
-};
-
 let sessionStore;
 
 module.exports = function(app) {
@@ -58,11 +50,7 @@ module.exports = function(app) {
             secret: options.sessionSecret,
             resave: false,
             saveUninitialized: true,
-            cookie: {
-                maxAge: 5 * 24 * 60 * 60 * 1000, // 5 days
-                sameSite: true,
-                secure: isRealProd()
-            }
+            cookie: { maxAge: 5 * 24 * 60 * 60 * 1000 } // 5 days
         })
     );
 
