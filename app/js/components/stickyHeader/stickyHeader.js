@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Navigation from '../navigation/navigation';
 import OpenChat from '../ReactHelpDesk/client/openChat';
 import LiveChatStatus from '../ReactHelpDesk/client/liveChatStatus';
-import { ReactGA } from '../../libs/utils';
 import * as globalActions from '../../actions/global';
 import throttle from 'lodash/throttle';
 
@@ -26,13 +25,6 @@ export class StickyHeader extends React.Component {
         document.documentElement.className = '';
         const { dispatch, global } = this.props;
         if (global.headerState) dispatch(globalActions.setHeader(false));
-    }
-
-    analytics(type) {
-        ReactGA.event({
-            category: 'button click',
-            action: type
-        });
     }
 
     handleScroll() {
@@ -73,7 +65,6 @@ export class StickyHeader extends React.Component {
                         <div>
                             <span
                                 className="chat-status"
-                                onClick={() => this.analytics('chat in header')}
                             >
                                 <OpenChat>
                                     <LiveChatStatus

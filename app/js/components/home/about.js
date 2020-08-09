@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Skills from './skills';
-import { ReactGA } from '../../libs/utils';
 import meImage from '../../../images/home/me.png';
 
 export default class About extends React.Component {
@@ -9,13 +8,6 @@ export default class About extends React.Component {
         super(props);
 
         this.skillColors = this.getColor();
-    }
-
-    analytics(type) {
-        ReactGA.event({
-            category: 'button click',
-            action: type
-        });
     }
 
     * getColor() {
@@ -86,9 +78,6 @@ export default class About extends React.Component {
                             <a
                                 href="/images/JasonGallagherResumePub.pdf"
                                 className="button button-smaller resume"
-                                onClick={() =>
-                                    this.analytics('resume download')
-                                }
                             >
                                 <i className="fa fa-file-text" />
                                 Download Resume
@@ -96,7 +85,6 @@ export default class About extends React.Component {
                             <a
                                 href="https://github.com/unleashit?tab=repositories"
                                 className="button button-smaller github"
-                                onClick={() => this.analytics('github')}
                             >
                                 <i className="fa fa-github" />
                                 View Github

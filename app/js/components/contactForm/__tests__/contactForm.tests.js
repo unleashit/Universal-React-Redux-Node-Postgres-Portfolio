@@ -8,7 +8,7 @@ import {
 } from '../../../../../setupTests';
 import { combineReducers } from 'redux';
 import React from 'react';
-import { ReactGA } from '../../../libs/utils';
+// import { ReactGA } from '../../../libs/utils';
 import { __API_URL__ } from '../../../../../config/APPconfig';
 import combinedReducers from '../../../reducers';
 // import Provider from 'react-redux/es/components/Provider';
@@ -135,9 +135,9 @@ describe('<ContactForm /> integration tests', () => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const mockReactGA = jest
-            .spyOn(ReactGA, 'event')
-            .mockImplementation(() => {});
+        // const mockReactGA = jest
+        //     .spyOn(ReactGA, 'event')
+        //     .mockImplementation(() => {});
 
         const wrapped = wrapActualStore(ConnectedContactForm);
 

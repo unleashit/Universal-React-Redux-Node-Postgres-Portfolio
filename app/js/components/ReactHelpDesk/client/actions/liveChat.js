@@ -1,5 +1,3 @@
-import { ReactGA } from '../../../../libs/utils';
-
 export const TOGGLE_CHAT = 'TOGGLE_CHAT';
 export const CHAT_SET_REMOTE_ID = 'CHAT_SET_REMOTE_ID';
 export const CHAT_CREATE_MESSAGE = 'CHAT_CREATE_MESSAGE';
@@ -13,11 +11,6 @@ export const CHAT_ADMIN_ACTIVE = 'CHAT_ADMIN_ACTIVE';
 
 export function toggleChat(bool = true) {
     return dispatch => {
-        ReactGA.event({
-            category: 'UI',
-            action: bool ? 'Opened Live Chat' : 'Closed Live Chat'
-        });
-
         dispatch({ type: TOGGLE_CHAT, bool });
     };
 }
@@ -53,11 +46,6 @@ export function chatOnChange(message) {
 }
 
 export function chatNewUser(user) {
-    ReactGA.event({
-        category: 'LiveChat',
-        action: 'New user registered'
-    });
-
     return dispatch => {
         dispatch({ type: CHAT_NEW_USER, user });
     };
@@ -70,11 +58,6 @@ export function chatIsTyping(bool) {
 }
 
 export function contactSent(bool) {
-    ReactGA.event({
-        category: 'LiveChat',
-        action: 'Offline email sent'
-    });
-
     return dispatch => {
         dispatch({ type: CHAT_CONTACT_SENT, bool });
     };

@@ -54,7 +54,6 @@ exports[`<About /> snapshot matches 1`] = `
         <a
           className="button button-smaller resume"
           href="/images/JasonGallagherResumePub.pdf"
-          onClick={[Function]}
         >
           <i
             className="fa fa-file-text"
@@ -64,7 +63,6 @@ exports[`<About /> snapshot matches 1`] = `
         <a
           className="button button-smaller github"
           href="https://github.com/unleashit?tab=repositories"
-          onClick={[Function]}
         >
           <i
             className="fa fa-github"

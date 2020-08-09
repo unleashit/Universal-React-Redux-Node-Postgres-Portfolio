@@ -2,16 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import Navigation from '../navigation/navigation';
 import Hamburger from '../common/hamburger';
-import { ReactGA } from '../../libs/utils';
 
 export default class Header extends React.PureComponent {
-    analytics(type) {
-        ReactGA.event({
-            category: 'button click',
-            action: type
-        });
-    }
-
     render() {
         return (
             <header className="main-header">
@@ -29,7 +21,6 @@ export default class Header extends React.PureComponent {
                     <Link to="/#work">
                         <button
                             className="button button-green"
-                            onClick={() => this.analytics('See my work')}
                         >
                             See my work
                         </button>

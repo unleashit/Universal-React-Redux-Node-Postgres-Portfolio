@@ -1,5 +1,4 @@
 import PortfolioItem from '../portfolioItem';
-import { ReactGA } from '../../../libs/utils';
 
 describe('<PortfolioItem />', () => {
     let wrapper;

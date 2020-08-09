@@ -27,7 +27,6 @@ exports[`<StickyHeader /> snapshot matches 1`] = `
       <div>
         <span
           className="chat-status"
-          onClick={[Function]}
         >
           <Connect(OpenChat)>
             <liveChatStatus

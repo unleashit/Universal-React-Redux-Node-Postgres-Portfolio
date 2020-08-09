@@ -1,15 +1,14 @@
 import * as contactActions from '../contact';
 import { __API_URL__ } from '../../../../config/APPconfig';
 import { createMockStore } from '../../../../setupTests';
-import { ReactGA } from '../../libs/utils';
 
 describe('Contact Actions', () => {
     const initialState = {};
     const store = createMockStore(initialState);
 
-    const mockReactGA = jest
-        .spyOn(ReactGA, 'event')
-        .mockImplementation(() => {});
+    // const mockReactGA = jest
+    //     .spyOn(ReactGA, 'event')
+    //     .mockImplementation(() => {});
 
     const contactData = {
         name: 'tester',
@@ -20,7 +19,7 @@ describe('Contact Actions', () => {
 
     beforeEach(() => {
         store.clearActions();
-        mockReactGA.mockReset();
+        // mockReactGA.mockReset();
     });
 
     afterEach(() => {
@@ -83,19 +82,19 @@ describe('Contact Actions', () => {
             expect(store.getActions()).toEqual(expectedActions);
         });
 
-        test('ReactGA is called the right number of times', async () => {
-            const response = {
-                result: 'Success',
-                info: '250 Message received'
-            };
-            fetchMock.post(`${__API_URL__}/contact`, {
-                body: response,
-                headers: { 'Content-Type': 'application/json' }
-            });
-
-            await store.dispatch(contactActions.submitContact(contactData));
-            expect(mockReactGA).toBeCalledTimes(2);
-        });
+        // test('ReactGA is called the right number of times', async () => {
+        //     const response = {
+        //         result: 'Success',
+        //         info: '250 Message received'
+        //     };
+        //     fetchMock.post(`${__API_URL__}/contact`, {
+        //         body: response,
+        //         headers: { 'Content-Type': 'application/json' }
+        //     });
+        //
+        //     await store.dispatch(contactActions.submitContact(contactData));
+        //     expect(mockReactGA).toBeCalledTimes(2);
+        // });
     });
 
     test('submitContactReset()', () => {

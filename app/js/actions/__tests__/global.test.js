@@ -1,18 +1,17 @@
 import * as globalActions from '../global';
 import { createMockStore } from '../../../../setupTests';
-import { ReactGA } from '../../libs/utils';
 
 describe('Global Actions', () => {
     const initialState = {};
     const store = createMockStore(initialState);
 
-    const mockReactGA = jest
-        .spyOn(ReactGA, 'event')
-        .mockImplementation(() => {});
+    // const mockReactGA = jest
+    //     .spyOn(ReactGA, 'event')
+    //     .mockImplementation(() => {});
 
     beforeEach(() => {
         store.clearActions();
-        mockReactGA.mockReset();
+        // mockReactGA.mockReset();
     });
 
     test('setHeader()', () => {
@@ -96,7 +95,7 @@ describe('Global Actions', () => {
 
         store.dispatch(globalActions.openHamburger());
         expect(store.getActions()).toEqual(expectedActions);
-        expect(mockReactGA).toBeCalledTimes(1);
+        // expect(mockReactGA).toBeCalledTimes(1);
     });
 
     test('closeHamburger()', () => {
@@ -108,6 +107,6 @@ describe('Global Actions', () => {
 
         store.dispatch(globalActions.closeHamburger());
         expect(store.getActions()).toEqual(expectedActions);
-        expect(mockReactGA).toBeCalledTimes(1);
+        // expect(mockReactGA).toBeCalledTimes(1);
     });
 });

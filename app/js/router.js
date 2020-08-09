@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactGA from 'react-ga';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -8,8 +7,6 @@ import Helmet from 'react-helmet';
 import routes from './routes';
 import Root from './components/App/Root';
 import configureStore from './configureStore';
-import { __GOOGLE_ANALYTICS__ } from '../../config/APPconfig';
-// import { loadChatState } from './libs/utils';
 
 const isClient = typeof document !== 'undefined';
 // require('smoothscroll-polyfill').polyfill();
@@ -41,31 +38,16 @@ function hashLinkScroll() {
                         : element.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-            ReactGA.event({
-                category: 'Navigation',
-                action: 'Nav Link Clicked: ' + id
-            });
         }, 0);
     }
 }
 
-function logPageView() {
-    ReactGA.set({ page: window.location.pathname });
-    ReactGA.pageview(window.location.pathname);
-}
-
-function handleRouteUpdates() {
-    hashLinkScroll();
-    logPageView();
-}
-
 if (isClient) {
     const store = configureStore(window.__INITIAL_STATE__);
-    ReactGA.initialize(__GOOGLE_ANALYTICS__);
 
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={browserHistory} onUpdate={handleRouteUpdates}>
+            <Router history={browserHistory} onUpdate={hashLinkScroll}>
                 {routes}
             </Router>
         </Provider>,
