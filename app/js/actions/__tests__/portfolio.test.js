@@ -1,19 +1,19 @@
 import * as portfolioActions from '../portfolio';
 import { createMockStore } from '../../../../setupTests';
-import { ReactGA } from '../../libs/utils';
+// import { ReactGA } from '../../libs/utils';
 import { __API_URL__ } from '../../../../config/APPconfig';
 
 describe('Portfolio Actions', () => {
     let initialState = {};
     let store;
 
-    const mockReactGA = jest
-        .spyOn(ReactGA, 'event')
-        .mockImplementation(() => {});
+    // const mockReactGA = jest
+    //     .spyOn(ReactGA, 'event')
+    //     .mockImplementation(() => {});
 
     beforeEach(() => {
         store = createMockStore(initialState);
-        mockReactGA.mockReset();
+        // mockReactGA.mockReset();
     });
 
     afterEach(() => {
@@ -59,7 +59,7 @@ describe('Portfolio Actions', () => {
 
             await store.dispatch(portfolioActions.fetchPortfolioIfNeeded());
             expect(store.getActions()).toEqual(expectedActions);
-            expect(mockReactGA).toBeCalledTimes(1);
+            // expect(mockReactGA).toBeCalledTimes(1);
             expect(store.getActions()[1].result).toMatchSnapshot();
 
             //const shouldFetchPortfolio = portfolioActions.shouldFetchPortfolio(state);
@@ -79,7 +79,7 @@ describe('Portfolio Actions', () => {
                 portfolioActions.fetchPortfolioIfNeeded()
             );
             expect(store.getActions()).toHaveLength(0);
-            expect(mockReactGA).not.toHaveBeenCalled();
+            // expect(mockReactGA).not.toHaveBeenCalled();
             expect(fetchPortfolioIfNeeded).toBeUndefined();
         });
 
@@ -115,7 +115,7 @@ describe('Portfolio Actions', () => {
 
             await store.dispatch(portfolioActions.fetchPortfolioIfNeeded());
             expect(store.getActions()).toEqual(expectedActions);
-            expect(mockReactGA).toBeCalledTimes(1);
+            // expect(mockReactGA).toBeCalledTimes(1);
         });
     });
 
@@ -158,7 +158,7 @@ describe('Portfolio Actions', () => {
             );
             expect(store.getActions()).toEqual(expectedActions);
             expect(store.getActions()[1].result).toMatchSnapshot();
-            expect(mockReactGA).toBeCalledTimes(1);
+            // expect(mockReactGA).toBeCalledTimes(1);
         });
 
         test('Not fetched when cached version available', () => {
@@ -175,7 +175,7 @@ describe('Portfolio Actions', () => {
             );
             expect(store.getActions()).toHaveLength(0);
             expect(fetchPortfolioDetailIfNeeded).toBeUndefined();
-            expect(mockReactGA).not.toBeCalled();
+            // expect(mockReactGA).not.toBeCalled();
         });
 
         test('Handles errors', async () => {
@@ -212,7 +212,7 @@ describe('Portfolio Actions', () => {
                 portfolioActions.fetchPortfolioDetailIfNeeded(1)
             );
             expect(store.getActions()).toEqual(expectedActions);
-            expect(mockReactGA).toBeCalledTimes(1);
+            // expect(mockReactGA).toBeCalledTimes(1);
         });
     });
 

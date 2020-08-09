@@ -1,6 +1,5 @@
 import { Footer } from '../footer';
 import ContactForm from '../../contactForm/contactForm';
-import { ReactGA } from '../../../libs/utils';
 
 describe('<Footer />', () => {
     let wrapper;
@@ -48,18 +47,18 @@ describe('<Footer />', () => {
         expect(wrapper.find('.animated')).toHaveLength(0);
     });
 
-    test('analytics hooks are called', () => {
-        jest.spyOn(Footer.prototype, 'analytics');
-        const mockReactGA = jest
-            .spyOn(ReactGA, 'event')
-            .mockImplementation(() => {});
-
-        wrapper = shallow(<Footer {...props} />);
-
-        const emailLink = wrapper.find('.contact-method > a').first();
-        emailLink.simulate('click');
-
-        expect(wrapper.instance().analytics).toHaveBeenCalledTimes(1);
-        expect(mockReactGA).toHaveBeenCalledTimes(1);
-    });
+    // test('analytics hooks are called', () => {
+    //     jest.spyOn(Footer.prototype, 'analytics');
+    //     const mockReactGA = jest
+    //         .spyOn(ReactGA, 'event')
+    //         .mockImplementation(() => {});
+    //
+    //     wrapper = shallow(<Footer {...props} />);
+    //
+    //     const emailLink = wrapper.find('.contact-method > a').first();
+    //     emailLink.simulate('click');
+    //
+    //     expect(wrapper.instance().analytics).toHaveBeenCalledTimes(1);
+    //     expect(mockReactGA).toHaveBeenCalledTimes(1);
+    // });
 });

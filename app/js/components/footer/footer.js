@@ -2,17 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ContactForm from '../contactForm/contactForm';
 import OpenChat from '../ReactHelpDesk/client/openChat';
-import { ReactGA } from '../../libs/utils';
 import { animation } from '../../libs/utils';
 
 export class Footer extends React.Component {
-    analytics(type) {
-        ReactGA.event({
-            category: 'button click',
-            action: type
-        });
-    }
-
     render() {
         const footerID = this.props.slug ? 'footer-interior' : '';
 
@@ -42,9 +34,6 @@ export class Footer extends React.Component {
                                     <a
                                         href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services"
                                         target="_top"
-                                        onClick={() =>
-                                            this.analytics('email in footer')
-                                        }
                                     >
                                         Email
                                     </a>

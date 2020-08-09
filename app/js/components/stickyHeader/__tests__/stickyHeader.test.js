@@ -1,6 +1,5 @@
 import { StickyHeader } from '../stickyHeader';
 import { Footer } from '../../footer/footer';
-import { ReactGA } from '../../../libs/utils';
 import * as utils from '../../../libs/utils';
 
 describe('<StickyHeader />', () => {
@@ -90,20 +89,20 @@ describe('<StickyHeader />', () => {
         });
     });
 
-    test('analytics hooks are called', () => {
-        jest.spyOn(StickyHeader.prototype, 'analytics');
-        const mockReactGA = jest
-            .spyOn(ReactGA, 'event')
-            .mockImplementation(() => {});
-
-        wrapper = shallow(<StickyHeader {...props} />);
-
-        const chatStatus = wrapper.find('.chat-status');
-        chatStatus.simulate('click');
-        expect(wrapper.instance().analytics).toHaveBeenCalledWith(
-            'chat in header'
-        );
-
-        expect(mockReactGA).toHaveBeenCalledTimes(1);
-    });
+    // test('analytics hooks are called', () => {
+    //     jest.spyOn(StickyHeader.prototype, 'analytics');
+    //     const mockReactGA = jest
+    //         .spyOn(ReactGA, 'event')
+    //         .mockImplementation(() => {});
+    //
+    //     wrapper = shallow(<StickyHeader {...props} />);
+    //
+    //     const chatStatus = wrapper.find('.chat-status');
+    //     chatStatus.simulate('click');
+    //     expect(wrapper.instance().analytics).toHaveBeenCalledWith(
+    //         'chat in header'
+    //     );
+    //
+    //     expect(mockReactGA).toHaveBeenCalledTimes(1);
+    // });
 });

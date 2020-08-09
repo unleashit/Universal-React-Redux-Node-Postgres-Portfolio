@@ -63,7 +63,6 @@ exports[`<Root /> Matches snapshot 1`] = `
       dangerouslySetInnerHTML={
         Object {
           "__html": "window.__ENVIRONMENT__ = 'test;'
-            window.__GOOGLE_ANALYTICS__ = 'test';
             window.__LIVE_CHAT_ADMIN_NAME__ = 'test';",
         }
       }

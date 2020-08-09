@@ -12,7 +12,6 @@ class Root extends Component {
 
     renderEnvironment() {
         const innerHtml = `window.__ENVIRONMENT__ = '${__ENVIRONMENT__};'
-            window.__GOOGLE_ANALYTICS__ = '${__GOOGLE_ANALYTICS__}';
             window.__LIVE_CHAT_ADMIN_NAME__ = '${__LIVE_CHAT_ADMIN_NAME__}';`;
         return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
     }

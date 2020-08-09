@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@unleashit/react-router-3';
+import { Link } from 'react-router';
 import jgLogo from '../../../images/jg-logo.svg';
 
 export function Logo() {

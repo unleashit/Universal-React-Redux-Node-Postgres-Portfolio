@@ -30,7 +30,6 @@ exports[`<Header /> snapshot matches 1`] = `
     >
       <button
         className="button button-green"
-        onClick={[Function]}
       >
         See my work
       </button>

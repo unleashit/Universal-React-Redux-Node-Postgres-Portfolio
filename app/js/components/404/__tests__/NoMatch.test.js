@@ -1,5 +1,5 @@
 import NoMatch from '../NoMatch';
-import { Link } from '@unleashit/react-router-3';
+import { Link } from 'react-router';
 
 describe('<NoMatch />', () => {
     let wrapper;

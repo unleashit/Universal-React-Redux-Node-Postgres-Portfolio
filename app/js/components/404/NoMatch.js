@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from '@unleashit/react-router-3';
+import { Link } from 'react-router';
 import notFoundImage from '../../../images/404.png';
 
 class NoMatch extends Component {

@@ -20,7 +20,6 @@ extendRequire()
 
         // varables to be passed to the client as scripts in root html template (root.js)
         global.__ENVIRONMENT__ = process.env.NODE_ENV || 'development';
-        global.__GOOGLE_ANALYTICS__ = process.env.GOOGLE_ANALYTICS || '';
         global.__LIVE_CHAT_ADMIN_NAME__ =
             process.env.LIVE_CHAT_ADMIN_NAME || '';
 

@@ -1,6 +1,6 @@
 // import serverMiddleware from '../router';
 // import ReactDOM from 'react-dom';
-// import reactRouter from '@unleashit/react-router-3';
+// import reactRouter from 'react-router';
 
 // import ReactGA from 'react-ga';
 // jest.mock('react-ga');

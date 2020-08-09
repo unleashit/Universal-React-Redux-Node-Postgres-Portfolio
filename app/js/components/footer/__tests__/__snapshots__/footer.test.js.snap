@@ -49,7 +49,6 @@ exports[`<Footer /> snapshot matches 1`] = `
               
             <a
               href="mailto:customerservice@jasongallagher.org?Subject=Interested%20in%20your%20services"
-              onClick={[Function]}
               target="_top"
             >
               Email

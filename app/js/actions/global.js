@@ -1,5 +1,3 @@
-import { ReactGA } from '../libs/utils';
-
 export const TOGGLE_HAMBURGER = 'TOGGLE_HAMBURGER';
 export const OPEN_HAMBURGER = 'OPEN_HAMBURGER';
 export const CLOSE_HAMBURGER = 'CLOSE_HAMBURGER';
@@ -47,20 +45,12 @@ export function toggleHamburger() {
 
 export function openHamburger() {
     return dispatch => {
-        ReactGA.event({
-            category: 'UI',
-            action: 'Opened Responsive Menu'
-        });
         dispatch({ type: OPEN_HAMBURGER });
     };
 }
 
 export function closeHamburger() {
     return dispatch => {
-        ReactGA.event({
-            category: 'UI',
-            action: 'Closed Responsive Menu'
-        });
         dispatch({ type: CLOSE_HAMBURGER });
     };
 }

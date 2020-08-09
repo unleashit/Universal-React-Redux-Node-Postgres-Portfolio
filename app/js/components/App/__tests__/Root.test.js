@@ -29,7 +29,6 @@ describe('<Root />', () => {
 
     // global vars are set by server in app.js so stub them
     global.__ENVIRONMENT__ = 'test';
-    global.__GOOGLE_ANALYTICS__ = 'test';
     global.__LIVE_CHAT_ADMIN_NAME__ = 'test';
 
     beforeEach(() => {

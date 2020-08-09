@@ -1,6 +1,5 @@
 import { __API_URL__ } from '../../../config/APPconfig';
-import { browserHistory } from '@unleashit/react-router-3';
-import { ReactGA } from '../libs/utils';
+import { browserHistory } from 'react-router';
 
 export const WORK_INVALID = 'WORK_INVALID';
 export const WORK_FETCHING = 'WORK_FETCHING';
@@ -27,17 +26,9 @@ function fetchPortfolio() {
                     );
             })
             .then(result => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work List Fetched via Ajax'
-                });
                 dispatch({ type: WORK_FETCHED, result });
             })
             .catch(error => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work List Fetch Failed'
-                });
                 dispatch({ type: WORK_FETCH_FAILED, error: error.message });
                 console.error(error);
             });
@@ -58,17 +49,9 @@ function fetchPortfolioDetail(slug) {
                     );
             })
             .then(result => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work Fetched via Ajax: ' + slug
-                });
                 dispatch({ type: WORK_DETAIL_FETCHED, result });
             })
             .catch(err => {
-                ReactGA.event({
-                    category: 'Work',
-                    action: 'Work Fetch Failed via Ajax: ' + slug
-                });
                 dispatch({
                     type: WORK_DETAIL_FETCH_FAILED,
                     error: err.message
