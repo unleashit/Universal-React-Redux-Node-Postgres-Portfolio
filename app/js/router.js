@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Router, match, RouterContext, browserHistory } from '@unleashit/react-router-3';
+import { Router, match, RouterContext, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
 import routes from './routes';

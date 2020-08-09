@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@unleashit/react-router-3';
+import { Link } from 'react-router';
 import Navigation from '../navigation/navigation';
 import Hamburger from '../common/hamburger';
 import { ReactGA } from '../../libs/utils';

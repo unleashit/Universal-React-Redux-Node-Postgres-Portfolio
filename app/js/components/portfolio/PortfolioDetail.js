@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, browserHistory } from '@unleashit/react-router-3';
+import { withRouter, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import StickyHeader from '../stickyHeader/stickyHeader';

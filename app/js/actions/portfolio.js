@@ -1,5 +1,5 @@
 import { __API_URL__ } from '../../../config/APPconfig';
-import { browserHistory } from '@unleashit/react-router-3';
+import { browserHistory } from 'react-router';
 import { ReactGA } from '../libs/utils';
 
 export const WORK_INVALID = 'WORK_INVALID';
