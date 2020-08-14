@@ -13,7 +13,11 @@ const {
     SMTP_SECURE,
     SMTP_AUTH_USERNAME,
     SMTP_AUTH_PASSWORD,
-    API_BASE
+    API_BASE,
+    AUTO_LOGIN,
+    AUTO_LOGIN_START,
+    AUTO_LOGIN_END,
+    AUTO_LOGIN_EXCLUDE
 } = process.env;
 
 const isClient = typeof window !== 'undefined';
@@ -37,7 +41,11 @@ module.exports = {
         adminPerPage: 10, // how many archived chats to load per page in control panel
         saveInterval: 10 * 60 * 1000, // once per 15 mins
         purgeInterval: 20 * 60 * 1000, // min time to persist in ram (1 hr)
-        sendSMS: SMS_ACTIVE || false // send SMS on new user registrations
+        sendSMS: SMS_ACTIVE || false, // send SMS on new user registrations
+        autoLogin: AUTO_LOGIN,
+        autoLoginStart: AUTO_LOGIN_START,
+        autoLoginEnd: AUTO_LOGIN_END,
+        autoLoginExclude: AUTO_LOGIN_EXCLUDE
     },
 
     mailoptions: {
