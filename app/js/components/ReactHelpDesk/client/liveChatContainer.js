@@ -173,7 +173,7 @@ export class LiveChatContainer extends Component {
 
                 this.socket.emit('chatMessage', message);
             }
-        }, 120000));
+        }, 1000 * 60 * 4));
     }
 
     typingDelay() {

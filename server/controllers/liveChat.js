@@ -1,11 +1,12 @@
-var path = require('path');
-var nodemailer = require('nodemailer');
-var config = require(path.join(__dirname, '../../config/APPconfig'));
-var liveChatData = require('./liveChatData');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const config = require(path.join(__dirname, '../../config/APPconfig'));
+const liveChatData = require('./liveChatData');
+const { getAutoLoginToken } = require(__dirname + '/liveChatAutoLogin');
 
-var users = {};
-var admin = null;
-var isAuthorized = false;
+let users = {};
+let admin = null;
+let isAuthorized = false;
 
 function _sendSMS(user) {
     config.smsMailOptions.text = `A new user has logged onto live chat on jasongallagher.org: ${user}`;
@@ -165,7 +166,9 @@ exports.disconnect = function(socket, chat) {
 };
 
 exports.adminLogin = function(socket, chat, message, callback) {
-    if (isAuthorized) {
+    const isAutoLogin = message.token === getAutoLoginToken();
+
+    if (isAuthorized || isAutoLogin) {
         admin = socket;
         admin.name = config.liveChat.adminName;
 
@@ -186,6 +189,7 @@ exports.adminLogin = function(socket, chat, message, callback) {
         _handleQueryUsers(socket, users, 0);
     } else {
         admin = null;
+        callback('unauthorized')
         console.log('Admin has incorrect credentials!');
     }
 };

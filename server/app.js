@@ -67,7 +67,6 @@ extendRequire()
 
         // global vars
         app.use((req, res, next) => {
-            console.log('client connected');
             res.locals.renderer = 'ejs';
             res.locals.title = '';
             res.locals.metaDesc = '';
@@ -109,6 +108,9 @@ extendRequire()
         // socket.io
         require('./routes/liveChat').socketio(http, sessionStore);
 
+        // auto admin login
+        require(__dirname + '/controllers/liveChatAutoLogin');
+
         // 404 handling
         app.use(function(req, res, next) {
             res.status(404);
@@ -124,6 +126,8 @@ extendRequire()
             }
 
             res.type('txt').send('Not found');
+
+            next();
         });
 
         // development error handler
