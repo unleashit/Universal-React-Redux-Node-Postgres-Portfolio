@@ -2,7 +2,8 @@
   "presets": [
     ["@babel/preset-env", {
       "useBuiltIns": "usage",
-      "corejs": 3
+      "corejs": { "version": "3.6", "proposals": true },
+      "debug": false
     }],
     "@babel/preset-react"
   ],
@@ -11,7 +12,9 @@
     "@babel/plugin-proposal-function-bind",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
-    "@babel/plugin-transform-regenerator"
+    "@babel/plugin-transform-regenerator",
+    ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }],
+    "@babel/plugin-proposal-numeric-separator"
   ],
   "env": {
     "test": {
@@ -19,7 +22,7 @@
         ["@babel/preset-env", {
           "modules": "commonjs",
           "useBuiltIns": "usage",
-          "corejs": 3
+          "corejs": { "version": "3.6", "proposals": true }
         }],
         "@babel/preset-react",
         "jest"
