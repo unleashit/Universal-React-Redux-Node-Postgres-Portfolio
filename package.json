@@ -45,8 +45,8 @@
   "author": "Jason Gallagher",
   "license": "RESTRICTED",
   "browserslist": [
-      "defaults",
-      "> 0.1%"
+    "defaults",
+    "> 0.1%"
   ],
   "dependencies": {
     "animate.css": "^4.1.0",
@@ -119,6 +119,7 @@
     "eslint": "^7.7.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.20.6",
     "express-debug": "^1.1.1",
     "extract-text-webpack-plugin": "next",
@@ -151,7 +152,9 @@
   },
   "jest": {
     "cacheDirectory": "<rootDir>/jestCache",
-    "setupFilesAfterEnv": ["<rootDir>/setupTests.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ],
     "testURL": "http://localhost/",
     "coverageDirectory": "<rootDir>/coverage",
     "snapshotSerializers": [
