@@ -31,26 +31,29 @@ if (autoLogin.toLowerCase() === 'true') {
     });
 }
 
-function cronJob() {
-    console.log('ADMIN AUTOLOGIN CRON');
+async function cronJob() {
+    console.log('ADMIN AUTOLOGIN CRON: %s', new Date().toLocaleString());
 
     const open = isOpen(autoLoginStart, autoLoginEnd, autoLoginExclude);
 
     if (!adminConnected && open && tries > 0) {
-        tryToConnect(() => {
-            return new Promise((resolve) => {
-                socket.emit('admin login', { token }, id => {
-                    if (!id || id === 'unauthorized') {
-                        adminConnected = false;
-                        resolve(false);
-                    } else {
-                        console.log(`socket.io connected. Id: ${id}`);
-                        adminConnected = true;
-                        resolve(true);
-                    }
-                })
-            });
-        }, tries)
+        await tryToConnect({
+            fn: () => {
+                return new Promise((resolve) => {
+                    socket.emit('admin login', { token }, id => {
+                        if (!id || id === 'unauthorized') {
+                            adminConnected = false;
+                            resolve(false);
+                        } else {
+                            console.log(`socket.io connected. Id: ${id}`);
+                            adminConnected = true;
+                            resolve(true);
+                        }
+                    })
+                });
+                },
+            tries
+        });
     }
 
     if (adminConnected && !open) {
@@ -59,32 +62,55 @@ function cronJob() {
     setTimeout(cronJob, AUTOLOGIN_INTERVAL);
 }
 
-function tryToConnect(cb, tries = 5, waitFor = 3000) {
-    let connected = false;
-    let timer;
-    const originalTries = tries;
+function tryToConnect({
+  fn,
+  tries = 10,
+  waitFor = 3000,
+  log = console.error
+}) {
+    fn = typeof arguments[0] === 'function' ? arguments[0] : fn;
 
-    const connect =  async () => {
-        clearTimeout(timer);
-
-        if (connected === false && tries > 0) {
-            const result = await cb();
-
-            if (result) {
-                connected = true;
-                tries = originalTries;
-            } else {
-                tries--;
-                console.log(`tryToConnect attempts left: ${tries}`);
-                timer = setTimeout(connect, waitFor);
-            }
-
-        } else {
-            console.log('tryToConnect could not connect.');
-        }
+    if (!fn || typeof fn !== 'function') {
+        throw new Error('Callback must be provided as fn property to options or as first argument');
     }
 
-    connect();
+    return new Promise((resolve, reject) => {
+        let connected = false;
+        let timer;
+        const originalTries = tries;
+
+        const tryAgain = () => {
+            tries--;
+            log && log(`connection attempts left: ${tries}`);
+            timer = setTimeout(connect, waitFor);
+        }
+
+        const connect = async () => {
+            clearTimeout(timer);
+
+            if (connected === false && tries > 0) {
+                try {
+                    const result = await fn();
+
+                    if (result === true || result.ok === true) {
+                        connected = true;
+                        tries = originalTries;
+                        resolve(result);
+                    } else {
+                        tryAgain()
+                    }
+
+                } catch (err) {
+                    log && log(err)
+                    tryAgain();
+                }
+            } else {
+                reject(new Error('tryToConnect could not connect'));
+            }
+        };
+
+        connect();
+    });
 }
 
 function isOpen(
@@ -123,5 +149,3 @@ function isOpen(
 exports.getAutoLoginToken = function() {
     return token;
 };
-
-
