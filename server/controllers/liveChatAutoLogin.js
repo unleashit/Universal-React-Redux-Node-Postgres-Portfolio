@@ -58,6 +58,7 @@ async function cronJob() {
 
     if (adminConnected && !open) {
         socket.disconnect();
+        adminConnected = false;
     }
     setTimeout(cronJob, AUTOLOGIN_INTERVAL);
 }
