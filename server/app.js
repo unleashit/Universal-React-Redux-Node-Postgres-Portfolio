@@ -76,6 +76,7 @@ extendRequire()
         });
 
         // Sessions and auth
+        app.set('trust proxy', 1);
         const sessionStore = require('../config/sessions-config')(app);
 
         require('../config/passport-config');
