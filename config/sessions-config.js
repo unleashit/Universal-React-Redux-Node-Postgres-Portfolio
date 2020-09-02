@@ -59,9 +59,11 @@ module.exports = function(app) {
             secret: options.sessionSecret,
             resave: false,
             saveUninitialized: true,
+            proxy: true,
             cookie: {
                 maxAge: 5 * 24 * 60 * 60 * 1000, // 5 days
                 sameSite: true,
+                httpOnly: true,
                 secure: isRealProd()
             }
         })
