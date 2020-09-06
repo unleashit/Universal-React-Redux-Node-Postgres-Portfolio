@@ -10,7 +10,7 @@ let socket;
 let adminConnected = false;
 let tries = 5;
 const AUTOLOGIN_INTERVAL = 1000 * 60 * 4;
-const LOGOUT_TIME = 1000 * 60 * 15;
+// const LOGOUT_TIME = 1000 * 60 * 15;
 
 // generate a basic random number to verify we're the admin
 const token = crypto.randomBytes(24).toString('base64');
@@ -21,13 +21,14 @@ if (autoLogin.toLowerCase() === 'true') {
     socket.on('connect', cronJob);
     socket.on('chatDisconnected', () => {
         adminConnected = false;
-        tries = 0;
+        // tries = 0;
 
         // after admin manually logs out,
         // set period before autologin connects again
-        setTimeout(() => {
-            tries = 5;
-        }, LOGOUT_TIME)
+        // setTimeout(() => {
+        //    tries = 5;
+        //    cronJob();
+        // }, LOGOUT_TIME)
     });
 }
 
@@ -57,8 +58,8 @@ async function cronJob() {
     }
 
     if (adminConnected && !open) {
-        socket.disconnect();
         adminConnected = false;
+        socket.disconnect();
     }
     setTimeout(cronJob, AUTOLOGIN_INTERVAL);
 }
@@ -121,7 +122,7 @@ function isOpen(
     timeZone = 'America/Los_Angeles',
 ) {
     if (typeof exclude === 'string') {
-        exclude = exclude.trim().split(',');
+        exclude = exclude.trim().split(',').map(Number);
     }
 
     const [startH, startM, startS] = startTime.split(':').map(Number);
