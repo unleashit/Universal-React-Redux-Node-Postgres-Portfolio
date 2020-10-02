@@ -4,7 +4,6 @@ services:
   app-development:
     container_name: jasongallagher_app-dev
     image: jasongallagher_app:dev
-    command: ["npm", "start"]
     volumes:
       - './app:/src/app'
       - './server:/src/server'

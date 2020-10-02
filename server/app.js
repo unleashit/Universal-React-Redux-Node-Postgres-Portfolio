@@ -1,22 +1,16 @@
-require('@babel/register')({
-    presets: ['@babel/preset-env', '@babel/preset-react'],
-    ignore: [/node_modules/]
-});
-var extendRequire = require('isomorphic-loader/lib/extend-require');
+module.exports = function() {
+        const express = require('express');
+        const app = express();
+        const http = require('http').Server(app);
+        const path = require('path');
+        const flash = require('connect-flash');
+        const bodyParser = require('body-parser');
+        const passport = require('passport');
+        const compression = require('compression');
+        const addSessionTable = require('./sessions');
+        const config = require('../config/APPconfig');
 
-extendRequire()
-    .then(function() {
-        var express = require('express');
-        var app = express();
-        var http = require('http').Server(app);
-        var path = require('path');
-        var flash = require('connect-flash');
-        var bodyParser = require('body-parser');
-        var passport = require('passport');
-        var compression = require('compression');
-        var addSessionTable = require('./sessions');
-
-        var models = require('./models');
+        const models = require('./models');
 
         // varables to be passed to the client as scripts in root html template (root.js)
         global.__ENVIRONMENT__ = process.env.NODE_ENV || 'development';
@@ -28,12 +22,12 @@ extendRequire()
             const webpack = require('webpack');
             const dev = require('webpack-dev-middleware');
             const hot = require('webpack-hot-middleware');
-            const config = require('../webpack.config.js');
-            const compiler = webpack(config);
+            const webpackConfig = require('../webpack.config.js');
+            const compiler = webpack(webpackConfig);
 
             app.use(
                 dev(compiler, {
-                    publicPath: config.output.publicPath,
+                    publicPath: webpackConfig.output.publicPath,
                     stats: {
                         colors: true,
                         hash: false,
@@ -110,7 +104,11 @@ extendRequire()
         require('./routes/liveChat').socketio(http, sessionStore);
 
         // auto admin login
-        require(__dirname + '/controllers/liveChatAutoLogin');
+        const { liveChat: { autoLogin = 'false' } } = config;
+        if (autoLogin.toLowerCase() === 'true') {
+            const { startAutologin } = require(__dirname + '/controllers/liveChatAutoLogin');
+            startAutologin();
+        }
 
         // 404 handling
         app.use(function(req, res, next) {
@@ -134,7 +132,7 @@ extendRequire()
         // development error handler
         // will print stacktrace
         if (app.get('env') === 'development') {
-            app.use(function(err, req, res, next) {
+            app.use(function(err, req, res) {
                 res.status(err.status || 500);
                 res.render('error', {
                     message: err.message,
@@ -170,10 +168,9 @@ extendRequire()
         });
 
         app.set('port', process.env.PORT || 3100);
-        var debug = require('debug')('jg');
 
-        var startServer = function() {
-            var server = http.listen(app.get('port'), function() {
+        const startServer = function() {
+            const server = http.listen(app.get('port'), function() {
                 console.log(
                     'Express server listening on port ' + server.address().port
                 );
@@ -192,7 +189,4 @@ extendRequire()
                 .then(addSessionTable)
                 .then(startServer);
         } else startServer();
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+    }

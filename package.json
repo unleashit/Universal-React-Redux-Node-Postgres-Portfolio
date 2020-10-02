@@ -7,8 +7,7 @@
     "node": ">= 10.0.0"
   },
   "scripts": {
-    "start": "node server/app.js",
-    "nodemon": "nodemon --legacy-watch ./server/app.js",
+    "start": "node server/index.js",
     "local-prefix": "docker-compose -f docker-compose.yml -f docker-compose-prod.yml",
     "registry-prefix": "docker-compose -f docker-compose.yml -f docker-compose-prod.yml -f docker-compose-registry.yml",
     "dev": "docker-compose up",
