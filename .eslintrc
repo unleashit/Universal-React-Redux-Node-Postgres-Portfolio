@@ -3,6 +3,9 @@
     "eslint:recommended",
     "plugin:node/recommended"
   ],
+  "env": {
+    "jest": true
+  },
   "plugins": [
     "react"
   ],

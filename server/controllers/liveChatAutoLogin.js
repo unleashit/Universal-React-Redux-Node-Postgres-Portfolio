@@ -3,33 +3,35 @@ const crypto = require('crypto');
 const config = require('../../config/APPconfig');
 
 const { liveChat: {
-    autoLogin = 'false', autoLoginStart, autoLoginEnd, autoLoginExclude
+    autoLoginStart, autoLoginEnd, autoLoginExclude
 } } = config;
 
 let socket;
 let adminConnected = false;
 let tries = 5;
 const AUTOLOGIN_INTERVAL = 1000 * 60 * 4;
-// const LOGOUT_TIME = 1000 * 60 * 15;
+const LOGOUT_TIME = 1000 * 60 * 15;
 
 // generate a basic random number to verify we're the admin
 const token = crypto.randomBytes(24).toString('base64');
 
-if (autoLogin.toLowerCase() === 'true') {
+function startAutologin() {
     socket = clientIo.connect(config.__SOCKET_IO_URL__);
 
     socket.on('connect', cronJob);
-    socket.on('chatDisconnected', () => {
+    socket.on('disconnect', () => {
         adminConnected = false;
-        // tries = 0;
+
+        tries = 0;
 
         // after admin manually logs out,
         // set period before autologin connects again
-        // setTimeout(() => {
-        //    tries = 5;
-        //    cronJob();
-        // }, LOGOUT_TIME)
+        setTimeout(() => {
+            tries = 5;
+            startAutologin();
+        }, LOGOUT_TIME)
     });
+
 }
 
 async function cronJob() {
@@ -58,8 +60,7 @@ async function cronJob() {
     }
 
     if (adminConnected && !open) {
-        adminConnected = false;
-        socket.disconnect();
+        return socket.disconnect();
     }
     setTimeout(cronJob, AUTOLOGIN_INTERVAL);
 }
@@ -148,6 +149,9 @@ function isOpen(
     return startDate <= currentDate && endDate > currentDate
 }
 
-exports.getAutoLoginToken = function() {
-    return token;
-};
+module.exports = {
+    startAutologin,
+    getAutoLoginToken: function() {
+        return token;
+    }
+}
