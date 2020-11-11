@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build:script && git init
-CMD ["nodemon", "server/index.js"]
+CMD ["nodemon", "--inspect=0.0.0.0:9229", "server/index.js"]
 
 FROM node:14-alpine AS production
 WORKDIR /src
