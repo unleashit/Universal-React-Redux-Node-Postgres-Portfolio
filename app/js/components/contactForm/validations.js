@@ -8,7 +8,10 @@ export default values => {
     if (!values.message) {
         errors.message = 'Please enter a message';
     } else if (values.message.length > 3000) {
-        errors.name = 'Message should be less than 3000 characters';
+        errors.message = 'Message should be less than 3000 characters';
+    } else if (values.message.trim().split(' ').length === 1) {
+        // probably the one word spammer
+        errors.message = 'Message too short';
     }
     if (!values.email) {
         errors.email = 'Please enter a valid email';
