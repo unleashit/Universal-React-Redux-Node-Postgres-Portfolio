@@ -9,6 +9,7 @@ var multer = require('multer');
 
 var managePortfolio = require('../controllers/managePortfolio.js');
 var liveChat = require('../controllers/liveChat.js');
+var banContact = require('../controllers/banContact.js');
 
 var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -62,5 +63,7 @@ router
 router.get('/portfolio/delete/:id', managePortfolio.deletePortfolioItem);
 
 router.get('/live-chat-manager', liveChat.chatManager);
+
+router.post('/ban', banContact);
 
 module.exports = router;
