@@ -21,6 +21,7 @@ services:
     ports:
       - '3200:3200' # app
       - '8888:8888' # webpack-bundle-analyzer
+      - "9229:9229" # node debugger
     env_file:
       - ./config/.env.staging
     environment:

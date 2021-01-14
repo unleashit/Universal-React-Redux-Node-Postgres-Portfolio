@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var portfolio = require('../controllers/portfolioAPI.js');
 var contactForm = require('../controllers/contactForm.js');
+var banContact = require('../controllers/banContact.js');
 
 var router = express.Router();
 
@@ -24,5 +25,7 @@ router.use(bodyParser.json());
 router.get('/portfolio', portfolio.getPortfolioItems);
 router.get('/portfolio/:slug', portfolio.getPortfolioItem);
 router.post('/contact', contactForm.handleContactSubmit);
+router.post('/ban', banContact);
+
 
 module.exports = router;
