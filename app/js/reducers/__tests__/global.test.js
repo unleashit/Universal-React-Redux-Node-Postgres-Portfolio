@@ -7,7 +7,7 @@ import {
     ANIMATE_ABOUT,
     ANIMATE_PORTFOLIO,
     ANIMATE_CONTACT,
-    ANIMATE_OFF
+    ANIMATE_OFF,
 } from '../../actions/global';
 import contactFormReducer from '../contactForm';
 
@@ -18,7 +18,7 @@ describe('global reducer', () => {
         animateAbout: false,
         animatePortfolio: false,
         animateContact: false,
-        animateOff: false
+        animateOff: false,
     };
 
     const runExpecs = (action, newState) => {
@@ -37,7 +37,7 @@ describe('global reducer', () => {
         const action = { type: TOGGLE_HAMBURGER };
         const newState = {
             ...initialState,
-            hamburgerState: true
+            hamburgerState: true,
         };
 
         runExpecs(action, newState);
@@ -48,7 +48,7 @@ describe('global reducer', () => {
         const newState = {
             ...initialState,
             hamburgerState: true,
-            htmlClass: 'menu-open'
+            htmlClass: 'menu-open',
         };
 
         runExpecs(action, newState);
@@ -59,7 +59,7 @@ describe('global reducer', () => {
         const newState = {
             ...initialState,
             hamburgerState: false,
-            htmlClass: null
+            htmlClass: null,
         };
 
         runExpecs(action, newState);
@@ -69,7 +69,7 @@ describe('global reducer', () => {
         const action = { type: SET_HEADER, bool: true };
         const newState = {
             ...initialState,
-            headerState: action.bool
+            headerState: action.bool,
         };
 
         runExpecs(action, newState);
@@ -79,7 +79,7 @@ describe('global reducer', () => {
         const action = { type: ANIMATE_ABOUT, bool: true };
         const newState = {
             ...initialState,
-            animateAbout: action.bool
+            animateAbout: action.bool,
         };
 
         runExpecs(action, newState);
@@ -89,7 +89,7 @@ describe('global reducer', () => {
         const action = { type: ANIMATE_PORTFOLIO, bool: true };
         const newState = {
             ...initialState,
-            animatePortfolio: true
+            animatePortfolio: true,
         };
 
         runExpecs(action, newState);
@@ -99,7 +99,7 @@ describe('global reducer', () => {
         const action = { type: ANIMATE_CONTACT, bool: true };
         const newState = {
             ...initialState,
-            animateContact: true
+            animateContact: true,
         };
 
         runExpecs(action, newState);
@@ -109,7 +109,7 @@ describe('global reducer', () => {
         const action = { type: ANIMATE_OFF, bool: true };
         const newState = {
             ...initialState,
-            animateOff: true
+            animateOff: true,
         };
 
         runExpecs(action, newState);

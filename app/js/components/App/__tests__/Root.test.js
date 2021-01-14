@@ -5,23 +5,23 @@ describe('<Root />', () => {
     const props = {
         head: {
             htmlAttributes: {
-                toComponent: jest.fn()
+                toComponent: jest.fn(),
             },
             title: {
-                toComponent: jest.fn()
+                toComponent: jest.fn(),
             },
             meta: {
-                toComponent: jest.fn()
+                toComponent: jest.fn(),
             },
             link: {
-                toComponent: jest.fn()
+                toComponent: jest.fn(),
             },
             script: {
-                toComponent: jest.fn()
-            }
+                toComponent: jest.fn(),
+            },
         },
         content: '',
-        initialState: null
+        initialState: null,
     };
 
     // make it output the production JS
@@ -52,7 +52,7 @@ describe('<Root />', () => {
         wrapper = shallow(<Root {...props} />);
         const results = wrapper.instance().renderInitialState();
         expect(results.props.dangerouslySetInnerHTML).toEqual({
-            __html: 'window.__INITIAL_STATE__ = {"test":"test"}'
+            __html: 'window.__INITIAL_STATE__ = {"test":"test"}',
         });
     });
 
@@ -63,7 +63,7 @@ describe('<Root />', () => {
         results = wrapper.instance().lazyLoadScript({
             src: '/js/global.min.js',
             devSrc: '/js/global.js',
-            global: true
+            global: true,
         });
         expect(results.props.src).toEqual('/js/global.js');
 
@@ -71,7 +71,7 @@ describe('<Root />', () => {
         results = wrapper.instance().lazyLoadScript({
             src: '/js/global.min.js',
             devSrc: '/js/global.js',
-            global: true
+            global: true,
         });
         expect(results.props.dangerouslySetInnerHTML.__html).toContain(
             "window.addEventListener('load', lazyLoadScript.bind(null, '/js/global.min.js'), false);"

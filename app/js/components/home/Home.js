@@ -15,7 +15,7 @@ import throttle from 'lodash/throttle';
 export class Home extends Component {
     static readyOnActions(dispatch) {
         return Promise.all([
-            dispatch(portfolioActions.fetchPortfolioIfNeeded())
+            dispatch(portfolioActions.fetchPortfolioIfNeeded()),
         ]);
     }
 
@@ -75,8 +75,8 @@ export class Home extends Component {
         [
             ['about', 'animateAbout'],
             ['work', 'animatePortfolio'],
-            ['contact-area', 'animateContact']
-        ].forEach(animation => this.triggerAnimation(animation));
+            ['contact-area', 'animateContact'],
+        ].forEach((animation) => this.triggerAnimation(animation));
     }
 
     openBurger() {
@@ -93,7 +93,7 @@ export class Home extends Component {
             htmlClass,
             animateOff,
             animateAbout,
-            animatePortfolio
+            animatePortfolio,
         } = this.props.global;
 
         const htmlClassCheck = htmlClass ? { class: htmlClass } : {};
@@ -103,7 +103,10 @@ export class Home extends Component {
                 <Helmet
                     htmlAttributes={htmlClassCheck}
                     link={[
-                        { rel: 'canonical', href: 'https://jasongallagher.org' }
+                        {
+                            rel: 'canonical',
+                            href: 'https://jasongallagher.org',
+                        },
                     ]}
                 />
                 <StickyHeader
@@ -136,17 +139,14 @@ function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
         global: state.global,
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

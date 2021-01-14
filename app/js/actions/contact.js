@@ -8,17 +8,17 @@ export const SUBMIT_CONTACT_FAILED = 'SUBMIT_CONTACT_FAILED';
 export const SUBMIT_CONTACT_RESET = 'SUBMIT_CONTACT_RESET';
 
 export function submitContact(contactData) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: SUBMIT_CONTACT_SENDING });
 
         return fetch(__API_URL__ + '/contact', {
             method: 'POST',
             body: JSON.stringify(contactData),
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         })
-            .then(response => {
+            .then((response) => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
                 } else {
@@ -27,11 +27,11 @@ export function submitContact(contactData) {
                     );
                 }
             })
-            .then(result => {
+            .then((result) => {
                 dispatch({ type: SUBMIT_CONTACT_SUCCESS, result });
                 dispatch(reset('contactForm'));
             })
-            .catch(error => {
+            .catch((error) => {
                 dispatch({ type: SUBMIT_CONTACT_FAILED, error: error.message });
                 console.log(error);
             });
@@ -39,7 +39,7 @@ export function submitContact(contactData) {
 }
 
 export function submitContactReset() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: SUBMIT_CONTACT_RESET });
     };
 }

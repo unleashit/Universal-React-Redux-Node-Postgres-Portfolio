@@ -9,7 +9,7 @@ import {
     WORK_DETAIL_FETCHED,
     WORK_DETAIL_FETCH_FAILED,
     WORK_DETAIL_RESET,
-    WORK_LAST_PROJECT_HEIGHT
+    WORK_LAST_PROJECT_HEIGHT,
 } from '../../actions/portfolio';
 
 describe('portfolio reducer', () => {
@@ -18,7 +18,7 @@ describe('portfolio reducer', () => {
         DetailReadyState: WORK_DETAIL_INVALID,
         items: null,
         item: null,
-        lastProjectHeight: 400
+        lastProjectHeight: 400,
     };
 
     const runExpecs = (action, newState) => {
@@ -37,7 +37,7 @@ describe('portfolio reducer', () => {
         const action = { type: WORK_FETCHING };
         const newState = {
             ...initialState,
-            readyState: WORK_FETCHING
+            readyState: WORK_FETCHING,
         };
 
         runExpecs(action, newState);
@@ -48,7 +48,7 @@ describe('portfolio reducer', () => {
         const newState = {
             ...initialState,
             readyState: WORK_FETCH_FAILED,
-            error: action.error
+            error: action.error,
         };
 
         runExpecs(action, newState);
@@ -62,15 +62,15 @@ describe('portfolio reducer', () => {
                 description_short: 'Internet of Things (IoT) App',
                 main_image: 'WeavedLogo.png',
                 url_slug: 'weaved',
-                sort: 3
-            }
+                sort: 3,
+            },
         ];
 
         const action = { type: WORK_FETCHED, result: items };
         const newState = {
             ...initialState,
             readyState: WORK_FETCHED,
-            items: action.result
+            items: action.result,
         };
 
         runExpecs(action, newState);
@@ -80,7 +80,7 @@ describe('portfolio reducer', () => {
         const action = { type: WORK_DETAIL_FETCHING };
         const newState = {
             ...initialState,
-            DetailReadyState: WORK_DETAIL_FETCHING
+            DetailReadyState: WORK_DETAIL_FETCHING,
         };
 
         runExpecs(action, newState);
@@ -89,12 +89,12 @@ describe('portfolio reducer', () => {
     test('WORK_DETAIL_FETCH_FAILED', () => {
         const action = {
             type: WORK_DETAIL_FETCH_FAILED,
-            error: 'Big fat error'
+            error: 'Big fat error',
         };
         const newState = {
             ...initialState,
             DetailReadyState: WORK_DETAIL_FETCH_FAILED,
-            error: action.error
+            error: action.error,
         };
 
         runExpecs(action, newState);
@@ -116,14 +116,14 @@ describe('portfolio reducer', () => {
             url_slug: 'weaved',
             sort: 3,
             next: 'terra-global-capital',
-            prev: 'relola'
+            prev: 'relola',
         };
 
         const action = { type: WORK_DETAIL_FETCHED, result: item };
         const newState = {
             ...initialState,
             DetailReadyState: WORK_DETAIL_FETCHED,
-            item: action.result
+            item: action.result,
         };
 
         runExpecs(action, newState);
@@ -134,7 +134,7 @@ describe('portfolio reducer', () => {
         const newState = {
             ...initialState,
             DetailReadyState: WORK_DETAIL_INVALID,
-            item: null
+            item: null,
         };
 
         runExpecs(action, newState);
@@ -143,11 +143,11 @@ describe('portfolio reducer', () => {
     test('WORK_LAST_PROJECT_HEIGHT', () => {
         const action = {
             type: WORK_LAST_PROJECT_HEIGHT,
-            payload: 600
+            payload: 600,
         };
         const newState = {
             ...initialState,
-            lastProjectHeight: action.payload
+            lastProjectHeight: action.payload,
         };
 
         runExpecs(action, newState);

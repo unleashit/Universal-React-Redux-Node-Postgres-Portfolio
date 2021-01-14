@@ -13,7 +13,7 @@ function _sendSMS(user) {
 
     var transporter = nodemailer.createTransport(config.smtpConfig);
 
-    transporter.sendMail(config.smsMailOptions, function(error, info) {
+    transporter.sendMail(config.smsMailOptions, function (error, info) {
         if (error) {
             console.log('error from sendMail method: ', error);
         } else {
@@ -23,7 +23,7 @@ function _sendSMS(user) {
 }
 
 function _handleQueryUser(socket, chat, message) {
-    liveChatData.queryUser(message.room).then(user => {
+    liveChatData.queryUser(message.room).then((user) => {
         if (user) {
             users[user.id] = user;
             console.log('User restored from DB: ', user);
@@ -48,7 +48,7 @@ function _handleQueryUser(socket, chat, message) {
 
 function _handleQueryUsers(socket, users, offset) {
     socket.emit('admin userInit', users);
-    liveChatData.queryUsers(users, offset).then(archivedUsers => {
+    liveChatData.queryUsers(users, offset).then((archivedUsers) => {
         socket.emit('admin archivedUserUpdate', archivedUsers);
         console.log(
             '%s archived users sent to admin',
@@ -57,7 +57,7 @@ function _handleQueryUsers(socket, users, offset) {
     });
 }
 
-exports.initSaveChatData = function(chat) {
+exports.initSaveChatData = function (chat) {
     setInterval(() => {
         if (!Object.keys(users).length) return;
         liveChatData
@@ -66,24 +66,24 @@ exports.initSaveChatData = function(chat) {
                 console.log('users were saved to the DB');
                 users = liveChatData.filterOld(users, chat);
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(err);
             });
     }, config.liveChat.saveInterval);
 };
 
-exports.onAuthorizeSuccess = function(data, accept) {
+exports.onAuthorizeSuccess = function (data, accept) {
     console.log('socket.io: admin is authed');
     isAuthorized = true;
     accept();
 };
 
-exports.onAuthorizeFail = function(data, message, error, accept) {
+exports.onAuthorizeFail = function (data, message, error, accept) {
     isAuthorized = false;
     accept(); // normal users should pass through
 };
 
-exports.chatConnected = function(socket, chat, message, callback) {
+exports.chatConnected = function (socket, chat, message, callback) {
     // if admin is logged in, inform client of status
     if (admin) {
         // var payload = {id: admin.id, name: admin.name};
@@ -93,14 +93,14 @@ exports.chatConnected = function(socket, chat, message, callback) {
     }
 };
 
-exports.newUser = function(socket, chat, user, callback) {
+exports.newUser = function (socket, chat, user, callback) {
     users[socket.id] = {
         id: socket.id,
         name: user.name,
         email: user.email,
         connected: true,
         date: Date.now(),
-        messages: []
+        messages: [],
     };
 
     socket.join(socket.id);
@@ -116,7 +116,7 @@ exports.newUser = function(socket, chat, user, callback) {
             name: config.liveChat.adminName,
             message:
                 "I'm currently away, but I will receive your messages and get back to you very soon!",
-            date: Date.now()
+            date: Date.now(),
         };
         socket.emit('chatMessage', message);
     }
@@ -134,7 +134,7 @@ exports.newUser = function(socket, chat, user, callback) {
     }
 };
 
-exports.chatMessage = function(socket, chat, message) {
+exports.chatMessage = function (socket, chat, message) {
     if (message.room in users) {
         users[message.room].messages.push(message);
         chat.in(message.room).emit('chatMessage', message);
@@ -144,12 +144,12 @@ exports.chatMessage = function(socket, chat, message) {
     }
 };
 
-exports.typing = function(socket, chat, id) {
+exports.typing = function (socket, chat, id) {
     console.log('typing: ' + id);
     chat.in(id).emit('typing', socket.id);
 };
 
-exports.disconnect = function(socket, chat) {
+exports.disconnect = function (socket, chat) {
     if (socket.id in users) {
         users[socket.id].connected = false;
         console.log('Client disconnected');
@@ -165,20 +165,20 @@ exports.disconnect = function(socket, chat) {
     // console.log("Disconnected %s sockets remaining", io.engine.clientsCount);
 };
 
-exports.adminLogin = function(socket, chat, message, callback) {
+exports.adminLogin = function (socket, chat, message, callback) {
     const isAutoLogin = message.token === getAutoLoginToken();
 
     if (isAuthorized || isAutoLogin) {
         admin = socket;
         admin.name = config.liveChat.adminName;
 
-        Object.keys(users).forEach(u => {
+        Object.keys(users).forEach((u) => {
             admin.join(users[u].id);
         });
 
         socket.broadcast.emit('chatConnected', {
             id: admin.id,
-            name: admin.name
+            name: admin.name,
         });
         console.log('admin logged in');
 
@@ -189,16 +189,16 @@ exports.adminLogin = function(socket, chat, message, callback) {
         _handleQueryUsers(socket, users, 0);
     } else {
         admin = null;
-        callback('unauthorized')
+        callback('unauthorized');
         console.log('Admin has incorrect credentials!');
     }
 };
 
-exports.adminGetUsers = function(socket, chat, offset) {
+exports.adminGetUsers = function (socket, chat, offset) {
     _handleQueryUsers(socket, users, offset);
 };
 
-exports.adminRemoveUser = function(socket, chat, user) {
+exports.adminRemoveUser = function (socket, chat, user) {
     if (admin && isAuthorized) {
         if (chat.connected[user]) {
             chat.connected[user].disconnect();
@@ -216,14 +216,14 @@ exports.adminRemoveUser = function(socket, chat, user) {
                     // console.log(admin);
                     _handleQueryUsers(socket, users, 0);
                 })
-                .catch(err => {
+                .catch((err) => {
                     throw new Error(err);
                 });
         }
     }
 };
 
-exports.adminDeleteUser = function(socket, chat, user) {
+exports.adminDeleteUser = function (socket, chat, user) {
     if (admin && isAuthorized) {
         if (user in users) {
             chat.connected[user].disconnect();
@@ -239,7 +239,7 @@ exports.adminDeleteUser = function(socket, chat, user) {
                 _handleQueryUsers(socket, users, 0);
                 return null;
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log('User could not be deleted:');
                 throw new Error(err);
             });
@@ -247,10 +247,10 @@ exports.adminDeleteUser = function(socket, chat, user) {
 };
 
 // /admin/live-chat-manager standard route
-exports.chatManager = function(req, res) {
+exports.chatManager = function (req, res) {
     res.render('live-chat-manager', {
         title: 'Manage React Help Desk',
         activeClass: 'manage-live-chat',
-        auth: req.isAuthenticated()
+        auth: req.isAuthenticated(),
     });
 };

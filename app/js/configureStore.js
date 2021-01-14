@@ -9,10 +9,10 @@ export default function configureStore(initialState) {
         rootReducer,
         initialState,
         typeof window === 'object' &&
-        typeof window.devToolsExtension !== 'undefined' &&
-        process.env.NODE_ENV !== 'production'
+            typeof window.devToolsExtension !== 'undefined' &&
+            process.env.NODE_ENV !== 'production'
             ? window.devToolsExtension()
-            : f => f
+            : (f) => f
     );
 
     if (module.hot) {

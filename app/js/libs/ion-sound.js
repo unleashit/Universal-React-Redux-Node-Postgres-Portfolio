@@ -20,7 +20,7 @@ export function ionSound() {
     //     return;
     // }
 
-    var warn = function(text) {
+    var warn = function (text) {
         if (!text) text = 'undefined';
 
         if (window.console) {
@@ -38,7 +38,7 @@ export function ionSound() {
         }
     };
 
-    var extend = function(parent, child) {
+    var extend = function (parent, child) {
         var prop;
         child = child || {};
 
@@ -56,7 +56,7 @@ export function ionSound() {
      */
 
     if (typeof Audio !== 'function' && typeof Audio !== 'object') {
-        var func = function() {
+        var func = function () {
             warn('HTML5 Audio is not supported in this browser');
         };
         ion.sound = func;
@@ -87,7 +87,7 @@ export function ionSound() {
         settings.supported = ['mp3', 'ogg', 'mp4', 'aac', 'wav'];
     }
 
-    var createSound = function(obj) {
+    var createSound = function (obj) {
         var name = obj.alias || obj.name;
 
         if (!sounds[name]) {
@@ -96,7 +96,7 @@ export function ionSound() {
         }
     };
 
-    ion.sound = function(options) {
+    ion.sound = function (options) {
         extend(options, settings);
 
         settings.path = settings.path || '';
@@ -123,7 +123,7 @@ export function ionSound() {
 
     ion.sound.VERSION = '3.0.7';
 
-    ion.sound._method = function(method, name, options) {
+    ion.sound._method = function (method, name, options) {
         if (name) {
             sounds[name] && sounds[name][method](options);
         } else {
@@ -137,14 +137,14 @@ export function ionSound() {
         }
     };
 
-    ion.sound.preload = function(name, options) {
+    ion.sound.preload = function (name, options) {
         options = options || {};
         extend({ preload: true }, options);
 
         ion.sound._method('init', name, options);
     };
 
-    ion.sound.destroy = function(name) {
+    ion.sound.destroy = function (name) {
         ion.sound._method('destroy', name);
 
         if (name) {
@@ -161,19 +161,19 @@ export function ionSound() {
         }
     };
 
-    ion.sound.play = function(name, options) {
+    ion.sound.play = function (name, options) {
         ion.sound._method('play', name, options);
     };
 
-    ion.sound.stop = function(name, options) {
+    ion.sound.stop = function (name, options) {
         ion.sound._method('stop', name, options);
     };
 
-    ion.sound.pause = function(name, options) {
+    ion.sound.pause = function (name, options) {
         ion.sound._method('pause', name, options);
     };
 
-    ion.sound.volume = function(name, options) {
+    ion.sound.volume = function (name, options) {
         ion.sound._method('volume', name, options);
     };
 
@@ -193,7 +193,7 @@ export function ionSound() {
         audio = new AudioContext();
     }
 
-    var Sound = function(options) {
+    var Sound = function (options) {
         this.options = extend(settings);
         delete this.options.sounds;
         extend(options, this.options);
@@ -211,7 +211,7 @@ export function ionSound() {
     };
 
     Sound.prototype = {
-        init: function(options) {
+        init: function (options) {
             if (options) {
                 extend(options, this.options);
             }
@@ -221,7 +221,7 @@ export function ionSound() {
             }
         },
 
-        destroy: function() {
+        destroy: function () {
             var stream;
 
             for (i in this.streams) {
@@ -253,7 +253,7 @@ export function ionSound() {
             }
         },
 
-        createUrl: function() {
+        createUrl: function () {
             var no_cache = new Date().valueOf();
             this.url =
                 this.options.path +
@@ -264,7 +264,7 @@ export function ionSound() {
                 no_cache;
         },
 
-        load: function() {
+        load: function () {
             if (this.no_file) {
                 warn('No sources for "' + this.options.name + '" sound :(');
                 return;
@@ -289,7 +289,7 @@ export function ionSound() {
             this.request.send();
         },
 
-        reload: function() {
+        reload: function () {
             this.ext++;
 
             if (this.options.supported[this.ext]) {
@@ -300,7 +300,7 @@ export function ionSound() {
             }
         },
 
-        ready: function(data) {
+        ready: function (data) {
             this.result = data.target;
 
             if (this.result.readyState !== 4) {
@@ -331,7 +331,7 @@ export function ionSound() {
             this.decode();
         },
 
-        decode: function() {
+        decode: function () {
             if (!audio) {
                 return;
             }
@@ -343,7 +343,7 @@ export function ionSound() {
             );
         },
 
-        setBuffer: function(buffer) {
+        setBuffer: function (buffer) {
             this.options.buffer = buffer;
             this.decoded = true;
             //warn("Decoded: " + this.options.name + "." + settings.supported[this.ext]);
@@ -352,7 +352,7 @@ export function ionSound() {
                 name: this.options.name,
                 alias: this.options.alias,
                 ext: this.options.supported[this.ext],
-                duration: this.options.buffer.duration
+                duration: this.options.buffer.duration,
             };
 
             if (
@@ -378,11 +378,11 @@ export function ionSound() {
             }
         },
 
-        error: function() {
+        error: function () {
             this.reload();
         },
 
-        play: function(options) {
+        play: function (options) {
             delete this.options.part;
 
             if (options) {
@@ -413,7 +413,7 @@ export function ionSound() {
             }
         },
 
-        stop: function(options) {
+        stop: function (options) {
             if (this.options.sprite) {
                 if (options) {
                     this.streams[options.part].stop();
@@ -427,7 +427,7 @@ export function ionSound() {
             }
         },
 
-        pause: function(options) {
+        pause: function (options) {
             if (this.options.sprite) {
                 if (options) {
                     this.streams[options.part].pause();
@@ -441,7 +441,7 @@ export function ionSound() {
             }
         },
 
-        volume: function(options) {
+        volume: function (options) {
             var stream;
 
             if (options) {
@@ -464,10 +464,10 @@ export function ionSound() {
                 stream = this.streams[0];
                 stream && stream.setVolume(this.options);
             }
-        }
+        },
     };
 
-    var Stream = function(options, sprite_part) {
+    var Stream = function (options, sprite_part) {
         this.alias = options.alias;
         this.name = options.name;
         this.sprite_part = sprite_part;
@@ -494,7 +494,7 @@ export function ionSound() {
     };
 
     Stream.prototype = {
-        destroy: function() {
+        destroy: function () {
             this.stop();
 
             this.buffer = null;
@@ -506,7 +506,7 @@ export function ionSound() {
             this.source = null;
         },
 
-        setLoop: function(options) {
+        setLoop: function (options) {
             if (options.loop === true) {
                 this.loop = 9999999;
             } else if (typeof options.loop === 'number') {
@@ -516,14 +516,14 @@ export function ionSound() {
             }
         },
 
-        update: function(options) {
+        update: function (options) {
             this.setLoop(options);
             if ('volume' in options) {
                 this.volume = options.volume;
             }
         },
 
-        play: function(options) {
+        play: function (options) {
             if (options) {
                 this.update(options);
             }
@@ -544,7 +544,7 @@ export function ionSound() {
             this._play();
         },
 
-        _play: function() {
+        _play: function () {
             var start, end;
 
             if (this.paused) {
@@ -571,7 +571,7 @@ export function ionSound() {
             this.time_started = new Date().valueOf();
         },
 
-        stop: function() {
+        stop: function () {
             if (this.playing && this.source) {
                 if (typeof this.source.stop === 'function') {
                     this.source.stop(0);
@@ -583,7 +583,7 @@ export function ionSound() {
             this.clear();
         },
 
-        pause: function() {
+        pause: function () {
             if (this.paused) {
                 this.play();
                 return;
@@ -597,7 +597,7 @@ export function ionSound() {
             this.paused = true;
         },
 
-        ended: function() {
+        ended: function () {
             this.playing = false;
             this.time_ended = new Date().valueOf();
             this.time_played = (this.time_ended - this.time_started) / 1000;
@@ -617,13 +617,13 @@ export function ionSound() {
             }
         },
 
-        _ended: function() {
+        _ended: function () {
             var config = {
                 name: this.name,
                 alias: this.alias,
                 part: this.sprite_part,
                 start: this.start,
-                duration: this.end
+                duration: this.end,
             };
 
             if (
@@ -634,20 +634,20 @@ export function ionSound() {
             }
         },
 
-        clear: function() {
+        clear: function () {
             this.time_played = 0;
             this.time_offset = 0;
             this.paused = false;
             this.playing = false;
         },
 
-        setVolume: function(options) {
+        setVolume: function (options) {
             this.volume = options.volume;
 
             if (this.gain) {
                 this.gain.gain.value = this.volume;
             }
-        }
+        },
     };
 
     if (audio) {
@@ -659,7 +659,7 @@ export function ionSound() {
      * - for not so modern browsers
      */
 
-    var checkSupport = function() {
+    var checkSupport = function () {
         var sound = new Audio(),
             can_play_mp3 = sound.canPlayType('audio/mpeg'),
             can_play_ogg = sound.canPlayType('audio/ogg'),
@@ -692,7 +692,7 @@ export function ionSound() {
     checkSupport();
 
     Sound.prototype = {
-        init: function(options) {
+        init: function (options) {
             if (options) {
                 extend(options, this.options);
             }
@@ -704,7 +704,7 @@ export function ionSound() {
             }
         },
 
-        destroy: function() {
+        destroy: function () {
             var stream;
 
             for (i in this.streams) {
@@ -720,7 +720,7 @@ export function ionSound() {
             this.inited = false;
         },
 
-        load: function() {
+        load: function () {
             var part;
 
             this.options.preload = true;
@@ -741,7 +741,7 @@ export function ionSound() {
             }
         },
 
-        ready: function(duration) {
+        ready: function (duration) {
             if (this.loaded) {
                 return;
             }
@@ -752,7 +752,7 @@ export function ionSound() {
                 name: this.options.name,
                 alias: this.options.alias,
                 ext: this.options.supported[this.ext],
-                duration: duration
+                duration: duration,
             };
 
             if (
@@ -768,7 +768,7 @@ export function ionSound() {
             }
         },
 
-        play: function(options) {
+        play: function (options) {
             if (!this.inited) {
                 return;
             }
@@ -804,7 +804,7 @@ export function ionSound() {
             }
         },
 
-        stop: function(options) {
+        stop: function (options) {
             if (!this.inited) {
                 return;
             }
@@ -822,7 +822,7 @@ export function ionSound() {
             }
         },
 
-        pause: function(options) {
+        pause: function (options) {
             if (!this.inited) {
                 return;
             }
@@ -840,7 +840,7 @@ export function ionSound() {
             }
         },
 
-        volume: function(options) {
+        volume: function (options) {
             var stream;
 
             if (options) {
@@ -863,10 +863,10 @@ export function ionSound() {
                 stream = this.streams[0];
                 stream && stream.setVolume(this.options);
             }
-        }
+        },
     };
 
-    Stream = function(options, sprite_part) {
+    Stream = function (options, sprite_part) {
         this.name = options.name;
         this.alias = options.alias;
         this.sprite_part = sprite_part;
@@ -897,7 +897,7 @@ export function ionSound() {
     };
 
     Stream.prototype = {
-        init: function() {
+        init: function () {
             this.sound = new Audio();
             this.sound.volume = this.volume;
 
@@ -918,7 +918,7 @@ export function ionSound() {
             this.load();
         },
 
-        destroy: function() {
+        destroy: function () {
             this.stop();
 
             this.sound.removeEventListener(
@@ -941,7 +941,7 @@ export function ionSound() {
             this.loaded = false;
         },
 
-        createUrl: function() {
+        createUrl: function () {
             var rand = new Date().valueOf();
             this.url =
                 this.path +
@@ -952,13 +952,13 @@ export function ionSound() {
                 rand;
         },
 
-        can_play_through: function() {
+        can_play_through: function () {
             if (this.preload) {
                 this.ready();
             }
         },
 
-        load: function() {
+        load: function () {
             this.sound.src = this.url;
             this.sound.preload = this.preload ? 'auto' : 'none';
             if (this.preload) {
@@ -966,7 +966,7 @@ export function ionSound() {
             }
         },
 
-        setLoop: function(options) {
+        setLoop: function (options) {
             if (options.loop === true) {
                 this.loop = 9999999;
             } else if (typeof options.loop === 'number') {
@@ -976,7 +976,7 @@ export function ionSound() {
             }
         },
 
-        update: function(options) {
+        update: function (options) {
             this.setLoop(options);
 
             if ('volume' in options) {
@@ -984,7 +984,7 @@ export function ionSound() {
             }
         },
 
-        ready: function() {
+        ready: function () {
             if (this.loaded || !this.sound) {
                 return;
             }
@@ -997,7 +997,7 @@ export function ionSound() {
             }
         },
 
-        play: function(options) {
+        play: function (options) {
             if (options) {
                 this.update(options);
             }
@@ -1009,7 +1009,7 @@ export function ionSound() {
             this._play();
         },
 
-        _play: function() {
+        _play: function () {
             if (this.paused) {
                 this.paused = false;
             } else {
@@ -1024,7 +1024,7 @@ export function ionSound() {
             this.sound.play();
         },
 
-        stop: function() {
+        stop: function () {
             if (!this.playing) {
                 return;
             }
@@ -1039,7 +1039,7 @@ export function ionSound() {
             } catch (e) {}
         },
 
-        pause: function() {
+        pause: function () {
             if (this.paused) {
                 this._play();
             } else {
@@ -1051,7 +1051,7 @@ export function ionSound() {
             }
         },
 
-        _update: function() {
+        _update: function () {
             if (!this.start_time) {
                 return;
             }
@@ -1068,14 +1068,14 @@ export function ionSound() {
             }
         },
 
-        ended: function() {
+        ended: function () {
             if (this.playing) {
                 this.stop();
                 this._ended();
             }
         },
 
-        _ended: function() {
+        _ended: function () {
             this.playing = false;
 
             var config = {
@@ -1083,7 +1083,7 @@ export function ionSound() {
                 alias: this.alias,
                 part: this.sprite_part,
                 start: this.start,
-                duration: this.end
+                duration: this.end,
             };
 
             if (
@@ -1098,24 +1098,24 @@ export function ionSound() {
             }
         },
 
-        looper: function() {
+        looper: function () {
             this.loop--;
             this.play();
         },
 
-        clear: function() {
+        clear: function () {
             this.start_time = 0;
             this.played_time = 0;
             this.paused_time = 0;
         },
 
-        setVolume: function(options) {
+        setVolume: function (options) {
             this.volume = options.volume;
 
             if (this.sound) {
                 this.sound.volume = this.volume;
             }
-        }
+        },
     };
     return ion;
 }

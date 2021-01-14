@@ -22,7 +22,7 @@ global.mount = mount;
 global.fetchMock = fetchMock;
 
 // global mocks
-window.alert = global.alert = jest.fn(msg => console.log(msg));
+window.alert = global.alert = jest.fn((msg) => console.log(msg));
 
 // redux helpers
 

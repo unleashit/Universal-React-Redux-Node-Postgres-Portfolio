@@ -13,11 +13,11 @@ export const WORK_DETAIL_RESET = 'WORK_DETAIL_RESET';
 export const WORK_LAST_PROJECT_HEIGHT = 'WORK_LAST_PROJECT_HEIGHT';
 
 function fetchPortfolio() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: WORK_FETCHING });
 
         return fetch(__API_URL__ + '/portfolio')
-            .then(response => {
+            .then((response) => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
                 } else
@@ -25,10 +25,10 @@ function fetchPortfolio() {
                         'Received wrong status code, work not retrieved'
                     );
             })
-            .then(result => {
+            .then((result) => {
                 dispatch({ type: WORK_FETCHED, result });
             })
-            .catch(error => {
+            .catch((error) => {
                 dispatch({ type: WORK_FETCH_FAILED, error: error.message });
                 console.error(error);
             });
@@ -36,11 +36,11 @@ function fetchPortfolio() {
 }
 
 function fetchPortfolioDetail(slug) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: WORK_DETAIL_FETCHING });
 
         return fetch(__API_URL__ + '/portfolio/' + slug)
-            .then(response => {
+            .then((response) => {
                 if (response.status > 199 && response.status < 300) {
                     return response.json();
                 } else
@@ -48,13 +48,13 @@ function fetchPortfolioDetail(slug) {
                         'Received wrong status code, work not retrieved'
                     );
             })
-            .then(result => {
+            .then((result) => {
                 dispatch({ type: WORK_DETAIL_FETCHED, result });
             })
-            .catch(err => {
+            .catch((err) => {
                 dispatch({
                     type: WORK_DETAIL_FETCH_FAILED,
-                    error: err.message
+                    error: err.message,
                 });
                 console.error(err.message);
             });
@@ -102,13 +102,13 @@ export function fetchPortfolioDetailIfNeeded(slug, bypassCheck) {
 }
 
 export function resetPortfolioDetail() {
-    return dispatch => {
+    return (dispatch) => {
         return dispatch({ type: WORK_DETAIL_RESET });
     };
 }
 
 export function lastProjectHeight(height) {
-    return dispatch => {
+    return (dispatch) => {
         return dispatch({ type: WORK_LAST_PROJECT_HEIGHT, payload: height });
     };
 }

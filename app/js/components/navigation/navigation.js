@@ -62,5 +62,5 @@ export default class Navigation extends React.PureComponent {
 
 Navigation.propTypes = {
     logo: PropTypes.oneOf(['1', '2']),
-    home: PropTypes.bool.isRequired
+    home: PropTypes.bool.isRequired,
 };

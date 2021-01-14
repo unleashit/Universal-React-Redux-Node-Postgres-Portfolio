@@ -15,12 +15,12 @@ describe('Home container', () => {
             animateOff: false,
             animateAbout: false,
             animatePortfolio: false,
-            animateContact: false
+            animateContact: false,
         },
         liveChat: {
-            remoteId: ''
+            remoteId: '',
         },
-        dispatch: jest.fn()
+        dispatch: jest.fn(),
     };
 
     describe('<Home />', () => {
@@ -109,7 +109,7 @@ describe('Home container', () => {
                 // animateOff should not be dispatched
                 const x = 'client';
                 jest.spyOn(utils, 'getEnvironment').mockImplementation(
-                    x => false
+                    (x) => false
                 );
                 props.dispatch.mockReset();
                 wrapper.instance().componentDidUpdate();
@@ -145,7 +145,7 @@ describe('Home container', () => {
                 expect(triggerMock.mock.calls).toEqual([
                     [['about', 'animateAbout']],
                     [['work', 'animatePortfolio']],
-                    [['contact-area', 'animateContact']]
+                    [['contact-area', 'animateContact']],
                 ]);
                 triggerMock.mockRestore();
             });
@@ -159,8 +159,8 @@ describe('Home container', () => {
                     props.dispatch.mockReset();
                     document.getElementById = jest.fn(() => ({
                         getBoundingClientRect: jest.fn(() => ({
-                            top: 0
-                        }))
+                            top: 0,
+                        })),
                     }));
                     wrapper
                         .instance()
@@ -171,8 +171,8 @@ describe('Home container', () => {
                     props.dispatch.mockReset();
                     document.getElementById = jest.fn(() => ({
                         getBoundingClientRect: jest.fn(() => ({
-                            top: 1001
-                        }))
+                            top: 1001,
+                        })),
                     }));
                     wrapper
                         .instance()
@@ -184,8 +184,8 @@ describe('Home container', () => {
                     props.global.animateAbout = true;
                     document.getElementById = jest.fn(() => ({
                         getBoundingClientRect: jest.fn(() => ({
-                            top: 0
-                        }))
+                            top: 0,
+                        })),
                     }));
                     wrapper = shallow(<Home {...props} />);
                     props.dispatch.mockReset();
@@ -216,7 +216,7 @@ describe('Home container', () => {
 
             const helmet = wrapper.find('HelmetWrapper');
             expect(helmet.prop('htmlAttributes')).toEqual({
-                class: props.global.htmlClass
+                class: props.global.htmlClass,
             });
         });
     });

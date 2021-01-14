@@ -32,9 +32,7 @@ class Root extends Component {
             return <script src={scrpt.devSrc} />;
         } else {
             const innerHtml = `
-                window.addEventListener('load', lazyLoadScript.bind(null, '${
-                    scrpt.src
-                }'), false);`;
+                window.addEventListener('load', lazyLoadScript.bind(null, '${scrpt.src}'), false);`;
             return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
         }
     }
@@ -109,11 +107,11 @@ class Root extends Component {
                     {this.lazyLoadScript({
                         src: '/js/global.min.js',
                         devSrc: '/js/global.js',
-                        global: true
+                        global: true,
                     })}
                     {this.lazyLoadScript({
                         src:
-                            'https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/11.0.2/js/smooth-scroll.min.js'
+                            'https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/11.0.2/js/smooth-scroll.min.js',
                     })}
                 </body>
             </html>

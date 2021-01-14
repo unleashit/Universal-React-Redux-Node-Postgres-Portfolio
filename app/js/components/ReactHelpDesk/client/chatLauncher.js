@@ -54,22 +54,19 @@ LiveChatLauncher.propTypes = {
     liveChat: PropTypes.shape({
         chatOpen: PropTypes.bool.isRequired,
         remoteName: PropTypes.string.isRequired,
-        serverStatus: PropTypes.bool.isRequired
-    })
+        serverStatus: PropTypes.bool.isRequired,
+    }),
     // toggleChat: PropTypes.func.isRequired,
     // setHeader: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    {
-        toggleChat: chatActions.toggleChat,
-        setHeader: globalActions.setHeader
-    }
-)(LiveChatLauncher);
+export default connect(mapStateToProps, {
+    toggleChat: chatActions.toggleChat,
+    setHeader: globalActions.setHeader,
+})(LiveChatLauncher);

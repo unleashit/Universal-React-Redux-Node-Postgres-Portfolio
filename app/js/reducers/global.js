@@ -6,7 +6,7 @@ import {
     ANIMATE_ABOUT,
     ANIMATE_PORTFOLIO,
     ANIMATE_CONTACT,
-    ANIMATE_OFF
+    ANIMATE_OFF,
 } from '../actions/global';
 
 export default function global(
@@ -16,44 +16,44 @@ export default function global(
         animateAbout: false,
         animatePortfolio: false,
         animateContact: false,
-        animateOff: false
+        animateOff: false,
     },
     action
 ) {
     switch (action.type) {
         case TOGGLE_HAMBURGER:
             return Object.assign({}, state, {
-                hamburgerState: !state.hamburgerState
+                hamburgerState: !state.hamburgerState,
             });
         case OPEN_HAMBURGER:
             return Object.assign({}, state, {
                 hamburgerState: true,
-                htmlClass: 'menu-open'
+                htmlClass: 'menu-open',
             });
         case CLOSE_HAMBURGER:
             return Object.assign({}, state, {
                 hamburgerState: false,
-                htmlClass: null
+                htmlClass: null,
             });
         case SET_HEADER:
             return Object.assign({}, state, {
-                headerState: action.bool
+                headerState: action.bool,
             });
         case ANIMATE_ABOUT:
             return Object.assign({}, state, {
-                animateAbout: action.bool
+                animateAbout: action.bool,
             });
         case ANIMATE_PORTFOLIO:
             return Object.assign({}, state, {
-                animatePortfolio: action.bool
+                animatePortfolio: action.bool,
             });
         case ANIMATE_CONTACT:
             return Object.assign({}, state, {
-                animateContact: action.bool
+                animateContact: action.bool,
             });
         case ANIMATE_OFF:
             return Object.assign({}, state, {
-                animateOff: action.bool
+                animateOff: action.bool,
             });
         default:
             return state;

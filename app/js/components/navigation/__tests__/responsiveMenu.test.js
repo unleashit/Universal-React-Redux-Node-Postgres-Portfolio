@@ -4,7 +4,7 @@ describe('<ResponsiveMenu />', () => {
     let wrapper;
     let props = {
         menuVisible: false,
-        closeBurger: jest.fn()
+        closeBurger: jest.fn(),
     };
 
     beforeEach(() => {

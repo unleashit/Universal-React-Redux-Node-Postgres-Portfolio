@@ -24,11 +24,11 @@ export let state = {
     currentUser: null,
     isTyping: false,
     isTypingDetails: null,
-    typingTimer: null
+    typingTimer: null,
 };
 
 export function setState(payload) {
-    Object.keys(payload).forEach(key => {
+    Object.keys(payload).forEach((key) => {
         state[key] = payload[key];
     });
 }

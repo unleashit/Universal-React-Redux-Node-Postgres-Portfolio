@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-const Gallery = props => {
+const Gallery = (props) => {
     const { image_mobile, gallery, link, prev, next } = props.item;
 
     const mobileImage = image_mobile ? (

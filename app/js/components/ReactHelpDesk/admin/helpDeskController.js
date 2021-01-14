@@ -13,14 +13,14 @@ import {
     setState,
     newMessage,
     setConnected,
-    deleteUser
+    deleteUser,
 } from './admin';
 
 ionSound.sound({
     sounds: [{ name: 'water_droplet_3' }],
     volume: 0.5,
     path: '/sounds/',
-    preload: true
+    preload: true,
 });
 
 // *
@@ -28,7 +28,7 @@ ionSound.sound({
 // *
 
 export function socketConnect() {
-    socket.emit('admin login', {}, id => {
+    socket.emit('admin login', {}, (id) => {
         setState({ adminId: id });
         // console.log(`socket.io connected. Id: ${props.adminId}`);
     });
@@ -37,7 +37,7 @@ export function socketConnect() {
 export function socketUserInit(usersFromServer) {
     // console.log('users update:', usersFromServer);
     setState({
-        users: usersFromServer || {}
+        users: usersFromServer || {},
     });
     const keys = Object.keys(props.users);
 
@@ -97,7 +97,7 @@ export function socketIsTyping(resp) {
         window.clearTimeout(props.typingTimer);
     } else {
         setState({
-            isTypingDetails: elem.innerHTML
+            isTypingDetails: elem.innerHTML,
         });
     }
 
@@ -108,14 +108,14 @@ export function socketIsTyping(resp) {
         typingTimer: window.setTimeout(() => {
             elem.innerHTML = props.isTypingDetails;
             setState({ isTyping: false });
-        }, 1500)
+        }, 1500),
     });
 }
 
 export function socketArchivedUserUpdate(usersFromServer) {
     setState({
         archivedUsers: usersFromServer.users || {},
-        totalUsers: usersFromServer.count
+        totalUsers: usersFromServer.count,
     });
 
     archivedUserList.innerHTML = render.renderArchivedUserList(
@@ -160,7 +160,7 @@ export function handleSubmit(e) {
             name: window.__LIVE_CHAT_ADMIN_NAME__,
             room: currentUser,
             message: val,
-            date: Date.now()
+            date: Date.now(),
         };
         socket.emit('chatMessage', message);
         msg.value = '';
@@ -182,7 +182,7 @@ export function userListListener(e) {
         setState({
             currentUser:
                 e.target.getAttribute('data-user-id') ||
-                e.target.parentNode.getAttribute('data-user-id')
+                e.target.parentNode.getAttribute('data-user-id'),
         });
         userList.innerHTML = render.renderUserList();
         messageList.innerHTML = render.renderMessageList(
@@ -213,7 +213,7 @@ export function archivedUserListListener(e) {
         setState({
             currentUser:
                 e.target.getAttribute('data-user-id') ||
-                e.target.parentNode.getAttribute('data-user-id')
+                e.target.parentNode.getAttribute('data-user-id'),
         });
         archivedUserList.innerHTML = render.renderArchivedUserList(
             props.currentOffset
@@ -240,7 +240,7 @@ export function handleChangePagination(e) {
     const pageNumber = e.target.innerText;
 
     setState({
-        currentOffset: pageNumber * props.perPage - props.perPage
+        currentOffset: pageNumber * props.perPage - props.perPage,
     });
 
     socket.emit('admin getUsers', props.currentOffset);

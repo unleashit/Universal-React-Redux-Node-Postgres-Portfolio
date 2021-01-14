@@ -1,7 +1,7 @@
 var models = require('../models/index.js');
 const Op = models.Sequelize.Op;
 
-exports.getPortfolioItems = function(req, res) {
+exports.getPortfolioItems = function (req, res) {
     models.Portfolio.findAll({
         limit: 25,
         attributes: [
@@ -10,18 +10,18 @@ exports.getPortfolioItems = function(req, res) {
             'main_image',
             'url_slug',
             'description_short',
-            'sort'
-        ]
+            'sort',
+        ],
     })
-        .then(items => {
+        .then((items) => {
             res.json(items);
         })
-        .catch(error => {
+        .catch((error) => {
             console.log(error);
         });
 };
 
-exports.getPortfolioItem = function(req, res, next) {
+exports.getPortfolioItem = function (req, res, next) {
     models.Portfolio.findOne({
         attributes: [
             'id',
@@ -34,13 +34,13 @@ exports.getPortfolioItem = function(req, res, next) {
             'gallery',
             'link',
             'url_slug',
-            'sort'
+            'sort',
         ],
         where: {
-            url_slug: req.params.slug
-        }
+            url_slug: req.params.slug,
+        },
     })
-        .then(mainItem => {
+        .then((mainItem) => {
             if (!mainItem) {
                 throw new Error('404');
             }
@@ -48,19 +48,19 @@ exports.getPortfolioItem = function(req, res, next) {
             return models.Portfolio.findAll({
                 attributes: ['id', 'url_slug', 'sort'],
                 where: {
-                    sort: { [Op.gt]: mainItem.dataValues.sort }
+                    sort: { [Op.gt]: mainItem.dataValues.sort },
                 },
                 order: [['sort', 'ASC']],
-                limit: 1
-            }).then(next => {
+                limit: 1,
+            }).then((next) => {
                 return models.Portfolio.findAll({
                     attributes: ['id', 'url_slug', 'sort'],
                     where: {
-                        sort: { [Op.lt]: mainItem.dataValues.sort }
+                        sort: { [Op.lt]: mainItem.dataValues.sort },
                     },
                     order: [['sort', 'DESC']],
-                    limit: 1
-                }).then(prev => {
+                    limit: 1,
+                }).then((prev) => {
                     mainItem.dataValues.next =
                         next.length === 0 ? null : next[0].dataValues.url_slug;
                     mainItem.dataValues.prev =
@@ -69,7 +69,7 @@ exports.getPortfolioItem = function(req, res, next) {
                 });
             });
         })
-        .catch(error => {
+        .catch((error) => {
             if (error.message === '404') {
                 console.log("404: can't get portfolio item");
                 res.json(404, { error: '404 not found' });

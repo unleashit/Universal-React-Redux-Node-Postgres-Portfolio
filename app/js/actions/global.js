@@ -8,49 +8,49 @@ export const ANIMATE_CONTACT = 'ANIMATE_CONTACT';
 export const ANIMATE_OFF = 'ANIMATE_OFF';
 
 export function setHeader(bool) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: SET_HEADER, bool });
     };
 }
 
 export function animateAbout(bool) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: ANIMATE_ABOUT, bool });
     };
 }
 
 export function animatePortfolio(bool) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: ANIMATE_PORTFOLIO, bool });
     };
 }
 
 export function animateContact(bool) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: ANIMATE_CONTACT, bool });
     };
 }
 
 export function animateOff(bool = true) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: ANIMATE_OFF, bool });
     };
 }
 
 export function toggleHamburger() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: TOGGLE_HAMBURGER });
     };
 }
 
 export function openHamburger() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: OPEN_HAMBURGER });
     };
 }
 
 export function closeHamburger() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({ type: CLOSE_HAMBURGER });
     };
 }

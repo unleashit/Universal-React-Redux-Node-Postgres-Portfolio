@@ -44,7 +44,7 @@ export class StickyHeader extends React.Component {
     render() {
         const {
             visible,
-            global: { headerState }
+            global: { headerState },
         } = this.props;
 
         const classes = `sticky-header hidden-xs-down${
@@ -63,9 +63,7 @@ export class StickyHeader extends React.Component {
                     </div>
                     <div className="contact-info pull-right hidden-xs-down">
                         <div>
-                            <span
-                                className="chat-status"
-                            >
+                            <span className="chat-status">
                                 <OpenChat>
                                     <LiveChatStatus
                                         remoteId={this.props.remoteId}
@@ -83,23 +81,20 @@ export class StickyHeader extends React.Component {
 StickyHeader.propTypes = {
     visible: PropTypes.bool,
     openBurger: PropTypes.func.isRequired,
-    remoteId: PropTypes.string.isRequired
+    remoteId: PropTypes.string.isRequired,
 };
 
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        global: state.global
+        global: state.global,
     };
 }
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(StickyHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(StickyHeader);

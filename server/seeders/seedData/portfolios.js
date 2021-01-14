@@ -11,7 +11,7 @@ module.exports = [
             'React, Javascript, CSS, Design/UX, Frontend, Backend, PostgreSQL, Ecommerce, Devops',
         main_image: 'TatteasyLogo.svg',
         image_mobile: 'TatteasyMobile.png',
-        gallery: 'TatteasyGallery.jpg'
+        gallery: 'TatteasyGallery.jpg',
     },
     {
         title: 'Relola',
@@ -24,7 +24,7 @@ module.exports = [
         tags: 'Angular, Javascript, Html, CSS, Frontend',
         main_image: 'RelolaLogo.png',
         image_mobile: 'RelolaMobile.png',
-        gallery: 'RelolaGallery.jpg'
+        gallery: 'RelolaGallery.jpg',
     },
     {
         title: 'Weaved',
@@ -38,7 +38,7 @@ module.exports = [
             'jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP',
         main_image: 'WeavedLogo.png',
         image_mobile: 'WeavedMobile.png',
-        gallery: 'WeavedGallery.png'
+        gallery: 'WeavedGallery.png',
     },
     {
         title: 'Terra Global Capital',
@@ -52,7 +52,7 @@ module.exports = [
             'Drupal, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql, AWS, Devops',
         main_image: 'TGCLogo.png',
         image_mobile: 'tgcMobile.png',
-        gallery: 'tgcGallery.png'
+        gallery: 'tgcGallery.png',
     },
     {
         title: 'General Electric',
@@ -66,7 +66,7 @@ module.exports = [
             'Wordpress, JQuery, Javascript, Html, CSS, Design/UX, Frontend, PHP, MySql',
         main_image: 'GELogo.png',
         image_mobile: 'GEMobile.png',
-        gallery: 'GEGallery.png'
+        gallery: 'GEGallery.png',
     },
     {
         title: 'Monticello Property Management',
@@ -80,7 +80,7 @@ module.exports = [
             'Drupal, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'MonticelloLogo2.png',
         image_mobile: 'MonticelloMobile.png',
-        gallery: 'MonticelloGallery.jpg'
+        gallery: 'MonticelloGallery.jpg',
     },
     {
         title: 'Karuna',
@@ -94,7 +94,7 @@ module.exports = [
             'Ecommerce, Joomla, jQuery, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'KarunaLogo.png',
         image_mobile: null,
-        gallery: 'KarunaGallery.jpg'
+        gallery: 'KarunaGallery.jpg',
     },
     {
         title: 'Eyeland Digital',
@@ -107,7 +107,7 @@ module.exports = [
         tags: 'Html, CSS, Design/UX, Frontend',
         main_image: 'EyelandDigitalLogo.png',
         image_mobile: null,
-        gallery: 'EyelandDigitalGallery.jpg'
+        gallery: 'EyelandDigitalGallery.jpg',
     },
     {
         title: 'The Kitchen Sisters',
@@ -120,7 +120,7 @@ module.exports = [
         tags: 'Wordpress, jQuery, Html, CSS, Design/UX, Frontend',
         main_image: 'KitchenSistersLogo.png',
         image_mobile: null,
-        gallery: 'KitchenSistersGallery.png'
+        gallery: 'KitchenSistersGallery.png',
     },
     {
         title: 'Monaluna',
@@ -134,7 +134,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, PHP, MySql',
         main_image: 'MonaLunaLogo.png',
         image_mobile: null,
-        gallery: 'MonaLunaGallery.jpg'
+        gallery: 'MonaLunaGallery.jpg',
     },
     {
         title: 'H4H Cambodia',
@@ -148,7 +148,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'h4hLogo.png',
         image_mobile: 'h4hMobile.png',
-        gallery: 'h4hGallery.jpg'
+        gallery: 'h4hGallery.jpg',
     },
     {
         title: 'Woof Report',
@@ -162,7 +162,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'WoofReportLogo.png',
         image_mobile: null,
-        gallery: 'WoofReportGallery.jpg'
+        gallery: 'WoofReportGallery.jpg',
     },
     {
         title: 'Aefa-Afsa',
@@ -176,7 +176,7 @@ module.exports = [
             'Drupal, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql, Devops',
         main_image: 'AfsaLogo.png',
         image_mobile: 'AfsaMobile.png',
-        gallery: 'AfsaGallery.jpg'
+        gallery: 'AfsaGallery.jpg',
     },
     {
         title: "St. Patrick's Seminary and University",
@@ -190,7 +190,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'StPatricksLogo.png',
         image_mobile: null,
-        gallery: 'StPatricksGallery.jpg'
+        gallery: 'StPatricksGallery.jpg',
     },
     {
         title: 'Leigh Designs',
@@ -204,7 +204,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'LeighDesignsLogo.png',
         image_mobile: null,
-        gallery: 'LeighDesignsGallery.jpg'
+        gallery: 'LeighDesignsGallery.jpg',
     },
     {
         title: 'JJ Fish and Chicken',
@@ -218,7 +218,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'jjFishLogo.png',
         image_mobile: null,
-        gallery: 'jjFishGallery.jpg'
+        gallery: 'jjFishGallery.jpg',
     },
     {
         title: 'Conversations on Philanthropy',
@@ -232,7 +232,7 @@ module.exports = [
             'Joomla, jQuery, Javascript, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'ConversationsLogo.png',
         image_mobile: null,
-        gallery: 'ConversationsGallery.jpg'
+        gallery: 'ConversationsGallery.jpg',
     },
     {
         title: 'DK Design Studio',
@@ -244,7 +244,7 @@ module.exports = [
         tags: 'Html, CSS, Design/UX, Frontend',
         main_image: 'DKLogo.png',
         image_mobile: null,
-        gallery: 'DKGallery.jpg'
+        gallery: 'DKGallery.jpg',
     },
     {
         title: 'Quiet Orinda',
@@ -257,6 +257,6 @@ module.exports = [
             'Joomla, jQuery, Html, CSS, Design/UX, Frontend, Backend, PHP, MySql',
         main_image: 'quietOrindaLogo.png',
         image_mobile: null,
-        gallery: 'quietOrindaGallery.png'
-    }
+        gallery: 'quietOrindaGallery.png',
+    },
 ];

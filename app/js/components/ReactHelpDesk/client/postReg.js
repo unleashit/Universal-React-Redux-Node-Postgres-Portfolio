@@ -95,7 +95,7 @@ class PostReg extends Component {
 PostReg.propTypes = {
     onChange: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
-    messages: PropTypes.array.isRequired
+    messages: PropTypes.array.isRequired,
 };
 PostReg.defaultProps = {};
 

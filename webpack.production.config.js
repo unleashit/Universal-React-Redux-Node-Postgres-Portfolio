@@ -12,18 +12,18 @@ var IsomorphicLoaderPlugin = require('isomorphic-loader/lib/webpack-plugin');
 module.exports = {
     entry: {
         global: ['./app/js/index.js'],
-        admin: './app/js/components/ReactHelpDesk/admin/admin.js'
+        admin: './app/js/components/ReactHelpDesk/admin/admin.js',
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'js/[name].min.js',
-        publicPath: '/'
+        publicPath: '/',
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
+                NODE_ENV: JSON.stringify('production'),
+            },
         }),
         new ExtractTextPlugin('./css/[name].min.css'),
         // new Purify({
@@ -44,9 +44,9 @@ module.exports = {
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
             cssProcessorOptions: {
-                discardComments: { removeAll: true, autoprefixer: false }
+                discardComments: { removeAll: true, autoprefixer: false },
             },
-            canPrint: true
+            canPrint: true,
         }),
         // new UglifyJsPlugin({
         //     cache: true,
@@ -54,7 +54,7 @@ module.exports = {
         // }),
         // ignore locales in moment.js
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new IsomorphicLoaderPlugin()
+        new IsomorphicLoaderPlugin(),
     ],
     module: {
         rules: [
@@ -62,7 +62,7 @@ module.exports = {
                 test: /\.js?$/,
                 loader: 'babel-loader',
                 // include: path.join(__dirname, 'app'),
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/,
@@ -70,7 +70,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [
                         {
-                            loader: 'css-loader'
+                            loader: 'css-loader',
                             // options: {
                             //     modules: true,
                             //     sourceMap: false,
@@ -78,20 +78,23 @@ module.exports = {
                             //     localIdentName: '[name]__[local]___[hash:base64:5]',
                             // },
                         },
-                        'postcss-loader'
-                    ]
-                })
+                        'postcss-loader',
+                    ],
+                }),
             },
             {
                 test: /\.scss$/,
                 include: [
                     path.resolve(__dirname, './app/scss'),
-                    path.resolve(__dirname, './app/js/components/ReactHelpDesk/admin/scss')
+                    path.resolve(
+                        __dirname,
+                        './app/js/components/ReactHelpDesk/admin/scss'
+                    ),
                 ],
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
+                    use: ['css-loader', 'postcss-loader', 'sass-loader'],
+                }),
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -100,21 +103,21 @@ module.exports = {
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            bypassOnDebug: true
-                        }
+                            bypassOnDebug: true,
+                        },
                     },
-                    'isomorphic-loader'
-                ]
+                    'isomorphic-loader',
+                ],
             },
             {
                 test: /\.(eot|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
                 use: [
                     'file-loader?name=fonts/[name].[ext]',
-                    'isomorphic-loader'
-                ]
-            }
-        ]
+                    'isomorphic-loader',
+                ],
+            },
+        ],
     },
 
-    devtool: false
+    devtool: false,
 };

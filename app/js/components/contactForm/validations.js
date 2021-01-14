@@ -1,4 +1,4 @@
-export default values => {
+export default (values) => {
     const errors = {};
     if (!values.name) {
         errors.name = 'Please enter your name';

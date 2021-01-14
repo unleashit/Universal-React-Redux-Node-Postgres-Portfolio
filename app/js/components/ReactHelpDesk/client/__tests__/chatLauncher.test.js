@@ -12,10 +12,10 @@ describe('<LiveChatLauncher />', () => {
         liveChat: {
             chatOpen: false,
             remoteName: '',
-            serverStatus: true
+            serverStatus: true,
         },
         toggleChat: jest.fn(),
-        setHeader: jest.fn()
+        setHeader: jest.fn(),
     };
 
     beforeEach(() => {

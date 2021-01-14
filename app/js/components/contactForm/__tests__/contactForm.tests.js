@@ -4,7 +4,7 @@ import ConnectedContactForm, { ContactForm } from '../contactForm';
 import {
     createMockStore,
     wrapActualStore,
-    wrapMockStore
+    wrapMockStore,
 } from '../../../../../setupTests';
 import { combineReducers } from 'redux';
 import React from 'react';
@@ -23,8 +23,8 @@ describe('<ContactForm />', () => {
         submitting: '',
         dispatch: jest.fn(),
         contactForm: {
-            readyState: null
-        }
+            readyState: null,
+        },
     };
 
     beforeEach(() => {
@@ -56,7 +56,7 @@ describe('<ContactForm /> integration tests', () => {
         mockHandleSubmit = jest.fn();
 
         props = {
-            handleSubmit: jest.fn(() => mockHandleSubmit)
+            handleSubmit: jest.fn(() => mockHandleSubmit),
         };
 
         const wrapped = wrapActualStore(ConnectedContactForm, props);
@@ -128,11 +128,11 @@ describe('<ContactForm /> integration tests', () => {
     test('form submits and shows loader when all data is valid', () => {
         const response = {
             result: 'Success',
-            info: '250 Message received'
+            info: '250 Message received',
         };
         fetchMock.post(`${__API_URL__}/contact`, {
             body: response,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
         });
 
         // const mockReactGA = jest
@@ -167,8 +167,8 @@ describe('<ContactForm /> integration tests', () => {
             handleSubmit: jest.fn(),
             dispatch: mockDispatch,
             contactForm: {
-                readyState: null
-            }
+                readyState: null,
+            },
         };
 
         wrapper = shallow(<ContactForm {...props} />);

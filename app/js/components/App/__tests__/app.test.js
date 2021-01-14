@@ -9,9 +9,9 @@ describe('<App />', () => {
     let wrapper;
     const props = {
         liveChat: {
-            chatOpen: false
+            chatOpen: false,
         },
-        toggleChat: jest.fn()
+        toggleChat: jest.fn(),
     };
 
     // make it output the production JS because js/css
@@ -58,9 +58,9 @@ describe('<App />', () => {
             let children = {
                 props: {
                     route: {
-                        path: '/index'
-                    }
-                }
+                        path: '/index',
+                    },
+                },
             };
 
             // footer is expected

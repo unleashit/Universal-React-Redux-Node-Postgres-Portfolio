@@ -18,7 +18,7 @@ const skills = [
     ['AWS', 'half'],
     ['Drupal', 'half'],
     ['Wordpress', 'half'],
-    ['Html5, CSS3', 'full']
+    ['Html5, CSS3', 'full'],
 ];
 
 function Skill({ skill, size, color }) {
@@ -32,16 +32,14 @@ function Skill({ skill, size, color }) {
 export default function Skills({ skillColors }) {
     return (
         <React.Fragment>
-        {
-            skills.map(([skill, size]) => (
+            {skills.map(([skill, size]) => (
                 <Skill
                     key={skill}
                     skill={skill}
                     size={size}
                     color={skillColors.next().value}
                 />
-            ))
-        }
+            ))}
         </React.Fragment>
-    )
+    );
 }

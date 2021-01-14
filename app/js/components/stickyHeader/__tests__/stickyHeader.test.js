@@ -13,8 +13,8 @@ describe('<StickyHeader />', () => {
             remoteId: 'admin',
             dispatch: jest.fn(),
             global: {
-                headerState: false
-            }
+                headerState: false,
+            },
         };
         wrapper = shallow(<StickyHeader {...props} />);
     });

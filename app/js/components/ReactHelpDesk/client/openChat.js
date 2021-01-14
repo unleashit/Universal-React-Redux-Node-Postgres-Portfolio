@@ -30,17 +30,14 @@ class OpenChat extends Component {
 
 function mapStateToProps(state) {
     return {
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(OpenChat);
+export default connect(mapStateToProps, mapDispatchToProps)(OpenChat);

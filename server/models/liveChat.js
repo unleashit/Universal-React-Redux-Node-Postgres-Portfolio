@@ -1,16 +1,16 @@
 'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     return sequelize.define('LiveChat', {
         socketId: {
             type: DataTypes.STRING,
             primaryKey: true,
-            autoIncrement: false
+            autoIncrement: false,
         },
         name: DataTypes.TEXT,
         email: DataTypes.TEXT,
         connected: DataTypes.BOOLEAN,
         messages: DataTypes.TEXT,
-        date: DataTypes.TEXT
+        date: DataTypes.TEXT,
     });
 };

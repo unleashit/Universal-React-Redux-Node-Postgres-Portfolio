@@ -6,11 +6,11 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-module.exports.show = function(req, res) {
+module.exports.show = function (req, res) {
     res.render('/signup');
 };
 
-module.exports.signup = function(req, res) {
+module.exports.signup = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
     var password2 = req.body.password2;
@@ -36,14 +36,14 @@ module.exports.signup = function(req, res) {
     var newUser = {
         email: email,
         salt: salt,
-        password: hashedPassword
+        password: hashedPassword,
     };
 
     model.User.create(newUser)
-        .then(function() {
+        .then(function () {
             res.redirect('/');
         })
-        .catch(function(error) {
+        .catch(function (error) {
             req.flash('error', 'That email already exists in the system');
             return res.redirect('/signup');
         });

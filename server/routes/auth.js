@@ -13,7 +13,7 @@ router
     })
     .post(createuser.signup);
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function (req, res, next) {
     // auto login as admin for development
     // if (req.app.get('env') === 'development') {
     //     if (req.query.user) {
@@ -32,14 +32,14 @@ router.get('/login', function(req, res, next) {
 
 router.post(
     '/login',
-    function(req, res, next) {
+    function (req, res, next) {
         var pattern = /^\s*$/;
         if (
             pattern.test(req.body.username) ||
             pattern.test(req.body.password)
         ) {
             res.render('login', {
-                message: 'Please enter a username and password'
+                message: 'Please enter a username and password',
             });
         } else {
             next();
@@ -48,11 +48,11 @@ router.post(
     passport.authenticate('local', {
         successRedirect: '/admin/live-chat-manager',
         failureRedirect: '/login',
-        failureFlash: true
+        failureFlash: true,
     })
 );
 
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/login');
 });

@@ -26,8 +26,8 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: null,
-                    readyState: 'WORK_INVALID'
-                }
+                    readyState: 'WORK_INVALID',
+                },
             };
             store = createMockStore(state);
 
@@ -38,23 +38,23 @@ describe('Portfolio Actions', () => {
                     main_image: 'TatteasyLogo.svg',
                     sort: 1,
                     title: 'Tatteasy',
-                    url_slug: 'tatteasy'
-                }
+                    url_slug: 'tatteasy',
+                },
             ];
 
             const expectedActions = [
                 {
-                    type: 'WORK_FETCHING'
+                    type: 'WORK_FETCHING',
                 },
                 {
                     type: 'WORK_FETCHED',
-                    result
-                }
+                    result,
+                },
             ];
 
             fetchMock.get(`${__API_URL__}/portfolio`, {
                 body: result,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(portfolioActions.fetchPortfolioIfNeeded());
@@ -70,8 +70,8 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: [{ id: 1 }],
-                    readyState: 'WORK_FETCHED'
-                }
+                    readyState: 'WORK_FETCHED',
+                },
             };
             store = createMockStore(state);
 
@@ -87,30 +87,30 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: null,
-                    readyState: 'WORK_INVALID'
-                }
+                    readyState: 'WORK_INVALID',
+                },
             };
             store = createMockStore(state);
 
             const result = {
                 result: 'Error',
-                info: '500'
+                info: '500',
             };
 
             const expectedActions = [
                 {
-                    type: 'WORK_FETCHING'
+                    type: 'WORK_FETCHING',
                 },
                 {
                     type: 'WORK_FETCH_FAILED',
-                    error: 'Received wrong status code, work not retrieved'
-                }
+                    error: 'Received wrong status code, work not retrieved',
+                },
             ];
 
             fetchMock.get(`${__API_URL__}/portfolio`, {
                 body: result,
                 status: 500,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(portfolioActions.fetchPortfolioIfNeeded());
@@ -124,8 +124,8 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: null,
-                    readyState: 'WORK_DETAIL_INVALID'
-                }
+                    readyState: 'WORK_DETAIL_INVALID',
+                },
             };
             store = createMockStore(state);
 
@@ -135,22 +135,22 @@ describe('Portfolio Actions', () => {
                 main_image: 'TatteasyLogo.svg',
                 sort: 1,
                 title: 'Tatteasy',
-                url_slug: 'tatteasy'
+                url_slug: 'tatteasy',
             };
 
             const expectedActions = [
                 {
-                    type: 'WORK_DETAIL_FETCHING'
+                    type: 'WORK_DETAIL_FETCHING',
                 },
                 {
                     type: 'WORK_DETAIL_FETCHED',
-                    result
-                }
+                    result,
+                },
             ];
 
             fetchMock.get(`${__API_URL__}/portfolio/1`, {
                 body: result,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(
@@ -165,8 +165,8 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: { id: 1 },
-                    readyState: 'WORK_DETAIL_FETCHED'
-                }
+                    readyState: 'WORK_DETAIL_FETCHED',
+                },
             };
             store = createMockStore(state);
 
@@ -182,30 +182,30 @@ describe('Portfolio Actions', () => {
             const state = {
                 portfolio: {
                     items: null,
-                    readyState: 'WORK_DETAIL_INVALID'
-                }
+                    readyState: 'WORK_DETAIL_INVALID',
+                },
             };
             store = createMockStore(state);
 
             const result = {
                 result: 'Error',
-                info: '500'
+                info: '500',
             };
 
             const expectedActions = [
                 {
-                    type: 'WORK_DETAIL_FETCHING'
+                    type: 'WORK_DETAIL_FETCHING',
                 },
                 {
                     type: 'WORK_DETAIL_FETCH_FAILED',
-                    error: 'Received wrong status code, work not retrieved'
-                }
+                    error: 'Received wrong status code, work not retrieved',
+                },
             ];
 
             fetchMock.get(`${__API_URL__}/portfolio/1`, {
                 body: result,
                 status: 500,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(
@@ -219,8 +219,8 @@ describe('Portfolio Actions', () => {
     test('resetPortfolioDetail()', () => {
         const expectedActions = [
             {
-                type: 'WORK_DETAIL_RESET'
-            }
+                type: 'WORK_DETAIL_RESET',
+            },
         ];
 
         store.dispatch(portfolioActions.resetPortfolioDetail());
@@ -231,8 +231,8 @@ describe('Portfolio Actions', () => {
         const expectedActions = [
             {
                 type: 'WORK_LAST_PROJECT_HEIGHT',
-                payload: 500
-            }
+                payload: 500,
+            },
         ];
 
         store.dispatch(portfolioActions.lastProjectHeight(500));

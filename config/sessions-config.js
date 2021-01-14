@@ -10,20 +10,22 @@ const options = {
     sessionKey: process.env.SESSION_KEY,
     sessionSecret: process.env.SESSION_SECRET,
     checkExpirationInterval: 3600000,
-    expiration: 432000000
+    expiration: 432000000,
 };
 
 const isRealProd = () => {
     const apiBase = process.env.API_BASE || 'http://localhost';
 
     // only use secure cookie in production and when ssl is turned on
-    return process.env.NODE_ENV === 'production' &&
-        new URL(apiBase).protocol === 'https:';
+    return (
+        process.env.NODE_ENV === 'production' &&
+        new URL(apiBase).protocol === 'https:'
+    );
 };
 
 let sessionStore;
 
-module.exports = function(app) {
+module.exports = function (app) {
     if (options.dialect === 'mysql') {
         // eslint-disable-next-line node/no-missing-require
         var MySQLStore = require('express-mysql-session')(session);
@@ -44,7 +46,7 @@ module.exports = function(app) {
         sessionStore = new pgSession({
             pg: pg, // Use global pg-module
             conString,
-            tableName: 'session' // Optionally use another table-name than the default "session"
+            tableName: 'session', // Optionally use another table-name than the default "session"
         });
     } else {
         throw new Error(`This script only supports mysql or postgres sessions out of the box.
@@ -64,8 +66,8 @@ module.exports = function(app) {
                 maxAge: 5 * 24 * 60 * 60 * 1000, // 5 days
                 sameSite: true,
                 httpOnly: true,
-                secure: isRealProd()
-            }
+                secure: isRealProd(),
+            },
         })
     );
 

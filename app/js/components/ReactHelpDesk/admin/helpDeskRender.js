@@ -9,14 +9,12 @@ export function renderUserList() {
 
     return Object.keys(users).length
         ? `<ul class="user-list">${Object.keys(users)
-              .map(u => {
+              .map((u) => {
                   const connected = users[u].connected
                       ? 'connected'
                       : 'disconnected';
                   const active = users[u].id === currentUser ? 'active' : '';
-                  return `<li class="list-group-item ${connected} ${active}" data-user-id=${
-                      users[u].id
-                  }>
+                  return `<li class="list-group-item ${connected} ${active}" data-user-id=${users[u].id}>
                         <img src=${removeIcon} data-remove="removeUser" class="remove" />&nbsp;&nbsp;
                         <span>${users[u].name}</span>
                         <span class="tag tag-pill tag-default float-xs-right">
@@ -37,7 +35,7 @@ export function renderMessageList(user, obj) {
           }</li>
             ${obj[user].messages
                 .map(
-                    m => `<li class="message-list-message">
+                    (m) => `<li class="message-list-message">
                 <div class="date float-xs-right">${moment(
                     m.date
                 ).fromNow()}</div>
@@ -47,18 +45,18 @@ export function renderMessageList(user, obj) {
                 )
                 .join('')}</ul>`
         : // check to see if there at least is a user
-          typeof obj[user] !== 'undefined'
-            ? // since the user has no messages, show name/email
-              `<ul class="message-list">
+        typeof obj[user] !== 'undefined'
+        ? // since the user has no messages, show name/email
+          `<ul class="message-list">
                     <li class="title">
                         ${obj[user].name} ${
-                  obj[user].email ? ' @ ' + obj[user].email : ''
-              }
+              obj[user].email ? ' @ ' + obj[user].email : ''
+          }
                     </li>
                     <li class="message-list-message">No messages in chat.</li>
                 </ul>`
-            : // no user selected
-              '';
+        : // no user selected
+          '';
 }
 
 export function renderArchivedUserList() {
@@ -68,11 +66,9 @@ export function renderArchivedUserList() {
     return totalUsers
         ? `<ul class="user-list">
             ${archived
-                .map(u => {
+                .map((u) => {
                     const active = props.currentUser === u ? 'active' : '';
-                    return `<li class="archived list-group-item ${active}" data-user-id=${
-                        props.archivedUsers[u].id
-                    }>
+                    return `<li class="archived list-group-item ${active}" data-user-id=${props.archivedUsers[u].id}>
                     <img src=${trashIcon} data-delete="deleteUser" class="trash" />&nbsp;
                     <span>${props.archivedUsers[u].name}</span>
                     <span class="tag tag-pill tag-default float-xs-right">

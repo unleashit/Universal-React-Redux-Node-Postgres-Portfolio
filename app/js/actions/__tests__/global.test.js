@@ -18,8 +18,8 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'SET_HEADER',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(globalActions.setHeader(true));
@@ -30,8 +30,8 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'ANIMATE_ABOUT',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(globalActions.animateAbout(true));
@@ -42,8 +42,8 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'ANIMATE_PORTFOLIO',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(globalActions.animatePortfolio(true));
@@ -54,8 +54,8 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'ANIMATE_CONTACT',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(globalActions.animateContact(true));
@@ -66,8 +66,8 @@ describe('Global Actions', () => {
         const expectedActions = [
             {
                 type: 'ANIMATE_OFF',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         // default bool should = true
@@ -78,8 +78,8 @@ describe('Global Actions', () => {
     test('toggleHamburger()', () => {
         const expectedActions = [
             {
-                type: 'TOGGLE_HAMBURGER'
-            }
+                type: 'TOGGLE_HAMBURGER',
+            },
         ];
 
         store.dispatch(globalActions.toggleHamburger());
@@ -89,8 +89,8 @@ describe('Global Actions', () => {
     test('openHamburger()', () => {
         const expectedActions = [
             {
-                type: 'OPEN_HAMBURGER'
-            }
+                type: 'OPEN_HAMBURGER',
+            },
         ];
 
         store.dispatch(globalActions.openHamburger());
@@ -101,8 +101,8 @@ describe('Global Actions', () => {
     test('closeHamburger()', () => {
         const expectedActions = [
             {
-                type: 'CLOSE_HAMBURGER'
-            }
+                type: 'CLOSE_HAMBURGER',
+            },
         ];
 
         store.dispatch(globalActions.closeHamburger());

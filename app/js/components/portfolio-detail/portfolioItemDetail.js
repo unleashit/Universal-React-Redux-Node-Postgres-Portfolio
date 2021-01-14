@@ -63,12 +63,12 @@ class PortfolioItemDetail extends React.Component {
 function mapStateToProps(state) {
     return {
         portfolio: state.portfolio,
-        global: state.global
+        global: state.global,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 

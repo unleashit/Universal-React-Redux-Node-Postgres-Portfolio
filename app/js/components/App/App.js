@@ -5,7 +5,7 @@ import LiveChatContainer from '../ReactHelpDesk/client/liveChatContainer';
 import LiveChatLauncher from '../ReactHelpDesk/client/chatLauncher';
 import { toggleChat } from '../ReactHelpDesk/client/actions/liveChat';
 import { connect } from 'react-redux';
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 
 if (typeof document !== 'undefined') require('../../../scss/global.scss');
 
@@ -26,15 +26,16 @@ export class App extends Component {
         let stylesheets = [
             {
                 rel: 'stylesheet',
-                href: 'https://fonts.googleapis.com/css?family=Oswald|Sanchez&display=block',
-                async: true
-            }
+                href:
+                    'https://fonts.googleapis.com/css?family=Oswald|Sanchez&display=block',
+                async: true,
+            },
         ];
 
         if (process.env.NODE_ENV === 'production')
             stylesheets.unshift({
                 rel: 'stylesheet',
-                href: '/css/global.min.css'
+                href: '/css/global.min.css',
             });
 
         // Don't display the footer on 404 pages
@@ -68,12 +69,12 @@ export class App extends Component {
                             {
                                 name: 'description',
                                 content:
-                                    'Full Stack Engineer in Portland. Focused on React, Node.Js, Typescript, Frontend/Backend, Devops, AWS, Serverless.'
+                                    'Full Stack Engineer in Portland. Focused on React, Node.Js, Typescript, Frontend/Backend, Devops, AWS, Serverless.',
                             },
                             {
                                 name: 'viewport',
-                                content: 'width=device-width, initial-scale=1'
-                            }
+                                content: 'width=device-width, initial-scale=1',
+                            },
                         ]}
                         link={stylesheets}
                     />
@@ -90,11 +91,8 @@ export class App extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
     return {
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    { toggleChat }
-)(App);
+export default connect(mapStateToProps, { toggleChat })(App);

@@ -3,35 +3,35 @@ import {
     SUBMIT_CONTACT_SENDING,
     SUBMIT_CONTACT_SUCCESS,
     SUBMIT_CONTACT_FAILED,
-    SUBMIT_CONTACT_RESET
+    SUBMIT_CONTACT_RESET,
 } from '../actions/contact';
 
 export default function contactForm(
     state = {
         readyState: SUBMIT_CONTACT_INVALID,
-        result: null
+        result: null,
     },
     action
 ) {
     switch (action.type) {
         case SUBMIT_CONTACT_SENDING:
             return Object.assign({}, state, {
-                readyState: SUBMIT_CONTACT_SENDING
+                readyState: SUBMIT_CONTACT_SENDING,
             });
         case SUBMIT_CONTACT_FAILED:
             return Object.assign({}, state, {
                 readyState: SUBMIT_CONTACT_FAILED,
-                error: action.error
+                error: action.error,
             });
         case SUBMIT_CONTACT_SUCCESS:
             return Object.assign({}, state, {
                 readyState: SUBMIT_CONTACT_SUCCESS,
-                result: action.result
+                result: action.result,
             });
         case SUBMIT_CONTACT_RESET:
             return Object.assign({}, state, {
                 readyState: SUBMIT_CONTACT_INVALID,
-                result: null
+                result: null,
             });
         default:
             return state;

@@ -8,7 +8,7 @@ import {
     WORK_DETAIL_FETCHED,
     WORK_DETAIL_FETCH_FAILED,
     WORK_DETAIL_RESET,
-    WORK_LAST_PROJECT_HEIGHT
+    WORK_LAST_PROJECT_HEIGHT,
 } from '../actions/portfolio';
 
 export default function portfolio(
@@ -17,47 +17,47 @@ export default function portfolio(
         DetailReadyState: WORK_DETAIL_INVALID,
         items: null,
         item: null,
-        lastProjectHeight: 400
+        lastProjectHeight: 400,
     },
     action
 ) {
     switch (action.type) {
         case WORK_FETCHING:
             return Object.assign({}, state, {
-                readyState: WORK_FETCHING
+                readyState: WORK_FETCHING,
             });
         case WORK_FETCH_FAILED:
             return Object.assign({}, state, {
                 readyState: WORK_FETCH_FAILED,
-                error: action.error
+                error: action.error,
             });
         case WORK_FETCHED:
             return Object.assign({}, state, {
                 readyState: WORK_FETCHED,
-                items: action.result
+                items: action.result,
             });
         case WORK_DETAIL_FETCHING:
             return Object.assign({}, state, {
-                DetailReadyState: WORK_DETAIL_FETCHING
+                DetailReadyState: WORK_DETAIL_FETCHING,
             });
         case WORK_DETAIL_FETCH_FAILED:
             return Object.assign({}, state, {
                 DetailReadyState: WORK_DETAIL_FETCH_FAILED,
-                error: action.error
+                error: action.error,
             });
         case WORK_DETAIL_FETCHED:
             return Object.assign({}, state, {
                 DetailReadyState: WORK_DETAIL_FETCHED,
-                item: action.result
+                item: action.result,
             });
         case WORK_DETAIL_RESET:
             return Object.assign({}, state, {
                 DetailReadyState: WORK_DETAIL_INVALID,
-                item: null
+                item: null,
             });
         case WORK_LAST_PROJECT_HEIGHT:
             return Object.assign({}, state, {
-                lastProjectHeight: action.payload
+                lastProjectHeight: action.payload,
             });
         default:
             return state;
