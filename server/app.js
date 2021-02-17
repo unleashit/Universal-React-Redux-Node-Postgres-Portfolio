@@ -183,7 +183,7 @@ module.exports = function () {
     if (process.env.DATABASE_SYNC === 'true') {
         models.sequelize
             .sync({
-                // force: false,
+                // force: true,
                 logging: function (str) {
                     console.log(str);
                 },

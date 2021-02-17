@@ -1,18 +1,29 @@
 var models = require('../models/index.js');
 var nodemailer = require('nodemailer');
 var config = require('../../config/APPconfig');
+var {
+    default: validateContact,
+} = require('../../app/js/components/contactForm/validations.js');
 
-const checkBan = (email) => {
+const checkBan = (email, res) => {
     return models.Ban.findOne({ where: { email } }).catch((err) => {
         console.error(err);
         return res.status(500).json({ error: 'problem submitting contact' });
     });
 };
 
-exports.handleContactSubmit = function (req, res, next) {
+exports.handleContactSubmit = function (req, res) {
+    const errors = validateContact(req.body);
+
+    if (Object.keys(errors).length > 0) {
+        return res.json({
+            error: errors,
+        });
+    }
+
     const { name, email, phone, message } = req.body;
 
-    checkBan(email).then((resp) => {
+    checkBan(email, res).then((resp) => {
         if (resp) {
             console.error(
                 `${email} is on ban list and attempted to send contact`
@@ -44,20 +55,20 @@ exports.handleContactSubmit = function (req, res, next) {
 
                 var transporter = nodemailer.createTransport(config.smtpConfig);
 
-                transporter.sendMail(
-                    config.mailoptions,
-                    function (error, info) {
-                        if (error) {
-                            console.log(error);
-                            res.json({ result: error });
-                        } else {
-                            res.json({
-                                result: 'Success',
-                                info: info.response,
-                            });
-                        }
+                transporter.sendMail(config.mailoptions, function (
+                    error,
+                    info
+                ) {
+                    if (error) {
+                        console.log(error);
+                        res.json({ result: error });
+                    } else {
+                        res.json({
+                            result: 'Success',
+                            info: info.response,
+                        });
                     }
-                );
+                });
             })
             .catch((err) => {
                 console.error('Contact db insertion failure: ' + err);

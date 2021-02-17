@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import validations from './validations';
 import * as contactActions from '../../actions/contact';
