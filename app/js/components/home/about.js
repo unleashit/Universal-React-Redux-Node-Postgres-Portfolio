@@ -10,7 +10,7 @@ export default class About extends React.Component {
         this.skillColors = this.getColor();
     }
 
-    * getColor() {
+    *getColor() {
         let i = 0;
         const colors = [
             '#8781bd',
@@ -18,16 +18,16 @@ export default class About extends React.Component {
             '#84bd81',
             '#81afbd',
             '#bd9981',
-            '#bdba81'
+            '#bdba81',
         ];
 
         while (true) {
             yield {
-                borderLeft: '4px solid ' + colors[i]
+                borderLeft: '4px solid ' + colors[i],
             };
             i = (i + 1) % colors.length;
         }
-    };
+    }
 
     render() {
         return (
@@ -102,5 +102,5 @@ export default class About extends React.Component {
 }
 
 About.propTypes = {
-    animation: PropTypes.func.isRequired
+    animation: PropTypes.func.isRequired,
 };

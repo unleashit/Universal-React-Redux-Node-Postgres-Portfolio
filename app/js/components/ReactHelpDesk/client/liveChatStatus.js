@@ -3,14 +3,14 @@ import React from 'react';
 const iconStyle = {
     position: 'relative',
     top: '-1px',
-    paddingRight: '5px'
+    paddingRight: '5px',
 };
 
 const fontStyle = {
-    fontFamily: 'Sanchez, serif'
+    fontFamily: 'Sanchez, serif',
 };
 
-const liveChatStatus = props => {
+const liveChatStatus = (props) => {
     return (
         <span
             className={

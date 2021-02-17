@@ -1,8 +1,8 @@
 [
-  {
-    "email": "test@testing.com",
-    "id": "1",
-    "useraccess": 3,
-    "password": "123"
-  }
+    {
+        "email": "test@testing.com",
+        "id": "1",
+        "useraccess": 3,
+        "password": "123"
+    }
 ]

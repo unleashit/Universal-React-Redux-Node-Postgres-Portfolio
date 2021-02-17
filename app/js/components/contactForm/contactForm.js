@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import validations from './validations';
 import * as contactActions from '../../actions/contact';
 import Loader from '../common/loader';
 
-const renderInput = field => (
+const renderInput = (field) => (
     <div className="form-group">
         {/*<label>{field.input.placeholder}</label>*/}
         <div>
@@ -16,15 +15,14 @@ const renderInput = field => (
                 placeholder={field.placeholder}
                 className="form-control"
             />
-            {field.meta.touched &&
-                field.meta.error && (
-                    <span className="error">{field.meta.error}</span>
-                )}
+            {field.meta.touched && field.meta.error && (
+                <span className="error">{field.meta.error}</span>
+            )}
         </div>
     </div>
 );
 
-const renderTextarea = field => (
+const renderTextarea = (field) => (
     <div className="form-group">
         {/*<label>{field.input.placeholder}</label>*/}
         <div>
@@ -33,10 +31,9 @@ const renderTextarea = field => (
                 placeholder={field.placeholder}
                 className={field.className}
             />
-            {field.meta.touched &&
-                field.meta.error && (
-                    <span className="error">{field.meta.error}</span>
-                )}
+            {field.meta.touched && field.meta.error && (
+                <span className="error">{field.meta.error}</span>
+            )}
         </div>
     </div>
 );
@@ -48,7 +45,7 @@ export class ContactForm extends Component {
             name: name,
             email: email,
             phone: phone,
-            message: message
+            message: message,
         };
 
         dispatch(contactActions.submitContact(contactData));
@@ -67,7 +64,7 @@ export class ContactForm extends Component {
             reset,
             submitting,
             dispatch,
-            contactForm
+            contactForm,
         } = this.props;
 
         if (contactForm.readyState === 'SUBMIT_CONTACT_SENDING') {
@@ -132,16 +129,13 @@ export class ContactForm extends Component {
 
 const withForm = reduxForm({
     form: 'contactForm',
-    validate: validations
+    validate: validations,
 })(ContactForm);
 
 function mapStateToProps(state) {
     return {
-        contactForm: state.contactForm
+        contactForm: state.contactForm,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    null
-)(withForm);
+export default connect(mapStateToProps, null)(withForm);

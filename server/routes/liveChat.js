@@ -4,13 +4,13 @@ var passportSocketIo = require('passport.socketio');
 var config = require(path.join(__dirname, '../../config/APPconfig'));
 var liveChatController = require('../controllers/liveChat');
 
-exports.socketio = function(http, sessionStore) {
+exports.socketio = function (http, sessionStore) {
     var io = require('socket.io')(http);
     var chat = io.of('/live-chat');
 
     liveChatController.initSaveChatData(chat);
 
-    chat.on('connection', function(socket) {
+    chat.on('connection', function (socket) {
         console.log('Sockets connected: %s', io.engine.clientsCount);
         // console.log('from connection:', socket);
 
@@ -21,7 +21,7 @@ exports.socketio = function(http, sessionStore) {
                 secret: config.__SESSION_SECRET__, // make sure is the same as in your session settings in app.js
                 store: sessionStore, // you need to use the same sessionStore you defined in the app.use(session({... in app.js
                 success: liveChatController.onAuthorizeSuccess,
-                fail: liveChatController.onAuthorizeFail
+                fail: liveChatController.onAuthorizeFail,
             })
         );
 

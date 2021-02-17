@@ -6,7 +6,7 @@ export default class PortfolioItem extends React.PureComponent {
     render() {
         const { item, index } = this.props;
         const color = {
-            backgroundColor: this.props.color
+            backgroundColor: this.props.color,
         };
 
         return (
@@ -32,5 +32,5 @@ export default class PortfolioItem extends React.PureComponent {
 }
 
 PortfolioItem.proptypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
 };

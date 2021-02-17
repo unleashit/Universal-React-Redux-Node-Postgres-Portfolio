@@ -10,5 +10,5 @@ export default combineReducers({
     portfolio,
     contactForm,
     liveChat,
-    form: formReducer
+    form: formReducer,
 });

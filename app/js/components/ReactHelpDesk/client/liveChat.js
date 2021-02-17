@@ -48,7 +48,7 @@ LiveChat.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
     messages: PropTypes.array.isRequired,
-    registered: PropTypes.bool.isRequired
+    registered: PropTypes.bool.isRequired,
 };
 LiveChat.defaultProps = {};
 

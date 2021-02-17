@@ -54,7 +54,7 @@ export class Portfolio extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        portfolio: state.portfolio
+        portfolio: state.portfolio,
     };
 }
 

@@ -10,5 +10,5 @@ module.exports = {
     dialect: process.env.DATABASE_DIALECT,
     charset: 'utf8',
     collate: 'utf8_unicode_ci',
-    operatorsAliases: Sequelize.Op
+    operatorsAliases: Sequelize.Op,
 };

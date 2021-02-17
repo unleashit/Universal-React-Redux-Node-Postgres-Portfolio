@@ -1,19 +1,14 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended"
-  ],
-  "env": {
-    "jest": true
-  },
-  "plugins": [
-    "react"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "env": {
+        "jest": true
+    },
+    "plugins": ["react"],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
     }
-  }
 }

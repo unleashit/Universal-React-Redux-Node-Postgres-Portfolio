@@ -8,55 +8,56 @@ $border-radius: 0.25rem;
 $green: $light-green;
 $red: #d2474e;
 
-.live-chat-wrapper, .live-chat-manager {
-  input,
-  textarea {
-    &:focus {
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
-    }
-  }
-  &.dark {
+.live-chat-wrapper,
+.live-chat-manager {
     input,
     textarea {
-      background-color: #ededed;
-      &:focus {
-        box-shadow: 0 0 25px rgba(0,0,0,0.4) inset;
-        color: #999;
-      }
+        &:focus {
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4) inset;
+        }
     }
-  }
+    &.dark {
+        input,
+        textarea {
+            background-color: #ededed;
+            &:focus {
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.4) inset;
+                color: #999;
+            }
+        }
+    }
 }
 
 .admin .form-control {
-  background-color: inherit;
-  border: 1px solid rgba(0, 0, 0, .15);
-  border-radius: .25rem;
+    background-color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
 }
 // end from client scss
 
 // navbar
 #navbar-toggle-cbox:checked ~ .collapse {
-  display: block;
-  .navbar-nav .nav-item + .nav-item,
-  .navbar-nav .nav-item {
-    margin-left: 0;
-    float: none;
-  }
+    display: block;
+    .navbar-nav .nav-item + .nav-item,
+    .navbar-nav .nav-item {
+        margin-left: 0;
+        float: none;
+    }
 }
 
 #navbar-toggle-cbox {
-  display: none;
+    display: none;
 }
 
 .navbar-toggler,
 .test {
-  background-color: #454646;
+    background-color: #454646;
 }
 @media (min-width: 544px) {
-  .navbar {
-    border-radius: 0;
-  }
+    .navbar {
+        border-radius: 0;
+    }
 }
 
 // override client css
@@ -70,127 +71,128 @@ $red: #d2474e;
 // main css begins
 
 .main-content {
-  padding-top: 45px;
+    padding-top: 45px;
 }
 
 // live chat manager
 .live-chat-manager {
-  h1,
-  h2,
-  h3 {
-    margin-bottom: 1rem;
-  }
-  .user-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    cursor: pointer;
-    li,
-    li:hover,
-    li:target,
-    li:focus {
-      border: 0;
+    h1,
+    h2,
+    h3 {
+        margin-bottom: 1rem;
     }
-    .connected {
-      background-color: #68aa44;
+    .user-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        cursor: pointer;
+        li,
+        li:hover,
+        li:target,
+        li:focus {
+            border: 0;
+        }
+        .connected {
+            background-color: #68aa44;
+        }
+        .disconnected {
+            background-color: $red;
+        }
+        .remove,
+        .trash {
+            position: relative;
+            top: -1px;
+            height: auto;
+            max-width: 15px;
+        }
+        .active {
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+            color: #000;
+            &::after {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.07);
+            }
+        }
+        .new-messages {
+            .tag {
+                background-color: #db2e59;
+                color: #fff;
+            }
+        }
+        .archived,
+        .archived:hover {
+            background: #fff;
+            border: 1px solid #ddd;
+        }
     }
-    .disconnected {
-      background-color: $red;
+    .messages {
+        height: 450px;
+        overflow: auto;
+        padding: 12px;
+        background: #292929;
+        color: #c0c0c0;
+        border-radius: $border-radius;
     }
-    .remove, .trash {
-      position: relative;
-      top: -1px;
-      height: auto;
-      max-width: 15px;
+    .message-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            padding: 12px 0;
+            line-height: 1.5rem;
+            border-bottom: 1px solid #444;
+            &:last-child {
+                border: 0;
+            }
+        }
+        .title {
+            background: #1c1c1c;
+            text-align: center;
+            padding: 6px;
+            border: 0;
+            border-radius: $border-radius;
+        }
+        .name {
+            color: #6f6f6f;
+        }
+        .date {
+            font-size: 0.7rem;
+            color: #6f6f6f;
+        }
     }
-    .active {
-      box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
-      color: #000;
-      &::after {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255,255,255, 0.07);
-      }
+    .post-input,
+    .post-message {
+        height: 50px;
     }
-    .new-messages {
-      .tag {
-        background-color: #db2e59;
-        color: #fff;
-      }
+    .post-input {
+        border-radius: 0.25rem 0 0 0.25rem;
     }
-    .archived,
-    .archived:hover {
-      background: #fff;
-      border: 1px solid #ddd;
-    }
-  }
-  .messages {
-    height: 450px;
-    overflow: auto;
-    padding: 12px;
-    background: #292929;
-    color: #c0c0c0;
-    border-radius: $border-radius;
-  }
-  .message-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    li {
-      padding: 12px 0;
-      line-height: 1.5rem;
-      border-bottom: 1px solid #444;
-      &:last-child {
+    .post-message {
         border: 0;
-      }
+        border-radius: 0 0.25rem 0.25rem 0;
+        background: $green;
+        color: #fff;
+        cursor: pointer;
     }
-    .title {
-      background: #1c1c1c;
-      text-align: center;
-      padding: 6px;
-      border: 0;
-      border-radius: $border-radius;
+    h3.archived-chats,
+    h3.send {
+        margin-top: 30px;
     }
-    .name {
-      color: #6f6f6f;
+    // override pagination color
+    .page-item.active .page-link,
+    .page-item.active .page-link:focus,
+    .page-item.active .page-link:hover {
+        background-color: $green;
+        border-color: #ccc;
     }
-    .date {
-      font-size: 0.7rem;
-      color: #6f6f6f;
-    }
-  }
-  .post-input,
-  .post-message {
-    height: 50px;
-  }
-  .post-input {
-    border-radius: 0.25rem 0 0 0.25rem;
-  }
-  .post-message {
-    border: 0;
-    border-radius: 0 0.25rem 0.25rem 0;
-    background: $green;
-    color: #fff;
-    cursor: pointer;
-  }
-  h3.archived-chats,
-  h3.send {
-    margin-top: 30px;
-  }
-  // override pagination color
-  .page-item.active .page-link,
-  .page-item.active .page-link:focus,
-  .page-item.active .page-link:hover {
-    background-color: $green;
-    border-color: #ccc;
-  }
 
-  .tag.float-xs-right {
-    margin-top: 4px;
-  }
+    .tag.float-xs-right {
+        margin-top: 4px;
+    }
 }

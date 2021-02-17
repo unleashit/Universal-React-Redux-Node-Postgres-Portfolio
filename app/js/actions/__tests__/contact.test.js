@@ -14,7 +14,7 @@ describe('Contact Actions', () => {
         name: 'tester',
         email: 'tester@test.com',
         phone: '123',
-        message: 'test email'
+        message: 'test email',
     };
 
     beforeEach(() => {
@@ -30,26 +30,26 @@ describe('Contact Actions', () => {
         test('Dispatches the correct actions and payload', async () => {
             const response = {
                 result: 'Success',
-                info: '250 Message received'
+                info: '250 Message received',
             };
 
             const expectedActions = [
                 {
-                    type: 'SUBMIT_CONTACT_SENDING'
+                    type: 'SUBMIT_CONTACT_SENDING',
                 },
                 {
                     type: 'SUBMIT_CONTACT_SUCCESS',
-                    result: response
+                    result: response,
                 },
                 {
                     type: '@@redux-form/RESET',
-                    meta: { form: 'contactForm' }
-                }
+                    meta: { form: 'contactForm' },
+                },
             ];
 
             fetchMock.post(`${__API_URL__}/contact`, {
                 body: response,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(contactActions.submitContact(contactData));
@@ -59,23 +59,24 @@ describe('Contact Actions', () => {
         test('Correct Error is returned', async () => {
             const response = {
                 result: 'Error',
-                info: '500'
+                info: '500',
             };
 
             const expectedActions = [
                 {
-                    type: 'SUBMIT_CONTACT_SENDING'
+                    type: 'SUBMIT_CONTACT_SENDING',
                 },
                 {
                     type: 'SUBMIT_CONTACT_FAILED',
-                    error: 'Received wrong status code, contact cannot be sent.'
-                }
+                    error:
+                        'Received wrong status code, contact cannot be sent.',
+                },
             ];
 
             fetchMock.post(`${__API_URL__}/contact`, {
                 body: response,
                 status: 500,
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
             });
 
             await store.dispatch(contactActions.submitContact());
@@ -100,8 +101,8 @@ describe('Contact Actions', () => {
     test('submitContactReset()', () => {
         const expectedActions = [
             {
-                type: 'SUBMIT_CONTACT_RESET'
-            }
+                type: 'SUBMIT_CONTACT_RESET',
+            },
         ];
 
         store.dispatch(contactActions.submitContactReset());

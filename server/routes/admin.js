@@ -15,12 +15,12 @@ var router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, __dirname + '/../../public/images/portfolio');
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         console.dir(file);
-        crypto.pseudoRandomBytes(16, function(err, raw) {
+        crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err);
             const fp = path.parse(file.originalname);
             cb(
@@ -28,12 +28,12 @@ var storage = multer.diskStorage({
                 fp.name.replace(/\s/gi, '') + '-' + raw.toString('hex') + fp.ext
             );
         });
-    }
+    },
 });
 var cpUpload = multer({ storage: storage }).fields([
     { name: 'main_image', maxCount: 1 },
     { name: 'image_mobile', maxCount: 1 },
-    { name: 'gallery_images', maxCount: 10 }
+    { name: 'gallery_images', maxCount: 10 },
 ]);
 
 // check logged in user has sufficient privileges

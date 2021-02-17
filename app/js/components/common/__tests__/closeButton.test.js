@@ -3,7 +3,7 @@ import CloseButton from '../closeButton';
 describe('<CloseButton />', () => {
     let wrapper;
     let props = {
-        callback: jest.fn()
+        callback: jest.fn(),
     };
 
     beforeEach(() => {

@@ -4,14 +4,15 @@ class AccordionPane extends Component {
     constructor() {
         super();
         this.state = {
-            toggleStatus: 'closed'
+            toggleStatus: 'closed',
         };
         this.handleToggle = this.handleToggle.bind(this);
     }
 
     handleToggle() {
         this.setState({
-            toggleStatus: this.state.toggleStatus === 'open' ? 'closed' : 'open'
+            toggleStatus:
+                this.state.toggleStatus === 'open' ? 'closed' : 'open',
         });
     }
 

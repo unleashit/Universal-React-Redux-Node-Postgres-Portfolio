@@ -1,10 +1,10 @@
-const clientIo = require ('socket.io-client');
+const clientIo = require('socket.io-client');
 const crypto = require('crypto');
 const config = require('../../config/APPconfig');
 
-const { liveChat: {
-    autoLoginStart, autoLoginEnd, autoLoginExclude
-} } = config;
+const {
+    liveChat: { autoLoginStart, autoLoginEnd, autoLoginExclude },
+} = config;
 
 let socket;
 let adminConnected = false;
@@ -29,9 +29,8 @@ function startAutologin() {
         setTimeout(() => {
             tries = 5;
             startAutologin();
-        }, LOGOUT_TIME)
+        }, LOGOUT_TIME);
     });
-
 }
 
 async function cronJob() {
@@ -43,7 +42,7 @@ async function cronJob() {
         await tryToConnect({
             fn: () => {
                 return new Promise((resolve) => {
-                    socket.emit('admin login', { token }, id => {
+                    socket.emit('admin login', { token }, (id) => {
                         if (!id || id === 'unauthorized') {
                             adminConnected = false;
                             resolve(false);
@@ -52,10 +51,10 @@ async function cronJob() {
                             adminConnected = true;
                             resolve(true);
                         }
-                    })
+                    });
                 });
-                },
-            tries
+            },
+            tries,
         });
     }
 
@@ -65,16 +64,13 @@ async function cronJob() {
     setTimeout(cronJob, AUTOLOGIN_INTERVAL);
 }
 
-function tryToConnect({
-  fn,
-  tries = 10,
-  waitFor = 3000,
-  log = console.error
-}) {
+function tryToConnect({ fn, tries = 10, waitFor = 3000, log = console.error }) {
     fn = typeof arguments[0] === 'function' ? arguments[0] : fn;
 
     if (!fn || typeof fn !== 'function') {
-        throw new Error('Callback must be provided as fn property to options or as first argument');
+        throw new Error(
+            'Callback must be provided as fn property to options or as first argument'
+        );
     }
 
     return new Promise((resolve, reject) => {
@@ -86,7 +82,7 @@ function tryToConnect({
             tries--;
             log && log(`connection attempts left: ${tries}`);
             timer = setTimeout(connect, waitFor);
-        }
+        };
 
         const connect = async () => {
             clearTimeout(timer);
@@ -100,11 +96,10 @@ function tryToConnect({
                         tries = originalTries;
                         resolve(result);
                     } else {
-                        tryAgain()
+                        tryAgain();
                     }
-
                 } catch (err) {
-                    log && log(err)
+                    log && log(err);
                     tryAgain();
                 }
             } else {
@@ -120,7 +115,7 @@ function isOpen(
     startTime = '9:00:00',
     endTime = '17:00:00',
     exclude = [6, 7],
-    timeZone = 'America/Los_Angeles',
+    timeZone = 'America/Los_Angeles'
 ) {
     if (typeof exclude === 'string') {
         exclude = exclude.trim().split(',').map(Number);
@@ -129,7 +124,7 @@ function isOpen(
     const [startH, startM, startS] = startTime.split(':').map(Number);
     const [endH, endM, endS] = endTime.split(':').map(Number);
 
-    const PST = new Date().toLocaleString("en-US", { timeZone });
+    const PST = new Date().toLocaleString('en-US', { timeZone });
     const currentDate = new Date(PST);
 
     if (exclude.includes(currentDate.getDay())) {
@@ -146,12 +141,12 @@ function isOpen(
     endDate.setMinutes(endM);
     endDate.setSeconds(endS);
 
-    return startDate <= currentDate && endDate > currentDate
+    return startDate <= currentDate && endDate > currentDate;
 }
 
 module.exports = {
     startAutologin,
-    getAutoLoginToken: function() {
+    getAutoLoginToken: function () {
         return token;
-    }
-}
+    },
+};

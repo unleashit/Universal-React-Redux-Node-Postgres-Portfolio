@@ -65,9 +65,9 @@ export default class ResponsiveMenu extends React.Component {
 
 ResponsiveMenu.propTypes = {
     closeBurger: PropTypes.func.isRequired,
-    menuVisible: PropTypes.bool
+    menuVisible: PropTypes.bool,
 };
 
 ResponsiveMenu.defaultProps = {
-    menuVisible: false
+    menuVisible: false,
 };

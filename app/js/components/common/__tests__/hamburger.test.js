@@ -3,7 +3,7 @@ import Hamburger from '../hamburger';
 describe('<Hamburger />', () => {
     let wrapper;
     let props = {
-        openBurger: jest.fn()
+        openBurger: jest.fn(),
     };
 
     beforeEach(() => {

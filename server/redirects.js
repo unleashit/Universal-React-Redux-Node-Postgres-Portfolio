@@ -9,16 +9,8 @@ router.redirect('/contact.html', '/', 301);
 router.redirect('/about.html', '/', 301);
 router.redirect('/web-design.html', '/', 301);
 router.redirect('/portfolio/web-design.html', '/', 301);
-router.redirect(
-    '/graphic-design.html',
-    '/',
-    301
-);
-router.redirect(
-    '/portfolio/graphic-design.html',
-    '/',
-    301
-);
+router.redirect('/graphic-design.html', '/', 301);
+router.redirect('/portfolio/graphic-design.html', '/', 301);
 router.redirect('/services/web-design-services.html', '/', 301);
 router.redirect('/services/print-design-services.html', '/', 301);
 router.redirect('/blog.html', '/', 301);
@@ -40,7 +32,7 @@ router.redirect(
     301
 );
 
-router.get('/*', function(req, res, next) {
+router.get('/*', function (req, res, next) {
     if (req.headers.host.match(/^www/) !== null) {
         res.redirect(
             301,

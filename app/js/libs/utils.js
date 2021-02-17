@@ -8,7 +8,7 @@ export function getEnvironment(type) {
 
     return {
         env: process.env.NODE_ENV === 'production' ? 'prod' : 'dev',
-        loc: typeof window === 'undefined' ? 'server' : 'client'
+        loc: typeof window === 'undefined' ? 'server' : 'client',
     };
 }
 

@@ -20,7 +20,7 @@ var portfolioTags = [
     'Ecommerce',
     'AWS',
     'Devops',
-    'Other'
+    'Other',
 ];
 
 //var bodyParser = require('body-parser');
@@ -28,23 +28,23 @@ var portfolioTags = [
 
 var _ = require('lodash');
 
-exports.getPortfolio = function(req, res) {
+exports.getPortfolio = function (req, res) {
     models.Portfolio.findAll({
         limit: 100,
-        order: [['sort', 'ASC']]
-    }).then(items => {
+        order: [['sort', 'ASC']],
+    }).then((items) => {
         res.render('portfolio', {
             title: 'Manage Portfolio',
             items: items,
             activeClass: 'manage-portfolio',
-            auth: req.isAuthenticated()
+            auth: req.isAuthenticated(),
         });
     });
 };
 
-exports.addPortfolioItem = function(req, res) {
-    models.User.findAll().then(users => {
-        users = users.map(user => {
+exports.addPortfolioItem = function (req, res) {
+    models.User.findAll().then((users) => {
+        users = users.map((user) => {
             return { id: user.dataValues.id, email: user.dataValues.email };
         });
 
@@ -53,12 +53,12 @@ exports.addPortfolioItem = function(req, res) {
             users: users,
             tags: portfolioTags,
             activeClass: 'manage-portfolio',
-            auth: req.isAuthenticated()
+            auth: req.isAuthenticated(),
         });
     });
 };
 
-exports.handlePortfolioSubmit = function(req, res) {
+exports.handlePortfolioSubmit = function (req, res) {
     var main_image =
         typeof req.files['main_image'] !== 'undefined'
             ? req.files['main_image'][0].filename
@@ -69,7 +69,7 @@ exports.handlePortfolioSubmit = function(req, res) {
     var gallery_images;
     if (typeof req.files.gallery_images !== 'undefined') {
         gallery_images = req.files.gallery_images
-            .map(img => img.filename)
+            .map((img) => img.filename)
             .join('|');
     } else {
         gallery_images = null;
@@ -85,7 +85,7 @@ exports.handlePortfolioSubmit = function(req, res) {
         : req.body.url_slug;
 
     models.Portfolio.max('sort')
-        .then(maxSort => {
+        .then((maxSort) => {
             models.Portfolio.create({
                 title: req.body.title || null,
                 description: req.body.description || null,
@@ -97,37 +97,37 @@ exports.handlePortfolioSubmit = function(req, res) {
                 link: req.body.link || null,
                 url_slug: url_slug || null,
                 UserId: req.body.user,
-                sort: maxSort + 1 || 0
+                sort: maxSort + 1 || 0,
             });
         })
         .then(() => {
             res.redirect(req.baseUrl + '/portfolio');
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.log("couldn't add portfolio item: " + err);
         });
 };
 
-exports.editPortfolioItem = function(req, res) {
-    models.Portfolio.findById(req.params.id).then(function(item) {
+exports.editPortfolioItem = function (req, res) {
+    models.Portfolio.findById(req.params.id).then(function (item) {
         res.render('portfolio-edit', {
             title: 'Edit portfolio item',
             item: item.dataValues,
             tags: portfolioTags,
             activeClass: 'manage-portfolio',
-            auth: req.isAuthenticated()
+            auth: req.isAuthenticated(),
         });
     });
 };
 
-exports.handlePortfolioItemSubmit = function(req, res) {
+exports.handlePortfolioItemSubmit = function (req, res) {
     var properties = {
         title: req.body.title,
         description: req.body.description,
         description_short: req.body.description_short,
         link: req.body.link,
         url_slug: req.body.url_slug,
-        sort: req.body.sort
+        sort: req.body.sort,
     };
 
     if (typeof req.files.main_image !== 'undefined') {
@@ -140,7 +140,7 @@ exports.handlePortfolioItemSubmit = function(req, res) {
 
     if (typeof req.files.gallery_images !== 'undefined') {
         properties.gallery = req.files.gallery_images
-            .map(img => img.filename)
+            .map((img) => img.filename)
             .join('|');
     }
 
@@ -149,27 +149,27 @@ exports.handlePortfolioItemSubmit = function(req, res) {
 
     models.Portfolio.update(properties, {
         where: {
-            id: req.params.id
-        }
+            id: req.params.id,
+        },
     })
-        .then(function(room) {
+        .then(function (room) {
             if (room) {
                 res.redirect(req.baseUrl + '/portfolio');
             } else {
                 throw new Error('Update failed.');
             }
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.log('there was an error: ' + err.message);
         });
 };
 
-exports.deletePortfolioItem = function(req, res) {
+exports.deletePortfolioItem = function (req, res) {
     models.Portfolio.destroy({ where: { id: req.params.id } })
-        .then(function() {
+        .then(function () {
             res.redirect(req.baseUrl + '/portfolio');
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.log('there was an error: ' + err.message);
         });
 };

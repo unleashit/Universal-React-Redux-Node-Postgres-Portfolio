@@ -19,9 +19,7 @@ export default class Header extends React.PureComponent {
                 </div>
                 <div className="button-wrapper">
                     <Link to="/#work">
-                        <button
-                            className="button button-green"
-                        >
+                        <button className="button button-green">
                             See my work
                         </button>
                     </Link>

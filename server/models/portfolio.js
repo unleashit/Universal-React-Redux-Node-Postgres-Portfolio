@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Portfolio = sequelize.define(
         'Portfolio',
         {
@@ -15,20 +15,20 @@ module.exports = function(sequelize, DataTypes) {
             url_slug: DataTypes.STRING,
             sort: {
                 type: DataTypes.INTEGER,
-                defaultValue: 0
-            }
+                defaultValue: 0,
+            },
         },
         {
             classMethods: {
-                associate: function(models) {
+                associate: function (models) {
                     Portfolio.belongsTo(models.User, {
                         onDelete: 'CASCADE',
                         foreignKey: {
-                            allowNull: false
-                        }
+                            allowNull: false,
+                        },
                     });
-                }
-            }
+                },
+            },
         }
     );
 

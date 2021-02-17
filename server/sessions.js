@@ -14,11 +14,8 @@ ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFE
 CREATE INDEX "IDX_session_expire" ON "session" ("expire");
 `;
 
-module.exports = function() {
-  return models.sequelize.query(q)
-      .catch((err) => {
-          console.error(err);
-      });
+module.exports = function () {
+    return models.sequelize.query(q).catch((err) => {
+        console.error(err);
+    });
 };
-
-

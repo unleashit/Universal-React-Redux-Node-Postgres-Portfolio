@@ -23,8 +23,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'TOGGLE_CHAT',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         // test default bool = true
@@ -40,8 +40,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_SET_SERVER_STATUS',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(liveChatActions.chatSetServerStatus(true));
@@ -53,8 +53,8 @@ describe('LiveChat Actions', () => {
             {
                 type: 'CHAT_SET_REMOTE_ID',
                 id: 1,
-                name: 'fred'
-            }
+                name: 'fred',
+            },
         ];
 
         store.dispatch(liveChatActions.chatSetRemoteId(1, 'fred'));
@@ -65,8 +65,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_CREATE_MESSAGE',
-                message: 'bla bla'
-            }
+                message: 'bla bla',
+            },
         ];
 
         store.dispatch(liveChatActions.chatCreateMesssage('bla bla'));
@@ -77,8 +77,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_RECEIVE_MESSAGE',
-                message: 'bla bla'
-            }
+                message: 'bla bla',
+            },
         ];
 
         store.dispatch(liveChatActions.chatReceiveMesssage('bla bla'));
@@ -89,8 +89,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_ONCHANGE',
-                message: 'bla bla'
-            }
+                message: 'bla bla',
+            },
         ];
 
         store.dispatch(liveChatActions.chatOnChange('bla bla'));
@@ -101,14 +101,14 @@ describe('LiveChat Actions', () => {
         const user = {
             id: 1,
             firstName: 'fred',
-            lastName: 'flintstone'
+            lastName: 'flintstone',
         };
 
         const expectedActions = [
             {
                 type: 'CHAT_NEW_USER',
-                user: user
-            }
+                user: user,
+            },
         ];
 
         store.dispatch(liveChatActions.chatNewUser(user));
@@ -120,8 +120,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_ISTYPING',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(liveChatActions.chatIsTyping(true));
@@ -132,8 +132,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_CONTACT_SENT',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(liveChatActions.contactSent(true));
@@ -145,8 +145,8 @@ describe('LiveChat Actions', () => {
         const expectedActions = [
             {
                 type: 'CHAT_ADMIN_ACTIVE',
-                bool: true
-            }
+                bool: true,
+            },
         ];
 
         store.dispatch(liveChatActions.adminActive(true));

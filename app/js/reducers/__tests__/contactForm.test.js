@@ -4,13 +4,13 @@ import {
     SUBMIT_CONTACT_SENDING,
     SUBMIT_CONTACT_SUCCESS,
     SUBMIT_CONTACT_FAILED,
-    SUBMIT_CONTACT_RESET
+    SUBMIT_CONTACT_RESET,
 } from '../../actions/contact';
 
 describe('contactForm reducer', () => {
     const initialState = {
         readyState: SUBMIT_CONTACT_INVALID,
-        result: null
+        result: null,
     };
 
     const runExpecs = (action, newState) => {
@@ -29,7 +29,7 @@ describe('contactForm reducer', () => {
         const action = { type: SUBMIT_CONTACT_SENDING };
         const newState = {
             ...initialState,
-            readyState: SUBMIT_CONTACT_SENDING
+            readyState: SUBMIT_CONTACT_SENDING,
         };
 
         runExpecs(action, newState);
@@ -40,7 +40,7 @@ describe('contactForm reducer', () => {
         const newState = {
             ...initialState,
             readyState: SUBMIT_CONTACT_FAILED,
-            error: action.error
+            error: action.error,
         };
 
         runExpecs(action, newState);
@@ -51,7 +51,7 @@ describe('contactForm reducer', () => {
         const newState = {
             ...initialState,
             readyState: SUBMIT_CONTACT_SUCCESS,
-            result: action.result
+            result: action.result,
         };
 
         runExpecs(action, newState);
@@ -62,7 +62,7 @@ describe('contactForm reducer', () => {
         const newState = {
             ...initialState,
             readyState: SUBMIT_CONTACT_INVALID,
-            result: null
+            result: null,
         };
 
         runExpecs(action, newState);

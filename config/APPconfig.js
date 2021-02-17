@@ -17,14 +17,14 @@ const {
     AUTO_LOGIN,
     AUTO_LOGIN_START,
     AUTO_LOGIN_END,
-    AUTO_LOGIN_EXCLUDE
+    AUTO_LOGIN_EXCLUDE,
 } = process.env;
 
 const isClient = typeof window !== 'undefined';
 
 // select env variables (with double underscore) are added
 // to the window object via script tag in root.js
-const crossEnvVar = envVar =>
+const crossEnvVar = (envVar) =>
     typeof window !== 'undefined'
         ? window[`__${envVar}__`]
         : process.env[envVar];
@@ -45,19 +45,19 @@ module.exports = {
         autoLogin: AUTO_LOGIN,
         autoLoginStart: AUTO_LOGIN_START,
         autoLoginEnd: AUTO_LOGIN_END,
-        autoLoginExclude: AUTO_LOGIN_EXCLUDE
+        autoLoginExclude: AUTO_LOGIN_EXCLUDE,
     },
 
     mailoptions: {
         from: EMAIL_FROM,
         to: EMAIL_TO,
-        subject: EMAIL_SUBJECT
+        subject: EMAIL_SUBJECT,
     },
 
     smsMailOptions: {
         from: SMS_FROM,
         to: SMS_TO,
-        subject: SMS_SUBJECT
+        subject: SMS_SUBJECT,
     },
 
     smtpConfig: {
@@ -66,7 +66,7 @@ module.exports = {
         secure: SMTP_SECURE, // use SSL
         auth: {
             user: SMTP_AUTH_USERNAME,
-            pass: SMTP_AUTH_PASSWORD
-        }
-    }
+            pass: SMTP_AUTH_PASSWORD,
+        },
+    },
 };

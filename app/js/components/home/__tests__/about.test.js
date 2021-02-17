@@ -3,7 +3,7 @@ import About from '../about';
 describe('<About />', () => {
     let wrapper;
     let props = {
-        animation: jest.fn(() => '')
+        animation: jest.fn(() => ''),
     };
 
     beforeEach(() => {

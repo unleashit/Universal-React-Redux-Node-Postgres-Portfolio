@@ -7,9 +7,9 @@ describe('<PortfolioItem />', () => {
             url_slug: 'test',
             title: 'title',
             main_image: 'test.jpg',
-            description_shot: 'short desc'
+            description_shot: 'short desc',
         },
-        color: '#fff'
+        color: '#fff',
     };
 
     beforeEach(() => {

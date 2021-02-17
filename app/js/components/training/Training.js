@@ -55,8 +55,8 @@ export class Training extends Component {
                     link={[
                         {
                             rel: 'canonical',
-                            href: 'https://jasongallagher.org/training'
-                        }
+                            href: 'https://jasongallagher.org/training',
+                        },
                     ]}
                 />
                 <StickyHeader
@@ -81,29 +81,26 @@ function mapStateToProps(state) {
     return {
         global: state.global,
         contactForm: state.contactForm,
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Training);
+export default connect(mapStateToProps, mapDispatchToProps)(Training);
 
 Training.propTypes = {
     global: PropTypes.shape({
         hamburgerState: PropTypes.bool.isRequired,
-        htmlClass: PropTypes.string
+        htmlClass: PropTypes.string,
     }),
     liveChat: PropTypes.shape({
         remoteId: PropTypes.string,
-        chatOpen: PropTypes.bool
+        chatOpen: PropTypes.bool,
     }),
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
 };

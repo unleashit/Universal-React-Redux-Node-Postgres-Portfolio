@@ -20,7 +20,7 @@ class PortfolioDetail extends Component {
                     bypassCheck
                 )
             ),
-            dispatch(globalActions.animateOff())
+            dispatch(globalActions.animateOff()),
         ]);
     }
 
@@ -84,7 +84,7 @@ class PortfolioDetail extends Component {
         const {
             DetailReadyState,
             lastProjectHeight,
-            item
+            item,
         } = this.props.portfolio;
 
         if (DetailReadyState === 'WORK_DETAIL_FETCHING') {
@@ -132,8 +132,8 @@ class PortfolioDetail extends Component {
                             rel: 'canonical',
                             href:
                                 'https://jasongallagher.org/portfolio/' +
-                                url_slug
-                        }
+                                url_slug,
+                        },
                     ]}
                 />
                 <StickyHeader
@@ -158,18 +158,15 @@ function mapStateToProps(state) {
         portfolio: state.portfolio,
         global: state.global,
         contactForm: state.contactForm,
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
 export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(PortfolioDetail)
+    connect(mapStateToProps, mapDispatchToProps)(PortfolioDetail)
 );

@@ -8,19 +8,19 @@ passport.use(
     new LocalStrategy(
         {
             usernameField: 'email',
-            passwordField: 'password'
+            passwordField: 'password',
         },
-        function(email, password, done) {
+        function (email, password, done) {
             model.User.findOne({
                 where: {
-                    email: email
-                }
-            }).then(function(user) {
+                    email: email,
+                },
+            }).then(function (user) {
                 //console.log('you typed: ' + email, password);
 
                 if (user === null) {
                     return done(null, false, {
-                        message: 'Incorrect credentials.'
+                        message: 'Incorrect credentials.',
                     });
                 }
 
@@ -36,10 +36,10 @@ passport.use(
     )
 );
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
     done(null, user);
 });

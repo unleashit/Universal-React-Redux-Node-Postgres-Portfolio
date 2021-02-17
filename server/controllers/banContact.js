@@ -6,24 +6,23 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-const banContact = function(req, res) {
+const banContact = function (req, res) {
     const { email } = req.body;
 
     if (!validateEmail(email)) {
         console.error('Could not validate email of banned contact');
         return res.status(400).json({
-            error: "Bad Request"
+            error: 'Bad Request',
         });
     }
 
     models.Ban.create({
         email,
-
     })
         .then(() => {
             res.sendStatus(200);
         })
-        .catch(err => {
+        .catch((err) => {
             console.error('Ban email insertion failure: ' + err);
             res.sendStatus(err.status || 500);
         });

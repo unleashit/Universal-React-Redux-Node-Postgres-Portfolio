@@ -7,8 +7,8 @@ describe('<Footer />', () => {
         slug: 'home',
         global: {
             animateContact: true,
-            animateOff: false
-        }
+            animateOff: false,
+        },
     };
 
     beforeEach(() => {

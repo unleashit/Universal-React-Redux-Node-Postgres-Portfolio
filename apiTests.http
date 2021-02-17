@@ -1,0 +1,88 @@
+GET http://localhost:3200/api/portfolio
+
+> {%
+client.test("portfolio endpoint works", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+###
+
+GET http://localhost:3200/api/portfolio/tatteasy
+
+> {%
+client.test("portfolio endpoint works", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+###
+
+POST http://localhost:3200/api/contact
+Content-Type: application/json
+
+{
+    "name": "blarg",
+    "email": "blarg@blarg.com",
+    "message": "foo bar"
+}
+
+> {%
+client.test("contact endpoint works", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+###
+
+POST http://localhost:3200/api/contact
+Content-Type: application/json
+
+{
+    "name": "blarg",
+    "message": "I am not spam"
+}
+
+> {%
+client.test("Adding contact *fails* validation with missing email", function() {
+  client.assert(response.body.error.email === "Please enter a valid email", "Expected error with 'Message too short'");
+});
+%}
+###
+
+POST http://localhost:3200/api/contact
+Content-Type: application/json
+
+{
+    "name": "blarg",
+    "email": "blarg@blarg.com",
+    "message": "spam"
+}
+
+> {%
+client.test("Adding contact *fails* validation with one word message", function() {
+  client.assert(response.body.error.message === "Message too short", "Expected error with 'Message too short'");
+});
+%}
+###
+
+### this one should pass since the response to a banned user is the same as normal
+### check logs for confirmation. DB insertion and email should not happen
+POST http://localhost:3200/api/contact
+Content-Type: application/json
+
+{
+    "name": "spammer",
+    "email": "me@me.com",
+    "message": "I'm an annoying spammer who's been blocked"
+}
+
+> {%
+client.test("contact endpoint works", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+###
+
+

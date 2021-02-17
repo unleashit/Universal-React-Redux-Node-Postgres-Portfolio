@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { ionSound } from '../../../libs/ion-sound';
 import {
     __API_URL__,
-    __SOCKET_IO_URL__
+    __SOCKET_IO_URL__,
 } from '../../../../../config/APPconfig';
 
 export class LiveChatContainer extends Component {
@@ -35,7 +35,7 @@ export class LiveChatContainer extends Component {
             sounds: [{ name: 'water_droplet_3' }],
             volume: 0.5,
             path: '/sounds/',
-            preload: true
+            preload: true,
         });
     }
 
@@ -46,7 +46,7 @@ export class LiveChatContainer extends Component {
     socketConnect() {
         // console.log("socket id: " + this.socket.id);
 
-        this.socket.emit('chatConnected', {}, admin => {
+        this.socket.emit('chatConnected', {}, (admin) => {
             if (admin) {
                 // admin is online
                 this.props.dispatch(
@@ -122,14 +122,14 @@ export class LiveChatContainer extends Component {
                 method: 'POST',
                 body: JSON.stringify(contactData),
                 headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
+                    'Content-Type': 'application/json',
+                }),
             })
-                .then(response => {
+                .then((response) => {
                     this.props.dispatch(chatActions.contactSent(true));
                     // console.log("contact sent");
                 })
-                .catch(err => {
+                .catch((err) => {
                     throw new Error(err);
                 });
         } else {
@@ -139,15 +139,15 @@ export class LiveChatContainer extends Component {
                     id: this.socket.id,
                     name: name,
                     email: email,
-                    connected: true
+                    connected: true,
                 },
-                room => {
+                (room) => {
                     this.props.dispatch(
                         chatActions.chatNewUser({
                             room: room,
                             name: name,
                             email: email,
-                            registered: true
+                            registered: true,
                         })
                     );
 
@@ -168,7 +168,7 @@ export class LiveChatContainer extends Component {
                         "It looks like it's taking me a while to reply. You're welcome to wait a bit longer," +
                         " or please leave a note along with your contact info if you haven't" +
                         ' already. I will see your messages and get in touch before you know it!',
-                    date: Date.now()
+                    date: Date.now(),
                 };
 
                 this.socket.emit('chatMessage', message);
@@ -191,7 +191,7 @@ export class LiveChatContainer extends Component {
             room: this.props.liveChat.room,
             name: this.props.liveChat.localName,
             message: chatInput,
-            date: Date.now()
+            date: Date.now(),
         };
         this.socket.emit('chatMessage', message);
         this.props.dispatch(chatActions.chatCreateMesssage(''));
@@ -218,16 +218,13 @@ export class LiveChatContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        liveChat: state.liveChat
+        liveChat: state.liveChat,
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LiveChatContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LiveChatContainer);

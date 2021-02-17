@@ -66,17 +66,14 @@ export class Footer extends React.Component {
 function mapStateToProps(state) {
     return {
         contactForm: state.contactForm,
-        global: state.global
+        global: state.global,
     };
 }
 /* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Footer);
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

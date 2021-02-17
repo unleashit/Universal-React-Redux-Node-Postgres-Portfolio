@@ -8,14 +8,14 @@ describe('<Training />', () => {
     let props = {
         global: {
             hamburgerState: false,
-            htmlClass: ''
+            htmlClass: '',
         },
         liveChat: {
             remoteId: 'admin',
-            chatOpen: false
+            chatOpen: false,
         },
         dispatch: jest.fn(),
-        params: {}
+        params: {},
     };
 
     beforeEach(() => {
@@ -60,7 +60,7 @@ describe('<Training />', () => {
 
         const helmet = wrapper.find('HelmetWrapper');
         expect(helmet.prop('htmlAttributes')).toEqual({
-            class: props.global.htmlClass
+            class: props.global.htmlClass,
         });
     });
 

@@ -1,29 +1,44 @@
 var models = require('../models/index.js');
 var nodemailer = require('nodemailer');
 var config = require('../../config/APPconfig');
+var {
+    default: validateContact,
+} = require('../../app/js/components/contactForm/validations.js');
 
-const checkBan = (email) => {
-   return models.Ban.findOne({ where: { email } })
-       .catch((err) => {
-           console.error(err);
-            return res.status(500).json({ error: 'problem submitting contact'});
+const checkBan = (email, res) => {
+    return models.Ban.findOne({ where: { email } }).catch((err) => {
+        console.error(err);
+        return res.status(500).json({ error: 'problem submitting contact' });
+    });
+};
+
+exports.handleContactSubmit = function (req, res) {
+    const errors = validateContact(req.body);
+
+    if (Object.keys(errors).length > 0) {
+        return res.json({
+            error: errors,
         });
-}
+    }
 
-exports.handleContactSubmit = function(req, res, next) {
     const { name, email, phone, message } = req.body;
 
-    checkBan(email).then(resp => {
+    checkBan(email, res).then((resp) => {
         if (resp) {
-            console.error(`${email} is on ban list and attempted to send contact`);
-            return res.json({ result: 'Success', info: '250 Message received' });
+            console.error(
+                `${email} is on ban list and attempted to send contact`
+            );
+            return res.json({
+                result: 'Success',
+                info: '250 Message received',
+            });
         }
 
         models.Contact.create({
             name: name || null,
             email: email || null,
             phone: phone || null,
-            message: message || null
+            message: message || null,
         })
             .then(() => {
                 var textarea = req.body.message;
@@ -40,21 +55,27 @@ exports.handleContactSubmit = function(req, res, next) {
 
                 var transporter = nodemailer.createTransport(config.smtpConfig);
 
-                transporter.sendMail(config.mailoptions, function(error, info) {
+                transporter.sendMail(config.mailoptions, function (
+                    error,
+                    info
+                ) {
                     if (error) {
                         console.log(error);
                         res.json({ result: error });
                     } else {
-                        res.json({ result: 'Success', info: info.response });
+                        res.json({
+                            result: 'Success',
+                            info: info.response,
+                        });
                     }
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error('Contact db insertion failure: ' + err);
                 res.status(500).json({
                     result: 'Error',
-                    info: err.status || 500
+                    info: err.status || 500,
                 });
             });
-    })
+    });
 };
