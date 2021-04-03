@@ -9,7 +9,7 @@ export default (values) => {
         errors.message = 'Please enter a message';
     } else if (values.message.length > 3000) {
         errors.message = 'Message is too long';
-    } else if (values.message.trim().split(' ').length > 5) {
+    } else if (values.message.trim().split(' ').length < 5) {
         errors.message = 'Message is too short';
     }
     if (!values.email) {

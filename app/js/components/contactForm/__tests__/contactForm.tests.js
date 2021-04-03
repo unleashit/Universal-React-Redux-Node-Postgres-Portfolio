@@ -152,7 +152,9 @@ describe('<ContactForm /> integration tests', () => {
         email.simulate('change', { target: { value: 'joe@blow.com' } });
 
         const message = wrapper.find('textarea[name="message"]');
-        message.simulate('change', { target: { value: 'test msg' } });
+        message.simulate('change', {
+            target: { value: 'this test message has enough chars' },
+        });
 
         form.simulate('submit');
 
