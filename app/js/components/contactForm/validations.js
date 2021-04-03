@@ -10,7 +10,6 @@ export default (values) => {
     } else if (values.message.length > 3000) {
         errors.message = 'Message is too long';
     } else if (values.message.trim().split(' ').length > 5) {
-        // probably the one word spammer
         errors.message = 'Message is too short';
     }
     if (!values.email) {
