@@ -81,9 +81,9 @@ describe('<ContactForm /> integration tests', () => {
         expect(error).toHaveLength(1);
         expect(error.text()).toEqual('Please enter your name');
 
-        input.simulate('change', { target: { value: 'a'.repeat(26) } });
+        input.simulate('change', { target: { value: 'a'.repeat(51) } });
         expect(wrapper.find('.error').first()).toHaveLength(1);
-        expect(error.text()).toEqual('Name should be less than 25 characters');
+        expect(error.text()).toEqual('Name is too long');
     });
 
     test('email field displays correct error when invalid', () => {
@@ -152,7 +152,9 @@ describe('<ContactForm /> integration tests', () => {
         email.simulate('change', { target: { value: 'joe@blow.com' } });
 
         const message = wrapper.find('textarea[name="message"]');
-        message.simulate('change', { target: { value: 'test msg' } });
+        message.simulate('change', {
+            target: { value: 'this test message has enough chars' },
+        });
 
         form.simulate('submit');
 
