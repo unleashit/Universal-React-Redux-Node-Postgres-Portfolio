@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.5'
 
 services:
   db-staging:
@@ -14,7 +14,8 @@ services:
     healthcheck:
       test: exit 0
 networks:
-  default:
-    name: jg
+    default:
+        external:
+            name: jg
 volumes:
   jg_data_staging:
