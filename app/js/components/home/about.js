@@ -60,12 +60,12 @@ export default class About extends React.Component {
                         <p>
                             While my roots are in design and the user
                             experience, I made a major transition over the years
-                            to focus on development. For a while this translated
+                            to focus on development. In the beginning this translated
                             to simply being good at html, css and knowing enough
                             jquery to be dangerous. But once the Single Page App
                             craze hit with so many interesting new possibilities
-                            on the front end, I found that it was time to take a
-                            deeper dive into engineering.{' '}
+                            on the front end, I decided engineering was my real interest
+                            and that it was time to take a deeper dive.
                         </p>
                         <p>
                             In the time since the dust has settled, I’ve had a

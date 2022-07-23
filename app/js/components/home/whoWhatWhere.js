@@ -46,7 +46,7 @@ export default class WhoWhatWhere extends React.Component {
                     <div className="col-md-4">
                         <h3>Where I'm located</h3>
                         <p>
-                            I live in Portland, Oregon AKA Silicon Forest.
+                            I live in Portland, Oregon, AKA Silicon Forest.
                             Depending on your location and needs, I am available
                             to work with you in-house or remotely. I enjoy both
                             and have had plenty of success in both situations.

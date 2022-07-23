@@ -44,12 +44,10 @@ export class Footer extends React.Component {
                                 <p className="about-this-site-text">
                                     This site is 100% <span>HANDCRAFTED</span>{' '}
                                     with React, Redux, Node, PostgreSQL, and{' '}
-                                    <span>OF COURSE</span>, Html and CSS. It is{' '}
-                                    <span>UNIVERSAL</span>, or rather a single
+                                    <span>OF COURSE</span> Html and CSS. It is{' '}
+                                    <span>ISOMORPHIC</span>, or rather a single
                                     page app that is first rendered on the
-                                    server. Not to be mistaken for yet another{' '}
-                                    <span>HIPSTER BUZZWORD</span>, this is
-                                    really great for performance, accessibility
+                                    server. This is really great for performance, accessibility
                                     and SEO!
                                 </p>
                             </div>
