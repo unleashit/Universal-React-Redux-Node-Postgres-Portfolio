@@ -35,10 +35,6 @@ module.exports = function () {
                     chunkModules: false,
                     modules: false,
                 },
-                watchOptions: {
-                    aggregateTimeout: 300,
-                    poll: 1000,
-                },
             })
         );
         app.use(hot(compiler));
