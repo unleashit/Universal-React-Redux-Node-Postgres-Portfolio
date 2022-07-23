@@ -15,7 +15,6 @@ services:
       test: exit 0
 networks:
   default:
-    external:
-      name: jg
+    name: jg
 volumes:
   jg_data_staging:

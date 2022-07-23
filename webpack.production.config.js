@@ -2,11 +2,11 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // var Purify = require("purifycss-webpack-plugin");
 // var CopyWebpackPlugin = require('copy-webpack-plugin');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var IsomorphicLoaderPlugin = require('isomorphic-loader/lib/webpack-plugin');
 
 module.exports = {
@@ -25,7 +25,9 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production'),
             },
         }),
-        new ExtractTextPlugin('./css/[name].min.css'),
+        new MiniCssExtractPlugin({
+            filename: './css/[name].min.css',
+        }),
         // new Purify({
         //     basePath: __dirname,
         //     paths: [
@@ -53,7 +55,10 @@ module.exports = {
         //     parallel: true
         // }),
         // ignore locales in moment.js
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.IgnorePlugin({
+            resourceRegExp: /^\.\/locale$/,
+            contextRegExp: /moment$/,
+        }),
         new IsomorphicLoaderPlugin(),
     ],
     module: {
@@ -66,21 +71,11 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            // options: {
-                            //     modules: true,
-                            //     sourceMap: false,
-                            //     importLoaders: 1,
-                            //     localIdentName: '[name]__[local]___[hash:base64:5]',
-                            // },
-                        },
-                        'postcss-loader',
-                    ],
-                }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.scss$/,
@@ -91,10 +86,12 @@ module.exports = {
                         './app/js/components/ReactHelpDesk/admin/scss'
                     ),
                 ],
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader'],
-                }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,

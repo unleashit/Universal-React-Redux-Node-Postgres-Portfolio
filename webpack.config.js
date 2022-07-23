@@ -3,27 +3,10 @@
 var path = require('path');
 var webpack = require('webpack');
 var IsomorphicLoaderPlugin = require('isomorphic-loader/lib/webpack-plugin');
-// var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
-// var bsync = new BrowserSyncPlugin(
-//     {
-//         host: '192.168.99.100',
-//         port: 3000,
-//         proxy: 'http://192.168.99.100:3100/',
-//         browser: false,
-//         // open: false
-//     },
-//     // plugin options
-//     {
-//         // prevent BrowserSync from reloading the page
-//         // and let Webpack Dev Server take care of this
-//         reload: false
-//     }
-// );
 
 module.exports = {
     mode: 'development',
-    devtool: '#source-map',
+    devtool: 'source-map',
     entry: {
         global: ['webpack-hot-middleware/client', './app/js/index.js'],
         'admin.min': './app/js/components/ReactHelpDesk/admin/admin.js',
@@ -36,7 +19,6 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new IsomorphicLoaderPlugin(),
-        // bsync
     ],
     module: {
         rules: [
@@ -71,5 +53,9 @@ module.exports = {
                 ],
             },
         ],
+    },
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000,
     },
 };
