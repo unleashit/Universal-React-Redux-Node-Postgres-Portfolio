@@ -14,7 +14,8 @@ services:
     healthcheck:
       test: exit 0
 networks:
-  default:
-    name: jg
+    default:
+        external:
+            name: jg
 volumes:
   jg_data_staging:
