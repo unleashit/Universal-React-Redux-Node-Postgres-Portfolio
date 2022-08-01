@@ -68,16 +68,6 @@ exports[`<ResponsiveMenu /> shows on or off class depending on menuVisible state
         </Link>
       </li>
       <li>
-        <Link
-          onClick={[MockFunction]}
-          onlyActiveOnIndex={false}
-          style={Object {}}
-          to="/training"
-        >
-          Training
-        </Link>
-      </li>
-      <li>
         <a
           href="/#contact"
           onClick={[MockFunction]}
@@ -162,16 +152,6 @@ exports[`<ResponsiveMenu /> snapshot matches 1`] = `
           to="/#work"
         >
           Work
-        </Link>
-      </li>
-      <li>
-        <Link
-          onClick={[MockFunction]}
-          onlyActiveOnIndex={false}
-          style={Object {}}
-          to="/training"
-        >
-          Training
         </Link>
       </li>
       <li>

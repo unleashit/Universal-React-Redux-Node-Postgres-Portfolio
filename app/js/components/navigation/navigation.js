@@ -29,12 +29,6 @@ export default class Navigation extends React.PureComponent {
             </li>
         ) : null;
 
-        const trainingLink = this.props.home ? (
-            <li className="hidden-xs-down">
-                <Link to="/training">Training</Link>
-            </li>
-        ) : null;
-
         return (
             <nav>
                 <ul className={this.props.ulClass}>
@@ -50,7 +44,6 @@ export default class Navigation extends React.PureComponent {
                     <li className="hidden-xs-down">
                         <Link to="/#work">Work</Link>
                     </li>
-                    {trainingLink}
                     <li className="hidden-xs-down">
                         <Link to="/#contact">Contact</Link>
                     </li>

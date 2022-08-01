@@ -39,11 +39,6 @@ export default class ResponsiveMenu extends React.Component {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/training" onClick={closeBurger}>
-                                Training
-                            </Link>
-                        </li>
-                        <li>
                             <a href="/#contact" onClick={closeBurger}>
                                 Contact
                             </a>

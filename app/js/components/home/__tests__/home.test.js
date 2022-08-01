@@ -1,7 +1,6 @@
 import { Home } from '../Home';
 import Portfolio from '../../portfolio/Portfolio';
 import { wrapActualStore } from '../../../../../setupTests';
-import { Training } from '../../training/Training';
 import StickyHeader from '../../stickyHeader/stickyHeader';
 import * as utils from '../../../libs/utils';
 
