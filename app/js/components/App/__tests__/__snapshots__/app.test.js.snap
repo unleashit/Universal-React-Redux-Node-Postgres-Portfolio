@@ -30,7 +30,7 @@ exports[`<App /> matches snapshot (without footer) 1`] = `
             "char-set": "utf-8",
           },
           Object {
-            "content": "Full Stack Engineer in Portland. Focused on React, Node.Js, Typescript, Frontend/Backend, Devops, AWS, Serverless.",
+            "content": "Full Stack Engineer in Seattle. Focused on React, Node.Js, Typescript, Frontend, Backend, Devops, AWS, Serverless",
             "name": "description",
           },
           Object {
@@ -39,7 +39,7 @@ exports[`<App /> matches snapshot (without footer) 1`] = `
           },
         ]
       }
-      title="Front End / Full Stack Engineer in Portland, OR specializing in React, Javascript, Node.Js, Devops and more."
+      title="Front End / Full Stack Engineer in Seattle, WA specializing in React, Javascript, Node.Js, Devops and more."
       titleTemplate="Jason Gallagher - %s"
     />
   </div>

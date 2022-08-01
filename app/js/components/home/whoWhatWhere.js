@@ -18,7 +18,7 @@ export default class WhoWhatWhere extends React.Component {
                             my career in 1999 as a graphic designer, but quickly
                             transitioned into web development and design.
                             Currently, my focus is typically on Full Stack
-                            Javascript, React and Node.Js.
+                            Typescript, React and Node.Js.
                         </p>
                         <img
                             src={whoAmIicon}
