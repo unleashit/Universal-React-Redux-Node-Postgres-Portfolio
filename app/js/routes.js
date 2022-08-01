@@ -4,7 +4,6 @@ import App from './components/App/App';
 import Home from './components/home/Home';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 import PortfolioItemDetail from './components/portfolio-detail/portfolioItemDetail';
-import Training from './components/training/Training';
 import NoMatch from './components/404/NoMatch';
 
 export default (
@@ -18,10 +17,6 @@ export default (
             <Route path="/portfolio/:slug+&*" component={PortfolioItemDetail} />
             {/*hack to fix google cache*/}
             <Route path="/portfolio/:slug" component={PortfolioItemDetail} />
-        </Route>
-        <Route path="/training" component={Training}>
-            {/*hack to fix google cache*/}
-            <Route path="/training+&*" component={Training} />
         </Route>
         <Route path="*" component={NoMatch} />
     </Route>
