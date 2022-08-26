@@ -4,6 +4,7 @@ import App from './components/App/App';
 import Home from './components/home/Home';
 import PortfolioDetail from './components/portfolio/PortfolioDetail';
 import PortfolioItemDetail from './components/portfolio-detail/portfolioItemDetail';
+import Training from './components/training/Training';
 import NoMatch from './components/404/NoMatch';
 
 export default (

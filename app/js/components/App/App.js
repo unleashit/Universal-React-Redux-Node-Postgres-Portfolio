@@ -62,14 +62,14 @@ export class App extends Component {
                     onClick={this.toggleChatHandler}
                 >
                     <Helmet
-                        title="Front End / Full Stack Engineer in Seattle, WA"
+                        title="Front End / Full Stack Engineer in Portland, OR specializing in React, Javascript, Node.Js, Devops and more."
                         titleTemplate="Jason Gallagher - %s"
                         meta={[
                             { 'char-set': 'utf-8' },
                             {
                                 name: 'description',
                                 content:
-                                    'Full Stack Engineer in Seattle, focused on React, Node.Js, Typescript, Javascript, Frontend, Backend, Devops, AWS, Serverless and more',
+                                    'Full Stack Engineer in Portland focused on React, Node.Js, Javascript, Typescript, Frontend, Backend, Devops, AWS, Serverless and more',
                             },
                             {
                                 name: 'viewport',
