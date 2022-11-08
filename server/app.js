@@ -45,8 +45,13 @@ module.exports = function () {
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
     app.use(require('./redirects'));
-    app.use(express.static('dist'));
-    app.use(express.static('public'));
+
+    const staticOpts = {
+        maxAge: '7d'
+    }
+    app.use(express.static('dist', staticOpts));
+    app.use(express.static('public', staticOpts));
+
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
