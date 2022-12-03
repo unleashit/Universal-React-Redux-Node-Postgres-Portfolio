@@ -10,10 +10,6 @@ services:
       - ./config/.env.database-init.prod
     volumes:
       - 'jg_data:/var/lib/postgresql/data/'
-    labels:
-        com.datadoghq.ad.check_names: '["postgres"]'
-        com.datadoghq.ad.init_configs: '[{}]'
-        com.datadoghq.ad.instances: '[{"host":"%%host%%", "port":"%%port%%","username":"datadog","password":"%%env_DATADOG_DB_PASSWORD%%"}]'
     restart: always
     healthcheck:
       test: exit 0
